@@ -1,0 +1,33 @@
+IN 748 chunks
+IN 191692800 blocks (including air)
+
+//Vanilla Ores for Reference
+(14:0),Gold Ore,5737
+(15:0),Iron Ore,59971
+(16:0),Coal Ore,110337
+(21:0),Lapis Lazuli Ore,2400
+(49:0),Obsidian,1369
+(56:0),Diamond Ore,2274
+(73:0),Redstone Ore,17262
+
+//Our Ores :)
+(600:0),Copper Ore,22672
+(601:0),Tin Ore,15783
+(602:0),Aluminum Ore,8243
+(603:0),Titanium Ore,4268
+(604:0),Silver Ore,3169
+(605:0),Platinum Ore,932
+(606:0),Nickel Ore,3674
+(607:0),Tungsten Ore,1852
+(608:0),Manganese Ore,8911
+(609:0),Chromium Ore,2265
+(610:0),Lead Ore,12190
+(611:0),Sulfur Ore,8639
+(612:0),Zinc Ore,9126
+(613:0),Cinnabar Ore,1 --wierd that it did not generate (the 1 is from screenshot)
+(614:0),Thorium!,380
+(615:0),Uranium,593
+(616:0),Osmium,6448
+(617:0),Palladium,3887
+(618:0),Rhodium,2173
+(619:0),Iridium Ore,1 --did not generate either only 1 from the screenshots
