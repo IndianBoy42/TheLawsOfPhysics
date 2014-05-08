@@ -29,6 +29,7 @@ public class SyncableString extends SyncableObjectBase {
 		return value;
 	}
 
+	/*
 	@Override
 	public void readFromStream(DataInput stream) throws IOException {
 		value = stream.readUTF();
@@ -39,6 +40,7 @@ public class SyncableString extends SyncableObjectBase {
 			throws IOException {
 		stream.writeUTF(value);
 	}
+	*/
 
 	@Override
 	public void writeToNBT(NBTTagCompound nbt, String name) {

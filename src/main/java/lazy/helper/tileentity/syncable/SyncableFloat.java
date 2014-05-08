@@ -32,6 +32,7 @@ public class SyncableFloat extends SyncableObjectBase {
 		return Math.abs(otherValue - value) < EPSILON;
 	}
 
+	/*
 	@Override
 	public void readFromStream(DataInput stream) throws IOException {
 		value = stream.readFloat();
@@ -41,6 +42,7 @@ public class SyncableFloat extends SyncableObjectBase {
 	public void writeToStream(DataOutput stream, boolean fullData) throws IOException {
 		stream.writeFloat(value);
 	}
+	*/
 
 	@Override
 	public void writeToNBT(NBTTagCompound tag, String name) {

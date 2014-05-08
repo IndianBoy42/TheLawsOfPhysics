@@ -16,10 +16,12 @@ public class SyncableInt extends SyncableObjectBase {
 
 	public SyncableInt() {}
 
+	/*
 	@Override
 	public void readFromStream(DataInput stream) throws IOException {
 		value = stream.readInt();
 	}
+	*/
 
 	public void modify(int by) {
 		setValue(value + by);
@@ -36,10 +38,12 @@ public class SyncableInt extends SyncableObjectBase {
 		return value;
 	}
 
+	/*
 	@Override
 	public void writeToStream(DataOutput stream, boolean fullData) throws IOException {
 		stream.writeInt(value);
 	}
+	*/
 
 	@Override
 	public void writeToNBT(NBTTagCompound tag, String name) {

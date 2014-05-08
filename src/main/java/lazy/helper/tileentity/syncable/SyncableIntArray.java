@@ -50,6 +50,7 @@ public class SyncableIntArray extends SyncableObjectBase {
 		return size() == 0;
 	}
 
+	/*
 	@Override
 	public void readFromStream(DataInput stream) throws IOException {
 		int length = stream.readInt();
@@ -58,7 +59,7 @@ public class SyncableIntArray extends SyncableObjectBase {
 			value[i] = stream.readInt();
 		}
 	}
-
+	
 	@Override
 	public void writeToStream(DataOutput stream, boolean fullData) throws IOException {
 		stream.writeInt(size());
@@ -66,6 +67,7 @@ public class SyncableIntArray extends SyncableObjectBase {
 			stream.writeInt(value[i]);
 		}
 	}
+	*/
 
 	@Override
 	public void writeToNBT(NBTTagCompound tag, String name) {

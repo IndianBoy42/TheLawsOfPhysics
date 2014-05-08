@@ -16,24 +16,24 @@ public class ItemEnergyContainer extends Item implements IEnergyContainerItem {
 	protected int maxReceive;
 	protected int maxExtract;
 
-	public ItemEnergyContainer() {
+	public ItemEnergyContainer(int itemID) {
 
-		super();
+		super(itemID);
 	}
 
-	public ItemEnergyContainer(int capacity) {
+	public ItemEnergyContainer(int itemID, int capacity) {
 
-		this(capacity, capacity, capacity);
+		this(itemID, capacity, capacity, capacity);
 	}
 
-	public ItemEnergyContainer(int capacity, int maxTransfer) {
+	public ItemEnergyContainer(int itemID, int capacity, int maxTransfer) {
 
-		this(capacity, maxTransfer, maxTransfer);
+		this(itemID, capacity, maxTransfer, maxTransfer);
 	}
 
-	public ItemEnergyContainer(int capacity, int maxReceive, int maxExtract) {
+	public ItemEnergyContainer(int itemID, int capacity, int maxReceive, int maxExtract) {
 
-		super();
+		super(itemID);
 		this.capacity = capacity;
 		this.maxReceive = maxReceive;
 		this.maxExtract = maxExtract;

@@ -4,7 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.minecraftforge.common.Configuration;
+import net.minecraftforge.common.config.*;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
 public class ConfigHelper {
@@ -25,13 +25,6 @@ public class ConfigHelper {
     }
     public void saveConfigFile () {
     	configFile.save();
-    }
-    
-    public int getBlockID(String blockName, int def){
-    	return configFile.getBlock(blockName, def).getInt();
-    }
-    public int getItemID(String blockName, int def){
-    	return configFile.getItem(blockName, def).getInt();
     }
     
     public List<Integer> getOreGenStats (String oreName, int maxFreq, int minFreq, int height, int maxVein, int minVein) {

@@ -29,6 +29,7 @@ public class SyncableByte extends SyncableObjectBase {
 		return value;
 	}
 
+	/*
 	@Override
 	public void readFromStream(DataInput stream) throws IOException {
 		value = stream.readByte();
@@ -38,6 +39,7 @@ public class SyncableByte extends SyncableObjectBase {
 	public void writeToStream(DataOutput stream, boolean fullData) throws IOException {
 		stream.writeByte(value);
 	}
+	*/
 
 	@Override
 	public void writeToNBT(NBTTagCompound tag, String name) {

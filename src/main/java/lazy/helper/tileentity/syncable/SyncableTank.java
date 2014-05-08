@@ -34,6 +34,7 @@ public class SyncableTank extends FluidTank implements ISyncableObject {
 		dirty = true;
 	}
 
+	/*
 	@Override
 	public void readFromStream(DataInput stream) throws IOException {
 		int fluidId = stream.readInt();
@@ -69,6 +70,7 @@ public class SyncableTank extends FluidTank implements ISyncableObject {
 			stream.writeInt(-1);
 		}
 	}
+	*/
 
 	@Override
 	public void writeToNBT(NBTTagCompound tag, String name) {

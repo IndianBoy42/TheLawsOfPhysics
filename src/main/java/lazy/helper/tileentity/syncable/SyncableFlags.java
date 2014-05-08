@@ -92,6 +92,7 @@ public class SyncableFlags extends SyncableObjectBase {
 		dirty = false;
 	}
 
+	/*
 	@Override
 	public void readFromStream(DataInput stream) throws IOException {
 		value = stream.readShort();
@@ -101,6 +102,7 @@ public class SyncableFlags extends SyncableObjectBase {
 	public void writeToStream(DataOutput stream, boolean fullData) throws IOException {
 		stream.writeShort(value);
 	}
+	*/
 
 	@Override
 	public void writeToNBT(NBTTagCompound tag, String name) {

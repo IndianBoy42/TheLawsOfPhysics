@@ -27,6 +27,7 @@ public class SyncableByteArray extends SyncableObjectBase {
 		return value;
 	}
 
+	/*
 	@Override
 	public void readFromStream(DataInput stream) throws IOException {
 		int length = stream.readInt();
@@ -48,6 +49,7 @@ public class SyncableByteArray extends SyncableObjectBase {
 			}
 		}
 	}
+	*/
 
 	@Override
 	public void writeToNBT(NBTTagCompound nbt, String name) {

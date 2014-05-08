@@ -27,6 +27,7 @@ public class SyncableDouble extends SyncableObjectBase {
 		return value;
 	}
 
+	/*
 	@Override
 	public void readFromStream(DataInput stream) throws IOException {
 		value = stream.readDouble();
@@ -36,6 +37,7 @@ public class SyncableDouble extends SyncableObjectBase {
 	public void writeToStream(DataOutput stream, boolean fullData) throws IOException {
 		stream.writeDouble(value);
 	}
+	*/
 
 	@Override
 	public void writeToNBT(NBTTagCompound tag, String name) {

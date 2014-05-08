@@ -88,6 +88,11 @@ public class TileEntityBase extends TileEntity {
 		NBTTagCompound nbt = new NBTTagCompound();
 		this.writeToNBT(nbt);
 		Packet pkt = new S35PacketUpdateTileEntity(xCoord, yCoord, zCoord, 0, nbt);
+		for (ISyncableObject obj : syncableObjects.values()) {
+			if (obj.isDirty()) {
+				obj.markClean();
+			}
+		}
 		return pkt;
 	}
 	

@@ -16,10 +16,12 @@ public class SyncableShort extends SyncableObjectBase {
 
 	public SyncableShort() {}
 
+	/*
 	@Override
 	public void readFromStream(DataInput stream) throws IOException {
 		value = stream.readShort();
 	}
+	*/
 
 	public void modify(short by) {
 		setValue((short)(value + by));
@@ -36,10 +38,12 @@ public class SyncableShort extends SyncableObjectBase {
 		return value;
 	}
 
+	/*
 	@Override
 	public void writeToStream(DataOutput stream, boolean fullData) throws IOException {
 		stream.writeShort(value);
 	}
+	*/
 
 	@Override
 	public void writeToNBT(NBTTagCompound tag, String name) {

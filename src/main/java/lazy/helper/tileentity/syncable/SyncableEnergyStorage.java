@@ -1,54 +1,76 @@
-package cofh.api.energy;
+package lazy.helper.tileentity.syncable;
 
+import java.io.DataInput;
+import java.io.DataOutput;
+import java.io.IOException;
+
+import cofh.api.energy.EnergyStorage;
+import cofh.api.energy.IEnergyStorage;
 import net.minecraft.nbt.NBTTagCompound;
 
-/**
- * Reference implementation of {@link IEnergyStorage}. Use/extend this or implement your own.
- * 
- * @author King Lemming
- * 
- */
-public class EnergyStorage implements IEnergyStorage {
+public class SyncableEnergyStorage implements ISyncableObject, IEnergyStorage {
+
+	public SyncableEnergyStorage() {
+		// TODO Auto-generated constructor stub
+	}
+
+	boolean dirty = false;
+	
+	@Override
+	public boolean isDirty() {
+		// TODO Auto-generated method stub
+		return dirty;
+	}
+
+	@Override
+	public void markClean() {
+		// TODO Auto-generated method stub
+		dirty = false;
+	}
+
+	@Override
+	public void markDirty() {
+		// TODO Auto-generated method stub
+		dirty = true;
+	}
+
+	@Override
+	public void writeToNBT(NBTTagCompound nbt, String name) {
+		if (energy < 0) {
+			energy = 0;
+		}
+		nbt.setInteger("Energy", energy);
+	}
+
+	@Override
+	public void readFromNBT(NBTTagCompound nbt, String name) {
+		this.energy = nbt.getInteger(name);
+
+		if (energy > capacity) {
+			energy = capacity;
+		}
+	}
 
 	protected int energy;
 	protected int capacity;
 	protected int maxReceive;
 	protected int maxExtract;
 
-	public EnergyStorage(int capacity) {
+	public SyncableEnergyStorage(int capacity) {
 
 		this(capacity, capacity, capacity);
 	}
 
-	public EnergyStorage(int capacity, int maxTransfer) {
+	public SyncableEnergyStorage(int capacity, int maxTransfer) {
 
 		this(capacity, maxTransfer, maxTransfer);
 	}
 
-	public EnergyStorage(int capacity, int maxReceive, int maxExtract) {
+	public SyncableEnergyStorage(int capacity, int maxReceive, int maxExtract) {
 
 		this.capacity = capacity;
 		this.maxReceive = maxReceive;
 		this.maxExtract = maxExtract;
-	}
-
-	public EnergyStorage readFromNBT(NBTTagCompound nbt) {
-
-		this.energy = nbt.getInteger("Energy");
-
-		if (energy > capacity) {
-			energy = capacity;
-		}
-		return this;
-	}
-
-	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
-
-		if (energy < 0) {
-			energy = 0;
-		}
-		nbt.setInteger("Energy", energy);
-		return nbt;
 	}
 
 	public void setCapacity(int capacity) {
@@ -154,5 +176,6 @@ public class EnergyStorage implements IEnergyStorage {
 
 		return capacity;
 	}
+
 
 }
