@@ -1,9 +1,9 @@
 package qmech.mod;
 
-import lazy.helper.LoggingHelper;
-import lazy.helper.handlers.FuelHandler;
-import lazy.helper.handlers.WorldGenerator;
-import lazy.helper.network.PacketPipeline;
+import qmech.helper.LoggingHelper;
+import qmech.helper.handlers.FuelHandler;
+import qmech.helper.handlers.WorldGenerator;
+import qmech.helper.network.PacketPipeline;
 import qmech.mod.network.CommonProxy;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
