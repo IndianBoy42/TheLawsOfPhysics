@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import lazy.helper.CoordTriplet;
 import lazy.helper.tileentity.syncable.ISyncableObject;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -108,6 +109,10 @@ public class TileEntityBase extends TileEntity {
 			obj.getValue().writeToNBT(nbt, obj.getKey());
 		}
 		super.readFromNBT(nbt);
+	}
+	
+	public CoordTriplet getCoords() {
+		return new CoordTriplet(xCoord, yCoord, zCoord);
 	}
 
 }
