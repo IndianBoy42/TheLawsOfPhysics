@@ -4,24 +4,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-<<<<<<< HEAD:src/main/java/qmech/helper/tileentity/TileEntityBase.java
 import qmech.helper.tileentity.syncable.ISyncableObject;
-=======
-import lazy.helper.CoordTriplet;
-import lazy.helper.tileentity.syncable.ISyncableObject;
->>>>>>> 8abaa91f68ed4952d1fbfdaed680ec12a9a687c6:src/main/java/lazy/helper/tileentity/TileEntityBase.java
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
+import qmech.helper.CoordTriplet;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
-import net.minecraft.server.management.PlayerManager;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.WorldServer;
 import qmech.mod.Reference;
-
-import com.google.common.collect.Sets;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 
@@ -29,8 +18,8 @@ public class TileEntityBase extends TileEntity {
 	
 	Map<String, ISyncableObject> syncableObjects = new HashMap<String, ISyncableObject>();
 
-	public TileEntityBase() {
-		GameRegistry.registerTileEntity(TileEntityBase.class, Reference.MOD_ID + ":TileEntityBase");
+	public TileEntityBase(String name) {
+		GameRegistry.registerTileEntity(TileEntityBase.class, Reference.MOD_ID + ":" + name);
 	}
 	
 	public void updateEntity () {
