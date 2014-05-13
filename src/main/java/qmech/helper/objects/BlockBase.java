@@ -56,11 +56,14 @@ public class BlockBase extends Block {
     public TileEntity createTileEntity(World world, int meta){
     	try {
 			return teClass.newInstance();
-		} catch (InstantiationException | IllegalAccessException e) {
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-    	return null;
+        return null;
     }
     
     /*

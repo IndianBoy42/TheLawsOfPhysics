@@ -3,7 +3,7 @@ package qmech.helper.objects;
 import java.lang.reflect.InvocationTargetException;
 
 import cpw.mods.fml.common.registry.GameRegistry;
-import test.core.ref.Reference;
+import qmech.mod.Reference;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemArmor;
@@ -12,7 +12,7 @@ import net.minecraft.item.ItemStack;
 public class ArmorBase extends ItemArmor {
 
 	public ArmorBase(String intName, ArmorTypeBase armorType) {
-		super(armorType.getArmorMaterial(), int, int);
+		super(armorType.getArmorMaterial(), 0, 0);
         this.setTextureName(Reference.MOD_ID + ":" + intName);
         this.setInternalName(intName);
 	}

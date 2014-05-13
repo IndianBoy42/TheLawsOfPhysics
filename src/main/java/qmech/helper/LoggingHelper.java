@@ -1,10 +1,12 @@
 package qmech.helper;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import qmech.mod.Reference;
 import cpw.mods.fml.common.FMLLog;
+
+import static qmech.mod.Reference.*;
 
 public class LoggingHelper {
 
@@ -21,8 +23,7 @@ public class LoggingHelper {
     
     public static LoggingHelper construct () {
     	LoggingHelper logBase = new LoggingHelper();
-        logBase.logger = Logger.getLogger(Reference.MOD_ID);
-        logBase.logger.setParent((Logger) FMLLog.getLogger());
+        logBase.logger = LogManager.getLogger(MOD_ID);
         return logBase;
     }
 
@@ -31,43 +32,26 @@ public class LoggingHelper {
         logger.log(logLevel, object.toString());
     }
 
-    public void severe(Object object) {
-
-        log(Level.SEVERE, object.toString());
-    }
-    
-    public void debug(Object object) {
-    	
-        log(Level.INFO, "[DEBUG] " + object.toString());
-    }
-
-    public void warning(Object object) {
-
-        log(Level.WARNING, object.toString());
-    }
-
     public void info(Object object) {
-
-        log(Level.INFO, object.toString());
+        logger.info(object.toString());
+    }
+    public void debug(Object object) {
+        logger.debug(object.toString());
+    }
+    public void fatal(Object object) {
+        logger.fatal(object.toString());
+    }
+    public void error(Object object) {
+        logger.error(object.toString());
+    }
+    public void fatal(Object object, Throwable error) {
+        logger.fatal(object.toString(), error);
+    }
+    public void error(Object object, Throwable error) {
+        logger.error(object.toString(), error);
+    }
+    public void trace(Object object) {
+        logger.trace(object.toString());
     }
 
-    public void config(Object object) {
-
-        log(Level.CONFIG, object.toString());
-    }
-
-    public void fine(Object object) {
-
-        log(Level.FINE, object.toString());
-    }
-
-    public void finer(Object object) {
-
-        log(Level.FINER, object.toString());
-    }
-
-    public void finest(Object object) {
-
-        log(Level.FINEST, object.toString());
-    }
 }

@@ -55,7 +55,7 @@ public class ModBase {
 		this.setEvent_init(event);
 		
 		proxy.init();
-		packetHandler.init();
+		//packetHandler.init();
 		
 		//NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandlerBase());
 	}
@@ -69,7 +69,7 @@ public class ModBase {
 		loggingHelper.info("Starting Mod PostInitialization");
 		
 		proxy.postInit();  
-		packetHandler.postInit();
+		//packetHandler.postInit();
 		
 		//configHelper.saveConfigFile();
 	}
@@ -95,7 +95,7 @@ public class ModBase {
 	//Proxy Handler
 	@SidedProxy(clientSide=Reference.CLIENT_PROXY_CLASS, serverSide=Reference.SERVER_PROXY_CLASS)
 	public static CommonProxy proxy;
-	public static PacketPipeline packetHandler = new PacketPipeline();
+	//public static PacketPipeline packetHandler = new PacketPipeline();
 	
 	//Helpers
 	//ConfigHelper configHelper;

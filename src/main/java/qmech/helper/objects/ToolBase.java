@@ -6,13 +6,13 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
-import test.core.ref.Reference;
+import qmech.mod.Reference;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class ToolBase extends ItemTool {
 
-    public ToolBase(String intName) {
-        super(float, toolMaterial, Set);
+    public ToolBase(String intName, ToolTypeBase toolTypeBase) {
+        super(0.0F, toolTypeBase.getToolType(), null);
         this.setTextureName(Reference.MOD_ID + ":" + intName);
         this.setInternalName(intName);
     }

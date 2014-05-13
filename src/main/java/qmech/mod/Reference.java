@@ -1,5 +1,8 @@
 package qmech.mod;
 
+import qmech.mod.network.ClientProxy;
+import qmech.mod.network.CommonProxy;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -17,8 +20,8 @@ public class Reference {
     		+ "especially the forge teams for making minecraft modding possible and easy, \n"
     		+ "as well as wuppy29 and pahimar for being such awesome teachers";
     
-    public static final String CLIENT_PROXY_CLASS = "test.mod.network.ClientProxy";
-    public static final String SERVER_PROXY_CLASS = "test.mod.network.CommonProxy";
+    public static final String CLIENT_PROXY_CLASS = "qmech.mod.network.ClientProxy";
+    public static final String SERVER_PROXY_CLASS = "qmech.mod.network.CommonProxy";
     
     public static final String DEFAULT_CHANNEL = "LazyMod:Default";
     

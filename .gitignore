@@ -1,3 +1,10 @@
 .idea/
 *.iml
 screenshots/
+.gradle/
+build/
+bin/
+eclipse/
+out/
+*.ipr
+*.iws
