@@ -4,7 +4,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
+<<<<<<< HEAD:src/main/java/qmech/helper/tileentity/TileEntityBase.java
 import qmech.helper.tileentity.syncable.ISyncableObject;
+=======
+import lazy.helper.CoordTriplet;
+import lazy.helper.tileentity.syncable.ISyncableObject;
+>>>>>>> 8abaa91f68ed4952d1fbfdaed680ec12a9a687c6:src/main/java/lazy/helper/tileentity/TileEntityBase.java
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
@@ -107,6 +112,10 @@ public class TileEntityBase extends TileEntity {
 			obj.getValue().writeToNBT(nbt, obj.getKey());
 		}
 		super.readFromNBT(nbt);
+	}
+	
+	public CoordTriplet getCoords() {
+		return new CoordTriplet(xCoord, yCoord, zCoord);
 	}
 
 }
