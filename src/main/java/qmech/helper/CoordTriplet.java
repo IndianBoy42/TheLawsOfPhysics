@@ -1,6 +1,7 @@
 package qmech.helper;
 
 import net.minecraft.block.Block;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
@@ -53,6 +54,9 @@ public class CoordTriplet {
 
     public Block blockInWorld(World world) {
         return world.getBlock(this.x, this.y, this.z);
+    }
+    public TileEntity teInWorld(World world) {
+        return world.getTileEntity(this.x, this.y, this.z);
     }
 	
 	public static CoordTriplet bottomSouthWest(CoordTriplet...coordTriplets) {

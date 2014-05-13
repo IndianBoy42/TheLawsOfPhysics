@@ -23,16 +23,17 @@ public class TileEntityBase extends TileEntity {
 	}
 	
 	public void updateEntity () {
-		tick();
+		update();
 		
 		for (ISyncableObject obj : syncableObjects.values()) {
 			if (obj.isDirty()) {
 				this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+                break;
 			}
 		}
 	}
 	
-	public void tick () {
+	public void update() {
 		
 	}
 	

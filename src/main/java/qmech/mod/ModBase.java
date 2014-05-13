@@ -112,12 +112,6 @@ public class ModBase {
 	public static ModBase getInstance() {
 		return instance;
 	}
-	public LoggingHelper getLogger() {
-		return loggingHelper;
-	}
-	public void setLogger(LoggingHelper loggingHelper) {
-		this.loggingHelper = loggingHelper;
-	}
 	public WorldGenerator getWorldGen() {
 		return worldGen;
 	}

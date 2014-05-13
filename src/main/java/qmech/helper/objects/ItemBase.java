@@ -2,6 +2,7 @@ package qmech.helper.objects;
 
 import java.lang.reflect.InvocationTargetException;
 
+import qmech.helper.LoggingHelper;
 import qmech.mod.Reference;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
@@ -11,11 +12,20 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 public class ItemBase extends Item {
+
+    static LoggingHelper logger = LoggingHelper.getInstance();
 	
 	public static ItemBase add (String intName, CreativeTabs ctab, int stackSize) {
+        logger.info(String.format("Adding New Item with : \n" +
+                        ">>> Name : %s \n" +
+                        ">>> CreativeTab : %s\n" +
+                        ">>> StackSize : %s",
+                intName, ctab, stackSize
+        ));
 		ItemBase item = new ItemBase(intName);
 		item.setCreativeTabs(ctab);
 		item.setStackSize(stackSize);
+        item.registerItem();
 		return item;
 	}
 

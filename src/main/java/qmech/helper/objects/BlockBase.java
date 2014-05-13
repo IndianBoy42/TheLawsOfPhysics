@@ -1,5 +1,6 @@
 package qmech.helper.objects;
 
+import qmech.helper.LoggingHelper;
 import qmech.mod.Reference;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -10,9 +11,18 @@ import net.minecraft.world.World;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class BlockBase extends Block {
+
+    static LoggingHelper logger = LoggingHelper.getInstance();
 	
 	public static BlockBase add
 		(String intName, Material material, CreativeTabs ctab, float hardness, float blastResistance, String toolType, int toolLevel) {
+        logger.info(String.format("Adding New Block with : \n" +
+                ">>> Name : %s \n" +
+                ">>> Material : %s \n" +
+                ">>> CreativeTab : %s \n" +
+                ">>> Hardness : %s, BlastResistance : %s \n" +
+                ">>> Tool : %s, %s",
+                intName, material, ctab, hardness, blastResistance, toolType, toolLevel));
 		BlockBase block = new BlockBase(material, intName);
 		block.setCreativeTabs(ctab);
 		block.setStrength(hardness, blastResistance).setHarvestLevel(toolType, toolLevel);
@@ -85,6 +95,6 @@ public class BlockBase extends Block {
     }
     
     public void setHarvestLevel(String toolType, int toolLevel){
-        this.setHarvestLevel(toolType, toolLevel);
+        super.setHarvestLevel(toolType, toolLevel);
     }
 }

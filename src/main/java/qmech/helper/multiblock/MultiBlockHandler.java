@@ -1,13 +1,13 @@
 package qmech.helper.multiblock;
 
-import qmech.helper.multiblock.struct.StructureDef;
+import qmech.helper.multiblock.struct.StructureHandler;
 import qmech.helper.multiblock.struct.StructureRegistry;
 
 import java.util.List;
 
 public class MultiBlockHandler {
 	
-	StructureDef struct;
+	StructureHandler struct;
 	UpdateHandler tickHandler;
 	
 	List<MultiBlockPart> multiblockParts;

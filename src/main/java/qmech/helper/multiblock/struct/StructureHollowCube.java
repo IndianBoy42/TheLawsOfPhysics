@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by anshuman on 12-05-2014.
  */
-public class StructureHollowCube extends StructureDef {
+public class StructureHollowCube extends StructureHandler {
 
     int x;
     int y;
