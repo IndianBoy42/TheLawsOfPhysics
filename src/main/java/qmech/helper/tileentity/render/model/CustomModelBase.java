@@ -1,4 +1,4 @@
-package qmech.helper.tileentity;
+package qmech.helper.tileentity.render.model;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;

@@ -1,8 +1,8 @@
 package qmech.mod.block.te;
 
 import qmech.helper.LoggingHelper;
-import qmech.helper.tileentity.BlockModelBase;
-import qmech.helper.tileentity.BlockRendererBase;
+import qmech.helper.tileentity.render.model.BlockModelBase;
+import qmech.helper.tileentity.render.BlockRendererBase;
 import qmech.helper.tileentity.TileEntityBase;
 import qmech.helper.tileentity.syncable.SyncableInt;
 import qmech.mod.ModBase;

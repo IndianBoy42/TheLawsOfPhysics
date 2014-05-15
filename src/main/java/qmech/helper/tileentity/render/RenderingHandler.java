@@ -1,4 +1,4 @@
-package qmech.helper.tileentity;
+package qmech.helper.tileentity.render;
 
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import cpw.mods.fml.client.registry.RenderingRegistry;

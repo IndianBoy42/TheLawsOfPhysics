@@ -1,17 +1,9 @@
-package qmech.helper.tileentity;
+package qmech.helper.tileentity.render;
 
-import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.texture.TextureManager;
-import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.entity.Entity;
-import net.minecraft.util.ResourceLocation;
-import qmech.helper.LoggingHelper;
-import qmech.mod.Reference;
-
-import static qmech.mod.Reference.*;
+import qmech.helper.tileentity.render.model.CustomModelBase;
 
 /**
  * Created by anshuman on 14-05-2014.
