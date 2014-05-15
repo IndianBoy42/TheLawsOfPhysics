@@ -6,10 +6,10 @@ import qmech.helper.objects.ItemBase;
 
 public class ModItems {
 
-    static ItemBase testItem;
+    static ItemBase testItem = new ItemBase("testItem");
 
 	public static void preInit () {
-		testItem = ItemBase.add("testItem", CreativeTabs.tabMisc, 64);
+		testItem = ItemBase.config(testItem, CreativeTabs.tabMisc, 64);
 	}
 
 }

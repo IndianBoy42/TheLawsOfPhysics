@@ -15,14 +15,13 @@ public class ItemBase extends Item {
 
     static LoggingHelper logger = LoggingHelper.getInstance();
 	
-	public static ItemBase add (String intName, CreativeTabs ctab, int stackSize) {
-        logger.info(String.format("Adding New Item with : \n" +
-                        ">>> Name : %s \n" +
+	public static ItemBase config (ItemBase item, CreativeTabs ctab, int stackSize) {
+        logger.info(String.format("Configuring Item (%s) with : \n" +
                         ">>> CreativeTab : %s\n" +
                         ">>> StackSize : %s",
-                intName, ctab, stackSize
+                item.getUnlocalizedName(),
+                ctab, stackSize
         ));
-		ItemBase item = new ItemBase(intName);
 		item.setCreativeTabs(ctab);
 		item.setStackSize(stackSize);
         item.registerItem();
@@ -51,15 +50,6 @@ public class ItemBase extends Item {
     
     public void registerItem () { 
         GameRegistry.registerItem(this, Reference.MOD_ID+":"+this.getUnlocalizedName().substring(5));
-    }
-    
-    boolean hasGlow = false;
-    public ItemBase setGlows(boolean hasGlow){
-        this.hasGlow = hasGlow;
-        return this;
-    }
-    public boolean hasEffect (ItemStack stack) {
-        return hasGlow;
     }
     
     EnumRarity textColor;

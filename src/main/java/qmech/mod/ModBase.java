@@ -22,7 +22,7 @@ public class ModBase {
 	
 	//ForgeModLoader EventHandlers
 	@EventHandler
-	public void preInit (FMLPreInitializationEvent event) {
+	public void preInit (FMLPreInitializationEvent event) throws IllegalAccessException, InstantiationException {
         System.out.println("Fancy logging coming soon to a mod near you :)");
         loggingHelper = LoggingHelper.getInstance();
 

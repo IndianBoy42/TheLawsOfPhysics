@@ -3,16 +3,17 @@ package qmech.mod;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import qmech.helper.objects.BlockBase;
+import qmech.helper.tileentity.TEBlockBase;
+import qmech.mod.block.TestTEBlock;
 
 public class ModBlocks {
-	public static class Blocks{
-        static BlockBase testBlock;
-	}
 
-	public static class Ores{
-	}
+    static BlockBase testBlock = new BlockBase(Material.iron, "testBlock");
 
-	public static void preInit () {
-        Blocks.testBlock = BlockBase.add("testBlock", Material.iron, CreativeTabs.tabBlock, 1.0f, 1.0f, "pickaxe", 1);
+    static TEBlockBase testMachine = new TestTEBlock(Material.iron, "testMachine");
+
+	public static void preInit () throws InstantiationException, IllegalAccessException {
+        testBlock = BlockBase.config(testBlock, CreativeTabs.tabBlock, 1.0f, 1.0f, "pickaxe", 1);
+        testMachine = TEBlockBase.config(testMachine, CreativeTabs.tabBlock, 1.0f, 1.0f, "pickaxe", 1);
 	}
 }

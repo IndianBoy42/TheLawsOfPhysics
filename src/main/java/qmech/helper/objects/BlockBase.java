@@ -1,5 +1,9 @@
 package qmech.helper.objects;
 
+import net.minecraft.block.ITileEntityProvider;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.MathHelper;
 import qmech.helper.LoggingHelper;
 import qmech.mod.Reference;
 import net.minecraft.block.Block;
@@ -12,18 +16,16 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public class BlockBase extends Block {
 
-    static LoggingHelper logger = LoggingHelper.getInstance();
+    protected static LoggingHelper logger = LoggingHelper.getInstance();
 	
-	public static BlockBase add
-		(String intName, Material material, CreativeTabs ctab, float hardness, float blastResistance, String toolType, int toolLevel) {
-        logger.info(String.format("Adding New Block with : \n" +
-                ">>> Name : %s \n" +
-                ">>> Material : %s \n" +
+	public static BlockBase config
+		(BlockBase block, CreativeTabs ctab, float hardness, float blastResistance, String toolType, int toolLevel) {
+        logger.info(String.format("Configuring Block (%s) with : \n" +
                 ">>> CreativeTab : %s \n" +
                 ">>> Hardness : %s, BlastResistance : %s \n" +
                 ">>> Tool : %s, %s",
-                intName, material, ctab, hardness, blastResistance, toolType, toolLevel));
-		BlockBase block = new BlockBase(material, intName);
+                block.getUnlocalizedName(),
+                ctab, hardness, blastResistance, toolType, toolLevel));
 		block.setCreativeTabs(ctab);
 		block.setStrength(hardness, blastResistance).setHarvestLevel(toolType, toolLevel);
 		block.registerBlock();
@@ -52,44 +54,6 @@ public class BlockBase extends Block {
         return this;
     }
     
-    public Class<? extends TileEntity> teClass;
-    public boolean hasTE;
-    
-    public void addTileEntity (Class<? extends TileEntity> te) {
-    	teClass = te;
-    }
-    
-    public boolean hasTileEntity(){
-    	return hasTE;
-    }
-    
-    public TileEntity createTileEntity(World world, int meta){
-    	try {
-			return teClass.newInstance();
-		} catch (InstantiationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        return null;
-    }
-    
-    /*
-    int guiID;
-    boolean hasGui;
-    
-    public void addGui (int ID) {
-    	guiID = ID;
-    	hasGui = true;
-    }
-    
-    public boolean onBlockActivated (World world, int x, int y, int z, EntityPlayer player) {
-    	return true;
-    }
-    */
-    
     public void registerBlock () {
         GameRegistry.registerBlock(this, Reference.MOD_ID+":"+this.getUnlocalizedName().substring(5));
     }
@@ -97,4 +61,10 @@ public class BlockBase extends Block {
     public void setHarvestLevel(String toolType, int toolLevel){
         super.setHarvestLevel(toolType, toolLevel);
     }
+
+    public void onBlockPlacedBy (World world, int x, int y, int z, EntityLivingBase player, ItemStack stack) {
+        int dir = MathHelper.floor_double((double)((player.rotationYaw * 4F) / 360F) + 0.5D) & 3;
+        world.setBlockMetadataWithNotify(x, y, z, dir, 0);
+    }
+
 }

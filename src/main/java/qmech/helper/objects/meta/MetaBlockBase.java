@@ -51,7 +51,7 @@ public class MetaBlockBase extends Block {
 	    
 	    public void registerItem () { 
 	        GameRegistry.registerItem(this, Reference.MOD_ID+":"+this.getUnlocalizedName().substring(5));
-	        //LanguageRegistry.addName(this, name);
+	        //LanguageRegistry.addName(this, intName);
 	    }
 	    
 	    boolean hasGlow = false;

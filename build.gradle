@@ -22,7 +22,7 @@ group= "mod.qmech" // http://maven.apache.org/guides/mini/guide-naming-conventio
 archivesBaseName = "QMech"
 
 minecraft {
-    version = "1.7.2-10.12.0.1057"
+    version = "1.7.2-10.12.1.1079"
     assetDir = "eclipse/assets"
 }
 

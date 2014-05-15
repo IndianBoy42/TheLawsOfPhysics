@@ -10,8 +10,8 @@ import java.util.List;
 
 public abstract class MultiBlockPart extends TileEntityBase {
 	
-	public MultiBlockPart(String name, int StructID, int BlockID) {
-		super(name);
+	public MultiBlockPart(int StructID, int BlockID) {
+		super();
 		searchForMultiBlock();
         this.structureID = StructID;
         this.blockID = BlockID;

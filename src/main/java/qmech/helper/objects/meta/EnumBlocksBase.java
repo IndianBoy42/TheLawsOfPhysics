@@ -23,7 +23,7 @@ public enum EnumBlocksBase {
 	}
 
 	protected MetaItemBase.MetaItem createMetaItem() {
-		return new MetaItemBase.MetaItem(this.name());
+		return new MetaItemBase.MetaItem(this.intName());
 	}
 
 	protected boolean isEnabled() {

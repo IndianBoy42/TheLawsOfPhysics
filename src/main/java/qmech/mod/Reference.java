@@ -1,5 +1,6 @@
 package qmech.mod;
 
+import cpw.mods.fml.client.registry.RenderingRegistry;
 import qmech.mod.network.ClientProxy;
 import qmech.mod.network.CommonProxy;
 
@@ -8,6 +9,7 @@ import java.util.List;
 
 
 public class Reference {
+
     public static final String MOD_NAME = "Quantum Mechanization";
     public static final String MOD_ID = "qmechanization";
     public static final String MOD_VERSION = "0.0.0";
@@ -22,9 +24,9 @@ public class Reference {
     
     public static final String CLIENT_PROXY_CLASS = "qmech.mod.network.ClientProxy";
     public static final String SERVER_PROXY_CLASS = "qmech.mod.network.CommonProxy";
-    
-    public static final String DEFAULT_CHANNEL = "LazyMod:Default";
-    
+
+    public static final int RENDER_ID = RenderingRegistry.getNextAvailableRenderId();
+
     public static class Values {
     	
     	public static final int moltenMetalPerIngot = 144;
@@ -33,6 +35,10 @@ public class Reference {
     	public static final int moltenMetalPerNugget = moltenMetalPerIngot /2;
     	
     }
+
+    public static final String TEXTURES_BLOCKS = "/textures/blocks/";
+    public static final String TEXTURES_ITEMS = "/textures/items/";
+    public static final String TEXTURES_MODELS = "textures/models";
     
 }
 

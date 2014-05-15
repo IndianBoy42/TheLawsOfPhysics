@@ -1,6 +1,7 @@
 package qmech.helper.tileentity.syncable;
 
 import net.minecraft.nbt.NBTTagCompound;
+import qmech.helper.LoggingHelper;
 
 public class SyncableInt extends SyncableObjectBase {
 
