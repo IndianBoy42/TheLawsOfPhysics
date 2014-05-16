@@ -10,7 +10,7 @@ import java.util.List;
 
 public class Reference {
 
-    public static final String MOD_NAME = "Quantum Mechanization";
+    public static final String MOD_NAME = "QuantumMechanization";
     public static final String MOD_ID = "qmechanization";
     public static final String MOD_VERSION = "0.0.0";
     
@@ -18,9 +18,7 @@ public class Reference {
     public static final String MOD_URL = "not yet sorry guys";
     public static final String MOD_DESCRIPTION = "A Realistic and Complex End-Game Technology Mod Based on Real Science Concepts";
     public static final String MOD_CREDITS = 
-    		"All The People,\n "
-    		+ "especially the forge teams for making minecraft modding possible and easy, \n"
-    		+ "as well as wuppy29 and pahimar for being such awesome teachers";
+    		"All The People,\n ";
     
     public static final String CLIENT_PROXY_CLASS = "qmech.mod.network.ClientProxy";
     public static final String SERVER_PROXY_CLASS = "qmech.mod.network.CommonProxy";

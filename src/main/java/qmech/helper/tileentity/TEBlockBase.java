@@ -9,7 +9,10 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import qmech.helper.objects.BlockBase;
+import qmech.helper.tileentity.render.CustomRendererBase;
+import qmech.mod.ModBase;
 import qmech.mod.Reference;
+import qmech.mod.block.tileentity.TestTE;
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -32,14 +35,29 @@ public abstract class TEBlockBase extends BlockBase implements ITileEntityProvid
         return block;
     }
 
-    public TEBlockBase(Material material, String intName) {
+    public TEBlockBase(Material material, String intName, CustomRendererBase... renderer) {
         super(material, intName);
-        GameRegistry.registerTileEntity(TileEntityBase.class, Reference.MOD_ID + ":");
+        teName = intName;
+        if (renderer.length > 0) {
+            this.renderer = renderer[0];
+        }
+        GameRegistry.registerTileEntity(TileEntityBase.class, String.format("%s:%s", Reference.MOD_ID, teName()));
+        ModBase.proxy.registerRenderer(TestTE.class, customRenderer());
     }
 
-    public abstract String teName();
+    String teName;
+    public String teName() {
+        return teName;
+    }
 
-    public abstract boolean hasCustomRenderer();
+    public boolean hasCustomRenderer() {
+        return customRenderer() != null;
+    }
+
+    CustomRendererBase renderer;
+    public CustomRendererBase customRenderer() {
+        return renderer;
+    }
 
     @Override
     public boolean renderAsNormalBlock()

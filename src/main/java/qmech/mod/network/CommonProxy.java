@@ -1,6 +1,7 @@
 package qmech.mod.network;
 
 import qmech.helper.tileentity.TileEntityBase;
+import qmech.helper.tileentity.render.CustomRendererBase;
 
 import java.util.HashMap;
 
@@ -20,11 +21,9 @@ public class CommonProxy {
 		
 	}
 
-    /*
     HashMap<Class<? extends TileEntityBase>, CustomRendererBase> renderers = new HashMap<Class<? extends TileEntityBase>, CustomRendererBase>();
     public void registerRenderer(Class<? extends TileEntityBase> teClass, CustomRendererBase renderer) {
         renderers.put(teClass, renderer);
     }
-    */
 
 }

@@ -11,16 +11,25 @@ public class BlockModelBase extends CustomModelBase {
 
     ModelRenderer Block;
 
+    String tex;
+
+    public BlockModelBase(String tex) {
+        this.tex = tex;
+    }
+
     @Override
     public void renderShapes(Entity player, float f, float f1, float f2, float f3, float f4, float f5) {
         Block.render(f5);
     }
 
     @Override
-    public void initTextureSize() {
-        LoggingHelper.getInstance().info("trace: BlockModelBase");
-        this.textureHeight = 32;
-        this.textureWidth = 64;
+    public TexSize texSize() {
+        return new TexSize(64, 32);
+    }
+
+    @Override
+    public String texPath() {
+        return tex;
     }
 
     @Override

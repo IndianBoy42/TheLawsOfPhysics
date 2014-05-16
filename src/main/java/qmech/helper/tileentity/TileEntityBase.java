@@ -24,13 +24,15 @@ public abstract class TileEntityBase extends TileEntity {
 	
 	protected Map<String, ISyncableObject> syncableObjects = new HashMap<String, ISyncableObject>();
 
+    public void registerField (ISyncableObject obj, String name) {
+        syncableObjects.put(name, obj);
+    }
+
     public abstract String intName();
 
 	public TileEntityBase() {
         registerFields();
 	}
-
-    public abstract void registerFields();
 	
 	public void updateEntity () {
 		update();
@@ -63,8 +65,6 @@ public abstract class TileEntityBase extends TileEntity {
 	public void writeToNBT (NBTTagCompound nbt) {
 		for (Entry<String, ISyncableObject> obj : syncableObjects.entrySet()) {
             if (obj != null) {
-                LoggingHelper.getInstance().info("test : " + nbt);
-                LoggingHelper.getInstance().info("test : " + obj);
                 obj.getValue().writeToNBT(nbt, obj.getKey());
             }
 		}
@@ -84,8 +84,8 @@ public abstract class TileEntityBase extends TileEntity {
 		return new CoordTriplet(xCoord, yCoord, zCoord);
 	}
 
-    public abstract boolean customRendered();
-
     public abstract void update();
+
+    public abstract void registerFields();
 
 }

@@ -20,7 +20,7 @@ public class BlockBase extends Block {
 	
 	public static BlockBase config
 		(BlockBase block, CreativeTabs ctab, float hardness, float blastResistance, String toolType, int toolLevel) {
-        logger.info(String.format("Configuring Block (%s) with : \n" +
+        logger.info(String.format("Configuring block (%s) with : \n" +
                 ">>> CreativeTab : %s \n" +
                 ">>> Hardness : %s, BlastResistance : %s \n" +
                 ">>> Tool : %s, %s",
