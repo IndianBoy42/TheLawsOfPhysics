@@ -2,7 +2,7 @@ package qmech.mod;
 
 
 import net.minecraft.creativetab.CreativeTabs;
-import qmech.helper.objects.ItemBase;
+import qmech.lib.objects.ItemBase;
 
 public class ModItems {
 

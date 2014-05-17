@@ -1,8 +1,7 @@
 package qmech.mod.block.tileentity;
 
-import qmech.helper.LoggingHelper;
-import qmech.helper.tileentity.TileEntityBase;
-import qmech.helper.tileentity.syncable.SyncableInt;
+import qmech.lib.tileentity.TileEntityBase;
+import qmech.lib.tileentity.syncable.SyncableInt;
 
 /**
  * Created by anshuman on 16-05-2014.

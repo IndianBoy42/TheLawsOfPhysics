@@ -2,8 +2,8 @@ package qmech.mod;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
-import qmech.helper.objects.BlockBase;
-import qmech.helper.tileentity.TEBlockBase;
+import qmech.lib.objects.BlockBase;
+import qmech.lib.tileentity.TEBlockBase;
 import qmech.mod.block.TestBlock;
 
 public class ModBlocks {

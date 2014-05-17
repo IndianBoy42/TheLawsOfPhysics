@@ -1,7 +1,7 @@
 package qmech.mod.network;
 
-import qmech.helper.tileentity.TileEntityBase;
-import qmech.helper.tileentity.render.CustomRendererBase;
+import qmech.lib.tileentity.TileEntityBase;
+import qmech.lib.tileentity.render.CustomRendererBase;
 
 import java.util.HashMap;
 

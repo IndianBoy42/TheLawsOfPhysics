@@ -1,429 +1,350 @@
-{\rtf1\ansi\ansicpg1252\cocoartf1187\cocoasubrtf340
-{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
-{\colortbl;\red255\green255\blue255;}
-\paperw11900\paperh16840\margl1440\margr1440\vieww10740\viewh8400\viewkind0
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+{rtf1ansiansicpg1252cocoartf1187cocoasubrtf340
+{fonttblf0fswissfcharset0 Helvetica;}
+{colortbl;red255green255blue255;}
+paperw11900paperh16840margl1440margr1440vieww10740viewh8400viewkind0
+pardtx566tx1133tx1700tx2267tx2834tx3401tx3968tx4535tx5102tx5669tx6236tx6803pardirnatural
 
-\f0\fs28 \cf0 Mod Ideas: Metallurgic Automation (name may need to be changed)\
- - realistic complex late-game chemistry-based tech mod\
-Contents : Ore Processing\
-           Explosives\
-           Drugs\
-           Chemicals\
-           Electricity Generation\
-           Genetics\
+f0fs28 cf0 Mod Ideas: Metallurgic Automation (name may need to be changed)
+ - realistic complex late-game chemistry-based tech mod
+Contents : Ore Processing
+           Explosives
+           Drugs
+           Chemicals
+           Electricity Generation
+           Genetics
            Synthetic Foods
-\fs24 \
-\
-Processing Chain :-\
-1. Crusher : Ores -> Clumps\
-       eg. Iron Ore -> Iron Clumps\
-       crush up the ore blocks into clumps of the ore,\
-       possibly gives 2 clumps per ore\
-       probably have some kind of a stone byproduct (stone clumps?)\
-       requires a crusher head that wears out (better last longer and possibly gives better output)\
-\
-2. Acidic Decomposition Plant :- Clumps -> Slurry\
-      eg. Iron Clumps -> Iron Slurry\
-      decompose the clumps into a slurry (liquid)\
-      requires acid\
-\
-3. Mineral Enrichment Plant :- Slurry -> Enriched Slurry\
-      eg. Iron Slurry -> Enriched Iron Slurry\
-      optional, for a bigger bonus\
-      requires slag (byproduct of smelting in our blast furnace (hint: we have a blast furnace) )\
-\
-4. Metallic Distillation Plant :- Slurry/ Enriched Slurry -> Clean Slurry\
-     eg. Iron Slurry/ Enriched Iron Slurry -> Clean Iron Slurry\
-     clean the slurry (Enriched will give more clean slurry)\
-     requires water vapour (possibly allow some other type of purifier)\
-     maybe give some slag at this stage as well\
-\
-5.  Alkaline Crystallization Plant :- Clean Slurry -> Mineral Crystals\
-     eg. Clean Iron Slurry -> Chalcopyrite/Ilmenite... Crystals\
-     crystallize the slurry back into solids using alkalis (because opposite of acids)\
-     this is where we start dealing with minerals again!\
-     requires an alkalis\
-     most of the multiplying/bonusing will happen at this stage\
-\
-6. Grinder :- Mineral Crystals -> Mineral Dusts\
-     eg. Chalcopyrite Crystals -> Chalcopyrite Dust\
-     crystals are hard to work with (in terms of chemical reactions) so grind it up\
-     could use the crusher again if dont want another machine\
-     requires a grinder head that wears out (better last longer and possibly gives better output)\
-\
-7. 'Chemical Processing'\
-      all the complicated stuff involving reactions and things go here\
-      brief : now instead of one machine for removing each type of anion(oxide/sulfide...) its a slightly more complicated chain\
-                and oxide is easier to deal with, carbonate less easy to deal with so we have to figure out a way to balance it (you know what i mean?)\
-      details later on...\
-\
-8. Blast Furnace :- Pure Metal Dusts -> Molten Metal / Metal Ingots\
-     (S)melt that metal!\
-     if u think melting then casting to complicated/unecesary (for us/them) then straight to ingots but i would rather melting then casting because fun!\
-     works better at optimum temperature\
-     gives a slag byproduct\
-     will have magma crucible compat\
-\
-9. Deep Casting Chamber :- Molten Metal -> Metal Ingots\
-     Finally! were done phew...\
-     cast molten metal into ingots, requires a cast that wears out\
-     will have fluid transposer compat\
-\
-Chemical Processing Machines :- \
-    - Chemical Injection Chamber :- Solid (Mineral) + Fluid -> Solid (Mineral) + Fluid[]\
-         The Main Machine for the Chemical Processing Stage\
-\
-    - Roasting Oven :- Solid (Mineral) + Solid (Coke) -> Solid (Metal/Mineral) + Fluid[]\
-         The (usually) final machine for the Chemical Processing Stage\
-    - Electrolytic Chamber :- Fluid (Dissolved Solid/ Electrolyte) + 'Electricity' ->  Fluid[]\
-         alternate/better final machine for the Chemical Processing Stage\
-\
-    - Chemical Centrifuge :-\
-       Centrifuges items and stuff into their component chemical compounds\
-\
-    - Chemical Synthesis Reactor :- Fluid[] -> Fluid\
-       - Chemical + chemical makes a bigger chemical\
-    - Thermal Decomposition Reactor :- Fluid -> Fluid[] \
-       - Chemical decomposes into smaller molecules\
-    - Compound Saturation Reactor :- Fluidx2 -> Fluid[]\
-       - Chemical plus itself to form a larger molecule\
-    - Ionic Displacement Reactor :- Fluid[] -> Fluid[]\
-       - chemical + chemical makes more chemicals\
-        the main machines for doing misc chemical reactions\
-   \
-    - Chemical Solvent Chamber :- Fluid (Solvent) + Solid (Solute) -> Fluid (Solution)\
-        dissolve solids so they can be reacted\
-    - Chemical Extraction Chamber :- Fluid (Solution) -> Solid (Solute) + Fluid (Solvent)\
-        extract solids from solutions\
-\
-Utility Machines\
- - Environmental Collection Plant :- 'Conditions' -> Fluid[]\
-   - collect various liquids/gases based on its conditions\
-   - eg.  in open air/ exposed to sunlight will gather air (CO2, N2, H2O etc.)\
-               in ocean : salt water\
-               in river : 'fresh' water\
-               etc. \
-  \
- - Mechanized treetap\
-   - place next to rubber tree and provide power\
-   - slowly produces latex (liquid) infinitely\
-   - chemical mixture\
-\
- - Fractional Distillation Plant\
-   - distill mixtures into their components\
-   - latex -> isoprene + butadiene + styrene \
-      - isoprene can be extracted for rubber\
-                        or if butadiene and/or styrene is added then synthetic rubber can be made\
-   - crude oil -> petroleum gas + naphtha + *gasoline* + kerosene + diesel + *lubricant oil* + coke + tar\
-\
-  - Hydrocarbon Reforming Plant\
-    - rearranges hydrocarbons\
-    - naphtha / petroleum gas -> gasoline\
-  - Hydrocarbon Cracking Plant\
-    - breaks down hycarbons\
-    - diesel / kerosene -> gasoline\
-\
- - Precision Milling Plant :- Metal + 'Shape Setting' -> Metallic Component\
-   - shape metals and stuff into various components for crafting\
-   - all/most recipes available in normal crafting but this is more efficient (and automated) but takes time\
-   - will have metal former compat\
-   - requires a milling head that wears out slowly\
-\
- - Quarry\
-   - Vertical Area Mining\
-   - Build The Frame Yourself (No Size Limit)\
-   - Attach a crane and insert chosen mining tool (Speed and Echantments affect the working) (durability will go down)\
-   - can add pump to the crane to remove liquids\
-\
- - Tunnel Bore\
-   - Horizontal Infinite Mining\
-   - Build Multiblock (train looking) attach drill (Only our drill) (Upgrades in the drill affect it)\
-   - Multiblock moves along mining\
-   - upgrades : can place torches, can remove lava, can bridge across lava/caves\
-\
- - Pump\
-   - Sucks up liquids in a 15X15X15 area around it slowly\
-   - can be mounted on a crane to slowly lower it as it pumps\
-\
- - Crane\
-   - Mass Building Machine\
-   - Sit in it and control it to build huge things\
-   - can also attach drills or pumps for resource gathering\
-   - can be automated with computers (CC, OpenComputers, or maybe our own)\
-\
- - Energized Furnace\
-   - simple upgradable furnace\
-\
- - Alloy Smelter\
-   - 2 slots with a tank corresponding to each slot\
-   - controllable slider for temperature\
-   - temperature has to be above both metals melting point but below the boiling point\
-     - 'impurities' can be added to modify melting and boiling points\
-   - metal ratio must be precise\
-     - each ratio will produce a different alloy\
-     - only some are actually usable in recipes (OreDict)\
-     - each ratio produces metal of different traits (strength, hardness, durability, melting pt etc.)\
-\
- - Assembly Factory\
-   - assemble stuff\
-   - all recipes can be done without this but its is more efficient (and automated) but takes time\
-   - requires a soldering iron (supplied with soldering wire) and a screwdriver (supplied with screws)\
-   - upgradable\
- \
-## GENETICS FTW ##\
-   - Creature Dissection Chamber\
-     - takes a trapped mob and carefully dissects it to gain maximum loot from it (Fortune V level)\
-     - trapped in a 'Monster Bag'\
-     - requires a dissection knife that slows wears out\
-   - Creature Incubation Chamber\
-     - hatches a mob egg (yes a vanilla spawn egg, we'll have a way to make those) in a controlled environment (Monster Bag)\
-     - requires synthetic food (normal isn't enough)\
-   - Organic Growth Chamber\
-     - Grows Crops from seeds \
-   - Mitosis Catalysis Chamber\
-     - create monster spawn eggs from Mobs Dna Samples\
-     - create crop seeds from Plants Dna Samples\
-     - requires synthetic food (normal is not refined enough)\
-     - OR multiply/duplicate Dna Samples\
-   - Cellular Sampling Chamber\
-     - get Dna Samples from a mob in a Monster Bag\
-     - get Dna Samples from crop seeds\
-     - requires a dissection knife that slows wears out\
-   - Genetic Isolation Chamber\
-     - isolate genomes from Dna Samples\
-   - Organic Cross-Breeding Chamber\
-     - Cross Breed Dna Samples to Modify Traits (slightly random (chance) )\
-   - Genetic Mutation Chamber\
-     - grow crops in a controlled manner to encourage mutation\
-   - Genetic Inoculation Chamber \
-     - inject Dna with external genomes to modify traits (more certain but has chance of fatal or scary mutations (hint hint : venus flytrap / godzilla))\
-\
-Chemical Reactions :-\
-          (X stands for any metal/rest of compound)\
-          (coefficients of reactants/products dont matter just for my brains sake)\
-          2XO + C -> 2X + CO2 (Roasting Oven)\
-          2XO -> 2X + O2 (Electrolytic Chamber)\
-\
-          4XOH + O2 -> 4XO + 2H2O + O2\
-          \
-                         (  \\/  Cause one O wasnt enough   )\
-          XCl2 + 2H2O2 -> 2XO + 2HCl + O2\
-          XSO4 + 2H2O2 -> 2XO + 2H2SO4 + O2\
-\
-          XCO3 + HCl -> XCl2 + H2O + CO2\
-          XCO3 + H2SO4 -> XSO4 + H20 + CO2\
-          (obviously no +ve or even a break even feedback loop in terms of the acids)\
-\
-          XS + 4H202 -> XSO4 + 4H2 + 2O2\
-          \
-          H2O + NaCl -> H2O.NaCl (the dot is an actual chemistry thing trust me im an expert lol :P) (also known as salt water)\
-          H2O.NaCl -> H2 + 2Cl + Na2O\
-          H2 + 2Cl -> 2HCl                                 HydroChloric Acid\
-          Na2O + H2O -> 2NaOH                      Sodium Hydroxide (Base (Must be Dissolved))\
-          \
-          S + O2 -> SO2\
-          SO2 + H2O -> H2SO3 (weak acid)\
-          2SO2 + O2 -> SO3\
-          2H2SO3 + O2 -> 2H2SO4 (least efficient) (Sulfuric Acid)\
-          SO3 + H2O -> H2SO4 (decent efficiency)\
-          SO3 + H2SO4 -> H2S2O7\
-          H2S2O7 + H20 -> 2H2SO4 (most efficient)\
-\
-          2H2O + O2 -> 2H2O2                            Hydrogen Peroxide\
-          C + 2H2 -> CH4                                     Methane\
-          2CH4 + 2H2O -> 2CH2OH + 3O2         Hydroxymethyl\
-          2CO2 + O2 -> 2CO3\
-\
-          2H2O2 + 2NO2 -> 2HNO3 + H2O2      Nitric Acid\
-          3H2O2 + N2 -> 2HNO3 + 2H2\
-\
-          N2 + 3H2 -> 2NH3                                Ammonia (Base (Must be dissolved) )\
-          NH3 + H2O -> NH4OH                         Ammonium Hydroxide (Alkali)\
-\
-          Ca + O -> CaO\
-          CaO + CO2 -> CaCO3\
-          CaCO3 -> CaO + CO2\
-          2CaO -> 2Ca + O2\
-          2CaO + H2O2 -> 2CaOH + O2             Calcium Hydroxide (Alkali)\
-          2Ca + H2O2 -> 2CaOH\
-\
-          SiO2 -> Si + O2\
-          CaO + SiO2 -> CaSiO3                                             Calcite Slag\
-          CaCO3 + Si -> CaSiO3 + C\
-          Ca3(PO4)2.CaF2 -> Ca3(PO4)2 + CaF2\
-          Ca3(PO4)2 + H2SO4 -> H3PO4.CaSO4                   Phosphate fertilizer\
-          H3PO4.CaSO4 -> H3PO4 + CaSO4\
-          CaF2 + H2 -> HF + Ca\
-          6HF + SiO2 -> H2SiF6 + 2H2O                                  Fluorosilicilic Slag\
-          CaSO4 + CO2 -> CaCO3 + SO3\
-          H2SiF6 + H3PO4 -> H2SiF6.H3PO4                         Enriched Calcite Slag\
-          CaSiO3 + H3PO4 -> CaSiO4.H3PO4                        Enriched Fluorosilicilic Slag\
-          H2SiF6.H3PO4 + CaSiO4.H3PO4 -> H2SiF6.CaSiO4.2H3PO4\
-               - Enriched Compound Slag\
-          H2SiF6 + CaSiO4 -> H2SiF6.CaSiO4\
-               - Weak Compound Slag\
-          H2SiF6.H3PO4 + CaSiO4 -> H2SiF6.CaSiO4.H3PO4\
-               - Basic Compound Slag\
- \
-          H2O + CO2 -> H2CO3                          Carbonic Acid\
-          2H2CO3 -> CH3COOH + 2O2              Acetic Acid\
-          H2CO3 + CO -> H2C2O4                     Oxalic Acid\
-\
-          3CH3COOH ->  C6H12O6                   Glucose\
-          2C6H12O6 -> C12H22O11 + H2O       Sucrose\
-          C12H22O11 -> 2C6H10O5 + H2O       Cellulose\
-          2C6H10O5 -> C12H18O10 + H2          Amylose\
-\
-          C6H10O5 + 4H2 -> 3C2H6O + O2       Ethanol\
-          2C2H6O -> C4H9OH + H2O                 Butanol \
-          6NH4 + 6CO3 -> 2C3H5N3O9 + 7H2   Nitroglycerine\
-          6NH2 + 6CO3 -> 2C3H5N3O9 + H2     \
-14CH4 + 6NO2 -> 2C7H5N3O6 + 28H2 + 3O2   Trinitrotoluene\
-\
-          C6H12O6 + 6CO2 -> 6CHCOOH        Carboxylic Acid\
-          2NH3 -> 2NH2 + H2                             Amine\
-          NH2 + CHCOOH -> NH2CHCOOH     Amine Acid\
-          2NH3 + 2C6H12O6 -> NH2CHCOOH + 4H2\
-          2NH2CHCOOH + H2 -> NH2CHHCOOH                                    Glycine Protein\
-          2NH2CHCOOH + CH4 -> 2NH2CHCH3COOH + H2                  Alanine Protein\
-          2NH2CHCOOH + CH2OH -> NH2CHCH2OHCOOH                  Serine Protein\
-          2NH2CHCOOH + 2CH3COOH -> NH2CHCH2COOHCOOH     Aaspartic Protein\
-   \
-          4C6H12O6 + 16CH4 -> 2C20H30O + 2H2 + 22O2                     Vitamin A\
-          C9H8O4										          Aspirin\
-          C9H11N2O4S								                  Penicillin\
-          C17H21NO4\
-\
-         'Carbohydrate' + 'Protein' -> 'synthetic Food'\
-         'synthetic Food' + 'Supplement' -> 'Better synthetic Food'\
-         synthetic Food :- Higher tier of carbohydrate = More Speed and Jump Boost\
-                                       More Food Bars\
-				 Higher tier of protein = More Haste and Strength\
-				     More Saturation\
-                      		 Vitamin A :- Nightvision\
-                                   Penicillin :- Regeneration and Absorbption\
-                                   Aspirin :- Remove negative effects                           \
-\
-ENERGY :\
- - Either Electricity (via Universal Electricity or Redstone Flux or Industrial Craft 2 or own but that would be harder)\
-   - first is unstable/buggy but compatible with everything\
-   - second is very good and many things are using it so mostly compatible (i like this)\
-   - third one is not used very much nowadays but\'85 nothing no advs\
- - or some kind of basic fuel/heat system\
-   - but some machines have a secondary condition of heat so\'85\
- - if Electricity i have some ideas for Generators (Just brainstorming no need to actually implement in this mod) (in rough order of how good they are)\
-   - Electromagnetic Redstone Generator\
-     - runs of redstone, used up redstone gives inert redstone\
-   - Photovoltaic Cell\
-     - recharges inert redstone into normal redstone so you can re-process it for energy\
-     - probably have array versions\
-     - requires a 3x3 around it to be exposed to sunlight (cannot just stuff it underground with a thin hole to the surface) - larger arrays require more space\
-   - Coil Potential Generator\
-     - create a spring coil and hand wind/tighten, once fully wound put in generator to create energy\
-   - Mechanical Turbines\
-     - wind and water versions available\
-     - automatically winds up coils using the power of nature\
-   - Solenoid Generator\
-     - uses rotary energy (not really an actually separate type of energy) from the Turbines to generate energy directly\
-   - Steam Turbine\
-     - like the Mechanical Turbine but runs on steam\
-   - Combustion Firebox\
-     - TODO: must be crazy complex\
-     - basically: burns fuel to generate heat\
-   - Geothermal Heater\
-     - harnesses power of lava to generate heat\
-     - not in the conventional way (hint hint: underground)\
-     - TODO: must be crazy complex\
-   - Boiler Tank\
-     - uses heat to generate steam from water\
-     - various tiers available\
-   - Combustion Engine\
-     - big multi block and multi part generator\
-     - designed similar to car engines\
-     - Piston Chambers : fuel + oxygen = heat\
-       - oxidant supply need, waste must be regulated, and oil must be supplied to prevent degradation\
-       - needs small startup jolt of energy, gets more efficient as it heats up\
-     - Piston : Heat -> Rotary energy\
-       - lots of lubricant and oil to ensure optimum condition and no breaking\
-       - slowly speeds up and gets more efficient at this conversion\
-     - Axle : collects rotary energy from each piston into one line\
-       - lots of lubricant, different materials can handle different amounts of power\
-     - attach axle to solenoid to get power\
-   - NUUUUUUUUUUUUUUUUUKES (details coming soon)\
-   - Bonus/Random : (Mostly Impractical)\
-     - Inhalant Generation\
-      - Runs on Cocaine, Marijuana and Alchohol LOLOLOLOL WEEEEEEEEEEEEEEEED\
-     - Essence Generator\
-      - strips enchants of tools and generates power based on the level\
-     - Culinary Generator\
-      - uses food to generate power based on saturation and hunger bar\
-     - Potion Generator\
-      - uses potions to generate power based on steps and difficulty to make\
-     - Special Generator\
-      - uses Nether Stars, Ender Pearls, Wither Skulls, Dragon Eggs etc...\
-     - Blood Generator\
-      - kills mobs and generates power\
-      - sacrifice upgrade, hurts players\
-     - Gravity Generator\
-      -block affected by gravity and as it falls it generates power\
-     - Static Electricity Generator\
-      - wear socks, run around on carpets, profit!\
-     - Tidal Generator\
-      - place in large body of water to to generate electricity\
-\
-Utility - Equipment\
- - Exo-skeleton style armour + Modular Tools/Weapons\
-   - MPS-style, but complex wiring and circuitry with limits\
-   - Hammer, Drill, Chainsaw, Saber, Guns :D\
-   - various upgrades (Speed, Energy, Silk Touch/Fortune)\
-   - various modes (come from upgrades) (vein, square, cube, line etc)\
-   - tools : \
-     - Drill, basic mining tool, pickaxe+shovel\
-     - Jackhammer, mining tool, pickaxe+shovel, only stone but super-fast\
-     - Industrial Drill, mass mining tool, pickaxe + shovel, very slow but mines a 15x15 (?) area, requires a drill bit that slowly wears out as well as electricity, can be mounted on a crane\
-     - Sledgehammer, pickaxe+axe\
-     - Mattock, axe+shovel\
-     - Chainsaw, axe, chops down whole tree\
-     - Saber, average, normal sword\
-     - Rapier, fast, armour penetration\
-     - Cleaver, slow, massive damage\
-     - Battleaxe, normal speed, large knock back\
-     - Warhammer, normal speed, damages armour more than normal\
-     - Scythe, harvests plant life in a 3x3x3 area \
-\
-World Generation\
-	  Tin,\
-\pard\pardeftab720
-\cf0 	Copper,\
-	Aluminum,\
-	Titanium,\
-	Silver,\
-	Platinum,\
-	Nickel,\
-	Tungsten,\
-	Manganese,\
-	Chromium,\
-	Osmium,\
-	Lead,\
-	Niobium,\
-	Tantalite,\
-	Cobalt,\
-	Iridium,\
-	Uranium,\
-	Thorium,\
-	Palladium,\
-	Rhodium,\
-           Apatite,\
-           Limestone (Calcium),\
-           Salt Rock (Sodium)\
-           Sulfur, Mercury, Zinc\
-           Rubber Trees\
-           Crude Oil, Natural Gas\
-\
-Notes:\
-  - Everything is very late game in terms of resources and energy as well as efficienty and yield\
-  - Most things will be hard to completely automate or will be complex to do so\
-  - Most Machines will be Multiblocks\
-  - A lot of the values and recipes and stuff can be configured\
+fs24 
+
+Processing Chain :-
+1. Crusher : Ores -> Clumps
+       eg. Iron Ore -> Iron Clumps
+       crush up the ore blocks into clumps of the ore,
+       possibly gives 2 clumps per ore
+       probably have some kind of a stone byproduct (stone clumps?)
+       requires a crusher head that wears out (better last longer and possibly gives better output)
+
+2. Acidic Decomposition Plant :- Clumps -> Slurry
+      eg. Iron Clumps -> Iron Slurry
+      decompose the clumps into a slurry (liquid)
+      requires acid
+
+3. Mineral Enrichment Plant :- Slurry -> Enriched Slurry
+      eg. Iron Slurry -> Enriched Iron Slurry
+      optional, for a bigger bonus
+      requires slag (byproduct of smelting in our blast furnace (hint: we have a blast furnace) )
+
+4. Metallic Distillation Plant :- Slurry/ Enriched Slurry -> Clean Slurry
+     eg. Iron Slurry/ Enriched Iron Slurry -> Clean Iron Slurry
+     clean the slurry (Enriched will give more clean slurry)
+     requires water vapour (possibly allow some other type of purifier)
+     maybe give some slag at this stage as well
+
+5.  Alkaline Crystallization Plant :- Clean Slurry -> Mineral Crystals
+     eg. Clean Iron Slurry -> Chalcopyrite/Ilmenite... Crystals
+     crystallize the slurry back into solids using alkalis (because opposite of acids)
+     this is where we start dealing with minerals again!
+     requires an alkalis
+     most of the multiplying/bonusing will happen at this stage
+
+6. Grinder :- Mineral Crystals -> Mineral Dusts
+     eg. Chalcopyrite Crystals -> Chalcopyrite Dust
+     crystals are hard to work with (in terms of chemical reactions) so grind it up
+     could use the crusher again if dont want another machine
+     requires a grinder head that wears out (better last longer and possibly gives better output)
+
+7. 'Chemical Processing'
+      all the complicated stuff involving reactions and things go here
+      brief : now instead of one machine for removing each type of anion(oxide/sulfide...) its a slightly more complicated chain
+                and oxide is easier to deal with, carbonate less easy to deal with so we have to figure out a way to balance it (you know what i mean?)
+      details later on...
+
+8. Blast Furnace :- Pure Metal Dusts -> Molten Metal / Metal Ingots
+     (S)melt that metal!
+     if u think melting then casting to complicated/unecesary (for us/them) then straight to ingots but i would rather melting then casting because fun!
+     works better at optimum temperature
+     gives a slag byproduct
+     will have magma crucible compat
+
+9. Deep Casting Chamber :- Molten Metal -> Metal Ingots
+     Finally! were done phew...
+     cast molten metal into ingots, requires a cast that wears out
+     will have fluid transposer compat
+
+Chemical Processing Machines :- 
+    - Chemical Injection Chamber :- Solid (Mineral) + Fluid -> Solid (Mineral) + Fluid[]
+         The Main Machine for the Chemical Processing Stage
+
+    - Roasting Oven :- Solid (Mineral) + Solid (Coke) -> Solid (Metal/Mineral) + Fluid[]
+         The (usually) final machine for the Chemical Processing Stage
+    - Electrolytic Chamber :- Fluid (Dissolved Solid/ Electrolyte) + 'Electricity' ->  Fluid[]
+         alternate/better final machine for the Chemical Processing Stage
+
+    - Chemical Centrifuge :-
+       Centrifuges items and stuff into their component chemical compounds
+
+    - Chemical Synthesis Reactor :- Fluid[] -> Fluid
+       - Chemical + chemical makes a bigger chemical
+    - Thermal Decomposition Reactor :- Fluid -> Fluid[] 
+       - Chemical decomposes into smaller molecules
+    - Compound Saturation Reactor :- Fluid -> Fluid
+       - Chemical plus itself to form a larger molecule
+    - Ionic Displacement Reactor :- Fluid[] -> Fluid[]
+       - chemical + chemical makes more chemicals
+        the main machines for doing misc chemical reactions
+   
+    - Chemical Solvent Chamber :- Fluid (Solvent) + Solid (Solute) -> Fluid (Solution)
+        dissolve solids so they can be reacted
+    - Chemical Extraction Chamber :- Fluid (Solution) -> Solid (Solute) + Fluid (Solvent)
+        extract solids from solutions
+
+Utility Machines
+ - Environmental Collection Plant :- 'Conditions' -> Fluid[]
+   - collect various liquids/gases based on its conditions
+   - eg.  in open air/ exposed to sunlight will gather air (CO2, N2, H2O etc.)
+               in ocean : salt water
+               in river : 'fresh' water
+               etc. 
+  
+ - Mechanized treetap
+   - place next to rubber tree and provide power
+   - slowly produces latex (liquid) infinitely
+   - chemical mixture
+
+ - Fractional Distillation Plant
+   - distill mixtures into their components
+   - latex -> isoprene + butadiene + styrene 
+      - isoprene can be extracted for rubber
+                        or if butadiene and/or styrene is added then synthetic rubber can be made
+   - crude oil -> petroleum gas + naphtha + *gasoline* + kerosene + diesel + *lubricant oil* + coke + tar
+
+  - Hydrocarbon Reforming Plant
+    - rearranges hydrocarbons
+    - naphtha / petroleum gas -> gasoline
+  - Hydrocarbon Cracking Plant
+    - breaks down hycarbons
+    - diesel / kerosene -> gasoline
+
+ - Precision Milling Plant :- Metal + 'Shape Setting' -> Metallic Component
+   - shape metals and stuff into various components for crafting
+   - all/most recipes available in normal crafting but this is more efficient (and automated) but takes time
+   - will have metal former compat
+   - requires a milling head that wears out slowly
+
+ - Quarry
+   - Vertical Area Mining
+   - Build The Frame Yourself (No Size Limit)
+   - Attach a crane and insert chosen mining tool (Speed and Echantments affect the working) (durability will go down)
+   - can add pump to the crane to remove liquids
+
+ - Tunnel Bore
+   - Horizontal Infinite Mining
+   - Build Multiblock (train looking) attach drill (Only our drill) (Upgrades in the drill affect it)
+   - Multiblock moves along mining
+   - upgrades : can place torches, can remove lava, can bridge across lava/caves
+
+ - Pump
+   - Sucks up liquids in a 15X15X15 area around it slowly
+   - can be mounted on a crane to slowly lower it as it pumps
+
+ - Crane
+   - Mass Building Machine
+   - Sit in it and control it to build huge things
+   - can also attach drills or pumps for resource gathering
+   - can be automated with computers (CC, OpenComputers, or maybe our own)
+
+ - Energized Furnace
+   - simple upgradable furnace
+
+ - Alloy Smelter
+   - 2 slots with a tank corresponding to each slot
+   - controllable slider for temperature
+   - temperature has to be above both metals melting point but below the boiling point
+     - 'impurities' can be added to modify melting and boiling points
+   - metal ratio must be precise
+     - each ratio will produce a different alloy
+     - only some are actually usable in recipes (OreDict)
+     - each ratio produces metal of different traits (strength, hardness, durability, melting pt etc.)
+
+ - Assembly Factory
+   - assemble stuff
+   - all recipes can be done without this but its is more efficient (and automated) but takes time
+   - requires a soldering iron (supplied with soldering wire) and a screwdriver (supplied with screws)
+   - upgradable
+ 
+## GENETICS FTW ##
+   - Creature Dissection Chamber
+     - takes a trapped mob and carefully dissects it to gain maximum loot from it (Fortune V level)
+     - trapped in a 'Monster Bag'
+     - requires a dissection knife that slows wears out
+   - Creature Incubation Chamber
+     - hatches a mob egg (yes a vanilla spawn egg, we'll have a way to make those) in a controlled environment (Monster Bag)
+     - requires synthetic food (normal isn't enough)
+   - Organic Growth Chamber
+     - Grows Crops from seeds 
+   - Mitosis Catalysis Chamber
+     - create monster spawn eggs from Mobs Dna Samples
+     - create crop seeds from Plants Dna Samples
+     - requires synthetic food (normal is not refined enough)
+     - OR multiply/duplicate Dna Samples
+   - Cellular Sampling Chamber
+     - get Dna Samples from a mob in a Monster Bag
+     - get Dna Samples from crop seeds
+     - requires a dissection knife that slows wears out
+   - Genetic Isolation Chamber
+     - isolate genomes from Dna Samples
+   - Organic Cross-Breeding Chamber
+     - Cross Breed Dna Samples to Modify Traits (slightly random (chance) )
+   - Genetic Mutation Chamber
+     - grow crops in a controlled manner to encourage mutation
+   - Genetic Inoculation Chamber 
+     - inject Dna with external genomes to modify traits (more certain but has chance of fatal or scary mutations (hint hint : venus flytrap / godzilla))
+
+Chemical Reactions :-
+          (X stands for any metal/rest of compound)
+          (coefficients of reactants/products dont matter just for my brains sake)
+          2XO + C -> 2X + CO2 (Roasting Oven)
+          2XO -> 2X + O2 (Electrolytic Chamber)
+
+          4XOH + O2 -> 4XO + 2H2O
+          2XS + 302 -> 2XO + 2SO2
+		  
+		  2XCO3 + H2 -> XOH + CO2
+          
+          H2O + NaCl -> H2O.NaCl (the dot is an actual chemistry thing trust me im an expert lol :P) (also known as salt water / brine)
+          H2O.NaCl -> H2 + 2Cl + Na2O
+          H2 + 2Cl -> 2HCl                                 HydroChloric Acid
+          Na2O + H2O -> 2NaOH                      Sodium Hydroxide (Base (Must be Dissolved))
+          
+          S + O2 -> SO2
+          SO2 + H2O -> H2SO3 (weak acid)
+          2SO2 + O2 -> SO3
+          2H2SO3 + O2 -> 2H2SO4 (least efficient) (Sulfuric Acid)
+          SO3 + H2O -> H2SO4 (decent efficiency)
+          SO3 + H2SO4 -> H2S2O7
+          H2S2O7 + H20 -> 2H2SO4 (most efficient)
+
+          2H2O2 + 2NO2 -> 2HNO3 + H2O2      Nitric Acid
+          3H2O2 + N2 -> 2HNO3 + 2H2
+
+          N2 + 3H2 -> 2NH3                                Ammonia (Base (Must be dissolved) )
+          NH3 + H2O -> NH4OH                         Ammonium Hydroxide (Alkali)
+
+          Ca + O -> CaO
+          CaO + CO2 -> CaCO3
+          CaCO3 -> CaO + CO2
+          2CaO -> 2Ca + O2
+          2CaO + H2O2 -> 2CaOH + O2             Calcium Hydroxide (Alkali)
+          2Ca + H2O2 -> 2CaOH
+
+          SiO2 -> Si + O2
+          CaO + SiO2 -> CaSiO3                                             Calcite Slag
+          CaCO3 + Si -> CaSiO3 + C
+
+          3CH3COOH ->  C6H12O6                   Glucose
+          2C6H12O6 -> C12H22O11 + H2O       Sucrose
+          C12H22O11 -> 2C6H10O5 + H2O       Cellulose
+          2C6H10O5 -> C12H18O10 + H2          Amylose
+		  
+          6NH4 + 6CO3 -> 2C3H5N3O9 + 7H2   Nitroglycerine
+          6NH2 + 6CO3 -> 2C3H5N3O9 + H2     
+		  14CH4 + 6NO2 -> 2C7H5N3O6 + 28H2 + 3O2   Trinitrotoluene
+
+          2NH3 -> 2NH2 + H2                             Amine
+          NH2 + CHCOOH -> NH2CHCOOH     			Amino Acid
+          2NH3 + 2C6H12O6 -> NH2CHCOOH + 4H2
+          2NH2CHCOOH + H2 -> NH2CHHCOOH                  Glycine Protein
+          2NH2CHCOOH + CH4 -> 2NH2CHCH3COOH + H2         Alanine Protein
+          2NH2CHCOOH + CH2OH -> NH2CHCH2OHCOOH           Serine Protein
+          2NH2CHCOOH + 2CH3COOH -> NH2CHCH2COOHCOOH     Aaspartic Protein
+   
+          4C6H12O6 + 16CH4 -> 2C20H30O + 2H2 + 22O2                     Vitamin A
+          C9H8O4										          		Aspirin
+          C9H11N2O4S								                  Penicillin
+          C17H21NO4
+
+         'Carbohydrate' + 'Protein' -> 'synthetic Food'
+         'synthetic Food' + 'Supplement' -> 'Better synthetic Food'
+         synthetic Food :- Higher tier of carbohydrate = More Speed and Jump Boost
+                                       More Food Bars
+				 Higher tier of protein = More Haste and Strength
+				     More Saturation
+                      		 Vitamin A :- Nightvision
+                                   Penicillin :- Regeneration and Absorbption
+                                   Aspirin :- Remove negative effects                           
+
+ENERGY :
+ - Mixed Energy Systems
+   - Mechanical, Electrical, Thermal, Pneumatic
+   - ie a centrifuge would require rotary/mechanical power,
+		a electrolysis chamber would require electrical power
+		a blast furnace would require thermal power
+		a compressor would require pneumatic power
+		etc.
+   - Mechanical Power is compatible with RotaryCraft
+	 - Torque * Speed : machines have minimum working torque and rate scales with speed
+   - Electrical Power is compatible with Electricraft (a rotarycraft addon that adds realistic electricity)
+     - Voltage * Current : minimum operating voltage and maximum 'danger voltage'
+						   speed usually scales with current
+   - Thermal Power would be more of a conditional thing, Machines have different thermal capacity and conductivity and heat balances between machines according to their properties
+     - machines have a minimum working temperature, and opperations decrease the heat slightly
+   - Pneumatic Power would be applied to all tanks, tanks have a certain volume, and if the amount of fluid is injected quick enough it will compress and 
+		fill up the tank more than the volume,
+     - depends on density and compressability (? do we need our own fluid system)
+   - Power Systems are all 'inter convertible'
+
+ - Generators
+
+Utility - Equipment
+ - Exo-skeleton style armour + Modular Tools/Weapons
+   - MPS-style, but complex wiring and circuitry with limits
+   - Hammer, Drill, Chainsaw, Saber, Guns :D
+   - various upgrades (Speed, Energy, Silk Touch/Fortune)
+   - various modes (come from upgrades) (vein, square, cube, line etc)
+   - tools : 
+     - Drill, basic mining tool, pickaxe+shovel
+     - Jackhammer, mining tool, pickaxe+shovel, only stone but super-fast
+     - Industrial Drill, mass mining tool, pickaxe + shovel, very slow but mines a 15x15 (?) area, requires a drill bit that slowly wears out as well as electricity, can be mounted on a crane
+     - Sledgehammer, pickaxe+axe
+     - Mattock, axe+shovel
+     - Chainsaw, axe, chops down whole tree
+     - Saber, average, normal sword
+     - Rapier, fast, armour penetration
+     - Cleaver, slow, massive damage
+     - Battleaxe, normal speed, large knock back
+     - Warhammer, normal speed, damages armour more than normal
+     - Scythe, harvests plant life in a 3x3x3 area 
+
+World Generation
+	  Tin,
+	  Copper,
+	Aluminum,
+	Titanium,
+	Silver,
+	Platinum,
+	Nickel,
+	Tungsten,
+	Manganese,
+	Chromium,
+	Osmium,
+	Lead,
+	Niobium,
+	Tantalite,
+	Cobalt,
+	Iridium,
+	Uranium,
+	Thorium,
+	Palladium,
+	Rhodium,
+           Apatite,
+           Limestone (Calcium),
+           Salt Rock (Sodium)
+           Sulfur, Mercury, Zinc
+           Rubber Trees
+           Crude Oil, Natural Gas
+
+Notes:
+  - Everything is very late game in terms of resources and energy as well as efficienty and yield
+  - Most things will be hard to completely automate or will be complex to do so
+  - Most Machines will be Multiblocks
+  - A lot of the values and recipes and stuff can be configured
   - All ores and resources will be OreDict registered in the many various ways other mods use them}

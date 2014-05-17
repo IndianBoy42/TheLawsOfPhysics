@@ -1,15 +1,12 @@
 package qmech.mod.block;
 
-import cpw.mods.fml.client.registry.ClientRegistry;
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import qmech.helper.LoggingHelper;
-import qmech.helper.tileentity.TEBlockBase;
-import qmech.helper.tileentity.render.CustomRendererBase;
-import qmech.helper.tileentity.render.ModelRendererBase;
-import qmech.helper.tileentity.render.model.BlockModelBase;
-import qmech.mod.ModBase;
+import qmech.lib.tileentity.TEBlockBase;
+import qmech.lib.tileentity.render.CustomRendererBase;
+import qmech.lib.tileentity.render.ModelRendererBase;
+import qmech.lib.tileentity.render.model.BlockModelBase;
 import qmech.mod.block.tileentity.TestTE;
 
 /**
@@ -27,5 +24,9 @@ public class TestBlock extends TEBlockBase {
 
     public CustomRendererBase customRenderer() {
         return new ModelRendererBase(new BlockModelBase("testMachine"));
+    }
+
+    @Override
+    public void registerTE() {
     }
 }
