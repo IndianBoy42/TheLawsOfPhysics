@@ -22,7 +22,7 @@ public interface IMetaItemBase {
 
 	public ItemStack onItemRightClick(ItemStack itemStack, EntityPlayer player, World world);
 
-	public void registerIcons(IIconRegister register);
+	public void registerIcons(IIconRegister register, String prefix);
 
 	public void addToCreativeList(Item item, int meta, List<ItemStack> result);
 

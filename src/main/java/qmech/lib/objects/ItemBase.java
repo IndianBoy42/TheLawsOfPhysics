@@ -14,7 +14,7 @@ public class ItemBase extends Item {
     static LoggingHelper logger = LoggingHelper.getInstance();
 	
 	public static ItemBase config (ItemBase item, CreativeTabs ctab, int stackSize) {
-        logger.info(String.format("Configuring Item (%s) with : \n" +
+        logger.debug(String.format("Configuring Item (%s) with : \n" +
                         ">>> CreativeTab : %s\n" +
                         ">>> StackSize : %s",
                 item.getUnlocalizedName(),
@@ -47,7 +47,7 @@ public class ItemBase extends Item {
     }
     
     public void registerItem () { 
-        GameRegistry.registerItem(this, Reference.MOD_ID+":"+this.getUnlocalizedName().substring(5));
+        GameRegistry.registerItem(this, this.getUnlocalizedName().substring(5));
     }
     
     EnumRarity textColor;

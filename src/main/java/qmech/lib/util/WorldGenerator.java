@@ -10,6 +10,7 @@ import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import cpw.mods.fml.common.IWorldGenerator;
 import cpw.mods.fml.common.registry.GameRegistry;
+import qmech.mod.ModConfig;
 
 public class WorldGenerator implements IWorldGenerator {
 	
@@ -18,16 +19,17 @@ public class WorldGenerator implements IWorldGenerator {
 	    public GenStats(int minHeight, int maxHeight, int maxVeinSize, int maxVeinSpawn) {
 			this.minY = minHeight;
 	    	this.maxY = maxHeight;
-	    	this.diffY = maxY - minY;
 			this.maxVeinSize = maxVeinSize;
 			this.maxVeinSpawn = maxVeinSpawn;
 		}
+
+        public GenStats() {}
 	    
-	    int minY;
-		int maxY;
-		int diffY;
-	    int maxVeinSize;
-	    int maxVeinSpawn;
+	    int minY = 8;
+		int maxY = 64;
+		int diffY = maxY - minY;
+	    int maxVeinSize = 8;
+	    int maxVeinSpawn = 8;
 	    
 		public int getMaxY() {
 			return maxY;
@@ -52,6 +54,7 @@ public class WorldGenerator implements IWorldGenerator {
 	
 	public void add (Block gen, GenStats stats) {
 		ore.put(gen, stats);
+        ModConfig.getOreGenStats(gen.getLocalizedName(), stats.getMaxVeinSpawn(), stats.minY, stats.maxY, stats.getMaxVeinSize());
 	}
 	
 	@Override
@@ -72,6 +75,10 @@ public class WorldGenerator implements IWorldGenerator {
 	}
 
 	private void generateSurface(World world, Random random, int i, int j, Block oreBlock, GenStats oreStats) {
+        if (!ModConfig.doOreGen) {
+            return;
+        }
+
         for (int k=0; k<random.nextInt(oreStats.getMaxVeinSpawn()); k++) {
         	int firstBlockXCoord = i + random.nextInt(16);
         	int firstBlockYCoord = oreStats.minY + random.nextInt(oreStats.diffY);

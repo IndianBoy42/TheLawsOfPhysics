@@ -1,23 +1,15 @@
 package qmech.lib.tileentity;
 
-import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import qmech.lib.objects.BlockBase;
-import qmech.lib.tileentity.render.CustomRendererBase;
 import qmech.lib.tileentity.render.ICustomRendered;
-import qmech.mod.ModBase;
 import qmech.mod.Reference;
-import qmech.mod.block.tileentity.TestTE;
-
-import java.util.Random;
 
 /**
  * Created by anshuman on 14-05-2014.
@@ -26,12 +18,13 @@ public abstract class TEBlockBase extends BlockBase implements ITileEntityProvid
 
     public static TEBlockBase config
             (TEBlockBase block, CreativeTabs ctab, float hardness, float blastResistance, String toolType, int toolLevel) {
-        logger.info(String.format("Configuring TEBlock (%s, %s) with : \n" +
+        logger.debug(String.format("Configuring TEBlock (%s, %s) with : \n" +
                         ">>> CreativeTab : %s \n" +
                         ">>> Hardness : %s, BlastResistance : %s \n" +
                         ">>> Tool : %s, %s",
                 block.teName(), block.getUnlocalizedName(),
-                ctab, hardness, blastResistance, toolType, toolLevel));
+                ctab, hardness, blastResistance, toolType, toolLevel
+        ));
         block.setCreativeTabs(ctab);
         block.setStrength(hardness, blastResistance).setHarvestLevel(toolType, toolLevel);
         block.registerBlock();

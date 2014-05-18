@@ -48,7 +48,7 @@ public abstract class MetaItemBase extends Item {
 			
 		@Override
 		public String getUnlocalizedName(ItemStack stack) {
-			return String.format("%s.%s", mod, name);
+			return name;
 		}
 
 		@Override
@@ -67,8 +67,8 @@ public abstract class MetaItemBase extends Item {
 		}
 
 		@Override
-		public void registerIcons(IIconRegister register) {
-			registerIcon(register, name);
+		public void registerIcons(IIconRegister register, String prefix) {
+			registerIcon(register, String.format("%s_%s", prefix, name));
 		}
 
 		protected void registerIcon(IIconRegister register, String name) {
@@ -97,7 +97,7 @@ public abstract class MetaItemBase extends Item {
 		setMaxDamage(0);
 		this.setUnlocalizedName(intName);
 		this.prefix = intName;
-		GameRegistry.registerItem(this, Reference.MOD_ID + ":" + intName);
+		GameRegistry.registerItem(this, intName);
 	}
 
 	public void registerItem(int id, IMetaItemBase item) {
@@ -108,7 +108,7 @@ public abstract class MetaItemBase extends Item {
 	@Override
 	public void registerIcons(IIconRegister register) {
 		for (IMetaItemBase item : metaitems.values()) {
-			item.registerIcons(register);
+			item.registerIcons(register, prefix);
 		}
 	}
 
@@ -122,7 +122,7 @@ public abstract class MetaItemBase extends Item {
 	@Override
 	public String getUnlocalizedName(ItemStack stack) {
 		IMetaItemBase meta = getMeta(stack.getItemDamage());
-		if (meta != null) { return "item." + meta.getUnlocalizedName(stack); }
+		if (meta != null) { return String.format("item.%s_%s", prefix, meta.getUnlocalizedName(stack)); }
 		return "";
 	}
 

@@ -1,0 +1,23 @@
+####Copper Stuff####
+//blocks
+tile.block_Copper.name=Copper Block
+tile.ore_Copper.name=Copper Ore
+tile.bricks_Copper.name=Copper Bricks
+tile.gravelOre_Copper.name=Copper Gravel Ore
+tile.netherOre_Copper.name=Nether Copper Ore
+tile.enderOre_Copper.name=Ender Copper Ore
+//fluids
+tile.fluid.slurry_Copper.name=Copper Slurry
+tile.fluid.molten_Copper.name=Molten Copper
+tile.fluid.cleanSlurry_Copper.name=Clean Copper Slurry
+tile.fluid.enrichedSlurry_Copper.name=Enriched Copper Slurry
+//items
+item.ingot_Copper.name=Copper Ingot
+item.dust_Copper.name=Copper Dust
+item.powder_Copper.name=Copper Powder
+item.nugget_Copper.name=Copper Nugget
+item.plate_Copper.name=Copper Plate
+item.brick_Copper.name=Copper Brick
+item.clump_Copper.name=Copper Clump
+
+itemGroup.Metals=Quantum Mechanization | Metals

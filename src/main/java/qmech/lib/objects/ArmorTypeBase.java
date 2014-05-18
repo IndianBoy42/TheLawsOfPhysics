@@ -11,6 +11,27 @@ public class ArmorTypeBase {
         this.armorName = name;
         this.material = material;
     }
+
+    public ArmorTypeBase (String name, ItemStack mat, ArmorInfo info) {
+        armorType = EnumHelper.addArmorMaterial(name, info.durability, info.reductionAmounts, info.enchantability);
+        //armorIndex =
+        this.armorName = name;
+        this.material = mat;
+    }
+
+    public static class ArmorInfo {
+        public int durability = 200;
+        public int[] reductionAmounts = new int[]{2, 4, 3, 2};
+        public int enchantability = 2;
+
+        public ArmorInfo() {}
+
+        public ArmorInfo(int durability, int[] reductionAmounts, int enchantability) {
+            this.durability = durability;
+            this.reductionAmounts = reductionAmounts;
+            this.enchantability = enchantability;
+        }
+    }
     
     ArmorMaterial armorType;
     public ArmorMaterial getArmorMaterial () {
@@ -32,9 +53,9 @@ public class ArmorTypeBase {
         return material;
     }
     
-    public static String[] chestplateCraftingShape;
-    public static String[] leggingsCraftingShape;
-    public static String[] bootsCraftingShape;
-    public static String[] helmetCraftingShape;
+    public static String[] chestplateCraftingShape = new String[]{"x x", "xxx", "xxx"};
+    public static String[] leggingsCraftingShape = new String[]{"xxx", "x x", "x x"};
+    public static String[] bootsCraftingShape = new String[]{"x x", "x x"};
+    public static String[] helmetCraftingShape = new String[]{"xxx", "x x"};
     
 }

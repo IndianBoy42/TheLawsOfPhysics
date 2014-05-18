@@ -4,6 +4,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import qmech.lib.util.LoggingHelper;
+import qmech.mod.ModConfig;
 import qmech.mod.Reference;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -17,17 +18,24 @@ public class BlockBase extends Block {
 	
 	public static BlockBase config
 		(BlockBase block, CreativeTabs ctab, float hardness, float blastResistance, String toolType, int toolLevel) {
-        logger.info(String.format("Configuring block (%s) with : \n" +
-                ">>> CreativeTab : %s \n" +
-                ">>> Hardness : %s, BlastResistance : %s \n" +
-                ">>> Tool : %s, %s",
+        BlockInfo info = ModConfig.getBlockInfo(block, hardness, blastResistance, toolType, toolLevel);
+        logger.debug(String.format("Configuring block (%s) with : \n" +
+                        ">>> CreativeTab : %s \n" +
+                        ">>> Hardness : %s, BlastResistance : %s \n" +
+                        ">>> Tool : %s, %s",
                 block.getUnlocalizedName(),
-                ctab, hardness, blastResistance, toolType, toolLevel));
+                ctab, info.hardness, info.blastResistance, info.toolType, info.toolLevel
+        ));
 		block.setCreativeTabs(ctab);
-		block.setStrength(hardness, blastResistance).setHarvestLevel(toolType, toolLevel);
+		block.setStrength(info.hardness, info.blastResistance).setHarvestLevel(info.toolType, info.toolLevel);
 		block.registerBlock();
 		return block;
 	}
+
+    public static BlockBase config
+            (BlockBase block, CreativeTabBase ctab, BlockInfo info) {
+        return config(block, ctab, info.hardness, info.blastResistance, info.toolType, info.toolLevel);
+    }
 
     public BlockBase(Material material, String intName) {
         super(material);
@@ -52,7 +60,7 @@ public class BlockBase extends Block {
     }
     
     public void registerBlock () {
-        GameRegistry.registerBlock(this, Reference.MOD_ID+":"+this.getUnlocalizedName().substring(5));
+        GameRegistry.registerBlock(this, this.getUnlocalizedName().substring(5));
     }
     
     public void setHarvestLevel(String toolType, int toolLevel){
@@ -64,4 +72,19 @@ public class BlockBase extends Block {
         world.setBlockMetadataWithNotify(x, y, z, dir, 0);
     }
 
+    public static class BlockInfo {
+        public float hardness = 1.0F;
+        public float blastResistance = 1.0F;
+        public String toolType = "pickaxe";
+        public int toolLevel = 1;
+
+        public BlockInfo() {}
+
+        public BlockInfo(float hardness, float blastResistance, String toolType, int toolLevel) {
+            this.hardness = hardness;
+            this.blastResistance = blastResistance;
+            this.toolType = toolType;
+            this.toolLevel = toolLevel;
+        }
+    }
 }

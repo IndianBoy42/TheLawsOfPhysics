@@ -11,6 +11,32 @@ public class ToolTypeBase {
         this.material = material;
         toolType = EnumHelper.addToolMaterial(name, harvestLevel, durability, efficiency, damage, enchantability);
     }
+
+    public ToolTypeBase (String name, ToolInfo info, ItemStack material) {
+        this.harvestLevel = info.harvestLevel;
+        this.toolName = name;
+        this.material = material;
+        toolType = EnumHelper.addToolMaterial(name, info.harvestLevel, info.durability, info.efficiency, info.damage, info.enchantability);
+    }
+
+
+    public static class ToolInfo {
+        public int harvestLevel = 1;
+        public int durability = 400;
+        public float efficiency = 2.0F;
+        public int damage = 4;
+        public int enchantability = 2;
+
+        public ToolInfo() {}
+
+        public ToolInfo(int harvestLevel, int durability, float efficiency, int damage, int enchantability) {
+            this.harvestLevel = harvestLevel;
+            this.durability = durability;
+            this.efficiency = efficiency;
+            this.damage = damage;
+            this.enchantability = enchantability;
+        }
+    }
     
     ToolMaterial toolType;
     public ToolMaterial getToolType () {
@@ -32,9 +58,9 @@ public class ToolTypeBase {
         return material;
     }
 
-    public static String[] shovelCraftingShape;
-    public static String[] pickaxeCraftingShape;
-    public static String[] axeCraftingShape;
-    public static String[] hoeCraftingShape;
-    public static String[] swordCraftingShape;
+    public static String[] shovelCraftingShape = new String[]{"x", "s", "s"};
+    public static String[] pickaxeCraftingShape = new String[]{"xxx", " s ", " s "};
+    public static String[] axeCraftingShape = new String[]{"xx","xs", " s"};
+    public static String[] hoeCraftingShape = new String[]{"xx", " s", " s"};
+    public static String[] swordCraftingShape = new String[]{"x", "x", "s "};
 }

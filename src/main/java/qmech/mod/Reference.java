@@ -35,7 +35,7 @@ public class Reference {
     }
 
     public static final String TEXTURES_BLOCKS = "textures/blocks";
-    public static final String TEXTURES_ITEMS = "textures/items";
+    public static final String TEXTURES_ITEMS = "textures/metalItems";
     public static final String TEXTURES_MODELS = "textures/models";
     public static final String TEXTURES_GUI = "textures/gui";
     public static final String TEXTURES_EQUIP = "textures/equip";

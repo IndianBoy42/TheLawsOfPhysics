@@ -12,7 +12,6 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.event.FMLServerStartingEvent;
 
 @Mod(modid = Reference.MOD_ID,
 	 name = Reference.MOD_NAME,
@@ -25,52 +24,47 @@ public class ModBase {
         System.out.println("Fancy logging coming soon to a mod near you :)");
         loggingHelper = LoggingHelper.getInstance();
 
-		loggingHelper.info("Starting PreInitialization");
-		//this.setConfigs(new ConfigHelper(event));
+		loggingHelper.debug("Starting PreInitialization");
+
+        this.setEvent_preInit(event);
+
+        ModConfig.preInit();
+
 		this.setWorldGen(new WorldGenerator(0));
 		this.setFuelHandler(new FuelHandler());
-		
-		this.setEvent_preInit(event);
+
 		this.metaInfo(event);
-		
-		ModCTabs.preInit();
+
 		ModBlocks.preInit();
 		ModItems.preInit();
 		ModFluids.preInit();
 		ModEquipment.preInit();
 		
 		ModRecipes.preInit();
-		ModCTabs.preInit2();
-		
-		proxy.preInit();        	
 
-		//MinecraftForge.EVENT_BUS.register(new Listeners());
+        ModCTabs.preInit();
+		
+		proxy.preInit();
 	}
 	
 	@EventHandler
 	public void init (FMLInitializationEvent event) {
-		loggingHelper.info("Starting Initialization");
+		loggingHelper.debug("Starting Initialization");
 
 		this.setEvent_init(event);
 		
 		proxy.init();
-		//packetHandler.init();
-		
-		//NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandlerBase());
 	}
 	
 	@EventHandler 
 	public void postInit (FMLPostInitializationEvent event) {
-		loggingHelper.info("Starting PostInitialization");
+		loggingHelper.debug("Starting PostInitialization");
 		
 		this.setEvent_postInit(event);
 		
-		loggingHelper.info("Starting Mod PostInitialization");
+		loggingHelper.debug("Starting Mod PostInitialization");
 		
-		proxy.postInit();  
-		//packetHandler.postInit();
-		
-		//configHelper.saveConfigFile();
+		proxy.postInit();
 	}
 	
 	public void metaInfo (FMLPreInitializationEvent evt) {
@@ -94,10 +88,8 @@ public class ModBase {
 	//Proxy Handler
 	@SidedProxy(clientSide=Reference.CLIENT_PROXY_CLASS, serverSide=Reference.SERVER_PROXY_CLASS)
 	public static CommonProxy proxy;
-	//public static PacketPipeline packetHandler = new PacketPipeline();
 	
 	//Helpers
-	//ConfigHelper configHelper;
 	LoggingHelper loggingHelper;
 	WorldGenerator worldGen;
 	FuelHandler fuelHandler;
@@ -106,7 +98,6 @@ public class ModBase {
 	FMLPreInitializationEvent event_preInit;
 	FMLInitializationEvent event_init;
 	FMLPostInitializationEvent event_postInit;
-	FMLServerStartingEvent event_serverStarting;
 
 	public static ModBase getInstance() {
 		return instance;
@@ -141,11 +132,5 @@ public class ModBase {
 	}
 	public void setEvent_postInit(FMLPostInitializationEvent event_postInit) {
 		this.event_postInit = event_postInit;
-	}
-	public FMLServerStartingEvent getEvent_serverStarting() {
-		return event_serverStarting;
-	}
-	public void setEvent_serverStarting(FMLServerStartingEvent event_serverStarting) {
-		this.event_serverStarting = event_serverStarting;
 	}
 }
