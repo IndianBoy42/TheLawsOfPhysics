@@ -1,4 +1,4 @@
-package qmech.lib.objects;
+package qmech.lib.objects.fluid;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
@@ -13,6 +13,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidBase;
 import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fluids.Fluid;
+import qmech.lib.objects.CreativeTabBase;
 import qmech.mod.Reference;
 
 /**
@@ -41,8 +42,8 @@ public class FluidBlockBase extends BlockFluidClassic{
     @SideOnly(Side.CLIENT)
     @Override
     public void registerBlockIcons(IIconRegister register) {
-        stillIcon = register.registerIcon(String.format("%s:%s", Reference.MOD_ID, this.getUnlocalizedName().substring(5)));
-        flowingIcon = register.registerIcon(String.format("%s:%s", Reference.MOD_ID, this.getUnlocalizedName().substring(5)));
+        stillIcon = register.registerIcon(String.format("%s:fluid/%s_still", Reference.MOD_ID, this.getUnlocalizedName().substring(11)));
+        flowingIcon = register.registerIcon(String.format("%s:fluid/%s", Reference.MOD_ID, this.getUnlocalizedName().substring(11)));
     }
 
     @Override

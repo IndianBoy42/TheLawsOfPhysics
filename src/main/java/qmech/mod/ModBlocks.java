@@ -4,6 +4,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import qmech.lib.objects.BlockBase;
 import qmech.lib.tileentity.TEBlockBase;
+import qmech.lib.util.WorldGenerator;
 import qmech.mod.metals.EnumMetals;
 import qmech.mod.block.TestBlock;
 
@@ -34,6 +35,10 @@ public class ModBlocks {
             BlockBase enderOre = registerBlock("enderOre", metal);
             BlockBase bricks = registerBlock("bricks", metal);
             BlockBase gravelOre = registerBlock("gravelOre", metal, gravelOreInfo);
+        }
+
+        for (BlockBase ore : getBlockFromType("ore")) {
+            ModBase.getInstance().worldGen.add(ore, metalsToBlocks.get(ore).getOreGenInfo());
         }
     }
 

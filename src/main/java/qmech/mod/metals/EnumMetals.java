@@ -1,9 +1,9 @@
 package qmech.mod.metals;
 
-import qmech.lib.objects.ArmorTypeBase;
+import qmech.lib.objects.equip.ArmorTypeBase;
 import qmech.lib.objects.BlockBase;
-import qmech.lib.objects.FluidBase;
-import qmech.lib.objects.ToolTypeBase;
+import qmech.lib.objects.fluid.FluidBase;
+import qmech.lib.objects.equip.ToolTypeBase;
 import qmech.lib.util.WorldGenerator;
 
 /**

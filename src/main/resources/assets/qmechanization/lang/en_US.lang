@@ -1,4 +1,4 @@
-####Copper Stuff####
+####copper Stuff####
 //blocks
 tile.block_Copper.name=Copper Block
 tile.ore_Copper.name=Copper Ore
@@ -19,5 +19,39 @@ item.nugget_Copper.name=Copper Nugget
 item.plate_Copper.name=Copper Plate
 item.brick_Copper.name=Copper Brick
 item.clump_Copper.name=Copper Clump
+//tools
+item.Copper_axe.name=Copper Axe
+item.Copper_shovel.name=Copper Shovel
+item.Copper_pickaxe.name=Copper Pickaxe
+item.Copper_sword.name=Copper Sword
+item.Copper_hoe.name=Copper Hoe
+item.reinforcedCopper_axe.name=Reinforced Copper Axe
+item.reinforcedCopper_shovel.name=Reinforced Copper Shovel
+item.reinforcedCopper_pickaxe.name=Reinforced Copper Pickaxe
+item.reinforcedCopper_sword.name=Reinforced Copper Sword
+item.reinforcedCopper_hoe.name=Reinforced Copper Hoe
+//armor
+item.Copper_boots.name=Copper Boots
+item.Copper_leggings.name=Copper Leggings
+item.Copper_chestplate.name=Copper Chestplate
+item.Copper_helmet.name=Copper Helmet
+item.reinforcedCopper_boots.name=Reinforced Copper Boots
+item.reinforcedCopper_leggings.name=Reinforced Copper Leggings
+item.reinforcedCopper_chestplate.name=Reinforced Copper Chestplate
+item.reinforcedCopper_helmet.name=Reinforced Copper Helmet
 
 itemGroup.Metals=Quantum Mechanization | Metals
+
+item.cell_empty.name=Empty Cell
+item.cell_water.name=Water Cell
+item.cell_lava.name=Lava Cell
+
+item.cell_slurry_copper.name=Copper Slurry Cell
+item.cell_cleanslurry_copper.name=Clean Copper Slurry Cell
+item.cell_enrichedslurry_copper.name=Enriched Copper Slurry Cell
+item.cell_molten_copper.name=Molten Copper Cell
+
+item.bucket_slurry_copper.name=Copper Slurry Bucket
+item.bucket_cleanslurry_copper.name=Clean Copper Slurry Bucket
+item.bucket_enrichedslurry_copper.name=Enriched Copper Slurry Bucket
+item.bucket_molten_copper.name=Molten Copper Bucket

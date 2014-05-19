@@ -2,10 +2,8 @@ package qmech.mod;
 
 import net.minecraft.block.material.Material;
 import net.minecraftforge.fluids.FluidContainerRegistry;
-import qmech.lib.objects.CreativeTabBase;
-import qmech.lib.objects.FluidBase;
-import qmech.lib.objects.FluidContainerBase;
-import qmech.lib.objects.ItemBase;
+import qmech.lib.objects.fluid.FluidBase;
+import qmech.lib.objects.fluid.FluidContainerBase;
 import qmech.mod.item.FluidBucket;
 import qmech.mod.metals.EnumMetals;
 
@@ -21,10 +19,9 @@ public class ModFluids {
 	
 	public static void preInit () {
         bucket = new FluidBucket("bucket", ModCTabs.tabMetals);
+        cell = new FluidContainerBase("cell", BUCKET_VOLUME, ModCTabs.tabMetals, false);
 
         registerMetals();
-
-        cell = new FluidContainerBase("cell", BUCKET_VOLUME, ModCTabs.tabMetals);
 	}
 
     public static void registerMetals() {
@@ -39,9 +36,10 @@ public class ModFluids {
     public static Map<String, FluidBase> metalFluids = new HashMap<String, FluidBase>();
 
     public static FluidBase registerFluid (String prefix, EnumMetals metals) {
-        FluidBase fluid = new FluidBase(String.format("%s_%s", prefix, metals.name()), Material.iron, ModCTabs.tabMetals);
+        FluidBase fluid = new FluidBase(String.format("%s_%s", prefix, metals.name()), Material.lava, ModCTabs.tabMetals);
         metalFluids.put(String.format("%s%s", prefix, metals.name()), fluid);
         bucket.registerFluid(fluid);
+        cell.registerFluid(fluid);
         return fluid;
     }
 	

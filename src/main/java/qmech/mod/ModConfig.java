@@ -3,6 +3,7 @@ package qmech.mod;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.common.config.Configuration;
 import qmech.lib.objects.BlockBase;
+import qmech.lib.util.WorldGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +20,6 @@ public class ModConfig {
     public static String FEATURES_COMMENTS = "Enable/Disable Mod Features";
 
     //configs
-    public static List<List<Integer>> OreStats = new ArrayList<List<Integer>>();
     public static boolean doOreGen = true;
 
     public static void preInit() {
@@ -45,19 +45,17 @@ public class ModConfig {
         cfg.addCustomCategoryComment(name, comment);
     }
 
-    public static List<Integer> getOreGenStats (String oreName, int maxFreq, int minHeight, int maxHeight, int maxVein) {
+    public static WorldGenerator.GenStats getOreGenStats (String oreName, int maxFreq, int minHeight, int maxHeight, int maxVein) {
         cfg.load();
 
-        List<Integer> stats = new ArrayList<Integer>();
+        WorldGenerator.GenStats stats = new WorldGenerator.GenStats();
 
         createCategory(String.format("ores.%s", oreName), String.format("Ore Generation Statistics For %s", oreName));
 
-        stats.add(cfg.get(String.format("ores.%s", oreName), "Maximum Frequency Per Chunk", maxFreq).getInt(maxFreq));
-        stats.add(cfg.get(String.format("ores.%s", oreName), "Maximum Height", maxHeight).getInt(maxHeight));
-        stats.add(cfg.get(String.format("ores.%s", oreName), "Minimum Height", minHeight).getInt(minHeight));
-        stats.add(cfg.get(String.format("ores.%s", oreName), "Maximum Vein Size", maxVein).getInt(maxVein));
-
-        OreStats.add(stats);
+        stats.setMaxVeinSpawn(cfg.get(String.format("ores.%s", oreName), "Maximum Frequency Per Chunk", maxFreq).getInt(maxFreq));
+        stats.setMaxY(cfg.get(String.format("ores.%s", oreName), "Maximum Height", maxHeight).getInt(maxHeight));
+        stats.setMinY(cfg.get(String.format("ores.%s", oreName), "Minimum Height", minHeight).getInt(minHeight));
+        stats.setMaxVeinSize(cfg.get(String.format("ores.%s", oreName), "Maximum Vein Size", maxVein).getInt(maxVein));
 
         cfg.save();
 

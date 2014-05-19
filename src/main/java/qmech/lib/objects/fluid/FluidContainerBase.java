@@ -1,4 +1,4 @@
-package qmech.lib.objects;
+package qmech.lib.objects.fluid;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
@@ -10,6 +10,7 @@ import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
+import qmech.lib.objects.CreativeTabBase;
 import qmech.lib.objects.meta.MetaItemBase;
 import qmech.lib.util.LoggingHelper;
 import qmech.mod.Reference;
@@ -18,32 +19,47 @@ import qmech.mod.Reference;
  * Created by anshuman on 17-05-2014.
  */
 public class FluidContainerBase extends MetaItemBase {
-    public FluidContainerBase(String intName, int vol, CreativeTabBase ctab) {
+    public int vol = FluidContainerRegistry.BUCKET_VOLUME;
+
+    public FluidContainerBase(String intName, int vol, CreativeTabBase ctab, Boolean registerAll) {
         super(intName);
         this.setTextureName(Reference.MOD_ID + ":" + intName);
         this.setCreativeTab(ctab);
+
+        this.vol = vol;
 
         LoggingHelper.getInstance().debug(String.format("Creating Fluid Container : %s", intName));
 
         registerItem(0, new MetaItem("empty"));
 
-        registerFluids(intName, vol);
+        if (registerAll) {
+            registerFluids();
+        } else {
+            registerFluid(FluidRegistry.WATER);
+            registerFluid(FluidRegistry.LAVA);
+        }
     }
 
-    public void registerFluids (String intName, int vol) {
+    public void registerFluid (Fluid fluid) {
+        String fName = fluid.getName();
+        int fID = FluidRegistry.getFluidID(fName);
+
+        registerItem(fID, new MetaItem(fName));
+
+        FluidContainerRegistry.registerFluidContainer(new FluidStack(fluid, vol), newItemStack(fID));
+
+        LoggingHelper.getInstance().debug(String.format(">>> added container (%s) for fluid (%s:%s)",
+                this.getUnlocalizedName(), fluid.getUnlocalizedName(), fID));
+    }
+
+    public void registerFluids () {
         for (int i=0; i< FluidRegistry.getMaxID() + 1; i++) {
             Fluid fluid = FluidRegistry.getFluid(i);
-
             if (fluid == null) {
                 continue;
             }
 
-            registerItem(i, new MetaItem(fluid.getName()));
-
-            FluidContainerRegistry.registerFluidContainer(new FluidStack(fluid, vol), newItemStack(i));
-
-            LoggingHelper.getInstance().debug(String.format(">>> added container (%s) for fluid (%s:%s)",
-                    intName, fluid.getUnlocalizedName(), i));
+            registerFluid(fluid);
         }
     }
 
