@@ -8,7 +8,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import qmech.lib.objects.BlockBase;
-import qmech.lib.tileentity.render.ICustomRendered;
+import qmech.lib.tileentity.render.IHasCustomRenderer;
 import qmech.mod.Reference;
 
 /**
@@ -34,6 +34,8 @@ public abstract class TEBlockBase extends BlockBase implements ITileEntityProvid
     public TEBlockBase(Material material, String intName) {
         super(material, intName);
         teName = intName;
+
+        registerTE();
     }
 
     public abstract void registerTE();
@@ -44,7 +46,7 @@ public abstract class TEBlockBase extends BlockBase implements ITileEntityProvid
     }
 
     public boolean hasCustomRenderer() {
-        return this instanceof ICustomRendered;
+        return this instanceof IHasCustomRenderer.IBlockHasCustomRenderer;
     }
 
     @Override
@@ -66,25 +68,13 @@ public abstract class TEBlockBase extends BlockBase implements ITileEntityProvid
         return 0;
     }
 
-    public boolean hasTeAt (World w, int x, int y, int z) {
+    public static boolean hasTeAt (World w, int x, int y, int z) {
         return !(getTileAt(w, x, y,z).equals(null));
     }
 
-    public TileEntity getTileAt(World w, int x, int y, int z) {
+    public static TileEntity getTileAt(World w, int x, int y, int z) {
         TileEntity te = w.getTileEntity(x, y, z);
         return te;
-    }
-
-    /**
-     * Called right before the block is destroyed by a player.  Args: world, x, y, z, metaData
-     */
-    public void onBlockDestroyedByPlayer(World w, int x, int y, int z, int meta) {
-        if (hasTeAt(w, x, y ,z)) {
-            TileEntity tileEntity = getTileAt(w, x, y, z);
-            if (tileEntity instanceof TileEntityBase) {
-                ((TileEntityBase) tileEntity).onBlockDestroyedByPlayer(meta);
-            }
-        }
     }
 
     /**

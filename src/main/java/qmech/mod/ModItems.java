@@ -2,7 +2,6 @@ package qmech.mod;
 
 
 import net.minecraft.creativetab.CreativeTabs;
-import qmech.lib.objects.BlockBase;
 import qmech.lib.objects.ItemBase;
 import qmech.mod.metals.EnumMetals;
 
@@ -23,9 +22,11 @@ public class ModItems {
 
     public static void registerMetals () {
         for (EnumMetals metal: EnumMetals.values()) {
-            ItemBase ingot = registerItem("ingot", metal);
+            if (!metal.vanilla()) {
+                ItemBase ingot = registerItem("ingot", metal);
+                ItemBase nugget = registerItem("nugget", metal);
+            }
             ItemBase brick = registerItem("brick", metal);
-            ItemBase nugget = registerItem("nugget", metal);
             ItemBase plate = registerItem("plate", metal);
             ItemBase dust = registerItem("dust", metal);
             ItemBase powder = registerItem("powder", metal);

@@ -1,5 +1,6 @@
 package qmech.lib.objects.equip;
 
+import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.util.EnumHelper;
@@ -46,17 +47,24 @@ public class ToolTypeBase {
         public int harvestLevel = 1;
         public int durability = 100;
         public float efficiency = 2.0F;
-        public int damage = 2;
+        public float damage = 2;
         public int enchantability = 2;
 
         public ToolInfo() {}
 
-        public ToolInfo(int harvestLevel, int durability, float efficiency, int damage, int enchantability) {
+        public ToolInfo(int harvestLevel, int durability, float efficiency, float damage, int enchantability) {
             this.harvestLevel = harvestLevel;
             this.durability = durability;
             this.efficiency = efficiency;
             this.damage = damage;
             this.enchantability = enchantability;
+        }
+
+        public static ToolInfo ironTools () {
+            ToolMaterial iron = ToolMaterial.IRON;
+
+            return new ToolInfo(
+                    iron.getHarvestLevel(), iron.getMaxUses(), iron.getEfficiencyOnProperMaterial(), iron.getDamageVsEntity(), iron.getEnchantability());
         }
     }
     

@@ -13,6 +13,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import org.lwjgl.opengl.GL11;
 import qmech.lib.tileentity.render.model.CustomModelBase;
+import qmech.lib.util.LoggingHelper;
 import qmech.mod.Reference;
 
 /**
@@ -59,6 +60,7 @@ public abstract class CustomRendererBase extends TileEntitySpecialRenderer {
     public static void bindTexture (String texPath) {
         ResourceLocation tex = new ResourceLocation(Reference.MOD_ID, String.format("%s/%s.png", Reference.TEXTURES_MODELS, texPath));
         Minecraft.getMinecraft().renderEngine.bindTexture(tex);
+
     }
 
     public static void modelRender(CustomModelBase model) {

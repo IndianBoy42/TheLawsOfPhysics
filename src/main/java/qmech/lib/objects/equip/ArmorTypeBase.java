@@ -35,6 +35,19 @@ public class ArmorTypeBase {
             this.reductionAmounts = reductionAmounts;
             this.enchantability = enchantability;
         }
+
+        public static ArmorInfo ironArmor () {
+            ArmorMaterial iron = ArmorMaterial.IRON;
+
+            return new ArmorInfo(iron.getDurability(0)/11,
+                    new int[] {
+                        iron.getDamageReductionAmount(0),
+                        iron.getDamageReductionAmount(1),
+                        iron.getDamageReductionAmount(2),
+                        iron.getDamageReductionAmount(3)
+                    },
+                    iron.getEnchantability());
+        }
     }
     
     ArmorMaterial armorType;

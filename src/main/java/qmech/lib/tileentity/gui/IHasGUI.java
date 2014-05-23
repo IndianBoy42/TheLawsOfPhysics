@@ -8,4 +8,6 @@ public interface IHasGUI {
     public void openGUI();
 
     public void registerGUI();
+
+    public void updateGUI();
 }

@@ -15,7 +15,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.world.World;
 import qmech.lib.tileentity.gui.IHasGUI;
-import qmech.lib.tileentity.render.ICustomRendered;
+import qmech.lib.tileentity.render.IHasCustomRenderer;
 import qmech.lib.tileentity.syncable.ISyncableObject;
 import qmech.lib.multiblock.CoordTriplet;
 import net.minecraft.nbt.NBTTagCompound;
@@ -25,7 +25,9 @@ import net.minecraft.tileentity.TileEntity;
 import qmech.mod.ModBase;
 
 public abstract class TileEntityBase extends TileEntity {
-	
+
+    public static boolean registered = false;
+
 	protected Map<String, ISyncableObject> syncableObjects = new HashMap<String, ISyncableObject>();
 
     public void registerField (ISyncableObject obj, String name) {
@@ -36,12 +38,16 @@ public abstract class TileEntityBase extends TileEntity {
 
 	public TileEntityBase() {
         registerFields();
+        if (!registered) {
+            registerTE(intName());
+            registered = true;
+        }
 	}
 
     public void registerTE (String teName) {
         GameRegistry.registerTileEntity(this.getClass(), teName);
-        if (this instanceof ICustomRendered) {
-            ((ICustomRendered)this).registerRenderer();
+        if (this instanceof IHasCustomRenderer) {
+            ((IHasCustomRenderer)this).registerRenderer();
         }
         if (this instanceof IHasGUI) {
             ((IHasGUI)this).registerGUI();
@@ -69,6 +75,7 @@ public abstract class TileEntityBase extends TileEntity {
 
     public void onDataPacket (NetworkManager net, S35PacketUpdateTileEntity packet) {
         this.readFromNBT(packet.func_148857_g());
+
         for (ISyncableObject obj : syncableObjects.values()) {
             if (obj.isDirty()) {
                 obj.markClean();
@@ -76,7 +83,7 @@ public abstract class TileEntityBase extends TileEntity {
         }
 
         if (this instanceof IHasGUI) {
-            //TODO : update GUI
+            ((IHasGUI) this).updateGUI();
         }
     }
 	
@@ -107,12 +114,6 @@ public abstract class TileEntityBase extends TileEntity {
     public abstract void registerFields();
 
     /**
-     * Called right before the block is destroyed by a player.  Args: world, x, y, z, metaData
-     */
-    public void onBlockDestroyedByPlayer(int meta) {
-    }
-
-    /**
      * Lets the block know when one of its neighbor changes. Doesn't know which neighbor changed (coordinates passed are
      * their own) Args: x, y, z, neighbor Block
      */
@@ -124,6 +125,8 @@ public abstract class TileEntityBase extends TileEntity {
 
         if (this instanceof IInventory) {
             inventory = (IInventory) this;
+        } else {
+            return;
         }
 
         for (int i = 0; i < inventory.getSizeInventory(); i++) {

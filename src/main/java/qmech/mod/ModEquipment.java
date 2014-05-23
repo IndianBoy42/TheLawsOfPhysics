@@ -20,11 +20,19 @@ public class ModEquipment {
 
     public static void registerMetals () {
         for (EnumMetals metal: EnumMetals.values()) {
-            ToolTypeBase toolType = new ToolTypeBase(
-                    metal.name(), metal.getToolInfo(),
-                    new ItemStack(ModItems.metalItems.get(String.format("ingot_%s", metal.name()))));
-            toolType.registerToolSet(ModCTabs.tabMetals);
-            metalTools.add(toolType);
+            if (!metal.vanilla()) {
+                ToolTypeBase toolType = new ToolTypeBase(
+                        metal.name(), metal.getToolInfo(),
+                        new ItemStack(ModItems.metalItems.get(String.format("ingot_%s", metal.name()))));
+                toolType.registerToolSet(ModCTabs.tabMetals);
+                metalTools.add(toolType);
+
+                ArmorTypeBase armorType = new ArmorTypeBase(
+                        metal.name(), metal.getArmorInfo(),
+                        new ItemStack(ModItems.metalItems.get(String.format("ingot_%s", metal.name()))));
+                armorType.registerArmorSet(ModCTabs.tabMetals);
+                metalArmor.add(armorType);
+            }
 
             ToolTypeBase.ToolInfo reinforcedToolType = metal.getToolInfo();
             reinforcedToolType.durability *= 8;
@@ -39,14 +47,6 @@ public class ModEquipment {
                     new ItemStack(ModItems.metalItems.get(String.format("plate_%s", metal.name()))));
             reinforcedTool.registerToolSet(ModCTabs.tabMetals);
             metalTools.add(reinforcedTool);
-
-//##################################################################################################################################//
-            
-            ArmorTypeBase armorType = new ArmorTypeBase(
-                    metal.name(), metal.getArmorInfo(),
-                    new ItemStack(ModItems.metalItems.get(String.format("ingot_%s", metal.name()))));
-            armorType.registerArmorSet(ModCTabs.tabMetals);
-            metalArmor.add(armorType);
 
             ArmorTypeBase.ArmorInfo reinforcedArmorType = metal.getArmorInfo();
             reinforcedArmorType.enchantability -= 2;

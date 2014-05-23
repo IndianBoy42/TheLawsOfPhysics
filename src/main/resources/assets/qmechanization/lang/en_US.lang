@@ -1,4 +1,4 @@
-####copper Stuff####
+####Copper Stuff####
 //blocks
 tile.block_Copper.name=Copper Block
 tile.ore_Copper.name=Copper Ore
@@ -20,16 +20,16 @@ item.plate_Copper.name=Copper Plate
 item.brick_Copper.name=Copper Brick
 item.clump_Copper.name=Copper Clump
 //tools
-item.Copper_axe.name=Copper Axe
-item.Copper_shovel.name=Copper Shovel
-item.Copper_pickaxe.name=Copper Pickaxe
-item.Copper_sword.name=Copper Sword
-item.Copper_hoe.name=Copper Hoe
-item.reinforcedCopper_axe.name=Reinforced Copper Axe
-item.reinforcedCopper_shovel.name=Reinforced Copper Shovel
-item.reinforcedCopper_pickaxe.name=Reinforced Copper Pickaxe
-item.reinforcedCopper_sword.name=Reinforced Copper Sword
-item.reinforcedCopper_hoe.name=Reinforced Copper Hoe
+item.Copper_Axe.name=Copper Axe
+item.Copper_Shovel.name=Copper Shovel
+item.Copper_Pickaxe.name=Copper Pickaxe
+item.Copper_Sword.name=Copper Sword
+item.Copper_Hoe.name=Copper Hoe
+item.reinforcedCopper_Axe.name=Reinforced Copper Axe
+item.reinforcedCopper_Shovel.name=Reinforced Copper Shovel
+item.reinforcedCopper_Pickaxe.name=Reinforced Copper Pickaxe
+item.reinforcedCopper_Sword.name=Reinforced Copper Sword
+item.reinforcedCopper_Hoe.name=Reinforced Copper Hoe
 //armor
 item.Copper_boots.name=Copper Boots
 item.Copper_leggings.name=Copper Leggings
@@ -39,19 +39,175 @@ item.reinforcedCopper_boots.name=Reinforced Copper Boots
 item.reinforcedCopper_leggings.name=Reinforced Copper Leggings
 item.reinforcedCopper_chestplate.name=Reinforced Copper Chestplate
 item.reinforcedCopper_helmet.name=Reinforced Copper Helmet
+//fluid cells
+item.cell_slurry_copper.name=Copper Slurry Cell
+item.cell_cleanslurry_copper.name=Clean Copper Slurry Cell
+item.cell_enrichedslurry_copper.name=Enriched Copper Slurry Cell
+item.cell_molten_copper.name=Molten Copper Cell
+//fluid buckets
+item.bucket_slurry_copper.name=Copper Slurry Bucket
+item.bucket_cleanslurry_copper.name=Clean Copper Slurry Bucket
+item.bucket_enrichedslurry_copper.name=Enriched Copper Slurry Bucket
+item.bucket_molten_copper.name=Molten Copper Bucket
+
+####Tin Stuff####
+//blocks
+tile.block_Tin.name=Tin Block
+tile.ore_Tin.name=Tin Ore
+tile.bricks_Tin.name=Tin Bricks
+tile.gravelOre_Tin.name=Tin Gravel Ore
+tile.netherOre_Tin.name=Nether Tin Ore
+tile.enderOre_Tin.name=Ender Tin Ore
+//fluids
+tile.fluid.slurry_Tin.name=Tin Slurry
+tile.fluid.molten_Tin.name=Molten Tin
+tile.fluid.cleanSlurry_Tin.name=Clean Tin Slurry
+tile.fluid.enrichedSlurry_Tin.name=Enriched Tin Slurry
+//items
+item.ingot_Tin.name=Tin Ingot
+item.dust_Tin.name=Tin Dust
+item.powder_Tin.name=Tin Powder
+item.nugget_Tin.name=Tin Nugget
+item.plate_Tin.name=Tin Plate
+item.brick_Tin.name=Tin Brick
+item.clump_Tin.name=Tin Clump
+//tools
+item.Tin_Axe.name=Tin Axe
+item.Tin_Shovel.name=Tin Shovel
+item.Tin_Pickaxe.name=Tin Pickaxe
+item.Tin_Sword.name=Tin Sword
+item.Tin_Hoe.name=Tin Hoe
+item.reinforcedTin_Axe.name=Reinforced Tin Axe
+item.reinforcedTin_Shovel.name=Reinforced Tin Shovel
+item.reinforcedTin_Pickaxe.name=Reinforced Tin Pickaxe
+item.reinforcedTin_Sword.name=Reinforced Tin Sword
+item.reinforcedTin_Hoe.name=Reinforced Tin Hoe
+//armor
+item.Tin_boots.name=Tin Boots
+item.Tin_leggings.name=Tin Leggings
+item.Tin_chestplate.name=Tin Chestplate
+item.Tin_helmet.name=Tin Helmet
+item.reinforcedTin_boots.name=Reinforced Tin Boots
+item.reinforcedTin_leggings.name=Reinforced Tin Leggings
+item.reinforcedTin_chestplate.name=Reinforced Tin Chestplate
+item.reinforcedTin_helmet.name=Reinforced Tin Helmet
+//fluid cells
+item.cell_slurry_Tin.name=Tin Slurry Cell
+item.cell_cleanslurry_Tin.name=Clean Tin Slurry Cell
+item.cell_enrichedslurry_Tin.name=Enriched Tin Slurry Cell
+item.cell_molten_Tin.name=Molten Tin Cell
+//fluid buckets
+item.bucket_slurry_Tin.name=Tin Slurry Bucket
+item.bucket_cleanslurry_Tin.name=Clean Tin Slurry Bucket
+item.bucket_enrichedslurry_Tin.name=Enriched Tin Slurry Bucket
+item.bucket_molten_Tin.name=Molten Tin Bucket
+
+####Iron Stuff####
+//blocks
+tile.block_Iron.name=Iron Block
+tile.ore_Iron.name=Iron Ore
+tile.bricks_Iron.name=Iron Bricks
+tile.gravelOre_Iron.name=Iron Gravel Ore
+tile.netherOre_Iron.name=Nether Iron Ore
+tile.enderOre_Iron.name=Ender Iron Ore
+//fluids
+tile.fluid.slurry_Iron.name=Iron Slurry
+tile.fluid.molten_Iron.name=Molten Iron
+tile.fluid.cleanSlurry_Iron.name=Clean Iron Slurry
+tile.fluid.enrichedSlurry_Iron.name=Enriched Iron Slurry
+//items
+item.ingot_Iron.name=Iron Ingot
+item.dust_Iron.name=Iron Dust
+item.powder_Iron.name=Iron Powder
+item.nugget_Iron.name=Iron Nugget
+item.plate_Iron.name=Iron Plate
+item.brick_Iron.name=Iron Brick
+item.clump_Iron.name=Iron Clump
+//tools
+item.Iron_Axe.name=Iron Axe
+item.Iron_Shovel.name=Iron Shovel
+item.Iron_Pickaxe.name=Iron Pickaxe
+item.Iron_Sword.name=Iron Sword
+item.Iron_Hoe.name=Iron Hoe
+item.reinforcedIron_Axe.name=Reinforced Iron Axe
+item.reinforcedIron_Shovel.name=Reinforced Iron Shovel
+item.reinforcedIron_Pickaxe.name=Reinforced Iron Pickaxe
+item.reinforcedIron_Sword.name=Reinforced Iron Sword
+item.reinforcedIron_Hoe.name=Reinforced Iron Hoe
+//armor
+item.Iron_boots.name=Iron Boots
+item.Iron_leggings.name=Iron Leggings
+item.Iron_chestplate.name=Iron Chestplate
+item.Iron_helmet.name=Iron Helmet
+item.reinforcedIron_boots.name=Reinforced Iron Boots
+item.reinforcedIron_leggings.name=Reinforced Iron Leggings
+item.reinforcedIron_chestplate.name=Reinforced Iron Chestplate
+item.reinforcedIron_helmet.name=Reinforced Iron Helmet
+//fluid cells
+item.cell_slurry_Iron.name=Iron Slurry Cell
+item.cell_cleanslurry_Iron.name=Clean Iron Slurry Cell
+item.cell_enrichedslurry_Iron.name=Enriched Iron Slurry Cell
+item.cell_molten_Iron.name=Molten Iron Cell
+//fluid buckets
+item.bucket_slurry_Iron.name=Iron Slurry Bucket
+item.bucket_cleanslurry_Iron.name=Clean Iron Slurry Bucket
+item.bucket_enrichedslurry_Iron.name=Enriched Iron Slurry Bucket
+item.bucket_molten_Iron.name=Molten Iron Bucket
+
+####Gold Stuff####
+//blocks
+tile.block_Gold.name=Gold Block
+tile.ore_Gold.name=Gold Ore
+tile.bricks_Gold.name=Gold Bricks
+tile.gravelOre_Gold.name=Gold Gravel Ore
+tile.netherOre_Gold.name=Nether Gold Ore
+tile.enderOre_Gold.name=Ender Gold Ore
+//fluids
+tile.fluid.slurry_Gold.name=Gold Slurry
+tile.fluid.molten_Gold.name=Molten Gold
+tile.fluid.cleanSlurry_Gold.name=Clean Gold Slurry
+tile.fluid.enrichedSlurry_Gold.name=Enriched Gold Slurry
+//items
+item.ingot_Gold.name=Gold Ingot
+item.dust_Gold.name=Gold Dust
+item.powder_Gold.name=Gold Powder
+item.nugget_Gold.name=Gold Nugget
+item.plate_Gold.name=Gold Plate
+item.brick_Gold.name=Gold Brick
+item.clump_Gold.name=Gold Clump
+//tools
+item.Gold_Axe.name=Gold Axe
+item.Gold_Shovel.name=Gold Shovel
+item.Gold_Pickaxe.name=Gold Pickaxe
+item.Gold_Sword.name=Gold Sword
+item.Gold_Hoe.name=Gold Hoe
+item.reinforcedGold_Axe.name=Reinforced Gold Axe
+item.reinforcedGold_Shovel.name=Reinforced Gold Shovel
+item.reinforcedGold_Pickaxe.name=Reinforced Gold Pickaxe
+item.reinforcedGold_Sword.name=Reinforced Gold Sword
+item.reinforcedGold_Hoe.name=Reinforced Gold Hoe
+//armor
+item.Gold_boots.name=Gold Boots
+item.Gold_leggings.name=Gold Leggings
+item.Gold_chestplate.name=Gold Chestplate
+item.Gold_helmet.name=Gold Helmet
+item.reinforcedGold_boots.name=Reinforced Gold Boots
+item.reinforcedGold_leggings.name=Reinforced Gold Leggings
+item.reinforcedGold_chestplate.name=Reinforced Gold Chestplate
+item.reinforcedGold_helmet.name=Reinforced Gold Helmet
+//fluid cells
+item.cell_slurry_Gold.name=Gold Slurry Cell
+item.cell_cleanslurry_Gold.name=Clean Gold Slurry Cell
+item.cell_enrichedslurry_Gold.name=Enriched Gold Slurry Cell
+item.cell_molten_Gold.name=Molten Gold Cell
+//fluid buckets
+item.bucket_slurry_Gold.name=Gold Slurry Bucket
+item.bucket_cleanslurry_Gold.name=Clean Gold Slurry Bucket
+item.bucket_enrichedslurry_Gold.name=Enriched Gold Slurry Bucket
+item.bucket_molten_Gold.name=Molten Gold Bucket
 
 itemGroup.Metals=Quantum Mechanization | Metals
 
 item.cell_empty.name=Empty Cell
 item.cell_water.name=Water Cell
 item.cell_lava.name=Lava Cell
-
-item.cell_slurry_copper.name=Copper Slurry Cell
-item.cell_cleanslurry_copper.name=Clean Copper Slurry Cell
-item.cell_enrichedslurry_copper.name=Enriched Copper Slurry Cell
-item.cell_molten_copper.name=Molten Copper Cell
-
-item.bucket_slurry_copper.name=Copper Slurry Bucket
-item.bucket_cleanslurry_copper.name=Clean Copper Slurry Bucket
-item.bucket_enrichedslurry_copper.name=Enriched Copper Slurry Bucket
-item.bucket_molten_copper.name=Molten Copper Bucket

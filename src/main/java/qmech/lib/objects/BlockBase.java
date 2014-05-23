@@ -1,6 +1,7 @@
 package qmech.lib.objects;
 
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import qmech.lib.util.LoggingHelper;
@@ -85,6 +86,11 @@ public class BlockBase extends Block {
             this.blastResistance = blastResistance;
             this.toolType = toolType;
             this.toolLevel = toolLevel;
+        }
+
+        public static BlockInfo ironBlock () {
+            Block iron = Blocks.iron_block;
+            return new BlockInfo(5.0F, 10.0F, "pickaxe", 1);
         }
     }
 }
