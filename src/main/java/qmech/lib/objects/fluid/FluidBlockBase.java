@@ -57,5 +57,4 @@ public class FluidBlockBase extends BlockFluidClassic{
         if (world.getBlock(x,  y,  z).getMaterial().isLiquid()) return false;
         return super.displaceIfPossible(world, x, y, z);
     }
-
 }

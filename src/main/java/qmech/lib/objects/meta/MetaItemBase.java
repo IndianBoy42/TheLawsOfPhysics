@@ -29,7 +29,7 @@ public abstract class MetaItemBase extends Item {
 		private IIcon icon;
 		private Object[] recipes;
 		private boolean visibleInCreative = true;
-			
+
 		public MetaItem(String name, Object... recipes) {
 			this.mod = Reference.MOD_ID;
 			this.name = name;
@@ -45,7 +45,7 @@ public abstract class MetaItemBase extends Item {
 		public IIcon getIcon() {
 			return icon;
 		}
-			
+
 		@Override
 		public String getUnlocalizedName(ItemStack stack) {
 			return name;
@@ -81,7 +81,7 @@ public abstract class MetaItemBase extends Item {
 				result.add(new ItemStack(item, 1, meta));
 			}
 		}
-			
+
 		@Override
 		public boolean hasEffect(int renderPass) {
 			return false;
