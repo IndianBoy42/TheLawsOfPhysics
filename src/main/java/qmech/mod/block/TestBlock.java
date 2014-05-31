@@ -4,10 +4,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import qmech.lib.tileentity.TEBlockBase;
-import qmech.lib.tileentity.render.CustomRendererBase;
 import qmech.lib.tileentity.render.IHasCustomRenderer;
-import qmech.lib.tileentity.render.ModelRendererBase;
-import qmech.lib.tileentity.render.model.BlockModelBase;
 import qmech.mod.block.tileentity.TestTE;
 
 /**
@@ -25,6 +22,6 @@ public class TestBlock extends TEBlockBase implements IHasCustomRenderer.IBlockH
 
     @Override
     public void registerTE() {
-        TestTE fake = new TestTE();
+        new TestTE();
     }
 }

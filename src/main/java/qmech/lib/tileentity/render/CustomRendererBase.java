@@ -7,13 +7,11 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import org.lwjgl.opengl.GL11;
 import qmech.lib.tileentity.render.model.CustomModelBase;
-import qmech.lib.util.LoggingHelper;
 import qmech.mod.Reference;
 
 /**
@@ -22,11 +20,21 @@ import qmech.mod.Reference;
 @SideOnly(Side.CLIENT)
 public abstract class CustomRendererBase extends TileEntitySpecialRenderer {
 
+    private static void bindTexture(String texPath) {
+        ResourceLocation tex = new ResourceLocation(Reference.MOD_ID, String.format("%s/%s.png", Reference.TEXTURES_MODELS, texPath));
+        Minecraft.getMinecraft().renderEngine.bindTexture(tex);
+
+    }
+
+    static void modelRender(CustomModelBase model) {
+        model.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
+    }
+
     public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float f) {
         GL11.glPushMatrix();
-        GL11.glTranslatef((float)x + 1.0F, (float)y + 1.0F, (float)z);
+        GL11.glTranslatef((float) x + 1.0F, (float) y + 1.0F, (float) z);
 
-        bindTexture(texPath());
+        bindTexture(this.texPath());
 
         GL11.glPushMatrix();
         GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
@@ -34,7 +42,7 @@ public abstract class CustomRendererBase extends TileEntitySpecialRenderer {
         //rotateModelViaMeta();
         //adjustLightFixture();
 
-        renderModel();
+        this.renderModel();
 
         GL11.glPopMatrix();
         GL11.glPopMatrix();
@@ -54,19 +62,10 @@ public abstract class CustomRendererBase extends TileEntitySpecialRenderer {
         int modulousModifier = skyLight % 65536;
         int divModifier = skyLight / 65536;
         tess.setColorOpaque_F(brightness, brightness, brightness);
-        OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit,  (float) modulousModifier,  divModifier);
+        OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float) modulousModifier, divModifier);
     }
 
-    public static void bindTexture (String texPath) {
-        ResourceLocation tex = new ResourceLocation(Reference.MOD_ID, String.format("%s/%s.png", Reference.TEXTURES_MODELS, texPath));
-        Minecraft.getMinecraft().renderEngine.bindTexture(tex);
+    protected abstract void renderModel();
 
-    }
-
-    public static void modelRender(CustomModelBase model) {
-        model.render((Entity)null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
-    }
-
-    public abstract void renderModel();
-    public abstract String texPath();
+    protected abstract String texPath();
 }

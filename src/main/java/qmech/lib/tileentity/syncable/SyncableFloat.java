@@ -4,32 +4,33 @@ import net.minecraft.nbt.NBTTagCompound;
 
 public class SyncableFloat extends SyncableObjectBase {
 
-	public static final float EPSILON = 0.0001f;
-	private float value;
+    private static final float EPSILON = 0.0001f;
+    private float value;
 
-	public SyncableFloat(float value) {
-		this.value = value;
-	}
+    public SyncableFloat(float value) {
+        this.value = value;
+    }
 
-	public SyncableFloat() {}
+    public SyncableFloat() {
+    }
 
-	public void setValue(float newValue) {
-		if (!equals(newValue)) {
-			value = newValue;
-			markDirty();
-		}
-	}
+    public float getValue() {
+        return this.value;
+    }
 
-	public float getValue() {
-		return value;
-	}
+    void setValue(float newValue) {
+        if (!this.equals(newValue)) {
+            this.value = newValue;
+            this.markDirty();
+        }
+    }
 
-	public boolean equals(float otherValue) {
-		return Math.abs(otherValue - value) < EPSILON;
-	}
+    boolean equals(float otherValue) {
+        return Math.abs(otherValue - this.value) < EPSILON;
+    }
 
 	/*
-	@Override
+    @Override
 	public void readFromStream(DataInput stream) throws IOException {
 		value = stream.readFloat();
 	}
@@ -40,17 +41,17 @@ public class SyncableFloat extends SyncableObjectBase {
 	}
 	*/
 
-	@Override
-	public void writeToNBT(NBTTagCompound tag, String name) {
-		tag.setFloat(name, value);
-	}
+    @Override
+    public void writeToNBT(NBTTagCompound tag, String name) {
+        tag.setFloat(name, this.value);
+    }
 
-	@Override
-	public void readFromNBT(NBTTagCompound tag, String name) {
-		value = tag.getFloat(name);
-	}
+    @Override
+    public void readFromNBT(NBTTagCompound tag, String name) {
+        this.value = tag.getFloat(name);
+    }
 
-	public void modify(float by) {
-		setValue(value + by);
-	}
+    public void modify(float by) {
+        this.setValue(this.value + by);
+    }
 }

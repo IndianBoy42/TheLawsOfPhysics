@@ -12,17 +12,20 @@ import java.util.Map;
 
 public class ModItems {
 
-    static ItemBase testItem = new ItemBase("testItem");
+    public static final Map<String, ItemBase> metalItems = new HashMap<String, ItemBase>();
+    private static final Map<ItemBase, String> typesToItems = new HashMap<ItemBase, String>();
+    public static final Map<ItemBase, EnumMetals> metalsToItems = new HashMap<ItemBase, EnumMetals>();
+    private static ItemBase testItem = new ItemBase("testItem");
 
-	public static void preInit () {
-		testItem = ItemBase.config(testItem, CreativeTabs.tabMisc, 64);
+    public static void preInit() {
+        testItem = ItemBase.config(testItem, CreativeTabs.tabMisc, 64);
 
         registerMetals();
-	}
+    }
 
-    public static void registerMetals () {
-        for (EnumMetals metal: EnumMetals.values()) {
-            if (!metal.vanilla()) {
+    private static void registerMetals() {
+        for (EnumMetals metal : EnumMetals.values()) {
+            if (metal.moddedMetal()) {
                 ItemBase ingot = registerItem("ingot", metal);
                 ItemBase nugget = registerItem("nugget", metal);
             }
@@ -34,11 +37,7 @@ public class ModItems {
         }
     }
 
-    public static Map<String, ItemBase> metalItems = new HashMap<String, ItemBase>();
-    public static Map<ItemBase, String> typesToItems = new HashMap<ItemBase, String>();
-    public static Map<ItemBase, EnumMetals> metalsToItems = new HashMap<ItemBase, EnumMetals>();
-
-    public static ItemBase registerItem (String prefix, EnumMetals metal) {
+    private static ItemBase registerItem(String prefix, EnumMetals metal) {
         ItemBase item = ItemBase.config(new ItemBase(String.format("%s_%s", prefix, metal.name())), ModCTabs.tabMetals, 64);
         metalItems.put(String.format("%s_%s", prefix, metal.name()), item);
         typesToItems.put(item, prefix);
@@ -49,7 +48,7 @@ public class ModItems {
     public static List<ItemBase> getItemFromType(String prefix) {
         List<ItemBase> items = new ArrayList<ItemBase>();
         for (Map.Entry<ItemBase, String> entry : typesToItems.entrySet()) {
-            if (entry.getValue() == prefix) {
+            if (entry.getValue().equals(prefix)) {
                 items.add(entry.getKey());
             }
         }

@@ -15,11 +15,11 @@ import qmech.lib.util.LoggingHelper;
  * Created by anshuman on 16-05-2014.
  */
 public class TestTE extends TileEntityBase implements IHasCustomRenderer, IHasGUI {
+    private SyncableInt integer;
+
     public TestTE() {
         super();
     }
-
-    SyncableInt integer;
 
     @Override
     public String intName() {
@@ -28,18 +28,18 @@ public class TestTE extends TileEntityBase implements IHasCustomRenderer, IHasGU
 
     @Override
     public void update() {
-        integer.modify(1);
-        if (integer.getValue() >= 100) {
-            integer.setValue(0);
+        this.integer.modify(1);
+        if (this.integer.getValue() >= 100) {
+            this.integer.setValue(0);
             LoggingHelper.getInstance().info("Tick Tock");
         }
     }
 
     @Override
     public void registerFields() {
-        integer = new SyncableInt(0);
+        this.integer = new SyncableInt(0);
 
-        registerField(integer, "number1");
+        this.registerField(this.integer, "number1");
     }
 
     @Override
@@ -49,22 +49,22 @@ public class TestTE extends TileEntityBase implements IHasCustomRenderer, IHasGU
 
     @Override
     public void registerRenderer() {
-        ClientRegistry.bindTileEntitySpecialRenderer(TestTE.class, customRenderer());
+        ClientRegistry.bindTileEntitySpecialRenderer(TestTE.class, this.customRenderer());
     }
 
     public void writeToNBT(NBTTagCompound tag) {
         super.writeToNBT(tag);
-        LoggingHelper.getInstance().info(integer.getValue());
+        LoggingHelper.getInstance().info(this.integer.getValue());
     }
 
     public void readFromNBT(NBTTagCompound tag) {
         super.readFromNBT(tag);
-        LoggingHelper.getInstance().info(integer.getValue());
+        LoggingHelper.getInstance().info(this.integer.getValue());
     }
 
     @Override
     public void openGUI() {
-        
+
     }
 
     @Override

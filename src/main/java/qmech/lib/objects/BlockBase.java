@@ -1,24 +1,29 @@
 package qmech.lib.objects;
 
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.MathHelper;
-import qmech.lib.util.LoggingHelper;
-import qmech.mod.ModConfig;
-import qmech.mod.Reference;
+import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import cpw.mods.fml.common.registry.GameRegistry;
+import qmech.lib.util.LoggingHelper;
+import qmech.mod.ModConfig;
+import qmech.mod.Reference;
 
 public class BlockBase extends Block {
 
-    protected static LoggingHelper logger = LoggingHelper.getInstance();
-	
-	public static BlockBase config
-		(BlockBase block, CreativeTabs ctab, float hardness, float blastResistance, String toolType, int toolLevel) {
+    protected static final LoggingHelper logger = LoggingHelper.getInstance();
+
+    public BlockBase(Material material, String intName) {
+        super(material);
+        this.setBlockTextureName(Reference.MOD_ID + ":" + intName);
+        this.setInternalName(intName);
+    }
+
+    public static BlockBase config
+            (BlockBase block, CreativeTabs ctab, float hardness, float blastResistance, String toolType, int toolLevel) {
         BlockInfo info = ModConfig.getBlockInfo(block, hardness, blastResistance, toolType, toolLevel);
         logger.debug(String.format("Configuring block (%s) with : \n" +
                         ">>> CreativeTab : %s \n" +
@@ -27,49 +32,42 @@ public class BlockBase extends Block {
                 block.getUnlocalizedName(),
                 ctab, info.hardness, info.blastResistance, info.toolType, info.toolLevel
         ));
-		block.setCreativeTabs(ctab);
-		block.setStrength(info.hardness, info.blastResistance).setHarvestLevel(info.toolType, info.toolLevel);
-		block.registerBlock();
-		return block;
-	}
+        block.setCreativeTabs(ctab);
+        block.setStrength(info.hardness, info.blastResistance);
+        block.setHarvestLevel(info.toolType, info.toolLevel);
+        block.registerBlock();
+        return block;
+    }
 
     public static BlockBase config
             (BlockBase block, CreativeTabBase ctab, BlockInfo info) {
         return config(block, ctab, info.hardness, info.blastResistance, info.toolType, info.toolLevel);
     }
 
-    public BlockBase(Material material, String intName) {
-        super(material);
-        this.setBlockTextureName(Reference.MOD_ID + ":" + intName);
-        this.setInternalName(intName);
-    }
-    
-    public BlockBase setStrength (float hardness, float blastResistance) {
+    protected BlockBase setStrength(float hardness, float blastResistance) {
         this.setHardness(hardness);
         this.setResistance(blastResistance);
         return this;
     }
-    
-    public BlockBase setCreativeTabs (CreativeTabs creativeTab) {
+
+    protected void setCreativeTabs(CreativeTabs creativeTab) {
         this.setCreativeTab(creativeTab);
-        return this;
     }
-    
-    public BlockBase setInternalName(String name){
+
+    void setInternalName(String name) {
         this.setBlockName(name);
-        return this;
     }
-    
-    public void registerBlock () {
+
+    protected void registerBlock() {
         GameRegistry.registerBlock(this, this.getUnlocalizedName().substring(5));
     }
-    
-    public void setHarvestLevel(String toolType, int toolLevel){
+
+    public void setHarvestLevel(String toolType, int toolLevel) {
         super.setHarvestLevel(toolType, toolLevel);
     }
 
-    public void onBlockPlacedBy (World world, int x, int y, int z, EntityLivingBase player, ItemStack stack) {
-        int dir = MathHelper.floor_double((double)((player.rotationYaw * 4F) / 360F) + 0.5D) & 3;
+    public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase player, ItemStack stack) {
+        int dir = MathHelper.floor_double((double) ((player.rotationYaw * 4F) / 360F) + 0.5D) & 3;
         world.setBlockMetadataWithNotify(x, y, z, dir, 0);
     }
 
@@ -79,7 +77,8 @@ public class BlockBase extends Block {
         public String toolType = "pickaxe";
         public int toolLevel = 1;
 
-        public BlockInfo() {}
+        public BlockInfo() {
+        }
 
         public BlockInfo(float hardness, float blastResistance, String toolType, int toolLevel) {
             this.hardness = hardness;
@@ -88,8 +87,7 @@ public class BlockBase extends Block {
             this.toolLevel = toolLevel;
         }
 
-        public static BlockInfo ironBlock () {
-            Block iron = Blocks.iron_block;
+        public static BlockInfo ironBlock() {
             return new BlockInfo(5.0F, 10.0F, "pickaxe", 1);
         }
     }

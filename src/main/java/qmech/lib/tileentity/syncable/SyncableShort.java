@@ -4,35 +4,36 @@ import net.minecraft.nbt.NBTTagCompound;
 
 public class SyncableShort extends SyncableObjectBase {
 
-	private short value = 0;
+    private short value = 0;
 
-	public SyncableShort(short value) {
-		this.value = value;
-	}
+    public SyncableShort(short value) {
+        this.value = value;
+    }
 
-	public SyncableShort() {}
+    public SyncableShort() {
+    }
 
 	/*
-	@Override
+    @Override
 	public void readFromStream(DataInput stream) throws IOException {
 		value = stream.readShort();
 	}
 	*/
 
-	public void modify(short by) {
-		setValue((short)(value + by));
-	}
+    public void modify(short by) {
+        this.setValue((short) (this.value + by));
+    }
 
-	public void setValue(short val) {
-		if (val != value) {
-			value = val;
-			markDirty();
-		}
-	}
+    public short getValue() {
+        return this.value;
+    }
 
-	public short getValue() {
-		return value;
-	}
+    void setValue(short val) {
+        if (val != this.value) {
+            this.value = val;
+            this.markDirty();
+        }
+    }
 
 	/*
 	@Override
@@ -41,13 +42,13 @@ public class SyncableShort extends SyncableObjectBase {
 	}
 	*/
 
-	@Override
-	public void writeToNBT(NBTTagCompound tag, String name) {
-		tag.setShort(name, value);
-	}
+    @Override
+    public void writeToNBT(NBTTagCompound tag, String name) {
+        tag.setShort(name, this.value);
+    }
 
-	@Override
-	public void readFromNBT(NBTTagCompound tag, String name) {
-		value = tag.getShort(name);
-	}
+    @Override
+    public void readFromNBT(NBTTagCompound tag, String name) {
+        this.value = tag.getShort(name);
+    }
 }

@@ -1,5 +1,5 @@
 package qmech.lib.multiblock;
 
-public abstract class UpdateHandler {
+public interface UpdateHandler {
     public abstract void tick();
 }

@@ -5,26 +5,26 @@ import qmech.lib.tileentity.gui.GuiBase;
 
 public class ElementFluid extends ElementBase {
 
-	public FluidStack fluid;
+    private FluidStack fluid;
 
-	public ElementFluid(GuiBase gui, int posX, int posY) {
+    public ElementFluid(GuiBase gui, int posX, int posY) {
 
-		super(gui, posX, posY);
-	}
+        super(gui, posX, posY);
+    }
 
-	public ElementFluid setFluid(FluidStack fluid) {
+    public ElementFluid setFluid(FluidStack fluid) {
 
-		this.fluid = fluid;
-		return this;
-	}
+        this.fluid = fluid;
+        return this;
+    }
 
-	@Override
-	public void draw() {
+    @Override
+    public void draw() {
 
-		if (!visible) {
-			return;
-		}
-		gui.drawFluid(posX, posY, fluid, sizeX, sizeY);
-	}
+        if (!this.visible) {
+            return;
+        }
+        this.gui.drawFluid(this.posX, this.posY, this.fluid, this.sizeX, this.sizeY);
+    }
 
 }

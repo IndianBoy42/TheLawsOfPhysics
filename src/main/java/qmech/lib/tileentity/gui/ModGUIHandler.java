@@ -17,16 +17,14 @@ public class ModGUIHandler implements IGuiHandler {
     static {
         NetworkRegistry.INSTANCE.registerGuiHandler(ModBase.getInstance(), ModGUIHandler.instance);
     }
-
-    Map<Integer, GuiHandlerBase> GuiMap = new HashMap<Integer, GuiHandlerBase>();
-
-    public static ModGUIHandler instance = new ModGUIHandler();
+    private static final ModGUIHandler instance = new ModGUIHandler();
+    private final Map<Integer, GuiHandlerBase> GuiMap = new HashMap<Integer, GuiHandlerBase>();
 
     @Override
     public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
-        for (Map.Entry mapping : GuiMap.entrySet()) {
+        for (Map.Entry mapping : this.GuiMap.entrySet()) {
             if (mapping.getKey() == ((Integer) ID)) {
-                return ((GuiHandlerBase)mapping.getValue()).getServer(player.inventory, (qmech.lib.tileentity.TileEntityBase) world.getTileEntity(x, y, z));
+                return ((GuiHandlerBase) mapping.getValue()).getServer(player.inventory, (qmech.lib.tileentity.TileEntityBase) world.getTileEntity(x, y, z));
             }
         }
         return null;
@@ -34,9 +32,9 @@ public class ModGUIHandler implements IGuiHandler {
 
     @Override
     public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
-        for (Map.Entry mapping : GuiMap.entrySet()) {
+        for (Map.Entry mapping : this.GuiMap.entrySet()) {
             if (mapping.getKey() == ((Integer) ID)) {
-                return ((GuiHandlerBase)mapping.getValue()).getClient(player.inventory, (qmech.lib.tileentity.TileEntityBase) world.getTileEntity(x, y, z));
+                return ((GuiHandlerBase) mapping.getValue()).getClient(player.inventory, (qmech.lib.tileentity.TileEntityBase) world.getTileEntity(x, y, z));
             }
         }
         return null;

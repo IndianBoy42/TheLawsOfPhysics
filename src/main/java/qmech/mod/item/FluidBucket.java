@@ -37,17 +37,17 @@ public class FluidBucket extends MetaItemBase {
         MinecraftForge.EVENT_BUS.register(this);
     }
 
-    public void registerFluids (String intName, int vol) {
-        for (int i=0; i< FluidRegistry.getMaxID() + 1; i++) {
+    public void registerFluids(String intName, int vol) {
+        for (int i = 0; i < FluidRegistry.getMaxID() + 1; i++) {
             Fluid fluid = FluidRegistry.getFluid(i);
 
             if (fluid == null || fluid == FluidRegistry.LAVA || fluid == FluidRegistry.WATER) {
                 continue;
             }
 
-            registerItem(i, new MetaItem(fluid.getName()));
+            this.registerItem(i, new MetaItem(fluid.getName()));
 
-            FluidContainerRegistry.registerFluidContainer(new FluidStack(fluid, vol), newItemStack(i));
+            FluidContainerRegistry.registerFluidContainer(new FluidStack(fluid, vol), this.newItemStack(i));
 
             LoggingHelper.getInstance().debug(String.format(">>> added container (%s) for fluid (%s:%s)",
                     intName, fluid.getUnlocalizedName(), i));
@@ -55,9 +55,9 @@ public class FluidBucket extends MetaItemBase {
     }
 
     public void registerFluid(Fluid fluid) {
-        registerItem(FluidRegistry.getFluidID(fluid.getName()), new MetaItem(fluid.getName()));
+        this.registerItem(FluidRegistry.getFluidID(fluid.getName()), new MetaItem(fluid.getName()));
 
-        FluidContainerRegistry.registerFluidContainer(new FluidStack(fluid, FluidContainerRegistry.BUCKET_VOLUME), newItemStack(FluidRegistry.getFluidID(fluid.getName())));
+        FluidContainerRegistry.registerFluidContainer(new FluidStack(fluid, FluidContainerRegistry.BUCKET_VOLUME), this.newItemStack(FluidRegistry.getFluidID(fluid.getName())));
 
         LoggingHelper.getInstance().debug(String.format(">>> added container (%s) for fluid (%s:%s)",
                 this.getUnlocalizedName(), fluid.getUnlocalizedName(), FluidRegistry.getFluidID(fluid.getName())));
@@ -66,7 +66,7 @@ public class FluidBucket extends MetaItemBase {
     @SubscribeEvent
     public void onBucketFill(FillBucketEvent event) {
 
-        ItemStack result = fillCustomBucket(event.world, event.target);
+        ItemStack result = this.fillCustomBucket(event.world, event.target);
 
         if (result == null)
             return;
@@ -86,8 +86,7 @@ public class FluidBucket extends MetaItemBase {
 
         if (world.getBlockMetadata(pos.blockX, pos.blockY, pos.blockZ) == 0) {
             world.setBlockToAir(pos.blockX, pos.blockY, pos.blockZ);
-            ItemStack bucket = newItemStack(ID);
-            return bucket;
+            return this.newItemStack(ID);
         } else
             return null;
 

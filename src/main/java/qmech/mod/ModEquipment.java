@@ -9,18 +9,18 @@ import qmech.mod.metals.EnumMetals;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ModEquipment {
-	
-	public static void preInit () {
+class ModEquipment {
+
+    private static final List<ToolTypeBase> metalTools = new ArrayList<ToolTypeBase>();
+    private static final List<ArmorTypeBase> metalArmor = new ArrayList<ArmorTypeBase>();
+
+    public static void preInit() {
         registerMetals();
-	}
+    }
 
-    public static List<ToolTypeBase> metalTools = new ArrayList<ToolTypeBase>();
-    public static List<ArmorTypeBase> metalArmor = new ArrayList<ArmorTypeBase>();
-
-    public static void registerMetals () {
-        for (EnumMetals metal: EnumMetals.values()) {
-            if (!metal.vanilla()) {
+    private static void registerMetals() {
+        for (EnumMetals metal : EnumMetals.values()) {
+            if (metal.moddedMetal()) {
                 ToolTypeBase toolType = new ToolTypeBase(
                         metal.name(), metal.getToolInfo(),
                         new ItemStack(ModItems.metalItems.get(String.format("ingot_%s", metal.name()))));
@@ -51,7 +51,7 @@ public class ModEquipment {
             ArmorTypeBase.ArmorInfo reinforcedArmorType = metal.getArmorInfo();
             reinforcedArmorType.enchantability -= 2;
             reinforcedArmorType.durability *= 8;
-            for (int i=0; i<4; i++) {
+            for (int i = 0; i < 4; i++) {
                 reinforcedArmorType.reductionAmounts[i] += 5;
             }
 

@@ -4,27 +4,28 @@ import net.minecraft.nbt.NBTTagCompound;
 
 public class SyncableBoolean extends SyncableObjectBase {
 
-	private boolean value;
+    private boolean value;
 
-	public SyncableBoolean(boolean value) {
-		this.value = value;
-	}
+    public SyncableBoolean(boolean value) {
+        this.value = value;
+    }
 
-	public SyncableBoolean() {}
+    public SyncableBoolean() {
+    }
 
-	public void setValue(boolean newValue) {
-		if (newValue != value) {
-			value = newValue;
-			markDirty();
-		}
-	}
+    public boolean getValue() {
+        return this.value;
+    }
 
-	public boolean getValue() {
-		return value;
-	}
+    public void setValue(boolean newValue) {
+        if (newValue != this.value) {
+            this.value = newValue;
+            this.markDirty();
+        }
+    }
 
 	/*
-	@Override
+    @Override
 	public void readFromStream(DataInput stream) throws IOException {
 		value = stream.readBoolean();
 	}
@@ -35,18 +36,18 @@ public class SyncableBoolean extends SyncableObjectBase {
 	}
 	*/
 
-	@Override
-	public void writeToNBT(NBTTagCompound tag, String name) {
-		tag.setBoolean(name, value);
-	}
+    @Override
+    public void writeToNBT(NBTTagCompound tag, String name) {
+        tag.setBoolean(name, this.value);
+    }
 
-	@Override
-	public void readFromNBT(NBTTagCompound tag, String name) {
-		value = tag.getBoolean(name);
-	}
+    @Override
+    public void readFromNBT(NBTTagCompound tag, String name) {
+        this.value = tag.getBoolean(name);
+    }
 
-	public void toggle() {
-		value = !value;
-		markDirty();
-	}
+    public void toggle() {
+        this.value = !this.value;
+        this.markDirty();
+    }
 }

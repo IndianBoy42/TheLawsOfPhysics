@@ -1,24 +1,24 @@
 package qmech.lib.chemicals;
 
-import java.util.List;
-
 import qmech.lib.chemicals.registry.ChemicalDictionary;
 
+import java.util.List;
+
 public class RadicalBase implements IIon {
-	
-	public String name;
-	public List<ElementStack> composition;
 
-	public RadicalBase(List<ElementStack> composition) {
-		this.composition = composition;
-		
-		ChemicalDictionary.addRadical(this);
-	}
+    public String name;
+    private final List<ElementStack> composition;
 
-	@Override
-	public List<ElementStack> getElements() {
-		// TODO Auto-generated method stub
-		return composition;
-	}
+    public RadicalBase(List<ElementStack> composition) {
+        this.composition = composition;
+
+        ChemicalDictionary.addRadical(this);
+    }
+
+    @Override
+    public List<ElementStack> getElements() {
+        // TODO Auto-generated method stub
+        return this.composition;
+    }
 
 }

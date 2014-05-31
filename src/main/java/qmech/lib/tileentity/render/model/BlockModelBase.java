@@ -8,9 +8,9 @@ import net.minecraft.entity.Entity;
  */
 public class BlockModelBase extends CustomModelBase {
 
-    ModelRenderer Block;
+    private ModelRenderer Block;
 
-    String tex;
+    private final String tex;
 
     public BlockModelBase(String tex) {
         this.tex = tex;
@@ -18,7 +18,7 @@ public class BlockModelBase extends CustomModelBase {
 
     @Override
     public void renderShapes(Entity player, float f, float f1, float f2, float f3, float f4, float f5) {
-        Block.render(f5);
+        this.Block.render(f5);
     }
 
     @Override
@@ -28,16 +28,16 @@ public class BlockModelBase extends CustomModelBase {
 
     @Override
     public String texPath() {
-        return tex;
+        return this.tex;
     }
 
     @Override
     public void initShapes() {
-        Block = new ModelRenderer(this, 0, 0);
-        Block.addBox(0F, 0F, 0F, 16, 16, 16);
-        Block.setRotationPoint(0F, 0F, 0F);
-        Block.setTextureSize(64, 32);
-        Block.mirror = true;
-        setRotation(Block, 0F, 0F, 0F);
+        this.Block = new ModelRenderer(this, 0, 0);
+        this.Block.addBox(0F, 0F, 0F, 16, 16, 16);
+        this.Block.setRotationPoint(0F, 0F, 0F);
+        this.Block.setTextureSize(64, 32);
+        this.Block.mirror = true;
+        this.setRotation(this.Block, 0F, 0F, 0F);
     }
 }

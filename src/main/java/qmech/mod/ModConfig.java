@@ -5,19 +5,16 @@ import net.minecraftforge.common.config.Configuration;
 import qmech.lib.objects.BlockBase;
 import qmech.lib.util.WorldGenerator;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by anshuman on 17-05-2014.
  */
 public class ModConfig {
 
-    public static Configuration cfg;
+    private static Configuration cfg;
 
     //category
-    public static String FEATURES = "Features";
-    public static String FEATURES_COMMENTS = "Enable/Disable Mod Features";
+    private static final String FEATURES = "Features";
+    private static final String FEATURES_COMMENTS = "Enable/Disable Mod Features";
 
     //configs
     public static boolean doOreGen = true;
@@ -30,22 +27,22 @@ public class ModConfig {
 
         doOreGen = cfg.get(FEATURES, "Should Do Ore Generation", doOreGen,
                 "Should Quantum Mechanization Generate Ores\n" +
-                "Disable If Some Other Mod Handles Ore Generation For Your Mod Pack")
-            .getBoolean(doOreGen);
+                        "Disable If Some Other Mod Handles Ore Generation For Your Mod Pack"
+        )
+                .getBoolean(doOreGen);
 
         cfg.save();
     }
 
-    public static Configuration create (FMLPreInitializationEvent evt) {
-        Configuration configuration = new Configuration(evt.getSuggestedConfigurationFile());
-        return configuration;
+    private static Configuration create(FMLPreInitializationEvent evt) {
+        return new Configuration(evt.getSuggestedConfigurationFile());
     }
 
-    public static void createCategory(String name, String comment) {
+    private static void createCategory(String name, String comment) {
         cfg.addCustomCategoryComment(name, comment);
     }
 
-    public static WorldGenerator.GenStats getOreGenStats (String oreName, int maxFreq, int minHeight, int maxHeight, int maxVein) {
+    public static WorldGenerator.GenStats getOreGenStats(String oreName, int maxFreq, int minHeight, int maxHeight, int maxVein) {
         cfg.load();
 
         WorldGenerator.GenStats stats = new WorldGenerator.GenStats();
@@ -62,7 +59,7 @@ public class ModConfig {
         return stats;
     }
 
-    public static BlockBase.BlockInfo getBlockInfo (BlockBase blokk, float hard, float blast, String tool, int lvl) {
+    public static BlockBase.BlockInfo getBlockInfo(BlockBase blokk, float hard, float blast, String tool, int lvl) {
         cfg.load();
 
         BlockBase.BlockInfo block = new BlockBase.BlockInfo();
@@ -71,15 +68,15 @@ public class ModConfig {
 
         block.blastResistance = (float) cfg.get(String.format("block.%s", blokk.getUnlocalizedName().substring(5)), "Blast Resistance", blast).getDouble(blast);
         block.hardness = (float) cfg.get(String.format("block.%s", blokk.getUnlocalizedName().substring(5)), "Hardness", hard).getDouble(hard);
-        block.toolType = (String) cfg.get(String.format("block.%s", blokk.getUnlocalizedName().substring(5)), "Tool Harvest Type", tool).getString();
-        block.toolLevel = (int) cfg.get(String.format("block.%s", blokk.getUnlocalizedName().substring(5)), "Tool Harvest Level", lvl).getInt(lvl);
+        block.toolType = cfg.get(String.format("block.%s", blokk.getUnlocalizedName().substring(5)), "Tool Harvest Type", tool).getString();
+        block.toolLevel = cfg.get(String.format("block.%s", blokk.getUnlocalizedName().substring(5)), "Tool Harvest Level", lvl).getInt(lvl);
 
         cfg.save();
 
         return block;
     }
 
-    public static BlockBase.BlockInfo getBlockInfo (BlockBase blokk, BlockBase.BlockInfo nfo) {
+    public static BlockBase.BlockInfo getBlockInfo(BlockBase blokk, BlockBase.BlockInfo nfo) {
         return getBlockInfo(blokk, nfo.hardness, nfo.blastResistance, nfo.toolType, nfo.toolLevel);
     }
 

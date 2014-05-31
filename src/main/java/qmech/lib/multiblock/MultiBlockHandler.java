@@ -6,43 +6,41 @@ import qmech.lib.multiblock.struct.StructureRegistry;
 import java.util.List;
 
 public class MultiBlockHandler {
-	
-	StructureHandler struct;
-	UpdateHandler tickHandler;
-	
-	List<MultiBlockPart> multiblockParts;
+
+    private final StructureHandler struct;
+    private final UpdateHandler tickHandler;
+
+    private List<MultiBlockPart> multiblockParts;
+    private final MultiBlockPart controller;
+    private MultiBlockPart bottomSouthWest;
+    private boolean multiBlockValid = false;
+
+    public MultiBlockHandler(MultiBlockPart origin) {
+        this.struct = StructureRegistry.getStructureDef(origin.structureID());
+        this.tickHandler = StructureRegistry.getTickHandler(origin.structureID());
+
+        this.controller = origin;
+        this.bottomSouthWest = origin;
+        this.multiblockParts.add(origin);
+    }
 
     public MultiBlockPart getController() {
-        return controller;
+        return this.controller;
     }
 
-    MultiBlockPart controller;
-	MultiBlockPart bottomSouthWest;
-
-    boolean multiBlockValid = false;
-
-	public void checkValidity() {
-       multiBlockValid =  struct.checkValidity((MultiBlockPart[]) multiblockParts.toArray());
+    public void checkValidity() {
+        this.multiBlockValid = this.struct.checkValidity((MultiBlockPart[]) this.multiblockParts.toArray());
     }
-	
-	public void connect(MultiBlockPart block) {
-        multiblockParts.add(block);
-        if (block.getCoords().lessThan(bottomSouthWest.getCoords())) bottomSouthWest = block;
+
+    public void connect(MultiBlockPart block) {
+        this.multiblockParts.add(block);
+        if (block.getCoords().lessThan(this.bottomSouthWest.getCoords())) this.bottomSouthWest = block;
     }
-	
-	public MultiBlockHandler(MultiBlockPart origin) {
-		struct = StructureRegistry.getStructureDef(origin.structureID());
-		tickHandler = StructureRegistry.getTickHandler(origin.structureID());
-		
-		this.controller = origin;
-		bottomSouthWest = origin;
-		multiblockParts.add(origin);
-	}
 
     public void tick() {
         if (this.multiBlockValid) {
-            tickHandler.tick();
+            this.tickHandler.tick();
         }
     }
-	
+
 }

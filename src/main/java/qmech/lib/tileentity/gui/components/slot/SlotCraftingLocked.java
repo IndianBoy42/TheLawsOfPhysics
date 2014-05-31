@@ -7,27 +7,26 @@ import net.minecraft.item.ItemStack;
 
 /**
  * Crafting result slot where the result cannot be removed.
- * 
+ *
  * @author King Lemming
- * 
  */
-public class SlotCraftingLocked extends SlotCrafting {
+class SlotCraftingLocked extends SlotCrafting {
 
-	public SlotCraftingLocked(EntityPlayer player, IInventory craftMatrix, IInventory inventory, int slotIndex, int x, int y) {
+    public SlotCraftingLocked(EntityPlayer player, IInventory craftMatrix, IInventory inventory, int slotIndex, int x, int y) {
 
-		super(player, craftMatrix, inventory, slotIndex, x, y);
-	}
+        super(player, craftMatrix, inventory, slotIndex, x, y);
+    }
 
-	@Override
-	public boolean isItemValid(ItemStack stack) {
+    @Override
+    public boolean isItemValid(ItemStack stack) {
 
-		return false;
-	}
+        return false;
+    }
 
-	@Override
-	public boolean canTakeStack(EntityPlayer player) {
+    @Override
+    public boolean canTakeStack(EntityPlayer player) {
 
-		return false;
-	}
+        return false;
+    }
 
 }

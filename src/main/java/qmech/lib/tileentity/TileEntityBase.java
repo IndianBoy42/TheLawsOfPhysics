@@ -1,10 +1,5 @@
 package qmech.lib.tileentity;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Random;
-
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -12,71 +7,75 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.world.World;
-import qmech.lib.tileentity.gui.IHasGUI;
-import qmech.lib.tileentity.render.IHasCustomRenderer;
-import qmech.lib.tileentity.syncable.ISyncableObject;
-import qmech.lib.multiblock.CoordTriplet;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
+import qmech.lib.multiblock.CoordTriplet;
+import qmech.lib.tileentity.gui.IHasGUI;
+import qmech.lib.tileentity.render.IHasCustomRenderer;
+import qmech.lib.tileentity.syncable.ISyncableObject;
 import qmech.mod.ModBase;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Random;
 
 public abstract class TileEntityBase extends TileEntity {
 
-    public static boolean registered = false;
+    private static boolean registered = false;
 
-	protected Map<String, ISyncableObject> syncableObjects = new HashMap<String, ISyncableObject>();
+    private final Map<String, ISyncableObject> syncableObjects = new HashMap<String, ISyncableObject>();
 
-    public void registerField (ISyncableObject obj, String name) {
-        syncableObjects.put(name, obj);
-    }
-
-    public abstract String intName();
-
-	public TileEntityBase() {
-        registerFields();
+    public TileEntityBase() {
+        this.registerFields();
         if (!registered) {
-            registerTE(intName());
+            this.registerTE(this.intName());
             registered = true;
         }
-	}
+    }
 
-    public void registerTE (String teName) {
+    protected void registerField(ISyncableObject obj, String name) {
+        this.syncableObjects.put(name, obj);
+    }
+
+    protected abstract String intName();
+
+    void registerTE(String teName) {
         GameRegistry.registerTileEntity(this.getClass(), teName);
         if (this instanceof IHasCustomRenderer) {
-            ((IHasCustomRenderer)this).registerRenderer();
+            ((IHasCustomRenderer) this).registerRenderer();
         }
         if (this instanceof IHasGUI) {
-            ((IHasGUI)this).registerGUI();
+            ((IHasGUI) this).registerGUI();
         }
     }
-	
-	public void updateEntity () {
-		update();
-		
-		for (ISyncableObject obj : syncableObjects.values()) {
-			if (obj != null && obj.isDirty()) {
-				this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+
+    public void updateEntity() {
+        this.update();
+
+        for (ISyncableObject obj : this.syncableObjects.values()) {
+            if (obj != null && obj.isDirty()) {
+                this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
                 break;
-			}
-		}
-	}
+            }
+        }
+    }
 
     @SideOnly(Side.SERVER)
-	public Packet getDescriptionPacket () {
-		NBTTagCompound nbt = new NBTTagCompound();
-		this.writeToNBT(nbt);
-		Packet pkt = new S35PacketUpdateTileEntity(xCoord, yCoord, zCoord, 0, nbt);
-		return pkt;
-	}
+    public Packet getDescriptionPacket() {
+        NBTTagCompound nbt = new NBTTagCompound();
+        this.writeToNBT(nbt);
+        return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 0, nbt);
+    }
 
-    public void onDataPacket (NetworkManager net, S35PacketUpdateTileEntity packet) {
+    public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity packet) {
         this.readFromNBT(packet.func_148857_g());
 
-        for (ISyncableObject obj : syncableObjects.values()) {
+        for (ISyncableObject obj : this.syncableObjects.values()) {
             if (obj.isDirty()) {
                 obj.markClean();
             }
@@ -86,41 +85,41 @@ public abstract class TileEntityBase extends TileEntity {
             ((IHasGUI) this).updateGUI();
         }
     }
-	
-	public void writeToNBT (NBTTagCompound nbt) {
-		for (Entry<String, ISyncableObject> obj : syncableObjects.entrySet()) {
+
+    public void writeToNBT(NBTTagCompound nbt) {
+        for (Entry<String, ISyncableObject> obj : this.syncableObjects.entrySet()) {
             if (obj != null) {
                 obj.getValue().writeToNBT(nbt, obj.getKey());
             }
-		}
-		super.writeToNBT(nbt);
-	}
-	
-	public void readFromNBT (NBTTagCompound nbt) {
-		for (Entry<String, ISyncableObject> obj : syncableObjects.entrySet()) {
+        }
+        super.writeToNBT(nbt);
+    }
+
+    public void readFromNBT(NBTTagCompound nbt) {
+        for (Entry<String, ISyncableObject> obj : this.syncableObjects.entrySet()) {
             if (obj != null) {
                 obj.getValue().readFromNBT(nbt, obj.getKey());
             }
-		}
-		super.readFromNBT(nbt);
-	}
-	
-	public CoordTriplet getCoords() {
-		return new CoordTriplet(xCoord, yCoord, zCoord);
-	}
+        }
+        super.readFromNBT(nbt);
+    }
 
-    public abstract void update();
+    public CoordTriplet getCoords() {
+        return new CoordTriplet(this.xCoord, this.yCoord, this.zCoord);
+    }
 
-    public abstract void registerFields();
+    protected abstract void update();
+
+    protected abstract void registerFields();
 
     /**
      * Lets the block know when one of its neighbor changes. Doesn't know which neighbor changed (coordinates passed are
      * their own) Args: x, y, z, neighbor Block
      */
-    public void onNeighborChange(int tX, int tY, int tZ) {}
+    public abstract void onNeighborChange(int tX, int tY, int tZ);
 
     public void getDrops() {
-        IInventory inventory = null;
+        IInventory inventory;
         Random rand = new Random();
 
         if (this instanceof IInventory) {
@@ -155,17 +154,17 @@ public abstract class TileEntityBase extends TileEntity {
         }
     }
 
-    public boolean onActivation (World w, int x, int y, int z, EntityPlayer p, int meta, float par7, float par8, float par9) {
+    public boolean onActivation(World w, int x, int y, int z, EntityPlayer p, int meta, float par7, float par8, float par9) {
         if (this instanceof IHasGUI) {
             if (!p.isSneaking()) {
-                ((IHasGUI)this).openGUI();
+                ((IHasGUI) this).openGUI();
                 return true;
             }
         }
         return false;
     }
 
-    public void openGUIPlayer (World w, EntityPlayer p, int x, int y, int z, int GuiID) {
+    public void openGUIPlayer(World w, EntityPlayer p, int x, int y, int z, int GuiID) {
         p.openGui(ModBase.getInstance(), GuiID, w, x, y, z);
     }
 

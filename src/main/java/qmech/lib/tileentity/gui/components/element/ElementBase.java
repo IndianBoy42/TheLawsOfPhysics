@@ -1,121 +1,108 @@
 package qmech.lib.tileentity.gui.components.element;
 
-import java.util.List;
-
 import net.minecraft.util.ResourceLocation;
 import qmech.lib.tileentity.gui.GuiBase;
 
+import java.util.List;
+
 /**
  * Base class for a modular GUI element. Has self-contained rendering methods and a link back to the {@link GuiBase} it is a part of.
- * 
+ *
  * @author King Lemming
- * 
  */
 public abstract class ElementBase {
 
-	protected GuiBase gui;
-	protected ResourceLocation texture;
+    int texW = 256;
+    int texH = 256;
+    final GuiBase gui;
+    ResourceLocation texture;
+    int posX;
+    int posY;
+    int sizeX;
+    int sizeY;
+    private String name;
 
-	protected int posX;
-	protected int posY;
+    boolean visible = true;
 
-	protected int sizeX;
-	protected int sizeY;
+    ElementBase(GuiBase gui, int posX, int posY) {
 
-	public int texW = 256;
-	public int texH = 256;
+        this.gui = gui;
+        this.posX = gui.getGuiLeft() + posX;
+        this.posY = gui.getGuiTop() + posY;
+    }
 
-	protected String name;
+    public ElementBase setPosition(int posX, int posY) {
 
-	protected boolean visible = true;
+        this.posX = this.gui.getGuiLeft() + posX;
+        this.posY = this.gui.getGuiTop() + posY;
+        return this;
+    }
 
-	public ElementBase(GuiBase gui, int posX, int posY) {
+    void setSize(int sizeX, int sizeY) {
 
-		this.gui = gui;
-		this.posX = gui.getGuiLeft() + posX;
-		this.posY = gui.getGuiTop() + posY;
-	}
+        this.sizeX = sizeX;
+        this.sizeY = sizeY;
+    }
 
-	public ElementBase setName(String name) {
+    void setTexture(String texture, int texW, int texH) {
 
-		this.name = name;
-		return this;
-	}
+        this.texture = new ResourceLocation(texture);
+        this.texW = texW;
+        this.texH = texH;
+    }
 
-	public ElementBase setPosition(int posX, int posY) {
+    public boolean isVisible() {
 
-		this.posX = gui.getGuiLeft() + posX;
-		this.posY = gui.getGuiTop() + posY;
-		return this;
-	}
+        return this.visible;
+    }
 
-	public ElementBase setSize(int sizeX, int sizeY) {
+    public ElementBase setVisible(boolean visible) {
 
-		this.sizeX = sizeX;
-		this.sizeY = sizeY;
-		return this;
-	}
+        this.visible = visible;
+        return this;
+    }
 
-	public ElementBase setTexture(String texture, int texW, int texH) {
+    public abstract void update();
 
-		this.texture = new ResourceLocation(texture);
-		this.texW = texW;
-		this.texH = texH;
-		return this;
-	}
+    protected abstract void draw();
 
-	public ElementBase setVisible(boolean visible) {
+    public void draw(int x, int y) {
 
-		this.visible = visible;
-		return this;
-	}
+        this.posX = x;
+        this.posY = y;
+        this.draw();
+    }
 
-	public boolean isVisible() {
+    public void addTooltip(List<String> list) {
 
-		return visible;
-	}
+    }
 
-	public void update() {
+    void drawTexturedModalRect(int x, int y, int u, int v, int width, int height) {
 
-	}
+        this.gui.drawSizedTexturedModalRect(x, y, u, v, width, height, this.texW, this.texH);
+    }
 
-	public abstract void draw();
+    public boolean handleMouseClicked(int x, int y, int mouseButton) {
 
-	public void draw(int x, int y) {
+        return false;
+    }
 
-		this.posX = x;
-		this.posY = y;
-		draw();
-	}
+    boolean intersectsWith(int mouseX, int mouseY) {
 
-	public void addTooltip(List<String> list) {
+        mouseX += this.gui.getGuiLeft();
+        mouseY += this.gui.getGuiTop();
 
-	}
+        return mouseX >= this.posX && mouseX <= this.posX + this.sizeX && mouseY >= this.posY && mouseY <= this.posY + this.sizeY;
+    }
 
-	public void drawTexturedModalRect(int x, int y, int u, int v, int width, int height) {
+    String getName() {
 
-		gui.drawSizedTexturedModalRect(x, y, u, v, width, height, texW, texH);
-	}
+        return this.name;
+    }
 
-	public boolean handleMouseClicked(int x, int y, int mouseButton) {
+    void setName(String name) {
 
-		return false;
-	}
-
-	public boolean intersectsWith(int mouseX, int mouseY) {
-
-		mouseX += gui.getGuiLeft();
-		mouseY += gui.getGuiTop();
-
-		if (mouseX >= this.posX && mouseX <= this.posX + this.sizeX && mouseY >= this.posY && mouseY <= this.posY + this.sizeY) {
-			return true;
-		}
-		return false;
-	}
-
-	public String getName() {
-
-		return name;
-	}
+        this.name = name;
+    }
 
 }

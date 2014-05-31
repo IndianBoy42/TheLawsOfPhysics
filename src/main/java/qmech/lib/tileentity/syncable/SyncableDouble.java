@@ -4,27 +4,28 @@ import net.minecraft.nbt.NBTTagCompound;
 
 public class SyncableDouble extends SyncableObjectBase {
 
-	private double value;
+    private double value;
 
-	public SyncableDouble(double value) {
-		this.value = value;
-	}
+    public SyncableDouble(double value) {
+        this.value = value;
+    }
 
-	public SyncableDouble() {}
+    public SyncableDouble() {
+    }
 
-	public void setValue(double newValue) {
-		if (newValue != value) {
-			value = newValue;
-			markDirty();
-		}
-	}
+    public double getValue() {
+        return this.value;
+    }
 
-	public double getValue() {
-		return value;
-	}
+    void setValue(double newValue) {
+        if (newValue != this.value) {
+            this.value = newValue;
+            this.markDirty();
+        }
+    }
 
 	/*
-	@Override
+    @Override
 	public void readFromStream(DataInput stream) throws IOException {
 		value = stream.readDouble();
 	}
@@ -35,17 +36,17 @@ public class SyncableDouble extends SyncableObjectBase {
 	}
 	*/
 
-	@Override
-	public void writeToNBT(NBTTagCompound tag, String name) {
-		tag.setDouble(name, value);
-	}
+    @Override
+    public void writeToNBT(NBTTagCompound tag, String name) {
+        tag.setDouble(name, this.value);
+    }
 
-	@Override
-	public void readFromNBT(NBTTagCompound tag, String name) {
-		value = tag.getDouble(name);
-	}
+    @Override
+    public void readFromNBT(NBTTagCompound tag, String name) {
+        this.value = tag.getDouble(name);
+    }
 
-	public void modify(float by) {
-		setValue(value + by);
-	}
+    public void modify(float by) {
+        this.setValue(this.value + by);
+    }
 }

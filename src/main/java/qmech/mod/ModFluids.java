@@ -10,22 +10,22 @@ import qmech.mod.metals.EnumMetals;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ModFluids {
+class ModFluids {
 
-    public static FluidContainerBase cell;
-    public static FluidBucket bucket;
+    private static final int BUCKET_VOLUME = FluidContainerRegistry.BUCKET_VOLUME;
+    private static FluidContainerBase cell;
+    private static FluidBucket bucket;
+    private static final Map<String, FluidBase> metalFluids = new HashMap<String, FluidBase>();
 
-    public static final int BUCKET_VOLUME = FluidContainerRegistry.BUCKET_VOLUME;
-	
-	public static void preInit () {
+    public static void preInit() {
         bucket = new FluidBucket("bucket", ModCTabs.tabMetals);
         cell = new FluidContainerBase("cell", BUCKET_VOLUME, ModCTabs.tabMetals, false);
 
         registerMetals();
-	}
+    }
 
-    public static void registerMetals() {
-        for (EnumMetals metal: EnumMetals.values()) {
+    private static void registerMetals() {
+        for (EnumMetals metal : EnumMetals.values()) {
             registerFluid("slurry", metal);
             registerFluid("molten", metal);
             registerFluid("cleanSlurry", metal);
@@ -33,14 +33,12 @@ public class ModFluids {
         }
     }
 
-    public static Map<String, FluidBase> metalFluids = new HashMap<String, FluidBase>();
-
-    public static FluidBase registerFluid (String prefix, EnumMetals metals) {
+    private static void registerFluid(String prefix, EnumMetals metals) {
         FluidBase fluid = new FluidBase(String.format("%s_%s", prefix, metals.name()), Material.lava, ModCTabs.tabMetals);
         metalFluids.put(String.format("%s%s", prefix, metals.name()), fluid);
         bucket.registerFluid(fluid);
         cell.registerFluid(fluid);
         return fluid;
     }
-	
+
 }

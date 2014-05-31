@@ -1,9 +1,9 @@
 package qmech.mod.metals;
 
-import qmech.lib.objects.equip.ArmorTypeBase;
 import qmech.lib.objects.BlockBase;
-import qmech.lib.objects.fluid.FluidBase;
+import qmech.lib.objects.equip.ArmorTypeBase;
 import qmech.lib.objects.equip.ToolTypeBase;
+import qmech.lib.objects.fluid.FluidBase;
 import qmech.lib.util.WorldGenerator;
 
 /**
@@ -38,8 +38,8 @@ public enum EnumMetals {
         }
 
         @Override
-        public boolean vanilla() {
-            return false;
+        public boolean moddedMetal() {
+            return true;
         }
     },
     Tin {
@@ -69,8 +69,8 @@ public enum EnumMetals {
         }
 
         @Override
-        public boolean vanilla() {
-            return false;
+        public boolean moddedMetal() {
+            return true;
         }
     },
     Lead {
@@ -100,8 +100,8 @@ public enum EnumMetals {
         }
 
         @Override
-        public boolean vanilla() {
-            return false;
+        public boolean moddedMetal() {
+            return true;
         }
     },
     Silver {
@@ -131,8 +131,8 @@ public enum EnumMetals {
         }
 
         @Override
-        public boolean vanilla() {
-            return false;
+        public boolean moddedMetal() {
+            return true;
         }
     },
     Aluminum {
@@ -162,8 +162,8 @@ public enum EnumMetals {
         }
 
         @Override
-        public boolean vanilla() {
-            return false;
+        public boolean moddedMetal() {
+            return true;
         }
     },
     Titanium {
@@ -193,8 +193,8 @@ public enum EnumMetals {
         }
 
         @Override
-        public boolean vanilla() {
-            return false;
+        public boolean moddedMetal() {
+            return true;
         }
     },
     Platinum {
@@ -224,8 +224,8 @@ public enum EnumMetals {
         }
 
         @Override
-        public boolean vanilla() {
-            return false;
+        public boolean moddedMetal() {
+            return true;
         }
     },
     Nickel {
@@ -255,8 +255,8 @@ public enum EnumMetals {
         }
 
         @Override
-        public boolean vanilla() {
-            return false;
+        public boolean moddedMetal() {
+            return true;
         }
     },
     Osmium {
@@ -286,8 +286,8 @@ public enum EnumMetals {
         }
 
         @Override
-        public boolean vanilla() {
-            return false;
+        public boolean moddedMetal() {
+            return true;
         }
     },
     Tungsten {
@@ -317,8 +317,8 @@ public enum EnumMetals {
         }
 
         @Override
-        public boolean vanilla() {
-            return false;
+        public boolean moddedMetal() {
+            return true;
         }
     },
     Chromium {
@@ -348,8 +348,8 @@ public enum EnumMetals {
         }
 
         @Override
-        public boolean vanilla() {
-            return false;
+        public boolean moddedMetal() {
+            return true;
         }
     },
     Cobalt {
@@ -379,8 +379,8 @@ public enum EnumMetals {
         }
 
         @Override
-        public boolean vanilla() {
-            return true;
+        public boolean moddedMetal() {
+            return false;
         }
     },
     Iron {
@@ -410,8 +410,8 @@ public enum EnumMetals {
         }
 
         @Override
-        public boolean vanilla() {
-            return true;
+        public boolean moddedMetal() {
+            return false;
         }
     },
     Gold {
@@ -441,8 +441,8 @@ public enum EnumMetals {
         }
 
         @Override
-        public boolean vanilla() {
-            return true;
+        public boolean moddedMetal() {
+            return false;
         }
     };
 
@@ -456,6 +456,6 @@ public enum EnumMetals {
 
     public abstract ToolTypeBase.ToolInfo getToolInfo();
 
-    public abstract boolean vanilla();
+    public abstract boolean moddedMetal();
 
 }

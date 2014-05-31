@@ -6,30 +6,30 @@ import net.minecraftforge.fluids.FluidTank;
 
 public class SyncableTank extends FluidTank implements ISyncableObject {
 
-	private boolean dirty = false;
-	private long ticksSinceChange = 0;
+    private boolean dirty = false;
+    private long ticksSinceChange = 0;
 
-	public SyncableTank(int capacity, FluidStack... acceptableFluids) {
-		super(capacity);
-	}
+    public SyncableTank(int capacity, FluidStack... acceptableFluids) {
+        super(capacity);
+    }
 
-	@Override
-	public boolean isDirty() {
-		return dirty;
-	}
+    @Override
+    public boolean isDirty() {
+        return this.dirty;
+    }
 
-	@Override
-	public void markClean() {
-		dirty = false;
-	}
+    @Override
+    public void markClean() {
+        this.dirty = false;
+    }
 
-	@Override
-	public void markDirty() {
-		dirty = true;
-	}
+    @Override
+    public void markDirty() {
+        this.dirty = true;
+    }
 
 	/*
-	@Override
+    @Override
 	public void readFromStream(DataInput stream) throws IOException {
 		int fluidId = stream.readInt();
 		if (fluidId > -1) {
@@ -66,28 +66,28 @@ public class SyncableTank extends FluidTank implements ISyncableObject {
 	}
 	*/
 
-	@Override
-	public void writeToNBT(NBTTagCompound tag, String name) {
-		this.writeToNBT(tag);
-	}
+    @Override
+    public void writeToNBT(NBTTagCompound tag, String name) {
+        this.writeToNBT(tag);
+    }
 
-	@Override
-	public void readFromNBT(NBTTagCompound tag, String name) {
-		this.readFromNBT(tag);
-	}
+    @Override
+    public void readFromNBT(NBTTagCompound tag, String name) {
+        this.readFromNBT(tag);
+    }
 
-	@Override
-	public int fill(FluidStack resource, boolean doFill) {
-		int filled = super.fill(resource, doFill);
-		if (doFill && filled > 0) markDirty();
-		return filled;
-	}
-	
-	@Override
-	public FluidStack drain(int maxDrain, boolean doDrain) {
-		FluidStack drained = super.drain(maxDrain, doDrain);
-		if (doDrain && drained != null) markDirty();
-		return drained;
-	}
+    @Override
+    public int fill(FluidStack resource, boolean doFill) {
+        int filled = super.fill(resource, doFill);
+        if (doFill && filled > 0) this.markDirty();
+        return filled;
+    }
+
+    @Override
+    public FluidStack drain(int maxDrain, boolean doDrain) {
+        FluidStack drained = super.drain(maxDrain, doDrain);
+        if (doDrain && drained != null) this.markDirty();
+        return drained;
+    }
 
 }

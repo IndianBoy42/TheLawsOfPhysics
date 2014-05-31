@@ -16,6 +16,15 @@ import qmech.mod.Reference;
  */
 public abstract class TEBlockBase extends BlockBase implements ITileEntityProvider {
 
+    private final String teName;
+
+    protected TEBlockBase(Material material, String intName) {
+        super(material, intName);
+        this.teName = intName;
+
+        this.registerTE();
+    }
+
     public static TEBlockBase config
             (TEBlockBase block, CreativeTabs ctab, float hardness, float blastResistance, String toolType, int toolLevel) {
         logger.debug(String.format("Configuring TEBlock (%s, %s) with : \n" +
@@ -26,55 +35,45 @@ public abstract class TEBlockBase extends BlockBase implements ITileEntityProvid
                 ctab, hardness, blastResistance, toolType, toolLevel
         ));
         block.setCreativeTabs(ctab);
-        block.setStrength(hardness, blastResistance).setHarvestLevel(toolType, toolLevel);
+        block.setStrength(hardness, blastResistance);
+        block.setHarvestLevel(toolType, toolLevel);
         block.registerBlock();
         return block;
     }
 
-    public TEBlockBase(Material material, String intName) {
-        super(material, intName);
-        teName = intName;
-
-        registerTE();
+    private static boolean hasTeAt(World w, int x, int y, int z) {
+        return !(getTileAt(w, x, y, z).equals(null));
     }
 
-    public abstract void registerTE();
-
-    String teName;
-    public String teName() {
-        return teName;
+    private static TileEntity getTileAt(World w, int x, int y, int z) {
+        return w.getTileEntity(x, y, z);
     }
 
-    public boolean hasCustomRenderer() {
+    protected abstract void registerTE();
+
+    String teName() {
+        return this.teName;
+    }
+
+    boolean hasCustomRenderer() {
         return this instanceof IHasCustomRenderer.IBlockHasCustomRenderer;
     }
 
     @Override
-    public boolean renderAsNormalBlock()
-    {
-        return !hasCustomRenderer();
+    public boolean renderAsNormalBlock() {
+        return !this.hasCustomRenderer();
     }
 
     @Override
-    public boolean isOpaqueCube()
-    {
-        return !hasCustomRenderer();
+    public boolean isOpaqueCube() {
+        return !this.hasCustomRenderer();
     }
 
     public int getRenderType() {
-        if(hasCustomRenderer()) {
+        if (this.hasCustomRenderer()) {
             return Reference.RENDER_ID;
         }
         return 0;
-    }
-
-    public static boolean hasTeAt (World w, int x, int y, int z) {
-        return !(getTileAt(w, x, y,z).equals(null));
-    }
-
-    public static TileEntity getTileAt(World w, int x, int y, int z) {
-        TileEntity te = w.getTileEntity(x, y, z);
-        return te;
     }
 
     /**
@@ -82,7 +81,7 @@ public abstract class TEBlockBase extends BlockBase implements ITileEntityProvid
      * their own) Args: x, y, z, neighbor Block
      */
     public void onNeighborChange(World w, int x, int y, int z, int tX, int tY, int tZ) {
-        if (hasTeAt(w, x, y ,z)) {
+        if (hasTeAt(w, x, y, z)) {
             TileEntity tileEntity = getTileAt(w, x, y, z);
             if (tileEntity instanceof TileEntityBase) {
                 ((TileEntityBase) tileEntity).onNeighborChange(tX, tY, tZ);
@@ -90,26 +89,22 @@ public abstract class TEBlockBase extends BlockBase implements ITileEntityProvid
         }
     }
 
-    public void breakBlock(World w, int x, int y, int z, Block par5, int par6)
-    {
-        dropItems(w, x, y, z);
+    public void breakBlock(World w, int x, int y, int z, Block par5, int par6) {
+        this.dropItems(w, x, y, z);
         super.breakBlock(w, x, y, z, par5, par6);
     }
 
-    public void dropItems (World w, int x, int y, int z) {
-        if (hasTeAt(w, x, y ,z) && (getTileAt(w, x, y, z) instanceof TileEntityBase)) {
+    void dropItems(World w, int x, int y, int z) {
+        if (hasTeAt(w, x, y, z) && (getTileAt(w, x, y, z) instanceof TileEntityBase)) {
             ((TileEntityBase) getTileAt(w, x, y, z)).getDrops();
         }
     }
+
     /**
      * Called upon block activation (right click on the block.)
      */
-    public boolean onBlockActivated(World w, int x, int y, int z, EntityPlayer p, int meta, float par7, float par8, float par9)
-    {
-        if (hasTeAt(w, x, y, z) && getTileAt(w, x, y, z) instanceof TileEntityBase) {
-             return ((TileEntityBase) getTileAt(w, x, y ,z)).onActivation(w, x, y, z, p, meta, par7, par8, par9);
-        }
+    public boolean onBlockActivated(World w, int x, int y, int z, EntityPlayer p, int meta, float par7, float par8, float par9) {
+        return hasTeAt(w, x, y, z) && getTileAt(w, x, y, z) instanceof TileEntityBase && ((TileEntityBase) getTileAt(w, x, y, z)).onActivation(w, x, y, z, p, meta, par7, par8, par9);
 
-        return false;
     }
 }

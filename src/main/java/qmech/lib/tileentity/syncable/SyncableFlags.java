@@ -1,95 +1,96 @@
 package qmech.lib.tileentity.syncable;
 
+import net.minecraft.nbt.NBTTagCompound;
+import qmech.lib.util.ByteUtils;
+
 import java.util.HashSet;
 import java.util.Set;
 
-import qmech.lib.util.ByteUtils;
-import net.minecraft.nbt.NBTTagCompound;
-
 public class SyncableFlags extends SyncableObjectBase {
 
-	private short value;
-	private short previousValue;
-	protected long[] timeLastSet = new long[16];
-	protected long[] timeLastUnset = new long[16];
+    private final long[] timeLastSet = new long[16];
+    private final long[] timeLastUnset = new long[16];
+    private short value;
+    private short previousValue;
 
-	public SyncableFlags() {}
+    public SyncableFlags() {
+    }
 
-	public void on(Enum<?> slot) {
-		on(slot.ordinal());
-	}
+    public void on(Enum<?> slot) {
+        this.on(slot.ordinal());
+    }
 
-	public void on(int slot) {
-		set(slot, true);
-	}
+    void on(int slot) {
+        this.set(slot, true);
+    }
 
-	public void off(Enum<?> slot) {
-		off(slot.ordinal());
-	}
+    public void off(Enum<?> slot) {
+        this.off(slot.ordinal());
+    }
 
-	public void off(int slot) {
-		set(slot, false);
-	}
+    void off(int slot) {
+        this.set(slot, false);
+    }
 
-	public void set(Enum<?> slot, boolean bool) {
-		set(slot.ordinal(), bool);
-	}
+    public void set(Enum<?> slot, boolean bool) {
+        this.set(slot.ordinal(), bool);
+    }
 
-	public void toggle(int slot) {
-		set(slot, !get(slot));
-	}
+    void toggle(int slot) {
+        this.set(slot, !this.get(slot));
+    }
 
-	public void toggle(Enum<?> slot) {
-		toggle(slot.ordinal());
-	}
+    public void toggle(Enum<?> slot) {
+        this.toggle(slot.ordinal());
+    }
 
-	public Set<Integer> getActiveSlots() {
-		Set<Integer> set = new HashSet<Integer>();
-		for (int i = 0; i < 16; i++) {
-			if (get(i)) {
-				set.add(i);
-			}
-		}
-		return set;
-	}
+    public Set<Integer> getActiveSlots() {
+        Set<Integer> set = new HashSet<Integer>();
+        for (int i = 0; i < 16; i++) {
+            if (this.get(i)) {
+                set.add(i);
+            }
+        }
+        return set;
+    }
 
-	public void set(int slot, boolean bool) {
-		short newVal = ByteUtils.set(value, slot, bool);
-		if (newVal != value) {
-			if (bool) {
-				timeLastSet[slot] = 0;
-			} else {
-				timeLastUnset[slot] = 0;
-			}
-			markDirty();
-		}
-		value = newVal;
-	}
+    void set(int slot, boolean bool) {
+        short newVal = ByteUtils.set(this.value, slot, bool);
+        if (newVal != this.value) {
+            if (bool) {
+                this.timeLastSet[slot] = 0;
+            } else {
+                this.timeLastUnset[slot] = 0;
+            }
+            this.markDirty();
+        }
+        this.value = newVal;
+    }
 
-	public boolean get(Enum<?> slot) {
-		return get(slot.ordinal());
-	}
+    public boolean get(Enum<?> slot) {
+        return this.get(slot.ordinal());
+    }
 
-	public boolean get(int slot) {
-		return ByteUtils.get(value, slot);
-	}
+    boolean get(int slot) {
+        return ByteUtils.get(this.value, slot);
+    }
 
-	public boolean hasSlotChanged(Enum<?> slot) {
-		return hasSlotChanged(slot.ordinal());
-	}
+    public boolean hasSlotChanged(Enum<?> slot) {
+        return this.hasSlotChanged(slot.ordinal());
+    }
 
-	public boolean hasSlotChanged(int slot) {
-		return ByteUtils.get(value, slot) != ByteUtils.get(previousValue, slot);
-	}
+    boolean hasSlotChanged(int slot) {
+        return ByteUtils.get(this.value, slot) != ByteUtils.get(this.previousValue, slot);
+    }
 
-	@Override
-	public void markClean() {
-		previousValue = value;
-		dirty = false;
-	}
+    @Override
+    public void markClean() {
+        this.previousValue = this.value;
+        this.dirty = false;
+    }
 
 	/*
-	@Override
+    @Override
 	public void readFromStream(DataInput stream) throws IOException {
 		value = stream.readShort();
 	}
@@ -100,13 +101,13 @@ public class SyncableFlags extends SyncableObjectBase {
 	}
 	*/
 
-	@Override
-	public void writeToNBT(NBTTagCompound tag, String name) {
-		tag.setShort(name, value);
-	}
+    @Override
+    public void writeToNBT(NBTTagCompound tag, String name) {
+        tag.setShort(name, this.value);
+    }
 
-	@Override
-	public void readFromNBT(NBTTagCompound tag, String name) {
-		value = tag.getShort(name);
-	}
+    @Override
+    public void readFromNBT(NBTTagCompound tag, String name) {
+        this.value = tag.getShort(name);
+    }
 }

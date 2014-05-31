@@ -3,18 +3,17 @@ package qmech.mod;
 import net.minecraft.item.ItemStack;
 import qmech.lib.objects.BlockBase;
 import qmech.lib.objects.ItemBase;
-import qmech.lib.util.LoggingHelper;
 import qmech.lib.util.RecipeHelper;
 
-public class ModRecipes {
-	//Put all block/Item Recipes in here
-	
-	public static void preInit () {
+class ModRecipes {
+    //Put all block/Item Recipes in here
+
+    public static void preInit() {
         for (BlockBase block : ModBlocks.getBlockFromType("block")) {
             for (ItemBase ingot : ModItems.getItemFromType("ingot")) {
                 if (ModBlocks.metalsToBlocks.get(block) == ModItems.metalsToItems.get(ingot)) {
                     RecipeHelper.shapedRecipe(new ItemStack(block),
-                            "xxx", "xxx","xxx",
+                            "xxx", "xxx", "xxx",
                             'x', new ItemStack(ingot));
                     RecipeHelper.shapelessRecipe(new ItemStack(ingot, 9),
                             new ItemStack(block));
@@ -46,7 +45,7 @@ public class ModRecipes {
             for (ItemBase nugget : ModItems.getItemFromType("nugget")) {
                 if (ModItems.metalsToItems.get(nugget) == ModItems.metalsToItems.get(ingot)) {
                     RecipeHelper.shapedRecipe(new ItemStack(ingot),
-                            "xxx", "xxx","xxx",
+                            "xxx", "xxx", "xxx",
                             'x', new ItemStack(nugget));
                     RecipeHelper.shapelessRecipe(new ItemStack(nugget, 9),
                             new ItemStack(ingot));
@@ -109,6 +108,6 @@ public class ModRecipes {
                 }
             }
         }
-	}
+    }
 
 }

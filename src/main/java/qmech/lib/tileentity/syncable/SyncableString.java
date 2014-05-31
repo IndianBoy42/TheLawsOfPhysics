@@ -4,29 +4,29 @@ import net.minecraft.nbt.NBTTagCompound;
 
 public class SyncableString extends SyncableObjectBase {
 
-	private String value;
+    private String value;
 
-	public SyncableString() {
-		this("");
-	}
+    public SyncableString() {
+        this("");
+    }
 
-	public SyncableString(String val) {
-		this.value = val;
-	}
+    private SyncableString(String val) {
+        this.value = val;
+    }
 
-	public void setValue(String val) {
-		if (val != value) {
-			value = val;
-			markDirty();
-		}
-	}
+    public String getValue() {
+        return this.value;
+    }
 
-	public String getValue() {
-		return value;
-	}
+    void setValue(String val) {
+        if (!val.equals(this.value)) {
+            this.value = val;
+            this.markDirty();
+        }
+    }
 
 	/*
-	@Override
+    @Override
 	public void readFromStream(DataInput stream) throws IOException {
 		value = stream.readUTF();
 	}
@@ -38,18 +38,18 @@ public class SyncableString extends SyncableObjectBase {
 	}
 	*/
 
-	@Override
-	public void writeToNBT(NBTTagCompound nbt, String name) {
-		nbt.setString(name, value);
-	}
+    @Override
+    public void writeToNBT(NBTTagCompound nbt, String name) {
+        nbt.setString(name, this.value);
+    }
 
-	@Override
-	public void readFromNBT(NBTTagCompound nbt, String name) {
-		value = nbt.getString(name);
-	}
+    @Override
+    public void readFromNBT(NBTTagCompound nbt, String name) {
+        this.value = nbt.getString(name);
+    }
 
-	public void clear() {
-		setValue("");
-	}
+    public void clear() {
+        this.setValue("");
+    }
 
 }

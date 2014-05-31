@@ -7,7 +7,7 @@ import qmech.lib.tileentity.render.model.CustomModelBase;
  */
 public class ModelRendererBase extends CustomRendererBase {
 
-    public CustomModelBase model;
+    private final CustomModelBase model;
 
     public ModelRendererBase(CustomModelBase model) {
         this.model = model;
@@ -15,11 +15,11 @@ public class ModelRendererBase extends CustomRendererBase {
 
     @Override
     public void renderModel() {
-        CustomRendererBase.modelRender(model);
+        CustomRendererBase.modelRender(this.model);
     }
 
     @Override
     public String texPath() {
-        return model.texPath();
+        return this.model.texPath();
     }
 }

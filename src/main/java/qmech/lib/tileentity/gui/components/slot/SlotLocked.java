@@ -7,27 +7,26 @@ import net.minecraft.item.ItemStack;
 
 /**
  * Slot which prevents player interaction.
- * 
+ *
  * @author King Lemming
- * 
  */
-public class SlotLocked extends Slot {
+class SlotLocked extends Slot {
 
-	public SlotLocked(IInventory inventory, int x, int y, int z) {
+    public SlotLocked(IInventory inventory, int x, int y, int z) {
 
-		super(inventory, x, y, z);
-	}
+        super(inventory, x, y, z);
+    }
 
-	@Override
-	public boolean isItemValid(ItemStack stack) {
+    @Override
+    public boolean isItemValid(ItemStack stack) {
 
-		return false;
-	}
+        return false;
+    }
 
-	@Override
-	public boolean canTakeStack(EntityPlayer player) {
+    @Override
+    public boolean canTakeStack(EntityPlayer player) {
 
-		return false;
-	}
+        return false;
+    }
 
 }

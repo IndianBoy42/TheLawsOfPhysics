@@ -1,54 +1,56 @@
 package qmech.lib.tileentity.syncable;
 
-import java.util.Arrays;
-
 import net.minecraft.nbt.NBTTagCompound;
+
+import java.util.Arrays;
 
 public class SyncableIntArray extends SyncableObjectBase {
 
-	private int[] value;
+    private int[] value;
 
-	public SyncableIntArray(int[] value) {
-		this.value = value;
-	}
+    private SyncableIntArray(int[] value) {
+        this.value = value;
+    }
 
-	public SyncableIntArray() {
-		this(new int[0]);
-	}
+    public SyncableIntArray() {
+        this(new int[0]);
+    }
 
-	public void setValue(int[] newValue) {
-		if (!Arrays.equals(value, newValue)) {
-			value = newValue;
-			markDirty();
-		}
-	}
+    public void setValue(int offset, int newValue) {
+        if (this.value[offset] != newValue) {
+            this.value[offset] = newValue;
+            this.markDirty();
+        }
+    }
 
-	public void setValue(int offset, int newValue) {
-		if (value[offset] != newValue) {
-			value[offset] = newValue;
-			markDirty();
-		}
-	}
+    public int getValue(int offset) {
+        return this.value[offset];
+    }
 
-	public int getValue(int offset) {
-		return value[offset];
-	}
+    public int[] getValue() {
+        return this.value;
+    }
 
-	public int[] getValue() {
-		return value;
-	}
+    public void setValue(int[] newValue) {
+        if (!Arrays.equals(this.value, newValue)) {
+            this.value = newValue;
+            this.markDirty();
+        }
+    }
 
-	public int size() {
-		if (value == null) { return 0; }
-		return value.length;
-	}
+    int size() {
+        if (this.value == null) {
+            return 0;
+        }
+        return this.value.length;
+    }
 
-	public boolean isEmpty() {
-		return size() == 0;
-	}
+    public boolean isEmpty() {
+        return this.size() == 0;
+    }
 
 	/*
-	@Override
+    @Override
 	public void readFromStream(DataInput stream) throws IOException {
 		int length = stream.readInt();
 		value = new int[length];
@@ -66,18 +68,18 @@ public class SyncableIntArray extends SyncableObjectBase {
 	}
 	*/
 
-	@Override
-	public void writeToNBT(NBTTagCompound tag, String name) {
-		tag.setIntArray(name, value);
-	}
+    @Override
+    public void writeToNBT(NBTTagCompound tag, String name) {
+        tag.setIntArray(name, this.value);
+    }
 
-	@Override
-	public void readFromNBT(NBTTagCompound tag, String name) {
-		value = tag.getIntArray(name);
-	}
+    @Override
+    public void readFromNBT(NBTTagCompound tag, String name) {
+        this.value = tag.getIntArray(name);
+    }
 
-	public void clear() {
-		value = new int[0];
-		markDirty();
-	}
+    public void clear() {
+        this.value = new int[0];
+        this.markDirty();
+    }
 }

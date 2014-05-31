@@ -16,25 +16,24 @@ import java.util.List;
  * Created by anshuman on 18-05-2014.
  */
 public class ToolPickaxeBase extends ItemPickaxe {
-    String suffix = "Pickaxe";
+    private final String suffix = "Pickaxe";
 
     public ToolPickaxeBase(ToolTypeBase toolType, CreativeTabBase ctab) {
         super(toolType.getToolMaterial());
-        this.setTextureName(String.format("%s:%s_%s", Reference.MOD_ID, toolType.getToolName(), suffix));
-        this.setUnlocalizedName(String.format("%s_%s", toolType.getToolName(), suffix));
+        this.setTextureName(String.format("%s:%s_%s", Reference.MOD_ID, toolType.getToolName(), this.suffix));
+        this.setUnlocalizedName(String.format("%s_%s", toolType.getToolName(), this.suffix));
         this.setCreativeTab(ctab);
         //this.setMaxStackSize(1);
 
-        LoggingHelper.getInstance().debug(String.format("Adding tool : %s_%s", toolType.getToolName(), suffix));
+        LoggingHelper.getInstance().debug(String.format("Adding tool : %s_%s", toolType.getToolName(), this.suffix));
 
         RecipeHelper.shapedRecipe(new ItemStack(this), ToolTypeBase.pickaxeCraftingShape, 'x', toolType.getCraftMaterial(), 's', Items.stick);
 
-        GameRegistry.registerItem(this, String.format("%s_%s", toolType.getToolName(), suffix));
+        GameRegistry.registerItem(this, String.format("%s_%s", toolType.getToolName(), this.suffix));
     }
 
     @Override
-    public void addInformation(ItemStack itemstack, EntityPlayer entityplayer, List list, boolean flag)
-    {
+    public void addInformation(ItemStack itemstack, EntityPlayer entityplayer, List list, boolean flag) {
         list.add("HP: " + (itemstack.getMaxDamage() - itemstack.getItemDamage()));
     }
 }

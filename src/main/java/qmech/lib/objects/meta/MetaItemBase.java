@@ -1,10 +1,10 @@
 package qmech.lib.objects.meta;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-
-import qmech.mod.Reference;
+import com.google.common.base.Preconditions;
+import com.google.common.collect.Maps;
+import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
@@ -13,175 +13,178 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+import qmech.mod.Reference;
 
-import com.google.common.base.Preconditions;
-import com.google.common.collect.Maps;
-
-import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 public abstract class MetaItemBase extends Item {
-	public static class MetaItem implements IMetaItemBase {
+    public final String prefix;
+    private final Map<Integer, IMetaItemBase> metaitems = Maps.newHashMap();
+    protected MetaItemBase(String intName) {
+        this.setHasSubtypes(true);
+        this.setMaxDamage(0);
+        this.setUnlocalizedName(intName);
+        this.prefix = intName;
+        GameRegistry.registerItem(this, intName);
+    }
 
-		private final String mod;
-		private final String name;
-		private IIcon icon;
-		private Object[] recipes;
-		private boolean visibleInCreative = true;
+    public void registerItem(int id, IMetaItemBase item) {
+        IMetaItemBase prev = this.metaitems.put(id, item);
+        Preconditions.checkState(prev == null, "Config error: replacing meta item %s with %s", prev, item);
+    }
 
-		public MetaItem(String name, Object... recipes) {
-			this.mod = Reference.MOD_ID;
-			this.name = name;
-			this.recipes = recipes;
-		}
+    @Override
+    public void registerIcons(IIconRegister register) {
+        for (IMetaItemBase item : this.metaitems.values()) {
+            item.registerIcons(register, this.prefix);
+        }
+    }
 
-		public MetaItem hideFromCreative() {
-			visibleInCreative = false;
-			return this;
-		}
+    @Override
+    public IIcon getIconFromDamage(int i) {
+        IMetaItemBase meta = this.getMeta(i);
+        if (meta != null) {
+            return meta.getIcon();
+        }
+        return null;
+    }
 
-		@Override
-		public IIcon getIcon() {
-			return icon;
-		}
+    @Override
+    public String getUnlocalizedName(ItemStack stack) {
+        IMetaItemBase meta = this.getMeta(stack.getItemDamage());
+        if (meta != null) {
+            return String.format("item.%s_%s", this.prefix, meta.getUnlocalizedName(stack));
+        }
+        return "";
+    }
 
-		@Override
-		public String getUnlocalizedName(ItemStack stack) {
-			return name;
-		}
+    @Override
+    public boolean onItemUse(ItemStack itemStack, EntityPlayer player, World world, int x, int y, int z, int side, float par8, float par9, float par10) {
+        IMetaItemBase meta = this.getMeta(itemStack.getItemDamage());
+        return meta == null || meta.onItemUse(itemStack, player, world, x, y, z, side, par8, par9, par10);
+    }
 
-		@Override
-		public boolean hitEntity(ItemStack itemStack, EntityLivingBase target, EntityLivingBase player) {
-			return false;
-		}
+    @Override
+    public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player) {
+        IMetaItemBase meta = this.getMeta(itemStack.getItemDamage());
+        if (meta != null) {
+            return meta.onItemRightClick(itemStack, player, world);
+        }
+        return itemStack;
+    }
 
-		@Override
-		public boolean onItemUse(ItemStack itemStack, EntityPlayer player, World world, int x, int y, int z, int side, float par8, float par9, float par10) {
-			return false;
-		}
+    @Override
+    public boolean hitEntity(ItemStack itemStack, EntityLivingBase target, EntityLivingBase player) {
+        IMetaItemBase meta = this.getMeta(itemStack.getItemDamage());
+        return meta == null || meta.hitEntity(itemStack, target, player);
+    }
 
-		@Override
-		public ItemStack onItemRightClick(ItemStack itemStack, EntityPlayer player, World world) {
-			return itemStack;
-		}
+    @Override
+    @SideOnly(Side.CLIENT)
+    public boolean hasEffect(ItemStack itemStack, int pass) {
+        IMetaItemBase meta = this.getMeta(itemStack.getItemDamage());
+        return (meta != null) && meta.hasEffect(pass);
+    }
 
-		@Override
-		public void registerIcons(IIconRegister register, String prefix) {
-			registerIcon(register, String.format("%s_%s", prefix, name));
-		}
+    @Override
+    @SideOnly(Side.CLIENT)
+    @SuppressWarnings({"rawtypes", "unchecked"})
+    public void getSubItems(Item item, CreativeTabs tab, List subItems) {
+        for (Entry<Integer, IMetaItemBase> entry : this.metaitems.entrySet())
+            entry.getValue().addToCreativeList(item, entry.getKey(), subItems);
+    }
 
-		protected void registerIcon(IIconRegister register, String name) {
-			icon = register.registerIcon(String.format("%s:%s", mod, name));
-		}
+    IMetaItemBase getMeta(int id) {
+        return this.metaitems.get(id);
+    }
 
-		@Override
-		public void addToCreativeList(Item item, int meta, List<ItemStack> result) {
-			if (visibleInCreative) {
-				result.add(new ItemStack(item, 1, meta));
-			}
-		}
+    public IMetaItemBase getMeta(ItemStack itemStack) {
+        return this.getMeta(itemStack.getItemDamage());
+    }
 
-		@Override
-		public boolean hasEffect(int renderPass) {
-			return false;
-		}
+    protected ItemStack newItemStack(int id) {
+        return this.newItemStack(id, 1);
+    }
 
-	}
+    ItemStack newItemStack(int id, int number) {
+        return new ItemStack(this, number, id);
+    }
 
-	protected Map<Integer, IMetaItemBase> metaitems = Maps.newHashMap();
-	public String prefix;
+    public ItemStack newItemStack(IMetaItemBase meta, int size) {
+        for (Entry<Integer, IMetaItemBase> o : this.metaitems.entrySet()) {
+            if (o.getValue().equals(meta)) {
+                return this.newItemStack(o.getKey(), size);
+            }
+        }
+        return null;
+    }
 
-	public MetaItemBase(String intName) {
-		setHasSubtypes(true);
-		setMaxDamage(0);
-		this.setUnlocalizedName(intName);
-		this.prefix = intName;
-		GameRegistry.registerItem(this, intName);
-	}
+    public static class MetaItem implements IMetaItemBase {
 
-	public void registerItem(int id, IMetaItemBase item) {
-		IMetaItemBase prev = metaitems.put(id, item);
-		Preconditions.checkState(prev == null, "Config error: replacing meta item %s with %s", prev, item);
-	}
+        private final String mod;
+        private final String name;
+        private IIcon icon;
+        private final Object[] recipes;
+        private boolean visibleInCreative = true;
 
-	@Override
-	public void registerIcons(IIconRegister register) {
-		for (IMetaItemBase item : metaitems.values()) {
-			item.registerIcons(register, prefix);
-		}
-	}
+        public MetaItem(String name, Object... recipes) {
+            this.mod = Reference.MOD_ID;
+            this.name = name;
+            this.recipes = recipes;
+        }
 
-	@Override
-	public IIcon getIconFromDamage(int i) {
-		IMetaItemBase meta = getMeta(i);
-		if (meta != null) { return meta.getIcon(); }
-		return null;
-	}
+        public MetaItem hideFromCreative() {
+            this.visibleInCreative = false;
+            return this;
+        }
 
-	@Override
-	public String getUnlocalizedName(ItemStack stack) {
-		IMetaItemBase meta = getMeta(stack.getItemDamage());
-		if (meta != null) { return String.format("item.%s_%s", prefix, meta.getUnlocalizedName(stack)); }
-		return "";
-	}
+        @Override
+        public IIcon getIcon() {
+            return this.icon;
+        }
 
-	@Override
-	public boolean onItemUse(ItemStack itemStack, EntityPlayer player, World world, int x, int y, int z, int side, float par8, float par9, float par10) {
-		IMetaItemBase meta = getMeta(itemStack.getItemDamage());
-		if (meta != null) { return meta.onItemUse(itemStack, player, world, x, y, z, side, par8, par9, par10); }
-		return true;
-	}
+        @Override
+        public String getUnlocalizedName(ItemStack stack) {
+            return this.name;
+        }
 
-	@Override
-	public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player) {
-		IMetaItemBase meta = getMeta(itemStack.getItemDamage());
-		if (meta != null) { return meta.onItemRightClick(itemStack, player, world); }
-		return itemStack;
-	}
+        @Override
+        public boolean hitEntity(ItemStack itemStack, EntityLivingBase target, EntityLivingBase player) {
+            return false;
+        }
 
-	@Override
-	public boolean hitEntity(ItemStack itemStack, EntityLivingBase target, EntityLivingBase player) {
-		IMetaItemBase meta = getMeta(itemStack.getItemDamage());
-		if (meta != null) { return meta.hitEntity(itemStack, target, player); }
-		return true;
-	}
+        @Override
+        public boolean onItemUse(ItemStack itemStack, EntityPlayer player, World world, int x, int y, int z, int side, float par8, float par9, float par10) {
+            return false;
+        }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public boolean hasEffect(ItemStack itemStack, int pass) {
-		IMetaItemBase meta = getMeta(itemStack.getItemDamage());
-		return meta != null? meta.hasEffect(pass) : false;
-	}
+        @Override
+        public ItemStack onItemRightClick(ItemStack itemStack, EntityPlayer player, World world) {
+            return itemStack;
+        }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public void getSubItems(Item item, CreativeTabs tab, List subItems) {
-		for (Entry<Integer, IMetaItemBase> entry : metaitems.entrySet())
-			entry.getValue().addToCreativeList(item, entry.getKey(), subItems);
-	}
+        @Override
+        public void registerIcons(IIconRegister register, String prefix) {
+            this.registerIcon(register, String.format("%s_%s", prefix, this.name));
+        }
 
-	public IMetaItemBase getMeta(int id) {
-		return metaitems.get(id);
-	}
+        void registerIcon(IIconRegister register, String name) {
+            this.icon = register.registerIcon(String.format("%s:%s", this.mod, name));
+        }
 
-	public IMetaItemBase getMeta(ItemStack itemStack) {
-		return getMeta(itemStack.getItemDamage());
-	}
+        @Override
+        public void addToCreativeList(Item item, int meta, List<ItemStack> result) {
+            if (this.visibleInCreative) {
+                result.add(new ItemStack(item, 1, meta));
+            }
+        }
 
-	public ItemStack newItemStack(int id) {
-		return newItemStack(id, 1);
-	}
+        @Override
+        public boolean hasEffect(int renderPass) {
+            return false;
+        }
 
-	public ItemStack newItemStack(int id, int number) {
-		return new ItemStack(this, number, id);
-	}
-
-	public ItemStack newItemStack(IMetaItemBase meta, int size) {
-		for (Entry<Integer, IMetaItemBase> o : metaitems.entrySet()) {
-			if (o.getValue().equals(meta)) { return newItemStack(o.getKey(), size); }
-		}
-		return null;
-	}
+    }
 }

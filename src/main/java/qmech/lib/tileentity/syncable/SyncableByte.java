@@ -1,32 +1,32 @@
 package qmech.lib.tileentity.syncable;
 
-import net.minecraft.nbt.NBTTagCompound;
-
 import com.google.common.primitives.SignedBytes;
+import net.minecraft.nbt.NBTTagCompound;
 
 public class SyncableByte extends SyncableObjectBase {
 
-	private byte value;
+    private byte value;
 
-	public SyncableByte(byte value) {
-		this.value = value;
-	}
+    public SyncableByte(byte value) {
+        this.value = value;
+    }
 
-	public SyncableByte() {}
+    public SyncableByte() {
+    }
 
-	public void setValue(byte newValue) {
-		if (newValue != value) {
-			value = newValue;
-			markDirty();
-		}
-	}
+    public byte getValue() {
+        return this.value;
+    }
 
-	public byte getValue() {
-		return value;
-	}
+    void setValue(byte newValue) {
+        if (newValue != this.value) {
+            this.value = newValue;
+            this.markDirty();
+        }
+    }
 
 	/*
-	@Override
+    @Override
 	public void readFromStream(DataInput stream) throws IOException {
 		value = stream.readByte();
 	}
@@ -37,17 +37,17 @@ public class SyncableByte extends SyncableObjectBase {
 	}
 	*/
 
-	@Override
-	public void writeToNBT(NBTTagCompound tag, String name) {
-		tag.setByte(name, value);
-	}
+    @Override
+    public void writeToNBT(NBTTagCompound tag, String name) {
+        tag.setByte(name, this.value);
+    }
 
-	@Override
-	public void readFromNBT(NBTTagCompound tag, String name) {
-		value = tag.getByte(name);
-	}
+    @Override
+    public void readFromNBT(NBTTagCompound tag, String name) {
+        this.value = tag.getByte(name);
+    }
 
-	public void modify(int by) {
-		setValue(SignedBytes.checkedCast(value + by));
-	}
+    public void modify(int by) {
+        this.setValue(SignedBytes.checkedCast(this.value + by));
+    }
 }

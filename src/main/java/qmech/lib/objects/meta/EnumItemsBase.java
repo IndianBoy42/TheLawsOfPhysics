@@ -3,30 +3,30 @@ package qmech.lib.objects.meta;
 import net.minecraft.item.ItemStack;
 
 public enum EnumItemsBase {
-	Generic;
+    Generic;
 
-	public ItemStack newItemStack(MetaItemBase base, int size) {
-		return new ItemStack(base, size, ordinal());
-	}
+    public static void registerItems(MetaItemBase base) {
+        for (EnumItemsBase m : values())
+            if (m.isEnabled()) base.registerItem(m.ordinal(), m.createMetaItem(base));
+    }
 
-	public ItemStack newItemStack(MetaItemBase base) {
-		return new ItemStack(base, 1, ordinal());
-	}
+    public ItemStack newItemStack(MetaItemBase base, int size) {
+        return new ItemStack(base, size, this.ordinal());
+    }
 
-	public boolean isA(ItemStack stack) {
-		return (stack.getItem() instanceof MetaItemBase) && (stack.getItemDamage() == ordinal());
-	}
+    public ItemStack newItemStack(MetaItemBase base) {
+        return new ItemStack(base, 1, this.ordinal());
+    }
 
-	protected MetaItemBase.MetaItem createMetaItem(MetaItemBase base) {
-		return new MetaItemBase.MetaItem(base.prefix + "_" + this.name());
-	}
+    public boolean isA(ItemStack stack) {
+        return (stack.getItem() instanceof MetaItemBase) && (stack.getItemDamage() == this.ordinal());
+    }
 
-	protected boolean isEnabled() {
-		return true;
-	}
+    MetaItemBase.MetaItem createMetaItem(MetaItemBase base) {
+        return new MetaItemBase.MetaItem(base.prefix + "_" + this.name());
+    }
 
-	public static void registerItems(MetaItemBase base) {
-		for (EnumItemsBase m : values())
-			if (m.isEnabled()) base.registerItem(m.ordinal(), m.createMetaItem(base));
-	}
+    boolean isEnabled() {
+        return true;
+    }
 }

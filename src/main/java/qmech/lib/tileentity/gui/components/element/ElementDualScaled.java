@@ -2,62 +2,61 @@ package qmech.lib.tileentity.gui.components.element;
 
 import qmech.lib.tileentity.gui.GuiBase;
 import qmech.lib.tileentity.render.RenderHelper;
-import qmech.lib.util.StringHelper;
 
 public class ElementDualScaled extends ElementBase {
 
-	public int quantity;
-	public int mode;
-	public boolean background = true;
+    private int quantity;
+    private int mode;
+    private boolean background = true;
 
-	public ElementDualScaled(GuiBase gui, int posX, int posY) {
+    public ElementDualScaled(GuiBase gui, int posX, int posY) {
 
-		super(gui, posX, posY);
-	}
+        super(gui, posX, posY);
+    }
 
-	public ElementDualScaled setBackground(boolean background) {
+    public ElementDualScaled setBackground(boolean background) {
 
-		this.background = background;
-		return this;
-	}
+        this.background = background;
+        return this;
+    }
 
-	public ElementDualScaled setMode(int mode) {
+    public ElementDualScaled setMode(int mode) {
 
-		this.mode = mode;
-		return this;
-	}
+        this.mode = mode;
+        return this;
+    }
 
-	public ElementDualScaled setQuantity(int quantity) {
+    public ElementDualScaled setQuantity(int quantity) {
 
-		this.quantity = quantity;
-		return this;
-	}
+        this.quantity = quantity;
+        return this;
+    }
 
-	@Override
-	public void draw() {
+    @Override
+    public void draw() {
 
-		if (!visible) {
-			return;
-		}
-		RenderHelper.bindTexture(texture);
+        if (!this.visible) {
+            return;
+        }
+        RenderHelper.bindTexture(this.texture);
 
-		if (background) {
-			drawTexturedModalRect(posX, posY, 0, 0, sizeX, sizeY);
-		}
-		switch (mode) {
-		case 0:
-			// vertical bottom -> top
-			drawTexturedModalRect(posX, posY + sizeY - quantity, sizeX, sizeY - quantity, sizeX, quantity);
-			return;
-		case 1:
-			// horizontal left -> right
-			drawTexturedModalRect(posX, posY, sizeX, 0, quantity, sizeY);
-			return;
-		case 2:
-			// horizontal right -> left
-			drawTexturedModalRect(posX + sizeX - quantity, posY, sizeX + sizeX - quantity, 0, quantity, sizeY);
-			return;
-		}
-	}
+        if (this.background) {
+            this.drawTexturedModalRect(this.posX, this.posY, 0, 0, this.sizeX, this.sizeY);
+        }
+        switch (this.mode) {
+            case 0:
+                // vertical bottom -> top
+                this.drawTexturedModalRect(this.posX, this.posY + this.sizeY - this.quantity, this.sizeX, this.sizeY - this.quantity, this.sizeX, this.quantity);
+                return;
+            case 1:
+                // horizontal left -> right
+                this.drawTexturedModalRect(this.posX, this.posY, this.sizeX, 0, this.quantity, this.sizeY);
+                return;
+            case 2:
+                // horizontal right -> left
+                this.drawTexturedModalRect(this.posX + this.sizeX - this.quantity, this.posY, this.sizeX + this.sizeX - this.quantity, 0, this.quantity, this.sizeY);
+                return;
+        }
+    }
 
 }

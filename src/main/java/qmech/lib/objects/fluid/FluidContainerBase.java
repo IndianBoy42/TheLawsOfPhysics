@@ -5,7 +5,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -21,7 +20,7 @@ import qmech.mod.Reference;
 
 
 public class FluidContainerBase extends MetaItemBase {
-    public int vol = FluidContainerRegistry.BUCKET_VOLUME;
+    private int vol = FluidContainerRegistry.BUCKET_VOLUME;
 
     public FluidContainerBase(String intName, int vol, CreativeTabBase ctab, Boolean registerAll) {
         super(intName);
@@ -32,36 +31,36 @@ public class FluidContainerBase extends MetaItemBase {
 
         LoggingHelper.getInstance().debug(String.format("Creating Fluid Container : %s", intName));
 
-        registerItem(0, new MetaItem("empty"));
+        this.registerItem(0, new MetaItem("empty"));
 
         if (registerAll) {
-            registerFluids();
+            this.registerFluids();
         } else {
-            registerFluid(FluidRegistry.WATER);
-            registerFluid(FluidRegistry.LAVA);
+            this.registerFluid(FluidRegistry.WATER);
+            this.registerFluid(FluidRegistry.LAVA);
         }
     }
 
-    public void registerFluid (Fluid fluid) {
+    public void registerFluid(Fluid fluid) {
         String fName = fluid.getName();
         int fID = FluidRegistry.getFluidID(fName);
 
-        registerItem(fID, new MetaItem(fName));
+        this.registerItem(fID, new MetaItem(fName));
 
-        FluidContainerRegistry.registerFluidContainer(new FluidStack(fluid, vol), newItemStack(fID));
+        FluidContainerRegistry.registerFluidContainer(new FluidStack(fluid, this.vol), this.newItemStack(fID));
 
         LoggingHelper.getInstance().debug(String.format(">>> added container (%s) for fluid (%s:%s)",
                 this.getUnlocalizedName(), fluid.getUnlocalizedName(), fID));
     }
 
-    public void registerFluids () {
-        for (int i=0; i< FluidRegistry.getMaxID() + 1; i++) {
+    void registerFluids() {
+        for (int i = 0; i < FluidRegistry.getMaxID() + 1; i++) {
             Fluid fluid = FluidRegistry.getFluid(i);
             if (fluid == null) {
                 continue;
             }
 
-            registerFluid(fluid);
+            this.registerFluid(fluid);
         }
     }
 
@@ -84,9 +83,9 @@ public class FluidContainerBase extends MetaItemBase {
         }
         int ID = FluidRegistry.getFluidID(fluid.getName());
 
-        if (world.getBlockMetadata(x, y ,z) == 0) {
+        if (world.getBlockMetadata(x, y, z) == 0) {
             world.setBlockToAir(x, y, z);
-            player.inventory.addItemStackToInventory(newItemStack(ID));
+            player.inventory.addItemStackToInventory(this.newItemStack(ID));
             return new ItemStack(itemStack.getItem(), itemStack.stackSize - 1, 0);
         } else
             return itemStack;

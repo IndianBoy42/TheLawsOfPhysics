@@ -4,27 +4,28 @@ import net.minecraft.nbt.NBTTagCompound;
 
 public class SyncableByteArray extends SyncableObjectBase {
 
-	private byte[] value = new byte[0];
+    private byte[] value = new byte[0];
 
-	public SyncableByteArray() {}
+    public SyncableByteArray() {
+    }
 
-	public SyncableByteArray(byte[] val) {
-		this.value = val;
-	}
+    public SyncableByteArray(byte[] val) {
+        this.value = val;
+    }
 
-	public void setValue(byte[] newValue) {
-		if (newValue != value) {
-			value = newValue;
-			markDirty();
-		}
-	}
+    public byte[] getValue() {
+        return this.value;
+    }
 
-	public byte[] getValue() {
-		return value;
-	}
+    public void setValue(byte[] newValue) {
+        if (newValue != this.value) {
+            this.value = newValue;
+            this.markDirty();
+        }
+    }
 
 	/*
-	@Override
+    @Override
 	public void readFromStream(DataInput stream) throws IOException {
 		int length = stream.readInt();
 		value = new byte[length];
@@ -47,14 +48,14 @@ public class SyncableByteArray extends SyncableObjectBase {
 	}
 	*/
 
-	@Override
-	public void writeToNBT(NBTTagCompound nbt, String name) {
-		nbt.setByteArray(name, value);
-	}
+    @Override
+    public void writeToNBT(NBTTagCompound nbt, String name) {
+        nbt.setByteArray(name, this.value);
+    }
 
-	@Override
-	public void readFromNBT(NBTTagCompound nbt, String name) {
-		nbt.getByteArray(name);
-	}
+    @Override
+    public void readFromNBT(NBTTagCompound nbt, String name) {
+        nbt.getByteArray(name);
+    }
 
 }

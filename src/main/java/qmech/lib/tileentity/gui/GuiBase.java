@@ -22,7 +22,6 @@ import qmech.lib.tileentity.gui.components.slot.SlotFalseCopy;
 import qmech.lib.tileentity.render.RenderHelper;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -31,6 +30,15 @@ import java.util.List;
  */
 public abstract class GuiBase extends GuiContainer {
 
+    public static final SoundHandler guiSoundManager = FMLClientHandler.instance().getClient().getSoundHandler();
+    public static final FontRenderer guiFontRenderer = FMLClientHandler.instance().getClient().fontRenderer;
+    private final boolean drawInventory = true;
+    private int mouseX = 0;
+    private int mouseY = 0;
+    private int lastIndex = -1;
+    private String name;
+    private ResourceLocation texture;
+    private final List<String> tooltip = new LinkedList<String>();
     public GuiBase(InventoryPlayer p, TileEntityBase te) {
         super(new GuiContainerBase(p, te));
     }
@@ -40,87 +48,75 @@ public abstract class GuiBase extends GuiContainer {
         super(container);
     }
 
-    public static final SoundHandler guiSoundManager = FMLClientHandler.instance().getClient().getSoundHandler();
-    public static final FontRenderer guiFontRenderer = FMLClientHandler.instance().getClient().fontRenderer;
-
-    protected boolean drawInventory = true;
-    protected int mouseX = 0;
-    protected int mouseY = 0;
-
-    protected int lastIndex = -1;
-
-    protected String name;
-    protected ResourceLocation texture;
-    protected abstract ArrayList<GuiComponentBase> getElements();
-    protected List<String> tooltip = new LinkedList<String>();
-
     public GuiBase(Container container, ResourceLocation texture) {
 
         super(container);
         this.texture = texture;
     }
 
+    protected abstract ArrayList<GuiComponentBase> getElements();
+
     @Override
     public void initGui() {
 
         super.initGui();
-        getElements().clear();
+        this.getElements().clear();
     }
 
     @Override
     protected void drawGuiContainerForegroundLayer(int x, int y) {
 
-        fontRendererObj.drawString(name, getCenteredOffset(name), 6, 0x404040);
-        if (drawInventory) {
-            fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 3, 0x404040);
+        this.fontRendererObj.drawString(this.name, this.getCenteredOffset(this.name), 6, 0x404040);
+        if (this.drawInventory) {
+            this.fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), 8, this.ySize - 96 + 3, 0x404040);
         }
-        if (!Loader.isModLoaded("NotEnoughItems") && mc.thePlayer.inventory.getItemStack() == null) {
-            addTooltips(tooltip);
-            drawTooltip(tooltip);
+        if (!Loader.isModLoaded("NotEnoughItems") && this.mc.thePlayer.inventory.getItemStack() == null) {
+            this.addTooltips(this.tooltip);
+            this.drawTooltip(this.tooltip);
         }
     }
 
     @Override
     protected void drawGuiContainerBackgroundLayer(float f, int x, int y) {
 
-        updateElements();
+        this.updateElements();
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-        mc.renderEngine.bindTexture(texture);
-        drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
+        this.mc.renderEngine.bindTexture(this.texture);
+        this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
 
-        drawElements();
+        this.drawElements();
     }
 
     @Override
     protected void mouseClicked(int x, int y, int mouseButton) {
 
         super.mouseClicked(x, y, mouseButton);
-        
-        GuiComponentBase element = getElementAtPosition(mouseX, mouseY);
+
+        GuiComponentBase element = this.getElementAtPosition(this.mouseX, this.mouseY);
 
         if (element != null) {
-            element.handleMouseClicked(mouseX, mouseY, mouseButton);
+            element.handleMouseClicked(this.mouseX, this.mouseY, mouseButton);
         }
     }
 
     @Override
     protected void mouseClickMove(int mX, int mY, int lastClick, long timeSinceClick) {
 
-        Slot slot = getSlotAtPosition(mX, mY);
+        Slot slot = this.getSlotAtPosition(mX, mY);
         ItemStack itemstack = this.mc.thePlayer.inventory.getItemStack();
 
         if (this.field_147007_t && slot != null && itemstack != null && slot instanceof SlotFalseCopy) {
-            if (lastIndex != slot.slotNumber) {
-                lastIndex = slot.slotNumber;
+            if (this.lastIndex != slot.slotNumber) {
+                this.lastIndex = slot.slotNumber;
                 this.handleMouseClick(slot, slot.slotNumber, 0, 0);
             }
         } else {
-            lastIndex = -1;
+            this.lastIndex = -1;
             super.mouseClickMove(mX, mY, lastClick, timeSinceClick);
         }
     }
 
-    public Slot getSlotAtPosition(int xCoord, int yCoord) {
+    Slot getSlotAtPosition(int xCoord, int yCoord) {
 
         for (int k = 0; k < this.inventorySlots.inventorySlots.size(); ++k) {
             Slot slot = (Slot) this.inventorySlots.inventorySlots.get(k);
@@ -133,7 +129,7 @@ public abstract class GuiBase extends GuiContainer {
         return null;
     }
 
-    public boolean isMouseOverSlot(Slot theSlot, int xCoord, int yCoord) {
+    boolean isMouseOverSlot(Slot theSlot, int xCoord, int yCoord) {
 
         return this.func_146978_c(theSlot.xDisplayPosition, theSlot.yDisplayPosition, 16, 16, xCoord, yCoord);
     }
@@ -144,8 +140,8 @@ public abstract class GuiBase extends GuiContainer {
         int x = Mouse.getEventX() * this.width / this.mc.displayWidth;
         int y = this.height - Mouse.getEventY() * this.height / this.mc.displayHeight - 1;
 
-        mouseX = x - guiLeft;
-        mouseY = y - guiTop;
+        this.mouseX = x - this.guiLeft;
+        this.mouseY = y - this.guiTop;
 
         super.handleMouseInput();
     }
@@ -153,9 +149,9 @@ public abstract class GuiBase extends GuiContainer {
     /**
      * Draws the getElements() for this GUI.
      */
-    protected void drawElements() {
+    void drawElements() {
 
-        for (GuiComponentBase element : getElements()) {
+        for (GuiComponentBase element : this.getElements()) {
             element.draw();
         }
     }
@@ -165,12 +161,12 @@ public abstract class GuiBase extends GuiContainer {
      */
     // @Override
     public List<String> handleTooltip(int mousex, int mousey, List<String> tooltip) {
-            addTooltips(tooltip);
+        this.addTooltips(tooltip);
         return tooltip;
     }
 
-    public void addTooltips(List<String> tooltip) {
-        GuiComponentBase element = getElementAtPosition(mouseX, mouseY);
+    void addTooltips(List<String> tooltip) {
+        GuiComponentBase element = this.getElementAtPosition(this.mouseX, this.mouseY);
 
         if (element != null) {
             element.addTooltip(tooltip);
@@ -180,13 +176,13 @@ public abstract class GuiBase extends GuiContainer {
     /* ELEMENTS */
     public GuiComponentBase addElement(GuiComponentBase element) {
 
-        getElements().add(element);
+        this.getElements().add(element);
         return element;
     }
 
-    protected GuiComponentBase getElementAtPosition(int mX, int mY) {
+    GuiComponentBase getElementAtPosition(int mX, int mY) {
 
-        for (GuiComponentBase element : getElements()) {
+        for (GuiComponentBase element : this.getElements()) {
             if (element.intersectsWith(mX, mY)) {
                 return element;
             }
@@ -208,14 +204,14 @@ public abstract class GuiBase extends GuiContainer {
     /**
      * Essentially a placeholder method for tabs to use should they need to draw a button.
      */
-    public void drawButton(IIcon icon, int x, int y, int spriteSheet, int mode) {
+    void drawButton(IIcon icon, int x, int y, int spriteSheet, int mode) {
 
-        drawIcon(icon, x, y, spriteSheet);
+        this.drawIcon(icon, x, y, spriteSheet);
     }
 
     public void drawButton(String iconName, int x, int y, int spriteSheet, int mode) {
 
-        drawButton(getIcon(iconName), x, y, spriteSheet, mode);
+        this.drawButton(this.getIcon(iconName), x, y, spriteSheet, mode);
     }
 
     /**
@@ -229,28 +225,28 @@ public abstract class GuiBase extends GuiContainer {
         RenderHelper.setBlockTextureSheet();
         RenderHelper.setColor3ub(fluid.getFluid().getColor(fluid));
 
-        drawTiledTexture(x, y, fluid.getFluid().getIcon(fluid), width, height);
+        this.drawTiledTexture(x, y, fluid.getFluid().getIcon(fluid), width, height);
     }
 
-    public void drawTiledTexture(int x, int y, IIcon icon, int width, int height) {
+    void drawTiledTexture(int x, int y, IIcon icon, int width, int height) {
 
-        int i = 0;
-        int j = 0;
+        int i;
+        int j;
 
-        int drawHeight = 0;
-        int drawWidth = 0;
+        int drawHeight;
+        int drawWidth;
 
         for (i = 0; i < width; i += 16) {
             for (j = 0; j < height; j += 16) {
                 drawWidth = Math.min(width - i, 16);
                 drawHeight = Math.min(height - j, 16);
-                drawScaledTexturedModelRectFromIcon(x + i, y + j, icon, drawWidth, drawHeight);
+                this.drawScaledTexturedModelRectFromIcon(x + i, y + j, icon, drawWidth, drawHeight);
             }
         }
         GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0F);
     }
 
-    public void drawIcon(IIcon icon, int x, int y, int spriteSheet) {
+    void drawIcon(IIcon icon, int x, int y, int spriteSheet) {
 
         if (spriteSheet == 0) {
             RenderHelper.setBlockTextureSheet();
@@ -258,12 +254,12 @@ public abstract class GuiBase extends GuiContainer {
             RenderHelper.setItemTextureSheet();
         }
         GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0F);
-        drawTexturedModelRectFromIcon(x, y, icon, 16, 16);
+        this.drawTexturedModelRectFromIcon(x, y, icon, 16, 16);
     }
 
     public void drawIcon(String iconName, int x, int y, int spriteSheet) {
 
-        drawIcon(getIcon(iconName), x, y, spriteSheet);
+        this.drawIcon(this.getIcon(iconName), x, y, spriteSheet);
     }
 
     public void drawSizedTexturedModalRect(int x, int y, int u, int v, int width, int height, float texW, float texH) {
@@ -272,14 +268,14 @@ public abstract class GuiBase extends GuiContainer {
         float texV = 1 / texH;
         Tessellator tessellator = Tessellator.instance;
         tessellator.startDrawingQuads();
-        tessellator.addVertexWithUV(x + 0, y + height, this.zLevel, (u + 0) * texU, (v + height) * texV);
+        tessellator.addVertexWithUV(x, y + height, this.zLevel, (u) * texU, (v + height) * texV);
         tessellator.addVertexWithUV(x + width, y + height, this.zLevel, (u + width) * texU, (v + height) * texV);
-        tessellator.addVertexWithUV(x + width, y + 0, this.zLevel, (u + width) * texU, (v + 0) * texV);
-        tessellator.addVertexWithUV(x + 0, y + 0, this.zLevel, (u + 0) * texU, (v + 0) * texV);
+        tessellator.addVertexWithUV(x + width, y, this.zLevel, (u + width) * texU, (v) * texV);
+        tessellator.addVertexWithUV(x, y, this.zLevel, (u) * texU, (v) * texV);
         tessellator.draw();
     }
 
-    public void drawScaledTexturedModelRectFromIcon(int x, int y, IIcon icon, int width, int height) {
+    void drawScaledTexturedModelRectFromIcon(int x, int y, IIcon icon, int width, int height) {
 
         if (icon == null) {
             return;
@@ -291,21 +287,21 @@ public abstract class GuiBase extends GuiContainer {
 
         Tessellator tessellator = Tessellator.instance;
         tessellator.startDrawingQuads();
-        tessellator.addVertexWithUV(x + 0, y + height, this.zLevel, minU, minV + (maxV - minV) * height / 16F);
+        tessellator.addVertexWithUV(x, y + height, this.zLevel, minU, minV + (maxV - minV) * height / 16F);
         tessellator.addVertexWithUV(x + width, y + height, this.zLevel, minU + (maxU - minU) * width / 16F, minV + (maxV - minV) * height / 16F);
-        tessellator.addVertexWithUV(x + width, y + 0, this.zLevel, minU + (maxU - minU) * width / 16F, minV);
-        tessellator.addVertexWithUV(x + 0, y + 0, this.zLevel, minU, minV);
+        tessellator.addVertexWithUV(x + width, y, this.zLevel, minU + (maxU - minU) * width / 16F, minV);
+        tessellator.addVertexWithUV(x, y, this.zLevel, minU, minV);
         tessellator.draw();
     }
 
-    public void drawTooltip(List<String> list) {
+    void drawTooltip(List<String> list) {
 
-        drawTooltipHoveringText(list, mouseX, mouseY, fontRendererObj);
-        tooltip.clear();
+        this.drawTooltipHoveringText(list, this.mouseX, this.mouseY, this.fontRendererObj);
+        this.tooltip.clear();
     }
 
     @SuppressWarnings("rawtypes")
-    protected void drawTooltipHoveringText(List list, int x, int y, FontRenderer font) {
+    void drawTooltipHoveringText(List list, int x, int y, FontRenderer font) {
 
         if (list == null || list.isEmpty()) {
             return;
@@ -314,10 +310,9 @@ public abstract class GuiBase extends GuiContainer {
         GL11.glDisable(GL11.GL_LIGHTING);
         GL11.glDisable(GL11.GL_DEPTH_TEST);
         int k = 0;
-        Iterator iterator = list.iterator();
 
-        while (iterator.hasNext()) {
-            String s = (String) iterator.next();
+        for (Object aList : list) {
+            String s = (String) aList;
             int l = font.getStringWidth(s);
 
             if (l > k) {
@@ -373,45 +368,44 @@ public abstract class GuiBase extends GuiContainer {
      */
     public void mouseClicked(int mouseButton) {
 
-        super.mouseClicked(guiLeft + mouseX, guiTop + mouseY, mouseButton);
+        super.mouseClicked(this.guiLeft + this.mouseX, this.guiTop + this.mouseY, mouseButton);
     }
 
-    protected int getCenteredOffset(String string) {
+    int getCenteredOffset(String string) {
 
-        return this.getCenteredOffset(string, xSize);
+        return this.getCenteredOffset(string, this.xSize);
     }
 
-    protected int getCenteredOffset(String string, int xWidth) {
+    int getCenteredOffset(String string, int xWidth) {
 
-        return (xWidth - fontRendererObj.getStringWidth(string)) / 2;
+        return (xWidth - this.fontRendererObj.getStringWidth(string)) / 2;
     }
 
     public int getGuiLeft() {
 
-        return guiLeft;
+        return this.guiLeft;
     }
 
     public int getGuiTop() {
 
-        return guiTop;
+        return this.guiTop;
     }
 
     public int getMouseX() {
 
-        return mouseX;
+        return this.mouseX;
     }
 
     public int getMouseY() {
 
-        return mouseY;
+        return this.mouseY;
     }
 
-    public void overlayRecipe() {
-
-    }
+    public abstract void overlayRecipe();
 
 
     public abstract String texPath();
+
     public abstract int GuiID();
 
 }

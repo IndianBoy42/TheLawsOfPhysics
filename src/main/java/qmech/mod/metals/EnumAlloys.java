@@ -54,6 +54,13 @@ public enum EnumAlloys {
 
     public abstract ToolTypeBase.ToolInfo getToolInfo();
 
+    public static enum AlloyCraftInfo {
+        DustCrafting,
+        IngotCrafting,
+        SolidAlloySmelter,
+        FluidAlloySmelter
+    }
+
     public static class AlloyMixInfo {
         public int Xratio = 1;
         public int Yratio = 1;
@@ -61,21 +68,15 @@ public enum EnumAlloys {
         public EnumMetals Xmetal;
         public EnumMetals Ymetal;
 
-        public AlloyMixInfo() {}
+        public AlloyMixInfo() {
+        }
 
         public AlloyMixInfo(int xratio, EnumMetals xmetal, int yratio, EnumMetals ymetal) {
-            Xratio = xratio;
-            Yratio = yratio;
-            Xmetal = xmetal;
-            Ymetal = ymetal;
+            this.Xratio = xratio;
+            this.Yratio = yratio;
+            this.Xmetal = xmetal;
+            this.Ymetal = ymetal;
         }
-    }
-    
-    public static enum  AlloyCraftInfo {
-        DustCrafting,
-        IngotCrafting,
-        SolidAlloySmelter,
-        FluidAlloySmelter;
     }
 
 }

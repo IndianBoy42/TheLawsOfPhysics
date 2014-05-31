@@ -10,21 +10,17 @@ import java.util.List;
 public abstract class GuiComponentBase {
 
 
-    protected GuiBase gui;
-    protected ResourceLocation texture;
+    private int texW = 256;
+    private int texH = 256;
+    private final GuiBase gui;
+    private ResourceLocation texture;
+    private int posX;
+    private int posY;
+    private int sizeX;
+    private int sizeY;
+    private String name;
 
-    protected int posX;
-    protected int posY;
-
-    protected int sizeX;
-    protected int sizeY;
-
-    public int texW = 256;
-    public int texH = 256;
-
-    protected String name;
-
-    protected boolean visible = true;
+    private boolean visible = true;
 
     public GuiComponentBase(GuiBase gui, int posX, int posY) {
 
@@ -33,16 +29,10 @@ public abstract class GuiComponentBase {
         this.posY = gui.getGuiTop() + posY;
     }
 
-    public GuiComponentBase setName(String name) {
-
-        this.name = name;
-        return this;
-    }
-
     public GuiComponentBase setPosition(int posX, int posY) {
 
-        this.posX = gui.getGuiLeft() + posX;
-        this.posY = gui.getGuiTop() + posY;
+        this.posX = this.gui.getGuiLeft() + posX;
+        this.posY = this.gui.getGuiTop() + posY;
         return this;
     }
 
@@ -61,20 +51,18 @@ public abstract class GuiComponentBase {
         return this;
     }
 
+    public boolean isVisible() {
+
+        return this.visible;
+    }
+
     public GuiComponentBase setVisible(boolean visible) {
 
         this.visible = visible;
         return this;
     }
 
-    public boolean isVisible() {
-
-        return visible;
-    }
-
-    public void update() {
-
-    }
+    public abstract void update();
 
     public abstract void draw();
 
@@ -82,37 +70,37 @@ public abstract class GuiComponentBase {
 
         this.posX = x;
         this.posY = y;
-        draw();
+        this.draw();
     }
 
-    public void addTooltip(List<String> list) {
-
-    }
+    public abstract void addTooltip(List<String> list);
 
     public void drawTexturedModalRect(int x, int y, int u, int v, int width, int height) {
 
-        gui.drawSizedTexturedModalRect(x, y, u, v, width, height, texW, texH);
+        this.gui.drawSizedTexturedModalRect(x, y, u, v, width, height, this.texW, this.texH);
     }
 
-    public boolean handleMouseClicked(int x, int y, int mouseButton) {
+    public void handleMouseClicked(int x, int y, int mouseButton) {
 
-        return false;
     }
 
     public boolean intersectsWith(int mouseX, int mouseY) {
 
-        mouseX += gui.getGuiLeft();
-        mouseY += gui.getGuiTop();
+        mouseX += this.gui.getGuiLeft();
+        mouseY += this.gui.getGuiTop();
 
-        if (mouseX >= this.posX && mouseX <= this.posX + this.sizeX && mouseY >= this.posY && mouseY <= this.posY + this.sizeY) {
-            return true;
-        }
-        return false;
+        return mouseX >= this.posX && mouseX <= this.posX + this.sizeX && mouseY >= this.posY && mouseY <= this.posY + this.sizeY;
     }
 
     public String getName() {
 
-        return name;
+        return this.name;
+    }
+
+    public GuiComponentBase setName(String name) {
+
+        this.name = name;
+        return this;
     }
 
 }
