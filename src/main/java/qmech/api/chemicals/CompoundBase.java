@@ -1,6 +1,6 @@
-package qmech.lib.chemicals;
+package qmech.api.chemicals;
 
-import qmech.lib.chemicals.registry.ChemicalDictionary;
+import qmech.api.chemicals.registry.ChemicalDictionary;
 
 import java.util.Arrays;
 import java.util.List;

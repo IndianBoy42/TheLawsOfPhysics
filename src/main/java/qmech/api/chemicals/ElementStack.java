@@ -1,4 +1,4 @@
-package qmech.lib.chemicals;
+package qmech.api.chemicals;
 
 public class ElementStack {
 

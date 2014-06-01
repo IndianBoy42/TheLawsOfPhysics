@@ -1,9 +1,9 @@
-package qmech.lib.chemicals.registry;
+package qmech.api.chemicals.registry;
 
-import qmech.lib.chemicals.CompoundBase;
-import qmech.lib.chemicals.ElementBase;
-import qmech.lib.chemicals.MineralBase;
-import qmech.lib.chemicals.RadicalBase;
+import qmech.api.chemicals.CompoundBase;
+import qmech.api.chemicals.ElementBase;
+import qmech.api.chemicals.MineralBase;
+import qmech.api.chemicals.RadicalBase;
 
 import java.util.Set;
 

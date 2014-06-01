@@ -1,10 +1,10 @@
-package qmech.lib.chemicals.registry;
+package qmech.api.chemicals.registry;
 
 import net.minecraft.item.ItemStack;
-import qmech.lib.chemicals.ElementBase;
-import qmech.lib.chemicals.ElementStack;
-import qmech.lib.chemicals.MineralBase;
-import qmech.lib.chemicals.RadicalBase;
+import qmech.api.chemicals.ElementBase;
+import qmech.api.chemicals.ElementStack;
+import qmech.api.chemicals.MineralBase;
+import qmech.api.chemicals.RadicalBase;
 
 import java.util.*;
 

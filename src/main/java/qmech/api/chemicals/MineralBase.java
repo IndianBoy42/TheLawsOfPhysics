@@ -1,8 +1,8 @@
-package qmech.lib.chemicals;
+package qmech.api.chemicals;
 
 import com.google.common.collect.Sets;
-import qmech.lib.chemicals.registry.ChemicalDictionary;
-import qmech.lib.chemicals.registry.MineralDictionary;
+import qmech.api.chemicals.registry.ChemicalDictionary;
+import qmech.api.chemicals.registry.MineralDictionary;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,9 +1,9 @@
-package qmech.lib.chemicals.registry;
+package qmech.api.chemicals.registry;
 
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.oredict.OreDictionary;
-import qmech.lib.chemicals.ElementBase;
+import qmech.api.chemicals.ElementBase;
 
 import java.util.Map;
 
