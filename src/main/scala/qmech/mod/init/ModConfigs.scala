@@ -3,7 +3,6 @@ package qmech.mod.init
 import net.minecraftforge.common.config.Configuration
 import cpw.mods.fml.common.event.FMLPreInitializationEvent
 import qmech.lib.objects.BlockBase
-import QMechanization
 import qmech.lib.objects.info.BlockInfo
 
 object ModConfigs {
@@ -13,7 +12,7 @@ object ModConfigs {
   var doOreGen: Boolean = true
 
   def preInit() {
-    cfg = create(QMechanization.preInit)
+    cfg = create(QMechanization.preInitVar)
     cfg.load()
     createCategory(FEATURES, FEATURES_COMMENTS)
     doOreGen = cfg.get(FEATURES, "Should Do Ore Generation", doOreGen, "Should Quantum Mechanization Generate Ores\n" + "Disable If Some Other Mod Handles Ore Generation For Your Mod Pack").getBoolean(doOreGen)

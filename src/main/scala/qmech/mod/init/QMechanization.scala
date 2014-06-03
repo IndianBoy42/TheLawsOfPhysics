@@ -1,23 +1,25 @@
 package qmech.mod.init
 
-import cpw.mods.fml.common.Mod
+import cpw.mods.fml.common.{SidedProxy, Mod}
 import cpw.mods.fml.client.registry.RenderingRegistry
 import cpw.mods.fml.common.Mod.EventHandler
 import cpw.mods.fml.common.event.{FMLPostInitializationEvent, FMLInitializationEvent, FMLPreInitializationEvent}
 import qmech.lib.helper.Log
+import qmech.mod.network.ModProxy
 
 /**
  * Created by anshuman on 25-05-2014.
  */
-@Mod(modid = Reference.MOD_ID,
-  name = Reference.MOD_NAME,
-  version = Reference.MOD_VERSION,
-  modLanguage = Reference.MOD_LANGUAGE)
+@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.MOD_VERSION, modLanguage = Reference.MOD_LANGUAGE)
 object QMechanization {
+
+  @SidedProxy(clientSide=Reference.CLIENT_PROXY_CLASS, serverSide=Reference.SERVER_PROXY_CLASS)
+  var proxy: ModProxy = null
 
   @EventHandler
   def preInit(event: FMLPreInitializationEvent) = {
     Log.info("Mechanizing Quantumly")
+    preInitVar = event
 
     ModConfigs.preInit()
 
@@ -26,7 +28,7 @@ object QMechanization {
     ModFluids.preInit()
     ModEquipment.preInit()
 
-    ModMetals.preInit
+    ModMetals.preInit()
 
     ModRecipies.preInit()
 
@@ -35,16 +37,16 @@ object QMechanization {
 
   @EventHandler
   def init(event: FMLInitializationEvent) = {
-
+    initVar = event
   }
 
   def postInit(event: FMLPostInitializationEvent) = {
-
+    postInitVar = event
   }
 
-  var preInit: FMLPreInitializationEvent = null
-  var init: FMLInitializationEvent = null
-  var postInit: FMLPostInitializationEvent = null
+  var preInitVar: FMLPreInitializationEvent = null
+  var initVar: FMLInitializationEvent = null
+  var postInitVar: FMLPostInitializationEvent = null
 
 }
 

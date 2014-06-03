@@ -19,14 +19,13 @@ abstract class MetaItemBase(intName: String) extends Item {
   setHasSubtypes(true)
   setMaxDamage(0)
   this.setUnlocalizedName(intName)
-  this.prefix = intName
   GameRegistry.registerItem(this, intName)
 
   def registerItem(id: Int, item: IMetaSubItem) = metaitems.put(id, item)
 
   override def registerIcons(register: IIconRegister) {
     for (item <- metaitems.values) {
-      item.registerIcons(register, prefix)
+      item.registerIcons(register, intName)
     }
   }
 
@@ -41,7 +40,7 @@ abstract class MetaItemBase(intName: String) extends Item {
   override def getUnlocalizedName(stack: ItemStack): String = {
     val meta: IMetaSubItem = getMeta(stack.getItemDamage)
     if (meta != null) {
-      return s"item.${prefix}_${meta.getUnlocalizedName(stack)}"
+      return s"item.${intName}_${meta.getUnlocalizedName(stack)}"
     }
     ""
   }

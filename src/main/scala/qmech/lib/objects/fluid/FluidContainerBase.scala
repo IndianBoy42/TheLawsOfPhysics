@@ -15,8 +15,8 @@ import qmech.mod.init.Reference
  */
 class FluidContainerBase(intName: String, vol: Int, ctab: CreativeTabBase, registerAll: Boolean) extends MetaItemBase(intName) {
   this.setTextureName(Reference.MOD_ID + ":" + intName)
+  this.setUnlocalizedName("")
   this.setCreativeTab(ctab)
-  this.fluidVol = vol
   registerItem(0, new GenericSubItem("empty"))
   if (registerAll) {
     registerFluids()

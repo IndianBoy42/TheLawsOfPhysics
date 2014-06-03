@@ -62,4 +62,6 @@ class BlockBase(blockMaterial: Material, val intName: String) extends Block(bloc
     val dir: Int = MathHelper.floor_double(((player.rotationYaw * 4F) / 360F).asInstanceOf[Double] + 0.5D) & 3
     world.setBlockMetadataWithNotify(x, y, z, dir, 0)
   }
+
+  def newItemStack(size: Int = 1) = new ItemStack(this, size)
 }

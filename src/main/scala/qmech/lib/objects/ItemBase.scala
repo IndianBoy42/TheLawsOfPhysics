@@ -1,6 +1,6 @@
 package qmech.lib.objects
 
-import net.minecraft.item.Item
+import net.minecraft.item.{ItemStack, Item}
 import net.minecraft.creativetab.CreativeTabs
 import cpw.mods.fml.common.registry.GameRegistry
 import qmech.mod.init.Reference
@@ -36,4 +36,6 @@ class ItemBase(intName: String) extends Item {
   def registerItem() {
     GameRegistry.registerItem(this, this.getUnlocalizedName.substring(5))
   }
+
+  def newItemStack(size: Int = 1) = new ItemStack(this, size)
 }

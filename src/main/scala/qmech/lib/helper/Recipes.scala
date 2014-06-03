@@ -15,7 +15,12 @@ object Recipes {
     GameRegistry.addShapelessRecipe(output, recipePars)
   }
 
-  def smeltingRecipe(output: ItemStack, input: ItemStack, xp: Float) {
+  def smeltingRecipe(output: ItemStack, input: ItemStack, xp: Float = 1.0F) {
     GameRegistry.addSmelting(input, output, xp)
   }
+
+  def grid3 = Array("xxx", "xxx", "xxx")
+  def grid2 = Array("xx", "xx")
+  def cross3 = Array("xyx", "yxy", "xyx")
+  def cross2 = Array("xy", "yx")
 }

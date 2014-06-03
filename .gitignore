@@ -7,5 +7,6 @@ bin/
 *.ipr
 *.iws
 *.iml
+!build/libs
 
 screenshots/
