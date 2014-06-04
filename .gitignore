@@ -1,12 +1,12 @@
 .idea/
 .gradle/
-build/
 eclipse/
 out/
 bin/
 *.ipr
 *.iws
 *.iml
-!build/libs
+build/
 
-screenshots/
+#buggy?
+screenshots/Calcination Chamber

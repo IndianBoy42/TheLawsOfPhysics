@@ -31,7 +31,7 @@ trait ToolBase {
     tool.setTextureName(s"${Reference.MOD_ID}:${toolType.toolName}_$prefix")
     tool.setUnlocalizedName(s"${toolType.toolName}_$prefix")
     tool.setCreativeTab(ctab)
-    Recipes.shapedRecipe(new ItemStack(tool), craftingShape, 'x', toolType.craftMaterial, 's', Items.stick)
+//    Recipes.shapedRecipe(new ItemStack(tool), craftingShape, 'x', toolType.craftMaterial, 's', Items.stick)
     GameRegistry.registerItem(tool, s"${toolType.toolName}_$prefix")
   }
 

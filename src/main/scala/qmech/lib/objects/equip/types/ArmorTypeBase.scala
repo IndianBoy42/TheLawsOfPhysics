@@ -20,11 +20,9 @@ object ArmorTypeBase {
 }
 
 class ArmorTypeBase(var armorName: String, var durability: Int, var reductionAmounts: Array[Int], var enchantability: Int, var craftMaterial: ItemStack) {
-  armorType = EnumHelper.addArmorMaterial(armorName, durability, reductionAmounts, enchantability)
-
   def this(name: String, info: ArmorInfo, mat: ItemStack) = this(name, info.durability, info.reductionAmounts, info.enchantability, mat)
 
-  var armorType: ArmorMaterial = ArmorMaterial.IRON
+  var armorType: ArmorMaterial = EnumHelper.addArmorMaterial(armorName, durability, reductionAmounts, enchantability)
 
   var armorPieces: List[ArmorBase] = List.empty
 

@@ -1,6 +1,5 @@
 package qmech.mod.content.metals
 
-import qmech.lib.objects.{ItemBase, BlockBase}
 import net.minecraft.block.material.Material
 import qmech.lib.handler.WorldGenerator
 import qmech.mod.init.{ModFluids, CTabs}
@@ -10,6 +9,8 @@ import net.minecraft.item.ItemStack
 import qmech.lib.objects.info._
 import qmech.lib.helper.Recipes
 import net.minecraft.init.Items
+import qmech.lib.objects.item.ItemBase
+import qmech.lib.objects.block.BlockBase
 
 /**
  * Created by anshuman on 26-05-2014.
@@ -93,20 +94,28 @@ abstract class MetalBase(val metal: MetalInfo) {
   def createFluid(prefix: String): Unit = createFluid(prefix, Material.lava)
 
   def createArmor(prefix: String, mat: ItemStack) = {
-    addArmor(new ArmorTypeBase(s"${prefix}_${metal.name}", metal.getArmorInfo, mat), prefix)
+    val fix = prefix match {
+      case "armor" | "" => ""
+      case _ => prefix
+    }
+    addArmor(new ArmorTypeBase(s"${fix}${metal.name}", metal.getArmorInfo, mat), prefix)
     getArmor(prefix).createArmorSet(CTabs.Metals)
   }
 
   def createArmor(prefix: String): Unit = createArmor(prefix, "ingot")
 
-  def createArmor(prefix: String, mat: String): Unit = createArmor(prefix, new ItemStack(getItem(mat)))
+  def createArmor(prefix: String = "armor", mat: String = "ingot"): Unit = createArmor(prefix, new ItemStack(getItem(mat)))
 
   def createTools(prefix: String, mat: ItemStack) = {
-    addTools(new ToolTypeBase(s"${prefix}_${metal.name}", metal.getToolInfo, mat), prefix)
+    val fix = prefix match {
+    case "tool" | "" => ""
+    case _ => prefix
+    }
+    addTools(new ToolTypeBase(s"${fix}${metal.name}", metal.getToolInfo, mat), prefix)
     getTool(prefix).createToolSet(CTabs.Metals)
   }
 
-  def createTools(prefix: String, mat: String): Unit = createTools(prefix, new ItemStack(getItem(mat)))
+  def createTools(prefix: String = "tool", mat: String = "ingot"): Unit = createTools(prefix, new ItemStack(getItem(mat)))
 
   def createTools(prefix: String): Unit = createTools(prefix, "ingot")
 
@@ -143,6 +152,12 @@ class SimpleMetal(metalInfo: MetalInfo) extends MetalBase(metalInfo) {
     createFluid("slurry")
     createFluid("cleanSlurry")
     createFluid("enrichedSlurry")
+
+    createArmor()
+    createArmor("reinforced", "plate")
+
+    createTools()
+    createTools("reinforced", "plate")
   }
 
   override def recipes(): Unit = {

@@ -6,10 +6,10 @@ import net.minecraft.block.Block
 import net.minecraft.world.gen.feature.WorldGenMinable
 import net.minecraft.world.World
 import net.minecraft.world.chunk.IChunkProvider
-import qmech.lib.objects.BlockBase
 import java.util.Random
 import qmech.lib.objects.info.GenStats
 import qmech.lib.helper.Log
+import qmech.lib.objects.block.BlockBase
 
 /**
  * Created by anshuman on 28-05-2014.

@@ -6,7 +6,6 @@ import java.util
 import net.minecraft.entity.Entity
 import qmech.lib.objects.equip.types.ArmorTypeBase
 import qmech.lib.objects.CreativeTabBase
-import qmech.lib.helper.Recipes
 import cpw.mods.fml.common.registry.GameRegistry
 import qmech.mod.init.Reference
 
@@ -19,11 +18,11 @@ object ArmorBase {
 
 class ArmorBase(val armorMaterial: ArmorTypeBase, val armorPart: Int, ctab: CreativeTabBase) extends ItemArmor(armorMaterial.armorType, 0, armorPart) {
   val intName = s"${armorMaterial.armorName}_${ArmorBase.suffixes(armorPart)}"
-  setTextureName(s"${Reference.MOD_ID}$intName")
+  setTextureName(s"${Reference.MOD_ID}:$intName")
   setUnlocalizedName(intName)
   setCreativeTab(ctab)
 
-  Recipes.shapedRecipe(new ItemStack(this), ArmorTypeBase.craftingRecipes(armorPart), 'x', armorMaterial.craftMaterial)
+  //  Recipes.shapedRecipe(new ItemStack(this), ArmorTypeBase.craftingRecipes(armorPart), 'x', armorMaterial.craftMaterial)
 
   GameRegistry.registerItem(this, intName)
 
@@ -35,11 +34,11 @@ class ArmorBase(val armorMaterial: ArmorTypeBase, val armorPart: Int, ctab: Crea
 
   override def getArmorTexture(stack: ItemStack, entity: Entity, slot: Int, `type`: String): String = {
     val layer = slot match {
-      case 2 => "_Leggings"
-      case _ => ""
+      case 2 => "_2"
+      case _ => "_1"
     }
-    //    val armorName = stack.getItem.asInstanceOf[ArmorBase].getArmorMaterial.name()
-    val armorName = this.getArmorMaterial.name()
+    val armorName = stack.getItem.asInstanceOf[ArmorBase].getArmorMaterial.name()
+    //    val armorName = this.getArmorMaterial.name()
     s"${Reference.MOD_ID}:/textures/models/armor/$armorName$layer.png"
   }
 }

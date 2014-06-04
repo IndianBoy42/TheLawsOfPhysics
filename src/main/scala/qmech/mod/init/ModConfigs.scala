@@ -2,8 +2,8 @@ package qmech.mod.init
 
 import net.minecraftforge.common.config.Configuration
 import cpw.mods.fml.common.event.FMLPreInitializationEvent
-import qmech.lib.objects.BlockBase
 import qmech.lib.objects.info.BlockInfo
+import qmech.lib.objects.block.BlockBase
 
 object ModConfigs {
   var cfg: Configuration = null

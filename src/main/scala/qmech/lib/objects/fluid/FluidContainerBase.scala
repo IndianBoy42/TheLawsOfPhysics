@@ -1,6 +1,6 @@
 package qmech.lib.objects.fluid
 
-import qmech.lib.objects.meta.{GenericSubItem, MetaItemBase}
+import qmech.lib.objects.item.{GenericSubItem, MetaItemBase}
 import net.minecraftforge.fluids.{Fluid, FluidStack, FluidContainerRegistry, FluidRegistry}
 import net.minecraft.item.ItemStack
 import net.minecraft.util.MovingObjectPosition
