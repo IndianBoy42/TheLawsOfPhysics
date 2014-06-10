@@ -30,20 +30,14 @@ abstract class MetaItemBase(intName: String) extends Item {
   }
 
   override def getIconFromDamage(i: Int): IIcon = {
-    val meta: IMetaSubItem = getMeta(i)
-    if (meta != null) {
-      return meta.getIcon
-    }
-    null
+    if (metaitems contains i) metaitems(i).getIcon else metaitems(0).getIcon
   }
 
   override def getUnlocalizedName(stack: ItemStack): String = {
-    val meta: IMetaSubItem = getMeta(stack.getItemDamage)
-    if (meta != null) {
-      return s"item.${intName}_${meta.getUnlocalizedName(stack)}"
-    }
-    ""
+    if (metaitems contains stack.getItemDamage) s"item.${intName}_${metaitems(stack.getItemDamage).getUnlocalizedName(stack)}" else "Invalid Item"
   }
+
+  override def getItemStackDisplayName(par1ItemStack: ItemStack): String = if (getUnlocalizedName(par1ItemStack).equals("Invalid Item")) "Invalid Item" else super.getItemStackDisplayName(par1ItemStack)
 
   override def onItemUse(itemStack: ItemStack, player: EntityPlayer, world: World, x: Int, y: Int, z: Int, side: Int, par8: Float, par9: Float, par10: Float): Boolean = {
     val meta: IMetaSubItem = getMeta(itemStack.getItemDamage)
@@ -70,8 +64,7 @@ abstract class MetaItemBase(intName: String) extends Item {
   }
 
   @SideOnly(Side.CLIENT) override def hasEffect(itemStack: ItemStack, pass: Int): Boolean = {
-    val meta: IMetaSubItem = getMeta(itemStack.getItemDamage)
-    if (meta != null) meta.hasEffect(pass) else false
+    if (metaitems contains itemStack.getItemDamage) metaitems(itemStack.getItemDamage).hasEffect(pass) else false
   }
 
   @SideOnly(Side.CLIENT)

@@ -1,9 +1,10 @@
 package qmech.lib.objects.fluid
 
-import net.minecraftforge.fluids.{FluidRegistry, Fluid}
+import net.minecraftforge.fluids.{FluidStack, FluidContainerRegistry, FluidRegistry, Fluid}
 import net.minecraft.block.material.Material
 import qmech.lib.objects.info.FluidInfo
 import qmech.lib.objects.CreativeTabBase
+import net.minecraft.item.ItemStack
 
 class FluidBase(fluidName: String, material: Material, ctab: CreativeTabBase) extends Fluid(fluidName) {
   FluidRegistry.registerFluid(this)
@@ -19,4 +20,8 @@ class FluidBase(fluidName: String, material: Material, ctab: CreativeTabBase) ex
   }
 
   def this(fluidName: String, material: Material, ctab: CreativeTabBase, info: FluidInfo) = this(fluidName, material, ctab, info.temperature, info.density, info.viscosity, info.luminosity)
+
+  def newFluidStack(vol: Int = FluidContainerRegistry.BUCKET_VOLUME) = new FluidStack(this, vol)
+
+  def newItemStack(size: Int = 1) = new ItemStack(this.block, size)
 }

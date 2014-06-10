@@ -7,10 +7,12 @@ import qmech.lib.objects.fluid.FluidBase
 import qmech.lib.objects.equip.types.{ToolTypeBase, ArmorTypeBase}
 import net.minecraft.item.ItemStack
 import qmech.lib.objects.info._
-import qmech.lib.helper.Recipes
-import net.minecraft.init.Items
 import qmech.lib.objects.item.ItemBase
 import qmech.lib.objects.block.BlockBase
+import net.minecraftforge.oredict.OreDictionary.registerOre
+import qmech.lib.helper.Recipes._
+import net.minecraftforge.fluids.FluidStack
+import net.minecraft.init.Items
 
 /**
  * Created by anshuman on 26-05-2014.
@@ -24,6 +26,8 @@ abstract class MetalBase(val metal: MetalInfo) {
 
   def getBlock(name: String): BlockBase = blocks(name)
 
+  def getBlockStack(name: String): ItemStack = blocks(name).newItemStack()
+
   def addBlock(block: BlockBase, prefix: String) = blocks += (prefix -> block)
 
   def getBlocks = for (block <- blocks.values) yield block
@@ -34,6 +38,8 @@ abstract class MetalBase(val metal: MetalInfo) {
 
   def getItem(name: String): ItemBase = items(name)
 
+  def getItemStack(name: String): ItemStack = items(name).newItemStack()
+
   def addItem(item: ItemBase, prefix: String) = items += (prefix -> item)
 
   def getItems = for (item <- items.values) yield item
@@ -41,6 +47,10 @@ abstract class MetalBase(val metal: MetalInfo) {
   var fluids: Map[String, FluidBase] = Map.empty
 
   def getFluid(name: String): FluidBase = fluids(name)
+
+  def getFluidStack(name: String): FluidStack = fluids(name).newFluidStack()
+
+  def getFluidBlockStack(name: String): ItemStack = fluids(name).newItemStack()
 
   def addFluid(fluid: FluidBase, prefix: String) = fluids += (prefix -> fluid)
 
@@ -78,8 +88,9 @@ abstract class MetalBase(val metal: MetalInfo) {
 
   def createBlock(prefix: String): Unit = createBlock(prefix, Material.iron)
 
-  def createBlock(prefix: String, mat: Material) =
+  def createBlock(prefix: String, mat: Material) = {
     addBlock(new BlockBase(s"${prefix}_${metal.name}", mat, CTabs.Metals, metal.getBlockInfo), prefix)
+  }
 
   def createItem(prefix: String): Unit = createItem(prefix, 64)
 
@@ -108,8 +119,8 @@ abstract class MetalBase(val metal: MetalInfo) {
 
   def createTools(prefix: String, mat: ItemStack) = {
     val fix = prefix match {
-    case "tool" | "" => ""
-    case _ => prefix
+      case "tool" | "" => ""
+      case _ => prefix
     }
     addTools(new ToolTypeBase(s"${fix}${metal.name}", metal.getToolInfo, mat), prefix)
     getTool(prefix).createToolSet(CTabs.Metals)
@@ -138,20 +149,25 @@ class SimpleMetal(metalInfo: MetalInfo) extends MetalBase(metalInfo) {
     createItem("brick")
     createItem("plate")
 
+    createItem("powder")
+
     createOre()
     createOre("nether")
     createOre("ender")
     createOre("gravel")
 
-    createItem("dust")
-    createItem("powder")
-    createItem("dirtyDust")
-    createItem("clump")
+    //semi processed forms of ore will be readded once more finalized
+    //createItem("dust")
+    //createItem("dirtyDust")
+    //createItem("clump")
+    //createItem("oreChunks")
+    //createItem("oreGravel")
+    //createItem("oreSand")
+    //createFluid("oreSlurry")
+    //createFluid("cleanSlurry")
+    //createFluid("enrichedSlurry")
 
     createFluid("molten")
-    createFluid("slurry")
-    createFluid("cleanSlurry")
-    createFluid("enrichedSlurry")
 
     createArmor()
     createArmor("reinforced", "plate")
@@ -161,23 +177,26 @@ class SimpleMetal(metalInfo: MetalInfo) extends MetalBase(metalInfo) {
   }
 
   override def recipes(): Unit = {
-//    Recipes.shapedRecipe(getBlock("block").newItemStack(),
-//      Recipes.grid3, 'x', getItem("ingot").newItemStack() )
-//    Recipes.shapedRecipe(getBlock("bricks").newItemStack(),
-//      Recipes.grid3, 'x', getItem("brick").newItemStack() )
-//    Recipes.shapedRecipe(getItem("ingot").newItemStack(),
-//      Recipes.grid3, 'x', getItem("nugget").newItemStack() )
-//    Recipes.shapedRecipe(getItem("plate").newItemStack(2),
-//      Recipes.grid2, 'x', getItem("ingot").newItemStack())
-//    Recipes.shapedRecipe(getItem("brick").newItemStack(5),
-//      Recipes.cross3, 'x', getItem("powder").newItemStack(), 'y', new ItemStack(Items.clay_ball))
-//    Recipes.shapedRecipe(getItem("brick").newItemStack(2),
-//      Recipes.cross2, 'x', getItem("powder").newItemStack(), 'y', new ItemStack(Items.clay_ball))
-//
-//    Recipes.smeltingRecipe(getItem("ingot").newItemStack(), getBlock("ore").newItemStack())
-//    Recipes.smeltingRecipe(getItem("ingot").newItemStack(), getBlock("netherOre").newItemStack())
-//    Recipes.smeltingRecipe(getItem("ingot").newItemStack(), getBlock("gravelOre").newItemStack())
-//    Recipes.smeltingRecipe(getItem("ingot").newItemStack(), getBlock("enderOre").newItemStack())
+    for (block <- blocks) registerOre(s"${block._1}${this.metal.name}", block._2)
+    for (item <- items) registerOre(s"${item._1}${this.metal.name}", item._2)
+
+    shapedRecipe(getBlock("block").newItemStack(),
+      grid3, 'x'.asInstanceOf[java.lang.Character], getItem("ingot").newItemStack())
+    shapedRecipe(getBlock("bricks").newItemStack(),
+      grid3, 'x'.asInstanceOf[java.lang.Character], getItem("brick").newItemStack())
+    shapedRecipe(getItem("ingot").newItemStack(),
+      grid3, 'x'.asInstanceOf[java.lang.Character], getItem("nugget").newItemStack())
+    shapedRecipe(getItem("plate").newItemStack(2),
+      grid2, 'x'.asInstanceOf[java.lang.Character], getItem("ingot").newItemStack())
+    shapedRecipe(getItem("brick").newItemStack(5),
+      cross3, 'x'.asInstanceOf[java.lang.Character], getItem("powder").newItemStack(), 'y'.asInstanceOf[java.lang.Character], new ItemStack(Items.clay_ball))
+    shapedRecipe(getItem("brick").newItemStack(2),
+      cross2, 'x'.asInstanceOf[java.lang.Character], getItem("powder").newItemStack(), 'y'.asInstanceOf[java.lang.Character], new ItemStack(Items.clay_ball))
+
+    smeltingRecipe(getItem("ingot").newItemStack(), getBlock("ore").newItemStack())
+    smeltingRecipe(getItem("ingot").newItemStack(), getBlock("netherOre").newItemStack())
+    smeltingRecipe(getItem("ingot").newItemStack(), getBlock("gravelOre").newItemStack())
+    smeltingRecipe(getItem("ingot").newItemStack(), getBlock("enderOre").newItemStack())
   }
 
   def this(name: String,
