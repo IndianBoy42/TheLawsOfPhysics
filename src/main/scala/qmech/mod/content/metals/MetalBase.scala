@@ -152,9 +152,9 @@ class SimpleMetal(metalInfo: MetalInfo) extends MetalBase(metalInfo) {
     createItem("powder")
 
     createOre()
-    createOre("nether")
-    createOre("ender")
-    createOre("gravel")
+    //createOre("netherOre")
+    //createOre("enderOre")
+    //createOre("gravelOre")
 
     //semi processed forms of ore will be readded once more finalized
     //createItem("dust")
@@ -194,9 +194,23 @@ class SimpleMetal(metalInfo: MetalInfo) extends MetalBase(metalInfo) {
       cross2, 'x'.asInstanceOf[java.lang.Character], getItem("powder").newItemStack(), 'y'.asInstanceOf[java.lang.Character], new ItemStack(Items.clay_ball))
 
     smeltingRecipe(getItem("ingot").newItemStack(), getBlock("ore").newItemStack())
-    smeltingRecipe(getItem("ingot").newItemStack(), getBlock("netherOre").newItemStack())
-    smeltingRecipe(getItem("ingot").newItemStack(), getBlock("gravelOre").newItemStack())
-    smeltingRecipe(getItem("ingot").newItemStack(), getBlock("enderOre").newItemStack())
+    smeltingRecipe(getItem("ingot").newItemStack(), getItem("powder").newItemStack())
+    //smeltingRecipe(getItem("ingot").newItemStack(), getBlock("netherOre").newItemStack())
+    //smeltingRecipe(getItem("ingot").newItemStack(), getBlock("gravelOre").newItemStack())
+    //smeltingRecipe(getItem("ingot").newItemStack(), getBlock("enderOre").newItemStack())
+
+    val armorIngotComposition = Array(5, 8, 7 ,4)
+    for (armor <- getAllArmorPieces)
+      smeltingRecipe(getItem("ingot").newItemStack(armorIngotComposition(armor.armorPart)), armor.newItemStack())
+
+    for (tool <- getTools) {
+      smeltingRecipe(getItem("ingot").newItemStack(3), tool.pickaxe.newItemStack())
+      smeltingRecipe(getItem("ingot").newItemStack(3), tool.axe.newItemStack())
+      smeltingRecipe(getItem("ingot").newItemStack(2), tool.sword.newItemStack())
+      smeltingRecipe(getItem("ingot").newItemStack(1), tool.shovel.newItemStack())
+      smeltingRecipe(getItem("ingot").newItemStack(2), tool.hoe.newItemStack())
+    }
+
   }
 
   def this(name: String,

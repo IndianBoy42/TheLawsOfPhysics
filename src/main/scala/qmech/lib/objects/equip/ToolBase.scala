@@ -35,6 +35,8 @@ trait ToolBase {
     GameRegistry.registerItem(tool, s"${toolType.toolName}_$prefix")
   }
 
+  def newItemStack (amt: Int = 1) = new ItemStack(this.asInstanceOf[Item], amt)
+
 }
 
 class ToolAxe(val toolType: ToolTypeBase, ctab: CreativeTabBase) extends ItemAxe(toolType.toolType) with ToolBase {

@@ -41,4 +41,6 @@ class ArmorBase(val armorMaterial: ArmorTypeBase, val armorPart: Int, ctab: Crea
     //    val armorName = this.getArmorMaterial.name()
     s"${Reference.MOD_ID}:/textures/models/armor/$armorName$layer.png"
   }
+
+  def newItemStack (amt: Int = 1) = new ItemStack(this, amt)
 }
