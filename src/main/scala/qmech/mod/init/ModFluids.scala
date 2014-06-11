@@ -10,7 +10,7 @@ object ModFluids {
   var cell: FluidContainerBase = null
 
   def preInit() = {
-    cell = new FluidContainerBase("cell", FluidContainerRegistry.BUCKET_VOLUME, CTabs.Metals, false)
+    cell = new FluidContainerBase("cell", FluidContainerRegistry.BUCKET_VOLUME, CTabs.Tech, false)
   }
 
   def registerFluid (fluid: Fluid) = {

@@ -11,7 +11,8 @@ trait MetalProperties {
 
   //Amount of Heat Energy Required to/Lost While Changing the State Of Matter of 1 Gram of this Material
   //J/mol (joules per mole)
-  def latentHeat: Double
+  def latentHeatOfFusion: Double
+  def latentHeatOfVaporization: Double
 
   //Amount of Heat Energy Required to Heat 1 Gram of this Material by 1 degree
   //J/molK (joules per mole degrees kelvin)
@@ -56,11 +57,12 @@ trait MetalProperties {
 
 }
 
-class SimpleMetalProperties(val atomicWeight: Double = 63.546,
-                            val meltingPoint: Double = 1357.77, val boilingPoint: Double = 2835,
-                            val density: Double = 8960,
-                            val latentHeat: Double = 13.26, val heatCapacity: Double = 24.44,
-                            val thermalConductivity: Double = 401, val electricalResistance: Double = 16.78,
-                            val tensileStrength: Double = 220, val yieldStrength: Double = 70,
-                            val ionizationEnergy: Double = 745.5, val electroNegativity: Double = 1.90)
+class SimpleMetalProperties(var atomicWeight: Double,
+                            var meltingPoint: Double, var boilingPoint: Double,
+                            var density: Double,
+                            var latentHeatOfFusion: Double, var latentHeatOfVaporization: Double,
+                            var heatCapacity: Double,
+                            var thermalConductivity: Double, var electricalResistance: Double,
+                            var tensileStrength: Double, var yieldStrength: Double,
+                            var ionizationEnergy: Double, var electroNegativity: Double)
   extends MetalProperties
