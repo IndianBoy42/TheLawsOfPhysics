@@ -13,12 +13,19 @@ import net.minecraftforge.oredict.OreDictionary.registerOre
 import geek.lawsof.physics.lib.helper.Recipes._
 import net.minecraftforge.fluids.FluidStack
 import net.minecraft.init.Items
+import net.minecraftforge.oredict.OreDictionary
 
 /**
  * Created by anshuman on 26-05-2014.
  */
 abstract class MetalBase(val metal: MetalInfo) {
   def register()
+
+  def oreDict() = {
+    for (obj <- blocks) OreDictionary.registerOre(s"${obj._1}${metal.name}", obj._2)
+    for (obj <- items) OreDictionary.registerOre(s"${obj._1}${metal.name}", obj._2)
+    for (obj <- fluids) OreDictionary.registerOre(s"${obj._1}${metal.name}", obj._2.getBlock)
+  }
 
   def recipes()
 
@@ -174,6 +181,8 @@ class SimpleMetal(metalInfo: MetalInfo) extends MetalBase(metalInfo) {
 
     createTools()
     createTools("reinforced", "plate")
+
+    oreDict()
   }
 
   override def recipes(): Unit = {

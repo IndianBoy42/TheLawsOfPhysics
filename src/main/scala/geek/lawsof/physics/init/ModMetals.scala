@@ -11,7 +11,13 @@ object ModMetals {
   var copper = new SimpleMetal(MetalPresets.copper)
 
   def preInit() = {
+    Log.info("Creating Metal Sets")
+
     copper.register()
+  }
+
+  def init() = {
+    Log.info("Adding Recipes for Metal Sets")
 
     copper.recipes()
   }

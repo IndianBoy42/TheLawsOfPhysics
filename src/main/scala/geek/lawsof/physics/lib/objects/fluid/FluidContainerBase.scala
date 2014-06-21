@@ -18,32 +18,14 @@ class FluidContainerBase(intName: String, vol: Int, ctab: CreativeTabBase, regis
   this.setUnlocalizedName("")
   this.setCreativeTab(ctab)
   registerItem(0, new GenericSubItem("empty"))
-  if (registerAll) {
-    registerFluids()
-  }
-  else {
-    registerFluid(FluidRegistry.WATER)
-    registerFluid(FluidRegistry.LAVA)
-  }
+  registerFluid(FluidRegistry.WATER)
+  registerFluid(FluidRegistry.LAVA)
 
   def registerFluid(fluid: Fluid) {
     val fName: String = fluid.getName
     val fID: Int = FluidRegistry.getFluidID(fName)
     registerItem(fID, new GenericSubItem(fName))
     FluidContainerRegistry.registerFluidContainer(new FluidStack(fluid, vol), newItemStack(fID))
-  }
-
-  def registerFluids() {
-    {
-      var i: Int = 0
-      while (i < FluidRegistry.getMaxID + 1) {
-        val fluid: Fluid = FluidRegistry.getFluid(i)
-        if (fluid != null) {
-          registerFluid(fluid)
-          i += 1
-        }
-      }
-    }
   }
 
   override def onItemRightClick(itemStack: ItemStack, world: World, player: EntityPlayer): ItemStack = {

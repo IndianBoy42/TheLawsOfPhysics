@@ -41,7 +41,10 @@ object LawsOfPhysicsMod {
     initEvt = event
 
     ModBlocks.init()
+    ModFluids.init()
+    ModMetals.init()
     ModRecipies.init()
+
     CTabs.init()
 
     Log.info("Laws Of Physics Experimentation Complete")

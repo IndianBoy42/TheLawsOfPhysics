@@ -6,12 +6,15 @@ import geek.lawsof.physics.lib.objects.block.BlockBase
 import geek.lawsof.physics.core.Reference
 import java.io.File
 import geek.lawsof.physics.{Reference, LawsOfPhysicsMod}
+import geek.lawsof.physics.lib.helper.Log
 
 object ModConfigs {
 
   var oreGenStats: Configuration = null
 
   def preInit() {
+    Log.info("Creating Config Files")
+
     oreGenStats = create("OreGenStats", "Ore Generations Statisitics")
   }
 
