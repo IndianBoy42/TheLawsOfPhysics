@@ -9,7 +9,7 @@ object Reference {
   final val MOD_ID = "lawsofphysics"
   final val MOD_NAME = "The Laws Of Physics"
   final val MOD_VERSION = "1.7.2-0.1.0"
-  final val MOD_AUTHORS: List[String] = List("GeckoTheGeek42")
+  final val MOD_AUTHORS: List[String] = List("GeckoTheGeek42", "Zarkoix & Coldrock7 are former authors because they dissapeared")
   final val MOD_URL: String = ""
   final val MOD_DESCRIPTION: String = "A Realistic and Complex Technology Mod Based on Real Science Concepts"
   final val MOD_CREDITS: String = "Forge making this so damn easy "
