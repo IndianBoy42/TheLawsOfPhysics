@@ -5,7 +5,7 @@ import geek.lawsof.physics.lib.objects.info.{GenStats, BlockInfo}
 import geek.lawsof.physics.lib.objects.block.BlockBase
 import geek.lawsof.physics.core.Reference
 import java.io.File
-import geek.lawsof.physics.{Reference, QMechanization}
+import geek.lawsof.physics.{Reference, LawsOfPhysicsMod}
 
 object ModConfigs {
 
@@ -16,7 +16,7 @@ object ModConfigs {
   }
 
   def create(name: String, comment: String): Configuration = {
-    var cfg: Configuration = new Configuration(new File(QMechanization.preInitEvt.getModConfigurationDirectory, s"${Reference.MOD_ID}/$name.cfg"))
+    var cfg: Configuration = new Configuration(new File(LawsOfPhysicsMod.preInitEvt.getModConfigurationDirectory, s"${Reference.MOD_ID}/$name.cfg"))
     cfg.addCustomCategoryComment(name, comment)
     return cfg
   }
