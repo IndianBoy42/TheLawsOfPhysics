@@ -1,9 +1,7 @@
 package geek.lawsof.physics.init
 
 import net.minecraftforge.common.config.Configuration
-import geek.lawsof.physics.lib.objects.info.{GenStats, BlockInfo}
-import geek.lawsof.physics.lib.objects.block.BlockBase
-import geek.lawsof.physics.core.Reference
+import geek.lawsof.physics.lib.objects.info.{GenStats}
 import java.io.File
 import geek.lawsof.physics.{Reference, LawsOfPhysicsMod}
 import geek.lawsof.physics.lib.helper.Log

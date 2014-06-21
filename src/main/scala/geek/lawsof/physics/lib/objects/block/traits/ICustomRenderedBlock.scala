@@ -8,5 +8,5 @@ import net.minecraft.world.World
 trait ICustomRenderedBlock {
   def registerRenderer
 
-  def getBlockBoundsByState(w: World, x: Int, y: Int, z:Int)
+//  def getBlockBoundsByState(w: World, x: Int, y: Int, z:Int)
 }

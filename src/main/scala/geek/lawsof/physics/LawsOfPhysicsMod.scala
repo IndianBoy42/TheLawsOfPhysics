@@ -7,6 +7,8 @@ import geek.lawsof.physics.lib.helper.Log
 import geek.lawsof.physics.network.ModProxy
 import geek.lawsof.physics.init._
 import cpw.mods.fml.common.event.FMLInterModComms.IMCEvent
+import geek.lawsof.physics.Reference._
+import scala.collection.JavaConverters._
 
 /**
  * Created by anshuman on 25-05-2014.

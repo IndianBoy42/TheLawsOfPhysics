@@ -5,4 +5,6 @@ package geek.lawsof.physics.lib.objects.block.traits
  */
 trait ITickingTile {
 
+  def updateEntity()
+
 }

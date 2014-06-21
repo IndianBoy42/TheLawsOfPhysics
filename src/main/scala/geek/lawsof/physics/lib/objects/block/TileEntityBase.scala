@@ -7,7 +7,7 @@ import net.minecraft.nbt.NBTTagCompound
 import geek.lawsof.physics.lib.objects.block.nbt.ISyncMap
 import net.minecraft.network.{Packet, NetworkManager}
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity
-import geek.lawsof.physics.lib.objects.block.traits.IGuiTile
+import geek.lawsof.physics.lib.objects.block.traits.{ITickingTile, IGuiTile}
 
 /**
  * Created by anshuman on 28-05-2014.
@@ -15,6 +15,8 @@ import geek.lawsof.physics.lib.objects.block.traits.IGuiTile
 abstract class TileEntityBase extends TileEntity{
 
   def name: String
+
+  override def canUpdate: Boolean = this.isInstanceOf[ITickingTile]
 
   //ISyncTile
   def syncMap: ISyncMap = null

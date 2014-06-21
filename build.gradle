@@ -18,7 +18,7 @@ buildscript {
 apply plugin: 'scala'
 apply plugin: 'forge'
 
-version = "1.7.2-0.1.0-" + System.getenv("BUILD_NUMBER") ?: 0
+version = project.minecraft.version + "-0.1.0-" + System.getenv("BUILD_NUMBER")
 group = "geek.lawsof.physics" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "LawsOfPhysics"
 
