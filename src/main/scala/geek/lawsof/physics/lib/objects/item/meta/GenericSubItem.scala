@@ -1,4 +1,4 @@
-package geek.lawsof.physics.lib.objects.item
+package geek.lawsof.physics.lib.objects.item.meta
 
 import net.minecraft.util.IIcon
 import net.minecraft.item.{Item, ItemStack}

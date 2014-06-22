@@ -1,4 +1,4 @@
-package geek.lawsof.physics.lib.objects.item
+package geek.lawsof.physics.lib.objects.item.meta
 
 import net.minecraft.item.{ItemStack, Item}
 import cpw.mods.fml.common.registry.GameRegistry

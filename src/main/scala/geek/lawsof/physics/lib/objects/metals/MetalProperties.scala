@@ -1,4 +1,4 @@
-package geek.lawsof.physics.init.metals
+package geek.lawsof.physics.lib.objects.metals
 
 /**
  * Created by anshuman on 01-06-2014.

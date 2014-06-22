@@ -7,19 +7,19 @@ import cpw.mods.fml.common.registry.GameRegistry
 import net.minecraft.world.World
 import net.minecraft.entity.EntityLivingBase
 import net.minecraft.item.ItemStack
-import net.minecraft.util.{AxisAlignedBB, MathHelper}
+import net.minecraft.util.{IIcon, AxisAlignedBB, MathHelper}
 import geek.lawsof.physics.init.ModConfigs
 import geek.lawsof.physics.lib.objects.info.BlockInfo
 import geek.lawsof.physics.lib.objects.CreativeTabBase
 import net.minecraft.tileentity.TileEntity
 import geek.lawsof.physics.lib.objects.block.traits.ICustomRenderedBlock
 import geek.lawsof.physics.Reference
+import net.minecraft.client.renderer.texture.IIconRegister
 
 /**
  * Created by anshuman on 26-05-2014.
  */
 class BlockBase(blockMaterial: Material, val intName: String) extends Block(blockMaterial) {
-  this.setBlockTextureName(Reference.MOD_ID + ":" + intName)
   this.setInternalName(intName)
 
   def this(intName: String, blockMat: Material, ctab: CreativeTabs, hardness: Float, blastResistance: Float, toolType: String, toolLevel: Int) {
@@ -66,4 +66,8 @@ class BlockBase(blockMaterial: Material, val intName: String) extends Block(bloc
   }
 
   def newItemStack(size: Int = 1) = new ItemStack(this, size)
+
+  override def registerBlockIcons(reg : IIconRegister): Unit = this.blockIcon = reg.registerIcon(Reference.MOD_ID + ":" + intName)
+
+  override def getIcon(side : Int, meta : Int): IIcon = this.blockIcon
 }

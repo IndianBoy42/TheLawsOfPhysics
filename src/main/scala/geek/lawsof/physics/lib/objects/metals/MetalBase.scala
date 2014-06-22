@@ -1,4 +1,4 @@
-package geek.lawsof.physics.init.metals
+package geek.lawsof.physics.lib.objects.metals
 
 import net.minecraft.block.material.Material
 import geek.lawsof.physics.lib.handler.WorldGenerator

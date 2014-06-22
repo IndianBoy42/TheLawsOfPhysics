@@ -1,6 +1,6 @@
 package geek.lawsof.physics.lib.objects.fluid
 
-import geek.lawsof.physics.lib.objects.item.{GenericSubItem, MetaItemBase}
+import geek.lawsof.physics.lib.objects.item.MetaItemBase
 import net.minecraftforge.fluids.{Fluid, FluidStack, FluidContainerRegistry, FluidRegistry}
 import net.minecraft.item.ItemStack
 import net.minecraft.util.MovingObjectPosition
@@ -9,6 +9,7 @@ import geek.lawsof.physics.lib.objects.CreativeTabBase
 import net.minecraft.world.World
 import net.minecraft.entity.player.EntityPlayer
 import geek.lawsof.physics.Reference
+import geek.lawsof.physics.lib.objects.item.meta.{MetaItemBase, GenericSubItem}
 
 /**
  * Created by anshuman on 17-05-2014.

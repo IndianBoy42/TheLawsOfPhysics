@@ -1,4 +1,4 @@
-package geek.lawsof.physics.init.metals
+package geek.lawsof.physics.lib.objects.metals
 
 import geek.lawsof.physics.lib.objects.equip.types.ArmorTypeBase
 import geek.lawsof.physics.lib.objects.info._
