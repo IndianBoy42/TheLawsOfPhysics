@@ -1,4 +1,4 @@
-package geek.lawsof.physics.lib.objects.block.meta
+package geek.lawsof.physics.lib.objects.block.traits
 
 import net.minecraft.client.renderer.texture.IIconRegister
 import net.minecraft.util.IIcon

@@ -4,9 +4,10 @@ import net.minecraft.tileentity.TileEntity
 import net.minecraft.world.{IBlockAccess, World}
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.nbt.NBTTagCompound
-import geek.lawsof.physics.lib.objects.block.nbt.ISyncMap
 import net.minecraft.network.{Packet, NetworkManager}
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity
+import geek.lawsof.physics.lib.objects.block.te.traits.ITickingTile
+import geek.lawsof.physics.lib.objects.block.nbt.traits.ISyncMap
 
 /**
  * Created by anshuman on 28-05-2014.

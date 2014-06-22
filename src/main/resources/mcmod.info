@@ -1,0 +1,17 @@
+[
+{
+  "modid": "lawsofphysics",
+  "name": "The Laws Of Physics Mod",
+  "description": "Realistic Complex Techonology base of Real Science",
+  "version": "@VERSION@",
+  "credits": "MinecraftForge for making this so easy",
+  "logoFile": "logo.png",
+  "mcversion": "@MCVERSION@",
+  "url": "notyet.werepoor.com/notreally/dontclickthis/lol",
+  "updateUrl": "notyet.werepoor.com/notreally/dontclickthis/lol",
+  "authors": ["GeckoTheGeek42", "Zarkoix"],
+  "parent":"",
+  "screenshots": [],
+  "dependencies": [""]
+}
+]

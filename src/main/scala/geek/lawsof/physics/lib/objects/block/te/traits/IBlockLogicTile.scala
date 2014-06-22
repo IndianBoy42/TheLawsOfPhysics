@@ -1,4 +1,4 @@
-package geek.lawsof.physics.lib.objects.block.te
+package geek.lawsof.physics.lib.objects.block.te.traits
 
 import net.minecraft.entity.player.EntityPlayer
 

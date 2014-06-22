@@ -27,14 +27,13 @@ configFile.withReader {
 }
 
 version = config.mc_version+"-"+config.mod_version+"-"+config.build_number
-//version = "1.7.2-0.1.0-0001"
 group = "geek.lawsof.physics" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "LawsOfPhysics"
 
 logger.lifecycle ""+version
 
 minecraft {
-    version = "1.7.2-10.12.2.1126"
+    version = "1.7.2-10.12.2.1131"
     assetDir = "eclipse/assets"
 }
 
