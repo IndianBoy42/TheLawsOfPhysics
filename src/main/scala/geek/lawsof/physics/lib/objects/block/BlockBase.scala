@@ -12,7 +12,7 @@ import geek.lawsof.physics.init.ModConfigs
 import geek.lawsof.physics.lib.objects.info.BlockInfo
 import geek.lawsof.physics.lib.objects.CreativeTabBase
 import net.minecraft.tileentity.TileEntity
-import geek.lawsof.physics.lib.objects.block.traits.ICustomRenderedBlock
+import geek.lawsof.physics.lib.objects.block.te.ICustomRenderedBlock
 import geek.lawsof.physics.Reference
 import net.minecraft.client.renderer.texture.IIconRegister
 

@@ -1,4 +1,4 @@
-package geek.lawsof.physics.lib.objects.block.traits
+package geek.lawsof.physics.lib.objects.block.meta
 
 import net.minecraft.client.renderer.texture.IIconRegister
 import net.minecraft.util.IIcon
@@ -8,7 +8,7 @@ import cpw.mods.fml.relauncher.{Side, SideOnly}
  * Created by anshuman on 22-06-2014.
  */
 trait ISidedIcon {
-  @SideOnly(Side.Client)
+  @SideOnly(Side.CLIENT)
   def iconArray: IconArray
 
   def registerBlockIcons(reg: IIconRegister): Unit = iconArray.register(reg)
@@ -49,12 +49,12 @@ class IconArray(var top: String,
     backIcon = reg.registerIcon(back)
   }
 
-  var topIcon: IIcon
-  var bottomIcon: IIcon
-  var leftIcon: IIcon
-  var rightIcon: IIcon
-  var frontIcon: IIcon
-  var backIcon: IIcon
+  var topIcon: IIcon = null
+  var bottomIcon: IIcon = null
+  var leftIcon: IIcon = null
+  var rightIcon: IIcon = null
+  var frontIcon: IIcon = null
+  var backIcon: IIcon = null
 
 }
 
@@ -66,7 +66,7 @@ object IconArray {
             front: String,
             back: String) = new IconArray(top, bottom, left, right, front, back)
 
-  def apply (name: String) = {
+  def apply (name: String): IconArray = {
     IconArray(s"${name}_top",s"${name}_bottom",s"${name}_left",s"${name}_right",s"${name}_front",s"${name}_back")
   }
 

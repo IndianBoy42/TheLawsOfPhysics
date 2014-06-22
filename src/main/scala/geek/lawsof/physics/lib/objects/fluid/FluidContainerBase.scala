@@ -1,6 +1,5 @@
 package geek.lawsof.physics.lib.objects.fluid
 
-import geek.lawsof.physics.lib.objects.item.MetaItemBase
 import net.minecraftforge.fluids.{Fluid, FluidStack, FluidContainerRegistry, FluidRegistry}
 import net.minecraft.item.ItemStack
 import net.minecraft.util.MovingObjectPosition

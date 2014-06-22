@@ -1,4 +1,4 @@
-package geek.lawsof.physics.lib.objects.block.traits
+package geek.lawsof.physics.lib.objects.block.te
 
 import net.minecraft.world.World
 

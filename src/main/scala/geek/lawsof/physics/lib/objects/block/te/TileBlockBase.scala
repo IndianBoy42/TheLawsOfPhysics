@@ -1,16 +1,16 @@
-package geek.lawsof.physics.lib.objects.block
+package geek.lawsof.physics.lib.objects.block.te
 
 import net.minecraft.block.material.Material
-import geek.lawsof.physics.lib.objects.block.traits.ICustomRenderedBlock
 import net.minecraft.world.{IBlockAccess, World}
 import net.minecraft.entity.player.EntityPlayer
-import net.minecraft.util.AxisAlignedBB
 import net.minecraft.tileentity.TileEntity
-import net.minecraft.block.{Block, ITileEntityProvider}
+import net.minecraft.block.ITileEntityProvider
 import cpw.mods.fml.common.registry.GameRegistry
 import cpw.mods.fml.client.registry.ClientRegistry
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer
 import geek.lawsof.physics.Reference
+import geek.lawsof.physics.lib.objects.block.BlockBase
+import geek.lawsof.physics.lib.helper.Coord
 
 /**
  * Created by anshuman on 14-06-2014.

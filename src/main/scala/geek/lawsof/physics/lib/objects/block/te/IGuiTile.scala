@@ -1,4 +1,4 @@
-package geek.lawsof.physics.lib.objects.block.traits
+package geek.lawsof.physics.lib.objects.block.te
 
 /**
  * Created by anshuman on 28-05-2014.
