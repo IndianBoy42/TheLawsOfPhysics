@@ -4,7 +4,7 @@ import geek.lawsof.physics.lib.equip.types.ArmorTypeBase
 import geek.lawsof.physics.lib.info._
 import net.minecraft.item.ItemArmor.ArmorMaterial
 import scala.tools.cmd.gen.AnyVals.F
-import geek.lawsof.physics.lib.helper.Log
+import geek.lawsof.physics.lib.util.Log
 
 /**
  * Created by anshuman on 28-05-2014.

@@ -1,7 +1,7 @@
 package geek.lawsof.physics.init
 
 import geek.lawsof.physics.lib.info.{ArmorInfo, GenStats, FluidInfo, BlockInfo}
-import geek.lawsof.physics.lib.helper.Log
+import geek.lawsof.physics.lib.util.Log
 import geek.lawsof.physics.lib.metals.{MetalPresets, SimpleMetal}
 
 /**

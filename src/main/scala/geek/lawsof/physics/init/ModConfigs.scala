@@ -4,7 +4,7 @@ import net.minecraftforge.common.config.Configuration
 import geek.lawsof.physics.lib.info.{GenStats}
 import java.io.File
 import geek.lawsof.physics.{Reference, LawsOfPhysicsMod}
-import geek.lawsof.physics.lib.helper.Log
+import geek.lawsof.physics.lib.util.Log
 
 object ModConfigs {
 

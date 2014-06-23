@@ -3,7 +3,7 @@ package geek.lawsof.physics
 import cpw.mods.fml.common.{ModMetadata, SidedProxy, Mod}
 import cpw.mods.fml.common.Mod.EventHandler
 import cpw.mods.fml.common.event._
-import geek.lawsof.physics.lib.helper.Log
+import geek.lawsof.physics.lib.util.Log
 import geek.lawsof.physics.network.ModProxy
 import geek.lawsof.physics.init._
 import cpw.mods.fml.common.event.FMLInterModComms.IMCEvent

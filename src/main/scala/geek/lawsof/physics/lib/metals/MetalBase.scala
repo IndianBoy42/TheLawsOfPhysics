@@ -10,7 +10,7 @@ import geek.lawsof.physics.lib.info._
 import geek.lawsof.physics.lib.item.ItemBase
 import geek.lawsof.physics.lib.block.BlockBase
 import net.minecraftforge.oredict.OreDictionary.registerOre
-import geek.lawsof.physics.lib.helper.Recipes._
+import geek.lawsof.physics.lib.util.Recipes._
 import net.minecraftforge.fluids.FluidStack
 import net.minecraft.init.Items
 import net.minecraftforge.oredict.OreDictionary

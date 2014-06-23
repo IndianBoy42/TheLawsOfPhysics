@@ -2,7 +2,7 @@ package geek.lawsof.physics.init
 
 import net.minecraft.init.{Blocks, Items}
 import geek.lawsof.physics.Reference
-import geek.lawsof.physics.lib.helper.Log
+import geek.lawsof.physics.lib.util.Log
 import geek.lawsof.physics.lib.CreativeTabBase
 
 /**

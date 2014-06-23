@@ -6,7 +6,7 @@ import cpw.mods.fml.common.registry.GameRegistry
 import net.minecraft.entity.player.EntityPlayer
 import java.util
 import geek.lawsof.physics.lib.equip.types.ToolTypeBase
-import geek.lawsof.physics.lib.helper.Recipes
+import geek.lawsof.physics.lib.util.Recipes
 import geek.lawsof.physics.Reference
 import geek.lawsof.physics.lib.CreativeTabBase
 

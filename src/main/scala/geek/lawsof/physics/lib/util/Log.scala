@@ -1,4 +1,4 @@
-package geek.lawsof.physics.lib.helper
+package geek.lawsof.physics.lib.util
 
 import org.apache.logging.log4j.{Level, LogManager, Logger}
 import geek.lawsof.physics.Reference

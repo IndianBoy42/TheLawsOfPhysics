@@ -1,4 +1,4 @@
-package geek.lawsof.physics.lib.helper
+package geek.lawsof.physics.lib.util
 
 import net.minecraft.world.IBlockAccess
 import net.minecraft.tileentity.TileEntity

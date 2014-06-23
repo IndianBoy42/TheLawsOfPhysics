@@ -1,4 +1,4 @@
-package geek.lawsof.physics.lib.helper;
+package geek.lawsof.physics.lib.util;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.item.ItemStack;

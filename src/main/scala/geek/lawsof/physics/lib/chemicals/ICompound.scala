@@ -1,4 +1,4 @@
-package geek.lawsof.physics.init.chemicals
+package geek.lawsof.physics.lib.chemicals
 
 /**
  * Created by anshuman on 02-06-2014.

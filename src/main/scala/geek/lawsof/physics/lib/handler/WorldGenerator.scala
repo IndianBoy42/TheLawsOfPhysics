@@ -8,7 +8,7 @@ import net.minecraft.world.World
 import net.minecraft.world.chunk.IChunkProvider
 import java.util.Random
 import geek.lawsof.physics.lib.info.GenStats
-import geek.lawsof.physics.lib.helper.Log
+import geek.lawsof.physics.lib.util.Log
 import geek.lawsof.physics.lib.block.BlockBase
 
 /**

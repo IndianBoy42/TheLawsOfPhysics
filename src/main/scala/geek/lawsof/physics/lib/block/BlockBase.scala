@@ -18,7 +18,7 @@ import java.util
 import java.util.Random
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer
 import cpw.mods.fml.client.registry.ClientRegistry
-import geek.lawsof.physics.lib.helper.Coord
+import geek.lawsof.physics.lib.util.Coord
 import net.minecraft.entity.player.EntityPlayer
 import geek.lawsof.physics.lib.block.traits.ICustomRenderedBlock
 import geek.lawsof.physics.lib.CreativeTabBase
