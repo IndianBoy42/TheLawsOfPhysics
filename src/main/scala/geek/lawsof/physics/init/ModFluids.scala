@@ -1,6 +1,6 @@
 package geek.lawsof.physics.init
 
-import geek.lawsof.physics.lib.objects.fluid.FluidContainerBase
+import geek.lawsof.physics.lib.fluid.{FluidBucketContainer, FluidContainerBase}
 import net.minecraftforge.fluids.{Fluid, FluidContainerRegistry}
 import geek.lawsof.physics.lib.helper.Log
 
@@ -9,11 +9,13 @@ import geek.lawsof.physics.lib.helper.Log
  */
 object ModFluids {
   var cell: FluidContainerBase = null
+  var bucket: FluidBucketContainer = null
 
   def preInit() = {
     Log.info("Creating Fluid Containers")
 
-    cell = new FluidContainerBase("cell", FluidContainerRegistry.BUCKET_VOLUME, CTabs.Tech, false)
+    cell = new FluidContainerBase("cell", FluidContainerRegistry.BUCKET_VOLUME, CTabs.techTab)
+    bucket = new FluidBucketContainer("bucket", CTabs.techTab)
 
     Log.info("Creating Fluids")
 

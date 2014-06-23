@@ -7,9 +7,9 @@ import net.minecraft.world.gen.feature.WorldGenMinable
 import net.minecraft.world.World
 import net.minecraft.world.chunk.IChunkProvider
 import java.util.Random
-import geek.lawsof.physics.lib.objects.info.GenStats
+import geek.lawsof.physics.lib.info.GenStats
 import geek.lawsof.physics.lib.helper.Log
-import geek.lawsof.physics.lib.objects.block.BlockBase
+import geek.lawsof.physics.lib.block.BlockBase
 
 /**
  * Created by anshuman on 28-05-2014.
