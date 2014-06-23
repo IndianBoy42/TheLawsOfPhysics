@@ -1,4 +1,4 @@
-package geek.lawsof.physics.lib.chemicals
+package geek.lawsof.physics.lib.chemicals.traits
 
 /**
  * Created by anshuman on 02-06-2014.
@@ -9,6 +9,4 @@ trait IMineral extends ICompound{
   def cations: Map[ICation, Int]
 
   def anions: Map[IAnion, Int]
-
-  def processed = for (i <- 1 until anions.size) yield cations ++ (anions drop i)
 }

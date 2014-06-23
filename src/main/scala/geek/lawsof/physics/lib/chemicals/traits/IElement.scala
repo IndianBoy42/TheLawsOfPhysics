@@ -1,4 +1,4 @@
-package geek.lawsof.physics.lib.chemicals
+package geek.lawsof.physics.lib.chemicals.traits
 
 /**
  * Created by anshuman on 02-06-2014.
