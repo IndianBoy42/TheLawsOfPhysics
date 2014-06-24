@@ -1,6 +1,7 @@
 package geek.lawsof.physics.lib.block.te.traits
 
 import net.minecraft.entity.player.EntityPlayer
+import net.minecraft.world.World
 
 /**
  * Created by anshuman on 28-05-2014.
@@ -12,5 +13,7 @@ trait IBlockLogicTile {
 
   def onBlockBroken(player: EntityPlayer): Boolean
 
-  def onBlockEventRecievedw(evtID: Int, evtPar: Int): Boolean
+  def onBlockEventRecieved(evtID: Int, evtPar: Int): Boolean
+
+  def onBlockPlaced(w : World, x : Int, y : Int, z : Int, s : Int, hX : Float, hY : Float, hZ : Float, meta : Int): Int
 }

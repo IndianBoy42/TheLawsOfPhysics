@@ -122,6 +122,8 @@ class BlockBase(blockMaterial: Material, val intName: String) extends Block(bloc
   override def removedByPlayer(w: World, player: EntityPlayer, x: Int, y: Int, z: Int): Boolean =
     checkTileExists(w, x, y, z) && checkTileInstance(w, x, y, z) && getTileAs(w, x, y, z).onBlockBroken(player)
 
+  override def onBlockPlaced(w : World, x : Int, y : Int, z : Int, s : Int, hX : Float, hY : Float, hZ : Float, meta : Int): Int = meta
+
   override def onBlockEventReceived(w: World, x: Int, y: Int, z: Int, evtID: Int, evtPar: Int): Boolean =
     checkTileExists(w, x, y, z) && checkTileInstance(w, x, y, z) && getTileAs(w, x, y, z).onBlockEventRecieved(evtID, evtPar)
 }

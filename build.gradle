@@ -32,7 +32,7 @@ archivesBaseName = "LawsOfPhysics"
 
 minecraft {
     version = "1.7.2-10.12.2.1131"
-    assetDir = "eclipse/assets"
+    assetDir = "run/assets"
 }
 
 processResources

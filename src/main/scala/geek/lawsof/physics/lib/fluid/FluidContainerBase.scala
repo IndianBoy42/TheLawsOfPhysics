@@ -18,6 +18,7 @@ class FluidContainerBase(intName: String, var fluidVol: Int, ctab: CreativeTabBa
   this.setUnlocalizedName("")
   this.setCreativeTab(ctab)
 
+  //todo get rid of hard coded exception
   if (intName != "bucket") registerItem(0, new GenericSubItem("empty"))
   registerFluid(FluidRegistry.WATER)
   registerFluid(FluidRegistry.LAVA)
