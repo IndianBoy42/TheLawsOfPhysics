@@ -13,7 +13,7 @@ import geek.lawsof.physics.network.proxy.ModProxy
 /**
  * Created by anshuman on 25-05-2014.
  */
-@Mod(modid = MOD_ID, name = MOD_NAME, version = Reference.MOD_VERSION, modLanguage = MOD_LANGUAGE)
+@Mod(modid = MOD_ID, name = MOD_NAME, version = Reference.MOD_VERSION, modLanguage = MOD_LANGUAGE, guiFactory = CONFIG_GUI_FACTORY_CLASS)
 object LawsOfPhysicsMod {
 
   @SidedProxy(clientSide=CLIENT_PROXY_CLASS, serverSide=SERVER_PROXY_CLASS)

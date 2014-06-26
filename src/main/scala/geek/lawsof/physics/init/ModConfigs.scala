@@ -5,6 +5,8 @@ import geek.lawsof.physics.lib.info.{GenStats}
 import java.io.File
 import geek.lawsof.physics.{Reference, LawsOfPhysicsMod}
 import geek.lawsof.physics.lib.util.Log
+import net.minecraftforge.common.MinecraftForge
+import cpw.mods.fml.client.event.ConfigChangedEvent.OnConfigChangedEvent
 
 object ModConfigs {
 
@@ -14,7 +16,19 @@ object ModConfigs {
     Log.info("Creating Config Files")
 
     oreGenStats = create("OreGenStats", "Ore Generations Statisitics")
+
+    MinecraftForge.EVENT_BUS.register(this)
   }
+
+  def getAllFiles = List(oreGenStats)
+
+  def onConfigChanged(evt: OnConfigChangedEvent) = {
+    Log.info("Syncing Configuration")
+
+    syncCFG
+  }
+
+  def syncCFG = {}
 
   def create(name: String, comment: String): Configuration = {
     var cfg: Configuration = new Configuration(new File(LawsOfPhysicsMod.preInitEvt.getModConfigurationDirectory, s"${Reference.MOD_ID}/$name.cfg"))

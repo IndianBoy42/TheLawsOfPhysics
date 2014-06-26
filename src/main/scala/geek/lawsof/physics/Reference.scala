@@ -9,6 +9,7 @@ object Reference {
   final val MOD_ID = "lawsofphysics"
   final val MOD_NAME = "The Laws Of Physics"
   final val MOD_VERSION = "%VERSION%"
+
   final val MOD_AUTHORS: List[String] = List("GeckoTheGeek42", "Zarkoix & Coldrock7")
   final val MOD_URL: String = ""
   final val MOD_DESCRIPTION: String = "A Realistic and Complex Technology Mod Based on Real Science Concepts"
@@ -17,8 +18,9 @@ object Reference {
 
   final val CLIENT_PROXY_CLASS = "geek.lawsof.physics.network.proxy.ClientProxy"
   final val SERVER_PROXY_CLASS = "geek.lawsof.physics.network.proxy.CommonProxy"
+  final val CONFIG_GUI_FACTORY_CLASS = "geek.lawsof.physics.lib.config.ConfiGUIFactory"
 
-  final val RENDER_ID: Int = RenderingRegistry.getNextAvailableRenderId
+  final val MAIN_RENDER_ID: Int = RenderingRegistry.getNextAvailableRenderId
 
   final val TEXTURES_BLOCKS = "textures/blocks"
   final val TEXTURES_ITEMS = "textures/items"

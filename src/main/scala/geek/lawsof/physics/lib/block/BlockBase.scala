@@ -101,7 +101,7 @@ class BlockBase(blockMaterial: Material, val intName: String) extends Block(bloc
 
   override def isOpaqueCube: Boolean = !this.hasCustomRenderer
 
-  override def getRenderType: Int = if (this.hasCustomRenderer) Reference.RENDER_ID else 0
+  override def getRenderType: Int = if (this.hasCustomRenderer) Reference.MAIN_RENDER_ID else 0
 
   def checkTileExists(w: IBlockAccess, x: Int, y: Int, z: Int): Boolean = Coord(x, y, z).tileExistsAt(w)
 
