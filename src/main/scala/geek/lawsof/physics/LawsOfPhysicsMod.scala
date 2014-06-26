@@ -4,11 +4,11 @@ import cpw.mods.fml.common.{ModMetadata, SidedProxy, Mod}
 import cpw.mods.fml.common.Mod.EventHandler
 import cpw.mods.fml.common.event._
 import geek.lawsof.physics.lib.util.Log
-import geek.lawsof.physics.network.ModProxy
 import geek.lawsof.physics.init._
 import cpw.mods.fml.common.event.FMLInterModComms.IMCEvent
 import geek.lawsof.physics.Reference._
 import scala.collection.JavaConverters._
+import geek.lawsof.physics.network.proxy.ModProxy
 
 /**
  * Created by anshuman on 25-05-2014.

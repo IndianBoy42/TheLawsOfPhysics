@@ -15,8 +15,8 @@ object Reference {
   final val MOD_CREDITS: String = "Forge making this so damn easy "
   final val MOD_LANGUAGE = "scala"
 
-  final val CLIENT_PROXY_CLASS = "geek.lawsof.physics.network.ClientProxy"
-  final val SERVER_PROXY_CLASS = "geek.lawsof.physics.network.CommonProxy"
+  final val CLIENT_PROXY_CLASS = "geek.lawsof.physics.network.proxy.ClientProxy"
+  final val SERVER_PROXY_CLASS = "geek.lawsof.physics.network.proxy.CommonProxy"
 
   final val RENDER_ID: Int = RenderingRegistry.getNextAvailableRenderId
 

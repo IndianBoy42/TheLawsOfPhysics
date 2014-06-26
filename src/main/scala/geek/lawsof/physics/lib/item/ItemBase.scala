@@ -12,7 +12,6 @@ import java.util
 import org.lwjgl.input.Keyboard
 import geek.lawsof.physics.lib.item.traits.{TextColor, IHasContainerItem, IShinyItem}
 import net.minecraft.entity.{Entity, EntityLivingBase}
-import net.minecraft.block.Block
 import net.minecraftforge.oredict.OreDictionary
 
 /**
@@ -54,7 +53,9 @@ class ItemBase(intName: String) extends Item {
 
   override def hasEffect(itemStack: ItemStack, pass: Int): Boolean = this.isInstanceOf[IShinyItem]
 
-  def tooltipInfo = List[String](this.intName)
+  def tooltipInfo = List[String]()
+
+  def getOreNames = OreDictionary.getOreIDs(this.newItemStack()).map(OreDictionary.getOreName(_))
 
   def tooltipShiftInfo = List[String]("This Item Has No Extra Information")
 
@@ -62,8 +63,13 @@ class ItemBase(intName: String) extends Item {
 
   override def addInformation(itemStack: ItemStack, player: EntityPlayer, info: util.List[_], flag: Boolean): Unit = {
     for (str <- tooltipInfo) info.asInstanceOf[util.List[String]].add(str)
-    if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)) for (str <- tooltipShiftInfo) info.asInstanceOf[util.List[String]].add(str) else info.asInstanceOf[util.List[String]].add("Hold Shift For More Information")
-    if (Keyboard.isKeyDown(Keyboard.KEY_LCONTROL)) for (str <- tooltipCtrlInfo) info.asInstanceOf[util.List[String]].add(str) else info.asInstanceOf[util.List[String]].add("Hold For Detailed Description")
+    for (str <- getOreNames) info.asInstanceOf[util.List[String]].add(str)
+    if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT))
+      for (str <- tooltipShiftInfo) info.asInstanceOf[util.List[String]].add(str)
+    else info.asInstanceOf[util.List[String]].add("Hold Shift For More Information")
+    if (Keyboard.isKeyDown(Keyboard.KEY_LCONTROL))
+      for (str <- tooltipCtrlInfo) info.asInstanceOf[util.List[String]].add(str)
+    else info.asInstanceOf[util.List[String]].add("Hold For Detailed Description")
   }
 
   override def onItemUse(itemStack: ItemStack, player: EntityPlayer, world: World, x: Int, y: Int, z: Int, side: Int, f1: Float, f2: Float, f3: Float): Boolean = false
