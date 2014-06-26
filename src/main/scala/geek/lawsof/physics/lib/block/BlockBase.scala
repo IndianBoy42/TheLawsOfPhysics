@@ -7,14 +7,12 @@ import cpw.mods.fml.common.registry.GameRegistry
 import net.minecraft.world.{IBlockAccess, World}
 import net.minecraft.entity.EntityLivingBase
 import net.minecraft.item.{Item, ItemStack}
-import net.minecraft.util.{IIcon, AxisAlignedBB, MathHelper}
-import geek.lawsof.physics.init.ModConfigs
+import net.minecraft.util.{IIcon, MathHelper}
 import geek.lawsof.physics.lib.info.BlockInfo
 import net.minecraft.tileentity.TileEntity
 import geek.lawsof.physics.lib.block.te.TileEntityBase
 import geek.lawsof.physics.Reference
 import net.minecraft.client.renderer.texture.IIconRegister
-import java.util
 import java.util.Random
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer
 import cpw.mods.fml.client.registry.ClientRegistry
@@ -76,17 +74,17 @@ class BlockBase(blockMaterial: Material, val intName: String) extends Block(bloc
 
   def newItemStack(size: Int = 1) = new ItemStack(this, size)
 
-  override def quantityDropped(rand : Random): Int = 1
+  override def quantityDropped(rand: Random): Int = 1
 
-  override def quantityDroppedWithBonus(fortune : Int, rand : Random): Int = quantityDropped(rand)
+  override def quantityDroppedWithBonus(fortune: Int, rand: Random): Int = quantityDropped(rand)
 
-  override def getItemDropped(meta : Int, rand : Random, fortune : Int): Item = Item.getItemFromBlock(this)
+  override def getItemDropped(meta: Int, rand: Random, fortune: Int): Item = Item.getItemFromBlock(this)
 
-  override def damageDropped(meta : Int): Int = 0
+  override def damageDropped(meta: Int): Int = 0
 
-  override def registerBlockIcons(reg : IIconRegister): Unit = this.blockIcon = reg.registerIcon(Reference.MOD_ID + ":" + intName)
+  override def registerBlockIcons(reg: IIconRegister): Unit = this.blockIcon = reg.registerIcon(Reference.MOD_ID + ":" + intName)
 
-  override def getIcon(side : Int, meta : Int): IIcon = this.blockIcon
+  override def getIcon(side: Int, meta: Int): IIcon = this.blockIcon
 
   def registerTE(te: Class[_ <: TileEntityBase]) = GameRegistry.registerTileEntity(te, te.newInstance().name)
 
@@ -114,16 +112,17 @@ class BlockBase(blockMaterial: Material, val intName: String) extends Block(bloc
   def getTileAs(w: IBlockAccess, x: Int, y: Int, z: Int) = Coord(x, y, z).getTileAtAs[TileEntityBase](w)
 
   override def onBlockActivated(w: World, x: Int, y: Int, z: Int, p: EntityPlayer, s: Int, px: Float, py: Float, pz: Float): Boolean =
-    checkTileExists(w, x, y, z) && checkTileInstance(w, x, y, z) && getTileAs(w, x, y, z).onBlockActivated(p, s, px, py, pz)
+    checkTileExists(w, x, y, z) && checkTileInstance(w, x, y, z) && getTileAs(w, x, y, z).onBlockActivated(w, x, y, z, p, s, px, py, pz)
 
   override def onNeighborChange(w: IBlockAccess, x: Int, y: Int, z: Int, tileX: Int, tileY: Int, tileZ: Int): Unit =
-    if (checkTileExists(w, x, y, z) && checkTileInstance(w, x, y, z)) getTileAs(w, x, y, z).onNeighbourBlockChanged(tileX,tileY,tileZ)
+    if (checkTileExists(w, x, y, z) && checkTileInstance(w, x, y, z)) getTileAs(w, x, y, z).onNeighbourBlockChanged(w, x, y, z, tileX, tileY, tileZ)
 
   override def removedByPlayer(w: World, player: EntityPlayer, x: Int, y: Int, z: Int): Boolean =
-    checkTileExists(w, x, y, z) && checkTileInstance(w, x, y, z) && getTileAs(w, x, y, z).onBlockBroken(player)
+    checkTileExists(w, x, y, z) && checkTileInstance(w, x, y, z) && getTileAs(w, x, y, z).removedByPlayer(w, player, x, y, z)
 
-  override def onBlockPlaced(w : World, x : Int, y : Int, z : Int, s : Int, hX : Float, hY : Float, hZ : Float, meta : Int): Int = meta
+  override def onBlockPlaced(w: World, x: Int, y: Int, z: Int, s: Int, hX: Float, hY: Float, hZ: Float, meta: Int): Int =
+    if (checkTileExists(w, x, y, z) && checkTileInstance(w, x, y, z)) getTileAs(w, x, y, z).onBlockPlaced(w, x, y, z, s, hX, hY, hZ, meta) else meta
 
   override def onBlockEventReceived(w: World, x: Int, y: Int, z: Int, evtID: Int, evtPar: Int): Boolean =
-    checkTileExists(w, x, y, z) && checkTileInstance(w, x, y, z) && getTileAs(w, x, y, z).onBlockEventRecieved(evtID, evtPar)
+    checkTileExists(w, x, y, z) && checkTileInstance(w, x, y, z) && getTileAs(w, x, y, z).onBlockEventReceived(w, x, y, z, evtID, evtPar)
 }

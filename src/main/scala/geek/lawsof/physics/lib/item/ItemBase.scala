@@ -13,6 +13,7 @@ import org.lwjgl.input.Keyboard
 import geek.lawsof.physics.lib.item.traits.{TextColor, IHasContainerItem, IShinyItem}
 import net.minecraft.entity.{Entity, EntityLivingBase}
 import net.minecraft.block.Block
+import net.minecraftforge.oredict.OreDictionary
 
 /**
  * Created by anshuman on 26-05-2014.
@@ -53,16 +54,16 @@ class ItemBase(intName: String) extends Item {
 
   override def hasEffect(itemStack: ItemStack, pass: Int): Boolean = this.isInstanceOf[IShinyItem]
 
-  def tooltipInfo = List[String]()
+  def tooltipInfo = List[String](this.intName)
 
-  def tooltipShiftInfo = List[String]()
+  def tooltipShiftInfo = List[String]("This Item Has No Extra Information")
 
-  def tooltipCtrlInfo = List[String]()
+  def tooltipCtrlInfo = List[String](s"This Is An Item Called $intName")
 
   override def addInformation(itemStack: ItemStack, player: EntityPlayer, info: util.List[_], flag: Boolean): Unit = {
     for (str <- tooltipInfo) info.asInstanceOf[util.List[String]].add(str)
-    if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)) for (str <- tooltipShiftInfo) info.asInstanceOf[util.List[String]].add(str)
-    if (Keyboard.isKeyDown(Keyboard.KEY_LCONTROL)) for (str <- tooltipCtrlInfo) info.asInstanceOf[util.List[String]].add(str)
+    if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)) for (str <- tooltipShiftInfo) info.asInstanceOf[util.List[String]].add(str) else info.asInstanceOf[util.List[String]].add("Hold Shift For More Information")
+    if (Keyboard.isKeyDown(Keyboard.KEY_LCONTROL)) for (str <- tooltipCtrlInfo) info.asInstanceOf[util.List[String]].add(str) else info.asInstanceOf[util.List[String]].add("Hold For Detailed Description")
   }
 
   override def onItemUse(itemStack: ItemStack, player: EntityPlayer, world: World, x: Int, y: Int, z: Int, side: Int, f1: Float, f2: Float, f3: Float): Boolean = false

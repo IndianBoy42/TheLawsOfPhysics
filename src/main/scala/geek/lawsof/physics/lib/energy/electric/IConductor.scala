@@ -13,7 +13,14 @@ trait IConductor extends IBlockLogicTile{
 
   override def onBlockPlaced(w: World, x: Int, y: Int, z: Int, s: Int, hX: Float, hY: Float, hZ: Float, meta: Int): Int = {
     var tiles = Coord(x, y, z).getSurroundingTilesIfExists(w)
-    for (tile <- tiles; if tile.isInstanceOf[IConductor]; conductorTile = tile.asInstanceOf[IConductor]; if conductorTile.isConnected)
+    for (tile <- tiles; if tile.isInstanceOf[IConductor]; conductorTile = tile.asInstanceOf[IConductor]; if conductorTile.isConnected) {
+      conductorTile.electricGrid.connect(this)
+      electricGrid = conductorTile.electricGrid
+    }
+    for (tile <- tiles; if !isConnected; if tile.isInstanceOf[IElectricBlock]; blockTile = tile.asInstanceOf[IElectricBlock]) {
+      //todo create an IElectricGrid
+    }
+    meta
   }
 
   override def onNeighbourBlockChanged(tileX: Int, tileY: Int, tileZ: Int): Unit = ???

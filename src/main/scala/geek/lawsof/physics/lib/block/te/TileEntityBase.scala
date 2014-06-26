@@ -39,7 +39,7 @@ abstract class TileEntityBase extends TileEntity {
 
   def onBlockActivated(w: World, x: Int, y: Int, z: Int, p: EntityPlayer, s: Int, px: Float, py: Float, pz: Float): Boolean = false
 
-  def onNeighborChange(w: IBlockAccess, x: Int, y: Int, z: Int, tileX: Int, tileY: Int, tileZ: Int): Unit = {}
+  def onNeighbourBlockChanged(w: IBlockAccess, x: Int, y: Int, z: Int, tileX: Int, tileY: Int, tileZ: Int): Unit = {}
 
   def removedByPlayer(w: World, player: EntityPlayer, x: Int, y: Int, z: Int): Boolean = true
 
