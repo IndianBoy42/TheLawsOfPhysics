@@ -30,7 +30,7 @@ version = config.mc_version+"-"+config.mod_version+"-"+config.build_number
 group = "geek.lawsof.physics" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "LawsOfPhysics"
 
-minecraft {
+minecraft {    
     version = "1.7.10_pre4-10.12.2.1148-prerelease"
     assetDir = "run/assets"
 }
