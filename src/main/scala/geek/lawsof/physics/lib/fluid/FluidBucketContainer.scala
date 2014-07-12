@@ -19,6 +19,7 @@ class FluidBucketContainer(intName: String, ctab: CreativeTabBase) extends Fluid
   MinecraftForge.EVENT_BUS.register(this)
 
   override def onItemRightClick(itemStack: ItemStack, world: World, player: EntityPlayer): ItemStack = itemStack
+  //todo place fluid if canPlaceFluid(==true)
 
   @SubscribeEvent
   def onBucketFill(evt: FillBucketEvent): Unit = {

@@ -59,5 +59,11 @@ eg. Hematite (Fe2O3) and Ilmenite (FeTiO3) (bot oxides) have to be Reduced using
 eg.  Any Hydroxide (Limonite/ Bauxite) or Sulphide (Chalcopyrite/ Zinc Blende) have to be Oxidized into an oxide (using any oxidizing agent (oxygen is actually a bad oxidizing agent) ) before they can be Reduced into a Pure Metal as normal
 eg. Hydroxides can also be dehydrated (using a dehydrating agent (such as sulfuric acid) ) straight into pure Metals but that takes a lot more time
 
+For Modders : 
+	To Setup This Mod in your Dev Environment, simply run setupWorkspaceIdea.bat or setupWorkspaceEclipse.bat
+	The Same Commands Will Update The Version Of Forge after being changed in the build.gradle file
+	To Build The Mod for yourself run buildProject.bat
+	Have Fun!
+
 If you've found a bug please (x1000) make an issue on the github, it makes it much easier to track them
 

@@ -6,12 +6,18 @@ import net.minecraft.item.{EnumRarity, ItemStack}
  * Created by anshuman on 23-06-2014.
  */
 trait IColoredText {
-  def getRarity(par1ItemStack: ItemStack): EnumRarity
+  def color: TextColor
 }
 
-object TextColor {
-  val colorWhite = EnumRarity.common
-  val colorYellow = EnumRarity.uncommon
-  val colorPurple = EnumRarity.epic
-  val colorBlue = EnumRarity.rare
-}
+//object TextColor {
+//  val colorWhite = EnumRarity.common
+//  val colorYellow = EnumRarity.uncommon
+//  val colorPurple = EnumRarity.epic
+//  val colorBlue = EnumRarity.rare
+//}
+
+class TextColor(val color: EnumRarity)
+case class whiteColor() extends TextColor(EnumRarity.common)
+case class yellowColor() extends TextColor(EnumRarity.uncommon)
+case class purpleColor() extends TextColor(EnumRarity.epic)
+case class blueColor() extends TextColor(EnumRarity.rare)

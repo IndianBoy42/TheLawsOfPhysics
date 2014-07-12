@@ -7,7 +7,7 @@ import geek.lawsof.physics.lib.fluid.FluidBase
 import geek.lawsof.physics.lib.equip.types.{ToolTypeBase, ArmorTypeBase}
 import net.minecraft.item.ItemStack
 import geek.lawsof.physics.lib.info._
-import geek.lawsof.physics.lib.item.ItemBase
+import geek.lawsof.physics.lib.item.{ItemDescriptor, ItemBase}
 import geek.lawsof.physics.lib.block.BlockBase
 import net.minecraftforge.oredict.OreDictionary.registerOre
 import geek.lawsof.physics.lib.util.Recipes._
@@ -102,7 +102,7 @@ abstract class MetalBase(val metal: MetalInfo) {
   def createItem(prefix: String): Unit = createItem(prefix, 64)
 
   def createItem(prefix: String, stack: Int) =
-    addItem(new ItemBase(s"${prefix}_${metal.name}", CTabs.metalsTab, stack), prefix)
+    addItem(new ItemBase(new ItemDescriptor(""), CTabs.metalsTab, stack), prefix)
 
   def createFluid(prefix: String, mat: Material) = {
     addFluid(new FluidBase(s"${prefix}_${metal.name}", mat, CTabs.metalsTab, metal.getFluidInfo), prefix)

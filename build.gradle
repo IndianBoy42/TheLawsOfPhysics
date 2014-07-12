@@ -31,8 +31,9 @@ group = "geek.lawsof.physics" // http://maven.apache.org/guides/mini/guide-namin
 archivesBaseName = "LawsOfPhysics"
 
 minecraft {    
-    version = "1.7.10-10.13.0.1157"
+    version = "1.7.10-10.13.0.1179"
     assetDir = "run/assets"
+	runDir = "run/"
 }
 
 dependencies {

@@ -7,19 +7,22 @@ import net.minecraft.item.{ItemStack, Item}
 import net.minecraft.creativetab.CreativeTabs
 import java.util
 import net.minecraft.block.material.Material
+import scala.collection.mutable
 
 /**
  * Created by anshuman on 22-06-2014.
  */
-abstract class MetaBlockBase(blockMaterial: Material, intName: String) extends BlockBase(blockMaterial, intName) {
-  def subBlocks: List[IMetaSubBlock]
+class MetaBlockBase(blockMaterial: Material, intName: String) extends BlockBase(blockMaterial, intName) {
+  var subBlocks: mutable.HashMap[Int, IMetaSubBlock] = new mutable.HashMap[Int, IMetaSubBlock]
 
-  override def registerBlockIcons(reg: IIconRegister): Unit = for (subBlock <- subBlocks) subBlock.registerBlockIcons(reg)
+  def registerBlock(id: Int, block: IMetaSubBlock) = subBlocks.put(id, block)
 
-  override def getIcon(side: Int, meta: Int): IIcon = subBlocks(meta % subBlocks.length).getIcon(side)
+  override def registerBlockIcons(reg: IIconRegister): Unit = for (subBlock <- subBlocks) subBlock._2.registerBlockIcons(reg)
+
+  override def getIcon(side: Int, meta: Int): IIcon = subBlocks(meta % subBlocks.size).getIcon(side)
 
   override def getSubBlocks(item: Item, ctab: CreativeTabs, list: util.List[_]): Unit = {
-    for (i <- 0 until subBlocks.length) {
+    for (i <- 0 until subBlocks.size) {
       list.asInstanceOf[util.List[ItemStack]].add(new ItemStack(item, 1, i))
     }
   }

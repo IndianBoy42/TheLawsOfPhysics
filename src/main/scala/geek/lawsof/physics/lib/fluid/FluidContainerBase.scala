@@ -1,5 +1,6 @@
 package geek.lawsof.physics.lib.fluid
 
+import geek.lawsof.physics.lib.item.{ItemDescriptor, ItemBase}
 import net.minecraftforge.fluids.{Fluid, FluidStack, FluidContainerRegistry, FluidRegistry}
 import net.minecraft.item.ItemStack
 import net.minecraft.util.MovingObjectPosition
@@ -7,27 +8,18 @@ import net.minecraft.block.Block
 import net.minecraft.world.World
 import net.minecraft.entity.player.EntityPlayer
 import geek.lawsof.physics.Reference
-import geek.lawsof.physics.lib.item.meta.{MetaItemBase, GenericSubItem}
 import geek.lawsof.physics.lib.CreativeTabBase
 
 /**
  * Created by anshuman on 17-05-2014.
  */
-class FluidContainerBase(intName: String, var fluidVol: Int, ctab: CreativeTabBase) extends MetaItemBase(intName) {
-  this.setTextureName(Reference.MOD_ID + ":" + intName)
-  this.setUnlocalizedName("")
-  this.setCreativeTab(ctab)
-
-  //todo get rid of hard coded exception
-  if (intName != "bucket") registerItem(0, new GenericSubItem("empty"))
+class FluidContainerBase(intName: String, var fluidVol: Int, ctab: CreativeTabBase) extends ItemBase(new EmptyFluidContainerDescriptor) {
   registerFluid(FluidRegistry.WATER)
   registerFluid(FluidRegistry.LAVA)
 
   def registerFluid(fluid: Fluid) {
-    val fName: String = fluid.getName
-    val fID: Int = FluidRegistry.getFluidID(fName)
-    registerItem(fID, new GenericSubItem(fName))
-    FluidContainerRegistry.registerFluidContainer(new FluidStack(fluid, fluidVol), newItemStack(fID))
+    val descript = new FluidContainerDescriptor(fluid).register(this)
+    FluidContainerRegistry.registerFluidContainer(new FluidStack(fluid, fluidVol), newItemStack(descript.fluid.getID))
   }
 
   val canPlaceFluids = false
@@ -36,7 +28,7 @@ class FluidContainerBase(intName: String, var fluidVol: Int, ctab: CreativeTabBa
     if (itemStack.getItemDamage != 0 && !canPlaceFluids) {
       itemStack
     }
-    //todo place fluid if canPlaceFluid==true
+    //todo place fluid if canPlaceFluid(==true)
 
     val mop: MovingObjectPosition = this.getMovingObjectPositionFromPlayer(world, player, true)
     var container: ItemStack = fillContainer(world, mop)
@@ -56,13 +48,23 @@ class FluidContainerBase(intName: String, var fluidVol: Int, ctab: CreativeTabBa
     val y: Int = pos.blockY
     val z: Int = pos.blockZ
 
-    if(!(metaitems contains ID)) return null
+    if(!(items contains ID)) return null
 
     if (world.getBlockMetadata(x, y, z) == 0) {
       world.setBlockToAir(x, y, z)
       newItemStack(ID)
     }
 
-    null
+    return null
+  }
+}
+
+class EmptyFluidContainerDescriptor() extends ItemDescriptor("empty")
+
+class FluidContainerDescriptor(val fluid: Fluid) extends ItemDescriptor(fluid.getName) {
+  def register (item: FluidContainerBase) = {
+    item.items.update(fluid.getID, this)
+    master = item
+    this
   }
 }

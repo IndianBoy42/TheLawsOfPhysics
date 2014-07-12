@@ -12,7 +12,7 @@ import geek.lawsof.physics.lib.CreativeTabBase
 
 class FluidBlockBase(fluid: Fluid, material: Material, ctab: CreativeTabBase) extends BlockFluidClassic(fluid, material) {
   this.setBlockName(fluid.getUnlocalizedName)
-  this.setBlockTextureName(fluid.getLocalizedName.substring(6))
+  this.setBlockTextureName(fluid.getName.substring(6))
   GameRegistry.registerBlock(this, fluid.getUnlocalizedName)
   setCreativeTab(ctab)
 
