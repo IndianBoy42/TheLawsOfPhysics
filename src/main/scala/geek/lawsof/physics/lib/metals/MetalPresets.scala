@@ -29,5 +29,5 @@ object MetalPresets {
     props)
 
   private val copperProps = new SimpleMetalProperties(63.546, 1357.77, 2835, 8960, 13.26, 300.4, 24.44, 401, 16.78, 220, 70, 745.5, 1.9)
-  val copper = getMetalInfo("Copper", copperProps)
+  val copperMetal = getMetalInfo("Copper", copperProps)
 }

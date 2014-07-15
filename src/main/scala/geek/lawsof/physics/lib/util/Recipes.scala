@@ -20,8 +20,6 @@ object Recipes {
     GameRegistry.addSmelting(input, output, xp)
   }
 
-  def fromSeqtoArray(array: Seq[Object]) = for (obj <- array) yield obj
-
   def grid3 = Array("xxx", "xxx", "xxx")
 
   def grid2 = Array("xx", "xx")

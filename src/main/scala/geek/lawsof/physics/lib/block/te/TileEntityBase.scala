@@ -37,16 +37,6 @@ abstract class TileEntityBase extends TileEntity {
 
   override def writeToNBT(nbt: NBTTagCompound): Unit = if (syncMap != null) syncMap.writeAllNBT(nbt)
 
-  def onBlockActivated(w: World, x: Int, y: Int, z: Int, p: EntityPlayer, s: Int, px: Float, py: Float, pz: Float): Boolean = false
-
-  def onNeighbourBlockChanged(w: IBlockAccess, x: Int, y: Int, z: Int, tileX: Int, tileY: Int, tileZ: Int): Unit = {}
-
-  def removedByPlayer(w: World, player: EntityPlayer, x: Int, y: Int, z: Int): Boolean = true
-
-  def onBlockPlaced(w: World, x: Int, y: Int, z: Int, s: Int, hX: Float, hY: Float, hZ: Float, meta: Int): Int = meta
-
-  def onBlockEventReceived(w: World, x: Int, y: Int, z: Int, evtID: Int, evtPar: Int): Boolean
-
   def updateGui = {}
 
 }
