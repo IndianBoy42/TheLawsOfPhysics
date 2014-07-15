@@ -7,32 +7,6 @@ import cpw.mods.fml.relauncher.{Side, SideOnly}
 /**
  * Created by anshuman on 22-06-2014.
  */
-trait ISidedIcon {
-  @SideOnly(Side.CLIENT)
-  def iconArray: IconArray
-
-  def registerBlockIcons(reg: IIconRegister): Unit = iconArray.register(reg)
-
-  def getIcon(side: Int, meta: Int): IIcon = {
-    side match {
-      case TOP_ICON => iconArray.topIcon
-      case BOTTOM_ICON => iconArray.bottomIcon
-      case LEFT_ICON => iconArray.leftIcon
-      case RIGHT_ICON => iconArray.rightIcon
-      case FRONT_ICON => iconArray.frontIcon
-      case BACK_ICON => iconArray.backIcon
-    }
-  }
-
-  val TOP_ICON = 1
-  val BOTTOM_ICON = 0
-  val LEFT_ICON = 4
-  val RIGHT_ICON = 3
-  val FRONT_ICON = 2
-  val BACK_ICON = 5
-
-}
-
 class IconArray(var top: String,
                 var bottom: String,
                 var left: String,
@@ -47,6 +21,15 @@ class IconArray(var top: String,
     rightIcon = reg.registerIcon(right)
     frontIcon = reg.registerIcon(front)
     backIcon = reg.registerIcon(back)
+  }
+
+  def apply(side: Int) = side match {
+    case 0 => topIcon
+    case 1 => bottomIcon
+    case 2 => leftIcon
+    case 3 => rightIcon
+    case 4 => frontIcon
+    case 5 => backIcon
   }
 
   var topIcon: IIcon = null
@@ -66,9 +49,12 @@ object IconArray {
             front: String,
             back: String) = new IconArray(top, bottom, left, right, front, back)
 
-  def apply (name: String): IconArray = {
-    IconArray(s"${name}_top",s"${name}_bottom",s"${name}_left",s"${name}_right",s"${name}_front",s"${name}_back")
+  def apply (name: String, iconType: IconArrayType = ezMultiSided()): IconArray = iconType match {
+    case ezMultiSided() => IconArray(s"${name}_top",s"${name}_bottom",s"${name}_left",s"${name}_right",s"${name}_front",s"${name}_back")
+    case singleSided() => IconArray(name, name, name, name, name, name)
   }
-
-
 }
+
+class IconArrayType
+case class ezMultiSided() extends IconArrayType
+case class singleSided() extends IconArrayType

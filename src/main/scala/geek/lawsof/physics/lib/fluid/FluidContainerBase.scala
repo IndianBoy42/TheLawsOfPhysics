@@ -13,7 +13,8 @@ import geek.lawsof.physics.lib.CreativeTabBase
 /**
  * Created by anshuman on 17-05-2014.
  */
-class FluidContainerBase(intName: String, var fluidVol: Int, ctab: CreativeTabBase) extends ItemBase(new EmptyFluidContainerDescriptor) {
+class FluidContainerBase(intName: String, var fluidVol: Int, ctab: CreativeTabBase) extends ItemBase() {
+  this +: EmptyFluidContainerDescriptor
   registerFluid(FluidRegistry.WATER)
   registerFluid(FluidRegistry.LAVA)
 
@@ -59,12 +60,14 @@ class FluidContainerBase(intName: String, var fluidVol: Int, ctab: CreativeTabBa
   }
 }
 
-class EmptyFluidContainerDescriptor() extends ItemDescriptor("empty")
+object EmptyFluidContainerDescriptor extends ItemDescriptor("empty")
 
 class FluidContainerDescriptor(val fluid: Fluid) extends ItemDescriptor(fluid.getName) {
+  override def +:(reg: ItemBase) = this.register(reg.asInstanceOf[FluidContainerBase])
+
   def register (item: FluidContainerBase) = {
     item.items.update(fluid.getID, this)
-    master = item
+    this.item = item
     this
   }
 }

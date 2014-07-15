@@ -1,43 +1,30 @@
-package geek.lawsof.physics.lib.item
+package geek.lawsof.physics.lib.block
 
 import java.util
 
-import com.sun.javaws.exceptions.InvalidArgumentException
 import cpw.mods.fml.common.registry.GameRegistry
 import geek.lawsof.physics.Reference
-import geek.lawsof.physics.init.CTabs
-import geek.lawsof.physics.lib.item.traits._
+import geek.lawsof.physics.lib.item.ItemDescriptor
+import geek.lawsof.physics.lib.item.traits.whiteColor
 import net.minecraft.client.renderer.texture.IIconRegister
-import net.minecraft.creativetab.CreativeTabs
 import net.minecraft.entity.player.EntityPlayer
-import net.minecraft.item.{EnumRarity, Item, ItemStack}
+import net.minecraft.item.{EnumRarity, ItemStack, ItemBlock}
 import net.minecraft.util.IIcon
-import net.minecraftforge.oredict.OreDictionary
-import org.lwjgl.input.Keyboard
-
-import scala.collection.mutable
 
 /**
- * Created by anshuman on 26-05-2014.
+ * Created by anshuman on 15-07-2014.
  */
-class ItemBase(ctab: CreativeTabs = CTabs.mainTab, stackSize: Int = 64) extends Item {
-  setCreativeTab(ctab)
-  setMaxStackSize(stackSize)
+class ItemBlockBase(val block: BlockBase, stackSize:Int = 64) extends ItemBlock(block){
+  def items = block.blocks.map(_.item)
 
-  val items = mutable.MutableList.empty[ItemDescriptor]
+  override def getMetadata(dmg : Int): Int = dmg
 
-  def registerItem() = GameRegistry.registerItem(this, getInternalName())
+  def getInternalName(dmg: Int = 0) = block.getInternalName(newItemStack(dmg = dmg))
+  override def getUnlocalizedName(stack : ItemStack): String = getInternalName(stack.getItemDamage)
 
-  def getInternalName(stack: ItemStack = newItemStack()) = items.get(stack.getItemDamage) match {
-    case Some(item) => item.intName
-    case None => "error"
-  }
-
-  override def getUnlocalizedName(stack : ItemStack): String = "item." + getInternalName(stack)
-
-  override def getSubItems(item : Item, ctab : CreativeTabs, list : util.List[_]): Unit = for(i <- 0 until items.length) items.get(i) match {
-    case Some(item) => list.asInstanceOf[util.List[ItemStack]].add(newItemStack(dmg = i))
-    case None => {}
+  def registerItem = {
+    GameRegistry.registerItem(this, getInternalName())
+    GameRegistry.registerBlock(block, this.getClass, block.getUnlocalizedName)
   }
 
   def newItemStack(size: Int = 1, dmg: Int = 0) = new ItemStack(this, size, dmg)
@@ -69,4 +56,3 @@ class ItemBase(ctab: CreativeTabs = CTabs.mainTab, stackSize: Int = 64) extends 
     case None => false
   }
 }
-

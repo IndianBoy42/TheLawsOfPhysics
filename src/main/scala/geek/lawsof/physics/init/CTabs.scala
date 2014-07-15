@@ -14,7 +14,7 @@ object CTabs {
     Log.info("Registering Creative Tabs")
 
     mainTab.icon = CraftingItems
-    metalsTab.icon = ModMetals.copper.getItem("ingot")
+//    metalsTab.icon = ModMetals.copper.getItem("ingot")
     techTab.icon = ModFluids.cell
   }
 
