@@ -1,6 +1,7 @@
 package geek.lawsof.physics.init
 
 import geek.lawsof.physics.init.content.CraftingItems
+import geek.lawsof.physics.lib.metals.MetalIngots
 import net.minecraft.init.{Blocks, Items}
 import geek.lawsof.physics.Reference
 import geek.lawsof.physics.lib.util.Log
@@ -13,13 +14,13 @@ object CTabs {
   def init() = {
     Log.info("Registering Creative Tabs")
 
-    mainTab.icon = CraftingItems
-//    metalsTab.icon = ModMetals.copper.getItem("ingot")
-    techTab.icon = ModFluids.cell
+    mainTab setTabIcon CraftingItems.newItemStack()
+    metalsTab setTabIcon MetalIngots.newItemStack()
+    techTab setTabIcon ModFluids.cell.newItemStack()
   }
 
-  var mainTab = new CreativeTabBase(Reference.MOD_NAME + "| Main", Items.stick)
-  var techTab = new CreativeTabBase(Reference.MOD_NAME + "| Tech", Items.redstone)
-  var metalsTab = new CreativeTabBase(Reference.MOD_NAME + " | Metals", Items.iron_ingot)
+  var mainTab = new CreativeTabBase(Reference.MOD_NAME + "| Main")
+  var techTab = new CreativeTabBase(Reference.MOD_NAME + "| Tech")
+  var metalsTab = new CreativeTabBase(Reference.MOD_NAME + " | Metals")
 
 }

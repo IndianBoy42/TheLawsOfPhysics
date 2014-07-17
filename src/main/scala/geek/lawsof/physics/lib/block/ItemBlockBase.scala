@@ -10,6 +10,7 @@ import net.minecraft.client.renderer.texture.IIconRegister
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.item.{EnumRarity, ItemStack, ItemBlock}
 import net.minecraft.util.IIcon
+import net.minecraft.world.World
 
 /**
  * Created by anshuman on 15-07-2014.
@@ -27,6 +28,12 @@ class ItemBlockBase(val block: BlockBase, stackSize:Int = 64) extends ItemBlock(
   }
 
   def newItemStack(size: Int = 1, dmg: Int = 0) = new ItemStack(this, size, dmg)
+
+  def newStack(item: ItemDescriptor, size: Int = 1) = newItemStack(size, getMeta(item))
+
+  def getMeta(item: ItemDescriptor) = items.map(_.swap).get(item).get
+
+  override def onCreated(p_77622_1_ : ItemStack, p_77622_2_ : World, p_77622_3_ : EntityPlayer): Unit = super.onCreated(p_77622_1_, p_77622_2_, p_77622_3_)
 
   override def registerIcons(reg: IIconRegister): Unit = {
     items.foreach(_._2.registerIcon(reg))
@@ -54,4 +61,10 @@ class ItemBlockBase(val block: BlockBase, stackSize:Int = 64) extends ItemBlock(
     case Some(item) => item.shiny
     case None => false
   }
+
+  override def doesContainerItemLeaveCraftingGrid(stack : ItemStack): Boolean = items(stack.getItemDamage).containerStack._2
+
+  override def hasContainerItem(stack: ItemStack): Boolean = items(stack.getItemDamage).hasContainer
+
+  override def getContainerItem(stack: ItemStack): ItemStack = items(stack.getItemDamage).containerStack._1
 }

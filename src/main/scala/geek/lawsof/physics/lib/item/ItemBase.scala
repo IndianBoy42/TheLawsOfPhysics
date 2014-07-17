@@ -67,5 +67,11 @@ class ItemBase(ctab: CreativeTabs = CTabs.mainTab, stackSize: Int = 64) extends 
     case Some(item) => item.shiny
     case None => false
   }
+
+  override def doesContainerItemLeaveCraftingGrid(stack : ItemStack): Boolean = items(stack.getItemDamage).containerStack._2
+
+  override def hasContainerItem(stack: ItemStack): Boolean = items(stack.getItemDamage).hasContainer
+
+  override def getContainerItem(stack: ItemStack): ItemStack = items(stack.getItemDamage).containerStack._1
 }
 

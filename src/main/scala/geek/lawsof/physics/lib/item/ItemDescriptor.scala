@@ -3,6 +3,7 @@ package geek.lawsof.physics.lib.item
 import geek.lawsof.physics.Reference
 import geek.lawsof.physics.lib.item.traits.{whiteColor, CustomTooltip, TextColor}
 import net.minecraft.client.renderer.texture.IIconRegister
+import net.minecraft.item.ItemStack
 import net.minecraft.util.IIcon
 import org.lwjgl.input.Keyboard
 import java.util._
@@ -39,5 +40,8 @@ class ItemDescriptor(val intName: String, val shiny: Boolean = false, val txtCol
     }
     else info.asInstanceOf[List[String]].add(tooltip.ctrlMessage)
   }
+
+  def hasContainer = containerStack != null
+  def containerStack: (ItemStack, Boolean) = null
 
 }
