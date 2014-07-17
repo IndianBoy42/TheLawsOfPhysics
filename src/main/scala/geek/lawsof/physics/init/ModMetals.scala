@@ -18,13 +18,13 @@ object ModMetals {
   }
 
   def initMetal(info: MetalInfo) {
-    Ingots.add(info)
-    Blocks.add(info)
+    MetalIngots.add(info)
+    MetalBlocks.add(info)
   }
 
   def initMetalRecipes(info: MetalInfo) {
-    Recipes.shapedRecipe(Blocks.newItemStack(info, 1), "iii", "iii", "iii", char2Character('i'), Ingots.newItemStack(info, 1))
-    Recipes.shapelessRecipe(Ingots.newItemStack(info, 9), Blocks.newItemStack(info, 1))
+    Recipes.shapedRecipe(MetalBlocks.newMetalStack(info, 1), "iii", "iii", "iii", char2Character('i'), MetalIngots.newMetalStack(info, 1))
+    Recipes.shapelessRecipe(MetalIngots.newMetalStack(info, 9), MetalBlocks.newMetalStack(info, 1))
   }
 
 }

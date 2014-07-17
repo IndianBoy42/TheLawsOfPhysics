@@ -15,7 +15,7 @@ import net.minecraft.util.IIcon
  * Created by anshuman on 15-07-2014.
  */
 class ItemBlockBase(val block: BlockBase, stackSize:Int = 64) extends ItemBlock(block){
-  def items = block.blocks.map(_.item)
+  def items = block.blocks.map(o => (o._1, o._2.item))
 
   override def getMetadata(dmg : Int): Int = dmg
 
@@ -30,7 +30,7 @@ class ItemBlockBase(val block: BlockBase, stackSize:Int = 64) extends ItemBlock(
   def newItemStack(size: Int = 1, dmg: Int = 0) = new ItemStack(this, size, dmg)
 
   override def registerIcons(reg: IIconRegister): Unit = {
-    items.foreach(_.registerIcon(reg))
+    items.foreach(_._2.registerIcon(reg))
     errorIcon = reg.registerIcon(s"${Reference.MOD_ID}:ErrorItem")
   }
 

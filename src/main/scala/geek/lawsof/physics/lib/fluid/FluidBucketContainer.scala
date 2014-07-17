@@ -1,5 +1,6 @@
 package geek.lawsof.physics.lib.fluid
 
+import geek.lawsof.physics.init.CTabs
 import net.minecraft.item.ItemStack
 import net.minecraft.world.World
 import net.minecraft.entity.player.EntityPlayer
@@ -15,7 +16,7 @@ import net.minecraft.block.Block
 /**
  * Created by anshuman on 23-06-2014.
  */
-class FluidBucketContainer(intName: String, ctab: CreativeTabBase) extends FluidContainerBase(intName, FluidContainerRegistry.BUCKET_VOLUME, ctab){
+object FluidBucketContainer extends FluidContainerBase("bucket", FluidContainerRegistry.BUCKET_VOLUME, CTabs.mainTab){
   MinecraftForge.EVENT_BUS.register(this)
 
   override def onItemRightClick(itemStack: ItemStack, world: World, player: EntityPlayer): ItemStack = itemStack

@@ -13,8 +13,11 @@ class BlockDescriptor (val intName: String, val icons: IconArray, val item: Item
   var block: BlockBase = null
 
   def +: (reg: BlockBase)= {
-    block = reg
-    block.blocks += this
+    if (reg.metaCount == 15) {
+      block = reg
+      block.blocks += block.metaCount -> this
+      block.metaCount += 1
+    }
   }
 
   def register (reg: BlockBase)= reg +: this

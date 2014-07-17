@@ -23,7 +23,8 @@ class FluidContainerBase(intName: String, var fluidVol: Int, ctab: CreativeTabBa
     FluidContainerRegistry.registerFluidContainer(new FluidStack(fluid, fluidVol), newItemStack(descript.fluid.getID))
   }
 
-  val canPlaceFluids = false
+  def canPlaceFluids = false
+  def canPickupFluids = true
 
   override def onItemRightClick(itemStack: ItemStack, world: World, player: EntityPlayer): ItemStack = {
     if (itemStack.getItemDamage != 0 && !canPlaceFluids) {
@@ -66,7 +67,7 @@ class FluidContainerDescriptor(val fluid: Fluid) extends ItemDescriptor(fluid.ge
   override def +:(reg: ItemBase) = this.register(reg.asInstanceOf[FluidContainerBase])
 
   def register (item: FluidContainerBase) = {
-    item.items.update(fluid.getID, this)
+    item.items += (fluid.getID -> this)
     this.item = item
     this
   }

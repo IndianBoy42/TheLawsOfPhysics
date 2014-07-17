@@ -9,13 +9,11 @@ import geek.lawsof.physics.lib.util.Log
  */
 object ModFluids {
   var cell: FluidContainerBase = null
-  var bucket: FluidBucketContainer = null
 
   def preInit() = {
     Log.info("Creating Fluid Containers")
 
     cell = new FluidContainerBase("cell", FluidContainerRegistry.BUCKET_VOLUME, CTabs.techTab)
-    bucket = new FluidBucketContainer("bucket", CTabs.techTab)
 
     Log.info("Creating Fluids")
 

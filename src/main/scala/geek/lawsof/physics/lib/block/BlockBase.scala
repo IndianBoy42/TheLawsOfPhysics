@@ -26,6 +26,7 @@ import geek.lawsof.physics.lib.block.traits.{singleSided, IconArray}
 import geek.lawsof.physics.lib.CreativeTabBase
 
 import scala.collection.mutable.MutableList
+import scala.collection.mutable
 
 /**
  * Created by anshuman on 26-05-2014.
@@ -36,14 +37,15 @@ class BlockBase(intName: String, blockMaterial: Material = Material.iron, ctab: 
   setStrength(hardness, blastResistance)
   setHarvestLevel(toolType, toolLevel)
 
-  var blocks = MutableList.empty[BlockDescriptor]
+  var metaCount = 0
+  val blocks = mutable.HashMap.empty[Int, BlockDescriptor]
 
   def setStrength(hardness: Float, blastResistance: Float) = this.setHardness(hardness).setResistance(blastResistance)
 
   def newItemStack(size: Int = 1, meta: Int = 0) = new ItemStack(this, size, meta)
 
   override def registerBlockIcons(reg: IIconRegister): Unit = {
-    for (block <- blocks) block.registerIcons(reg)
+    for (block <- blocks) block._2.registerIcons(reg)
     errorIcon = reg.registerIcon("error")
   }
 

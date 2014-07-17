@@ -2,7 +2,6 @@ package geek.lawsof.physics.lib.item
 
 import java.util
 
-import com.sun.javaws.exceptions.InvalidArgumentException
 import cpw.mods.fml.common.registry.GameRegistry
 import geek.lawsof.physics.Reference
 import geek.lawsof.physics.init.CTabs
@@ -24,7 +23,8 @@ class ItemBase(ctab: CreativeTabs = CTabs.mainTab, stackSize: Int = 64) extends 
   setCreativeTab(ctab)
   setMaxStackSize(stackSize)
 
-  val items = mutable.MutableList.empty[ItemDescriptor]
+  var metaCount = 0
+  val items = mutable.HashMap.empty[Int, ItemDescriptor]
 
   def registerItem() = GameRegistry.registerItem(this, getInternalName())
 
@@ -35,15 +35,16 @@ class ItemBase(ctab: CreativeTabs = CTabs.mainTab, stackSize: Int = 64) extends 
 
   override def getUnlocalizedName(stack : ItemStack): String = "item." + getInternalName(stack)
 
-  override def getSubItems(item : Item, ctab : CreativeTabs, list : util.List[_]): Unit = for(i <- 0 until items.length) items.get(i) match {
-    case Some(item) => list.asInstanceOf[util.List[ItemStack]].add(newItemStack(dmg = i))
-    case None => {}
-  }
+  override def getSubItems(item : Item, ctab : CreativeTabs, list : util.List[_]): Unit = items.foreach(o => list.asInstanceOf[util.List[ItemStack]].add(newItemStack(dmg = o._1)))
 
   def newItemStack(size: Int = 1, dmg: Int = 0) = new ItemStack(this, size, dmg)
 
+  def newStack(item: ItemDescriptor, size: Int = 1) = newItemStack(size, getMeta(item))
+
+  def getMeta(item: ItemDescriptor) = items.map(_.swap).get(item).get
+
   override def registerIcons(reg: IIconRegister): Unit = {
-    items.foreach(_.registerIcon(reg))
+    items.foreach(_._2.registerIcon(reg))
     errorIcon = reg.registerIcon(s"${Reference.MOD_ID}:ErrorItem")
   }
 

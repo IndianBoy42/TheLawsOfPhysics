@@ -21,19 +21,19 @@ import net.minecraftforge.oredict.OreDictionary
 class MetalItem(prefix: String) extends ItemBase(CTabs.metalsTab) {
   def add(metal: MetalInfo) = this +: new ItemDescriptor(prefix + metal.name)
 
-  def get(metal: MetalInfo) = (for (item <- items; if item.intName.substring(prefix.length) == metal.name) yield item).get(0).getOrElse(null)
-  def getMeta(metal: MetalInfo) = items.indexOf(get(metal))
+  def get(metal: MetalInfo) = items.find(_._2.intName == prefix + metal.name).get._2
+  def getMeta(metal: MetalInfo) = items.map(_.swap).get(get(metal)).get
 
-  def newItemStack(metal: MetalInfo, size: Int): ItemStack = newItemStack(size, getMeta(metal))
+  def newMetalStack(metal: MetalInfo, size: Int = 1): ItemStack = newItemStack(size, getMeta(metal))
 }
 class MetalBlock(prefix: String) extends BlockBase(prefix) {
   def add(metal: MetalInfo) = this +: new BlockDescriptor(prefix + metal.name)
 
-  def get(metal: MetalInfo) = (for (block <- blocks; if block.intName.substring(prefix.length) == metal.name) yield block).get(0).getOrElse(null)
-  def getMeta(metal: MetalInfo) = blocks.indexOf(get(metal))
+  def get(metal: MetalInfo) = blocks.find(_._2.intName == prefix + metal.name).get._2
+  def getMeta(metal: MetalInfo) = blocks.map(_.swap).get(get(metal)).get
 
-  def newItemStack(metal: MetalInfo, size: Int): ItemStack = newItemStack(size, getMeta(metal))
+  def newMetalStack(metal: MetalInfo, size: Int = 1): ItemStack = newItemStack(size, getMeta(metal))
 }
 
-object Ingots extends MetalItem("ingot")
-object Blocks extends MetalBlock("block")
+object MetalIngots extends MetalItem("ingot")
+object MetalBlocks extends MetalBlock("block")

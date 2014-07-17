@@ -16,8 +16,11 @@ class ItemDescriptor(val intName: String, val shiny: Boolean = false, val txtCol
   var item: ItemBase = null
 
   def +: (reg: ItemBase): Unit = {
-    item = reg
-    item.items += this
+    if(reg.metaCount == 32767) {
+      item = reg
+      item.items += (item.metaCount -> this)
+      item.metaCount += 1
+    }
   }
 
   def register (reg: ItemBase)= reg +: this

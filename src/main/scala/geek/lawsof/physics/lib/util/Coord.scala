@@ -21,7 +21,7 @@ class Coord(var x: Int, var y: Int, var z: Int) {
 
   def tileExistsAt(w: IBlockAccess) = getTileAt(w) != null
 
-  def getSurroundingCoords = Array(
+  def getAdjacentCoords = Array(
     this + Coord(1, 0, 0),
     this + Coord(0, 1, 0),
     this + Coord(0, 0, 1),
@@ -30,13 +30,13 @@ class Coord(var x: Int, var y: Int, var z: Int) {
     this - Coord(0, 0, 1)
   )
 
-  def getSurroundingBlocks(w: IBlockAccess) = for (coord <- getSurroundingCoords) yield coord.getBlockAt(w)
+  def getSurroundingBlocks(w: IBlockAccess) = for (coord <- getAdjacentCoords) yield coord.getBlockAt(w)
 
-  def getSurroundingTiles(w: IBlockAccess) = for (coord <- getSurroundingCoords) yield coord.getTileAt(w)
+  def getSurroundingTiles(w: IBlockAccess) = for (coord <- getAdjacentCoords) yield coord.getTileAt(w)
 
-  def getSurroundingBlocksIfExists(w: IBlockAccess) = for (coord <- getSurroundingCoords; if coord.blockExistsAt(w)) yield coord.getBlockAt(w)
+  def getSurroundingBlocksIfExists(w: IBlockAccess) = for (coord <- getAdjacentCoords; if coord.blockExistsAt(w)) yield coord.getBlockAt(w)
 
-  def getSurroundingTilesIfExists(w: IBlockAccess) = for (coord <- getSurroundingCoords; if coord.tileExistsAt(w)) yield coord.getTileAt(w)
+  def getSurroundingTilesIfExists(w: IBlockAccess) = for (coord <- getAdjacentCoords; if coord.tileExistsAt(w)) yield coord.getTileAt(w)
 
   def +(c: Coord) = Coord(x + c.x, y + c.y, z + c.z)
 
@@ -55,4 +55,6 @@ class Coord(var x: Int, var y: Int, var z: Int) {
 
 object Coord {
   def apply(x: Int, y: Int, z: Int) = new Coord(x, y, z)
+
+  implicit def tuple3IntToCoord(xyz: (Int, Int, Int)) = new Coord(xyz._1, xyz._2, xyz._3)
 }
