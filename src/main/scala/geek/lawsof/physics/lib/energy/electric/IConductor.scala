@@ -1,13 +1,14 @@
 package geek.lawsof.physics.lib.energy.electric
 
-import net.minecraft.world.World
 import geek.lawsof.physics.lib.util.Coord
+import net.minecraft.world.World
 
 /**
  * Created by anshuman on 24-06-2014.
  */
 trait IConductor {
   var electricGrid: IElectricGrid = null
+
   def isConnected = electricGrid != null
 
   def onBlockPlaced(w: World, x: Int, y: Int, z: Int, s: Int, hX: Float, hY: Float, hZ: Float, meta: Int): Int = {
@@ -22,5 +23,5 @@ trait IConductor {
     meta
   }
 
-  def onNeighbourBlockChanged(tileX: Int, tileY: Int, tileZ: Int): Unit = ???
+  def onNeighbourBlockChanged(tileX: Int, tileY: Int, tileZ: Int): Unit = {}
 }

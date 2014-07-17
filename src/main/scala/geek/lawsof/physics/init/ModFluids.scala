@@ -1,8 +1,8 @@
 package geek.lawsof.physics.init
 
-import geek.lawsof.physics.lib.fluid.{FluidBucketContainer, FluidContainerBase}
-import net.minecraftforge.fluids.{Fluid, FluidContainerRegistry}
+import geek.lawsof.physics.lib.fluid.FluidContainerBase
 import geek.lawsof.physics.lib.util.Log
+import net.minecraftforge.fluids.{Fluid, FluidContainerRegistry}
 
 /**
  * Created by anshuman on 26-05-2014.
@@ -24,7 +24,7 @@ object ModFluids {
 
   }
 
-  def registerFluid (fluid: Fluid) = {
+  def registerFluid(fluid: Fluid) = {
     cell.registerFluid(fluid)
   }
 }

@@ -1,9 +1,6 @@
 package geek.lawsof.physics.lib.metals
 
-import geek.lawsof.physics.lib.equip.types.ArmorTypeBase
 import geek.lawsof.physics.lib.info._
-import net.minecraft.item.ItemArmor.ArmorMaterial
-import geek.lawsof.physics.lib.util.Log
 
 /**
  * Created by anshuman on 28-05-2014.
@@ -23,9 +20,8 @@ trait MetalInfo {
 
   def getMetalProperties: MetalProperties
 
-//  def getMineralComposition: MineralComposition
+  //  def getMineralComposition: MineralComposition
 }
-
 
 
 class SimpleMetalInfo(val name: String,

@@ -1,7 +1,7 @@
 package geek.lawsof.physics.lib.util
 
-import org.apache.logging.log4j.{Level, LogManager, Logger}
 import geek.lawsof.physics.Reference
+import org.apache.logging.log4j.{Level, LogManager, Logger}
 
 /**
  * Created by anshuman on 26-05-2014.

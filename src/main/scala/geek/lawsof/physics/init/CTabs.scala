@@ -1,11 +1,10 @@
 package geek.lawsof.physics.init
 
-import geek.lawsof.physics.init.content.CraftingItems
-import geek.lawsof.physics.lib.metals.MetalIngots
-import net.minecraft.init.{Blocks, Items}
 import geek.lawsof.physics.Reference
-import geek.lawsof.physics.lib.util.Log
+import geek.lawsof.physics.init.content.CraftingItems
 import geek.lawsof.physics.lib.CreativeTabBase
+import geek.lawsof.physics.lib.metals.MetalIngots
+import geek.lawsof.physics.lib.util.Log
 
 /**
  * Created by anshuman on 28-05-2014.

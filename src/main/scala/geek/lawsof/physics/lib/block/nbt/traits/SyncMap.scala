@@ -15,6 +15,6 @@ trait SyncMap {
 
   def writeAllNBT(nbt: NBTTagCompound) = fields.foreach(s => s._2.writeToNBT(nbt, s._1))
 
-  def markAllClean() = fields.foreach(_._2.markClean)
+  def markAllClean() = fields.foreach(_._2.markClean())
 
 }

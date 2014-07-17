@@ -1,13 +1,14 @@
 package geek.lawsof.physics.lib.equip
 
-import net.minecraft.item.{ItemStack, ItemArmor}
-import net.minecraft.entity.player.EntityPlayer
 import java.util
-import net.minecraft.entity.Entity
-import geek.lawsof.physics.lib.equip.types.ArmorTypeBase
+
 import cpw.mods.fml.common.registry.GameRegistry
 import geek.lawsof.physics.Reference
 import geek.lawsof.physics.lib.CreativeTabBase
+import geek.lawsof.physics.lib.equip.types.ArmorTypeBase
+import net.minecraft.entity.Entity
+import net.minecraft.entity.player.EntityPlayer
+import net.minecraft.item.{ItemArmor, ItemStack}
 
 /**
  * Created by anshuman on 28-05-2014.
@@ -42,5 +43,5 @@ class ArmorBase(val armorMaterial: ArmorTypeBase, val armorPart: Int, ctab: Crea
     s"${Reference.MOD_ID}:/textures/models/armor/$armorName$layer.png"
   }
 
-  def newItemStack (amt: Int = 1) = new ItemStack(this, amt)
+  def newItemStack(amt: Int = 1) = new ItemStack(this, amt)
 }

@@ -1,14 +1,13 @@
 package geek.lawsof.physics.lib.equip
 
-import net.minecraft.item._
-import net.minecraft.init.Items
-import cpw.mods.fml.common.registry.GameRegistry
-import net.minecraft.entity.player.EntityPlayer
 import java.util
-import geek.lawsof.physics.lib.equip.types.ToolTypeBase
-import geek.lawsof.physics.lib.util.Recipes
+
+import cpw.mods.fml.common.registry.GameRegistry
 import geek.lawsof.physics.Reference
 import geek.lawsof.physics.lib.CreativeTabBase
+import geek.lawsof.physics.lib.equip.types.ToolTypeBase
+import net.minecraft.entity.player.EntityPlayer
+import net.minecraft.item._
 
 /**
  * Created by anshuman on 28-05-2014.
@@ -31,11 +30,11 @@ trait ToolBase {
     tool.setTextureName(s"${Reference.MOD_ID}:${toolType.toolName}_$prefix")
     tool.setUnlocalizedName(s"${toolType.toolName}_$prefix")
     tool.setCreativeTab(ctab)
-//    Recipes.shapedRecipe(new ItemStack(tool), craftingShape, 'x', toolType.craftMaterial, 's', Items.stick)
+    //    Recipes.shapedRecipe(new ItemStack(tool), craftingShape, 'x', toolType.craftMaterial, 's', Items.stick)
     GameRegistry.registerItem(tool, s"${toolType.toolName}_$prefix")
   }
 
-  def newItemStack (amt: Int = 1) = new ItemStack(this.asInstanceOf[Item], amt)
+  def newItemStack(amt: Int = 1) = new ItemStack(this.asInstanceOf[Item], amt)
 
 }
 

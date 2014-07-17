@@ -1,8 +1,8 @@
 package geek.lawsof.physics.network.proxy
 
 import cpw.mods.fml.client.registry.ClientRegistry
-import net.minecraft.tileentity.TileEntity
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer
+import net.minecraft.tileentity.TileEntity
 
 /**
  * Created by anshuman on 28-05-2014.

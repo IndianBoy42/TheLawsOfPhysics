@@ -1,10 +1,10 @@
 package geek.lawsof.physics.lib.fluid
 
-import net.minecraftforge.fluids.{FluidStack, FluidContainerRegistry, FluidRegistry, Fluid}
-import net.minecraft.block.material.Material
-import geek.lawsof.physics.lib.info.FluidInfo
-import net.minecraft.item.ItemStack
 import geek.lawsof.physics.lib.CreativeTabBase
+import geek.lawsof.physics.lib.info.FluidInfo
+import net.minecraft.block.material.Material
+import net.minecraft.item.ItemStack
+import net.minecraftforge.fluids.{Fluid, FluidContainerRegistry, FluidRegistry, FluidStack}
 
 class FluidBase(fluidName: String, material: Material, ctab: CreativeTabBase) extends Fluid(fluidName) {
   FluidRegistry.registerFluid(this)

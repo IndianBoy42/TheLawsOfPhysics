@@ -2,7 +2,6 @@ package geek.lawsof.physics.lib.block.traits
 
 import net.minecraft.client.renderer.texture.IIconRegister
 import net.minecraft.util.IIcon
-import cpw.mods.fml.relauncher.{Side, SideOnly}
 
 /**
  * Created by anshuman on 22-06-2014.
@@ -49,12 +48,14 @@ object IconArray {
             front: String,
             back: String) = new IconArray(top, bottom, left, right, front, back)
 
-  def apply (name: String, iconType: IconArrayType = ezMultiSided()): IconArray = iconType match {
-    case ezMultiSided() => IconArray(s"${name}_top",s"${name}_bottom",s"${name}_left",s"${name}_right",s"${name}_front",s"${name}_back")
+  def apply(name: String, iconType: IconArrayType = ezMultiSided()): IconArray = iconType match {
+    case ezMultiSided() => IconArray(s"${name}_top", s"${name}_bottom", s"${name}_left", s"${name}_right", s"${name}_front", s"${name}_back")
     case singleSided() => IconArray(name, name, name, name, name, name)
   }
 }
 
 class IconArrayType
+
 case class ezMultiSided() extends IconArrayType
+
 case class singleSided() extends IconArrayType

@@ -1,8 +1,8 @@
 package geek.lawsof.physics.lib
 
-import net.minecraft.init.Items
-import net.minecraft.item.{ItemStack, Item}
 import net.minecraft.creativetab.CreativeTabs
+import net.minecraft.init.Items
+import net.minecraft.item.{Item, ItemStack}
 
 /**
  * Created by anshuman on 26-05-2014.

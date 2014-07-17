@@ -1,8 +1,8 @@
 package geek.lawsof.physics.lib.handler
 
 import cpw.mods.fml.common.IFuelHandler
-import net.minecraft.item.ItemStack
 import cpw.mods.fml.common.registry.GameRegistry
+import net.minecraft.item.ItemStack
 
 /**
  * Created by anshuman on 28-05-2014.

@@ -13,15 +13,13 @@ object NBTHelper {
    * @param itemStack
      * The ItemStack for which its NBT Tag Compound is being checked for initialization
    */
-  private def initNBTTagCompound(itemStack: ItemStack) {
+  def initNBTTagCompound(itemStack: ItemStack) {
     if (itemStack.stackTagCompound == null) {
       itemStack.setTagCompound(new NBTTagCompound)
     }
   }
 
-  def hasTag(itemStack: ItemStack, keyName: String): Boolean = {
-    return itemStack != null && itemStack.stackTagCompound != null && itemStack.stackTagCompound.hasKey(keyName)
-  }
+  def hasTag(itemStack: ItemStack, keyName: String): Boolean = itemStack != null && itemStack.stackTagCompound != null && itemStack.stackTagCompound.hasKey(keyName)
 
   def removeTag(itemStack: ItemStack, keyName: String) {
     if (itemStack.stackTagCompound != null) {
@@ -34,7 +32,7 @@ object NBTHelper {
     if (!itemStack.stackTagCompound.hasKey(keyName)) {
       setString(itemStack, keyName, default)
     }
-    return itemStack.stackTagCompound.getString(keyName)
+    itemStack.stackTagCompound.getString(keyName)
   }
 
   def setString(itemStack: ItemStack, keyName: String, keyValue: String) {
@@ -47,7 +45,7 @@ object NBTHelper {
     if (!itemStack.stackTagCompound.hasKey(keyName)) {
       setBoolean(itemStack, keyName, default)
     }
-    return itemStack.stackTagCompound.getBoolean(keyName)
+    itemStack.stackTagCompound.getBoolean(keyName)
   }
 
   def setBoolean(itemStack: ItemStack, keyName: String, keyValue: Boolean) {
@@ -60,7 +58,7 @@ object NBTHelper {
     if (!itemStack.stackTagCompound.hasKey(keyName)) {
       setByte(itemStack, keyName, default)
     }
-    return itemStack.stackTagCompound.getByte(keyName)
+    itemStack.stackTagCompound.getByte(keyName)
   }
 
   def setByte(itemStack: ItemStack, keyName: String, keyValue: Byte) {
@@ -73,7 +71,7 @@ object NBTHelper {
     if (!itemStack.stackTagCompound.hasKey(keyName)) {
       setShort(itemStack, keyName, default)
     }
-    return itemStack.stackTagCompound.getShort(keyName)
+    itemStack.stackTagCompound.getShort(keyName)
   }
 
   def setShort(itemStack: ItemStack, keyName: String, keyValue: Short) {
@@ -86,7 +84,7 @@ object NBTHelper {
     if (!itemStack.stackTagCompound.hasKey(keyName)) {
       setInteger(itemStack, keyName, default)
     }
-    return itemStack.stackTagCompound.getInteger(keyName)
+    itemStack.stackTagCompound.getInteger(keyName)
   }
 
   def setInteger(itemStack: ItemStack, keyName: String, keyValue: Int) {
@@ -99,7 +97,7 @@ object NBTHelper {
     if (!itemStack.stackTagCompound.hasKey(keyName)) {
       setLong(itemStack, keyName, default)
     }
-    return itemStack.stackTagCompound.getLong(keyName)
+    itemStack.stackTagCompound.getLong(keyName)
   }
 
   def setLong(itemStack: ItemStack, keyName: String, keyValue: Long) {
@@ -112,7 +110,7 @@ object NBTHelper {
     if (!itemStack.stackTagCompound.hasKey(keyName)) {
       setFloat(itemStack, keyName, default)
     }
-    return itemStack.stackTagCompound.getFloat(keyName)
+    itemStack.stackTagCompound.getFloat(keyName)
   }
 
   def setFloat(itemStack: ItemStack, keyName: String, keyValue: Float) {
@@ -125,7 +123,7 @@ object NBTHelper {
     if (!itemStack.stackTagCompound.hasKey(keyName)) {
       setDouble(itemStack, keyName, default)
     }
-    return itemStack.stackTagCompound.getDouble(keyName)
+    itemStack.stackTagCompound.getDouble(keyName)
   }
 
   def setDouble(itemStack: ItemStack, keyName: String, keyValue: Double) {

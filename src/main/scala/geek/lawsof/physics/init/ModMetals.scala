@@ -1,7 +1,7 @@
 package geek.lawsof.physics.init
 
 import geek.lawsof.physics.lib.metals._
-import geek.lawsof.physics.lib.util.{Recipes, Log}
+import geek.lawsof.physics.lib.util.{Log, Recipes}
 
 /**
  * Created by anshuman on 01-06-2014.

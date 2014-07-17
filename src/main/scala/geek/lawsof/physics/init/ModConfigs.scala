@@ -1,18 +1,15 @@
 package geek.lawsof.physics.init
 
-import net.minecraftforge.common.config.Configuration
 import java.io.File
-import geek.lawsof.physics.{Reference, LawsOfPhysicsMod}
-import geek.lawsof.physics.lib.util.Log
-import net.minecraftforge.common.MinecraftForge
+
 import cpw.mods.fml.client.event.ConfigChangedEvent.OnConfigChangedEvent
 import cpw.mods.fml.common.FMLCommonHandler
-import net.minecraft.client.gui.GuiScreen
-import cpw.mods.fml.client.IModGuiFactory.RuntimeOptionCategoryElement
-import net.minecraft.client.Minecraft
+import geek.lawsof.physics.lib.util.Log
+import geek.lawsof.physics.{LawsOfPhysicsMod, Reference}
+import net.minecraftforge.common.config.Configuration
 
 object ModConfigs {
-  var options = new configFile("GameOptions", syncOptions(_))
+  var options = new configFile("GameOptions", syncOptions)
 
   def syncOptions(evt: OnConfigChangedEvent) = {
 

@@ -11,12 +11,6 @@ class CustomTooltip(val mainTooltip: List[String] = List.empty,
                     val shiftMessage: String = "Hold Shift For More Info",
                     val ctrlMessage: String = "Hold Ctrl For Description")
 
-class LocalizedCustomTooltip(val mainUnlocalizedTooltip: List[String] = List.empty,
-                             val shiftUnlocalizedTooltip: List[String] = List.empty,
-                             val ctrlUnlocalizedToolTip: List[String] = List.empty,
-                             val shiftUnlocalizedMessage: String = "tooltip.shift.message",
-                             val ctrlUnlocalizedMessage: String = "tooltip.ctrl.message") extends CustomTooltip {}
-
 object CustomTooltip {
   def apply(mainTooltip: List[String] = List.empty,
             shiftTooltip: List[String] = List.empty,
@@ -32,5 +26,8 @@ object CustomTooltip {
     val mainTooltip = mainUnlocalizedTooltip.filter(StatCollector.canTranslate).map(StatCollector.translateToLocal)
     val shiftTooltip = shiftUnlocalizedTooltip.filter(StatCollector.canTranslate).map(StatCollector.translateToLocal)
     val ctrlTooltip = ctrlUnlocalizedToolTip.filter(StatCollector.canTranslate).map(StatCollector.translateToLocal)
+    val shiftMessage = StatCollector.translateToLocal(shiftUnlocalizedMessage)
+    val ctrlMessge = StatCollector.translateToLocal(ctrlUnlocalizedMessage)
+    CustomTooltip(mainTooltip, shiftTooltip, ctrlTooltip, shiftMessage, ctrlMessge)
   }
 }

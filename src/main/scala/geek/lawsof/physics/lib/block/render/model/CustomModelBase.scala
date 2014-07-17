@@ -1,13 +1,13 @@
 package geek.lawsof.physics.lib.block.render.model
 
-import net.minecraft.client.model.{TextureOffset, ModelRenderer, ModelBase}
+import net.minecraft.client.model.{ModelBase, ModelRenderer, TextureOffset}
 import net.minecraft.entity.Entity
 
 /**
  * Created by anshuman on 28-05-2014.
  */
 abstract class CustomModelBase extends ModelBase {
-  initShapes
+  initShapes()
 
   def texSize: (Int, Int)
 
@@ -19,7 +19,7 @@ abstract class CustomModelBase extends ModelBase {
 
   def renderShapes(p: Entity, f1: Float, f2: Float, f3: Float, f4: Float, f5: Float, f6: Float)
 
-  def initShapes
+  def initShapes()
 
   def setRotationForModel(model: ModelRenderer, f1: Int, f2: Int, f3: Int) = {
     model.rotateAngleX = f1

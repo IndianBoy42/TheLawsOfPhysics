@@ -1,11 +1,11 @@
 package geek.lawsof.physics.lib.equip.types
 
-import net.minecraft.item.ItemStack
-import net.minecraft.item.Item.ToolMaterial
-import net.minecraftforge.common.util.EnumHelper
-import geek.lawsof.physics.lib.info.ToolInfo
-import geek.lawsof.physics.lib.equip._
 import geek.lawsof.physics.lib.CreativeTabBase
+import geek.lawsof.physics.lib.equip._
+import geek.lawsof.physics.lib.info.ToolInfo
+import net.minecraft.item.Item.ToolMaterial
+import net.minecraft.item.ItemStack
+import net.minecraftforge.common.util.EnumHelper
 
 /**
  * Created by anshuman on 28-05-2014.
@@ -23,7 +23,7 @@ class ToolTypeBase(var toolName: String, var harvestLevel: Int, var durability: 
 
   def this(name: String, info: ToolInfo, mat: ItemStack) = this(name, info.harvestLevel, info.durability, info.efficiency, info.damage, info.enchantability, mat)
 
-  var toolType: ToolMaterial = ToolMaterial.IRON
+  var toolType = ToolMaterial.IRON
 
   val levels = Array("Stone", "Iron", "Diamond", "Obsidian")
 
@@ -35,7 +35,7 @@ class ToolTypeBase(var toolName: String, var harvestLevel: Int, var durability: 
   var sword: ToolSword = null
   var hoe: ToolHoe = null
 
-  def createToolSet (ctab: CreativeTabBase) = {
+  def createToolSet(ctab: CreativeTabBase) = {
     pickaxe = new ToolPickaxe(this, ctab)
     shovel = new ToolShovel(this, ctab)
     axe = new ToolAxe(this, ctab)

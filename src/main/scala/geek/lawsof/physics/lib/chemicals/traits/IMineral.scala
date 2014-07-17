@@ -3,8 +3,8 @@ package geek.lawsof.physics.lib.chemicals.traits
 /**
  * Created by anshuman on 02-06-2014.
  */
-trait IMineral extends ICompound{
-  override def composition: Map[IIon, Int] = cations.asInstanceOf[Map[IIon,Int]] ++ anions.asInstanceOf[Map[IIon,Int]]
+trait IMineral extends ICompound {
+  override def composition: Map[IIon, Int] = cations.asInstanceOf[Map[IIon, Int]] ++ anions.asInstanceOf[Map[IIon, Int]]
 
   def cations: Map[ICation, Int]
 

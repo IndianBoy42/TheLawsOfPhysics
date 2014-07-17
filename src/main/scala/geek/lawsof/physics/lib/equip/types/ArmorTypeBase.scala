@@ -1,11 +1,11 @@
 package geek.lawsof.physics.lib.equip.types
 
+import geek.lawsof.physics.lib.CreativeTabBase
+import geek.lawsof.physics.lib.equip.ArmorBase
+import geek.lawsof.physics.lib.info.ArmorInfo
+import net.minecraft.item.ItemArmor.ArmorMaterial
 import net.minecraft.item.ItemStack
 import net.minecraftforge.common.util.EnumHelper
-import net.minecraft.item.ItemArmor.ArmorMaterial
-import geek.lawsof.physics.lib.info.ArmorInfo
-import geek.lawsof.physics.lib.equip.ArmorBase
-import geek.lawsof.physics.lib.CreativeTabBase
 
 /**
  * Created by anshuman on 28-05-2014.
@@ -26,5 +26,5 @@ class ArmorTypeBase(var armorName: String, var durability: Int, var reductionAmo
 
   var armorPieces: List[ArmorBase] = List.empty
 
-  def createArmorSet (ctab: CreativeTabBase) = for (i <- 0 until 4) new ArmorBase(this, i, ctab) +: armorPieces
+  def createArmorSet(ctab: CreativeTabBase) = for (i <- 0 until 4) new ArmorBase(this, i, ctab) +: armorPieces
 }

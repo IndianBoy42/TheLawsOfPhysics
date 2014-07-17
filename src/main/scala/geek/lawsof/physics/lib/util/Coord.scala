@@ -1,8 +1,8 @@
 package geek.lawsof.physics.lib.util
 
-import net.minecraft.world.IBlockAccess
-import net.minecraft.tileentity.TileEntity
 import net.minecraft.block.Block
+import net.minecraft.tileentity.TileEntity
+import net.minecraft.world.IBlockAccess
 
 /**
  * Created by anshuman on 14-06-2014.

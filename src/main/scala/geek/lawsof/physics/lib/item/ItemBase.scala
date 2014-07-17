@@ -8,9 +8,11 @@ import geek.lawsof.physics.init.CTabs
 import geek.lawsof.physics.lib.item.traits._
 import net.minecraft.client.renderer.texture.IIconRegister
 import net.minecraft.creativetab.CreativeTabs
+import net.minecraft.entity.Entity
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.item.{EnumRarity, Item, ItemStack}
 import net.minecraft.util.IIcon
+import net.minecraft.world.World
 
 import scala.collection.mutable
 
@@ -20,6 +22,7 @@ import scala.collection.mutable
 class ItemBase(ctab: CreativeTabs = CTabs.mainTab, stackSize: Int = 64) extends Item {
   setCreativeTab(ctab)
   setMaxStackSize(stackSize)
+  setMaxDamage(0)
 
   var metaCount = 0
   val items = mutable.HashMap.empty[Int, ItemDescriptor]
@@ -68,10 +71,14 @@ class ItemBase(ctab: CreativeTabs = CTabs.mainTab, stackSize: Int = 64) extends 
     case None => false
   }
 
-  override def doesContainerItemLeaveCraftingGrid(stack : ItemStack): Boolean = items(stack.getItemDamage).containerStack._2
+  override def doesContainerItemLeaveCraftingGrid(stack: ItemStack): Boolean = items(stack.getItemDamage).containerStack._2
 
   override def hasContainerItem(stack: ItemStack): Boolean = items(stack.getItemDamage).hasContainer
 
   override def getContainerItem(stack: ItemStack): ItemStack = items(stack.getItemDamage).containerStack._1
+
+  override def onUpdate(stack: ItemStack, w: World, e: Entity, i: Int, b: Boolean): Unit = items(stack.getItemDamage).tick(stack, w, e, i, b)
+
+  override def onCreated(stack: ItemStack, w: World, p: EntityPlayer): Unit = items(stack.getItemDamage).initNBT(stack, w, p)
 }
 

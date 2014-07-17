@@ -12,6 +12,7 @@ trait MetalProperties {
   //Amount of Heat Energy Required to/Lost While Changing the State Of Matter of 1 Gram of this Material
   //J/mol (joules per mole)
   def latentHeatOfFusion: Double
+
   def latentHeatOfVaporization: Double
 
   //Amount of Heat Energy Required to Heat 1 Gram of this Material by 1 degree

@@ -5,7 +5,7 @@ import java.util
 import geek.lawsof.physics.init.CTabs
 import geek.lawsof.physics.lib.CreativeTabBase
 import geek.lawsof.physics.lib.block.te.TileEntityBase
-import geek.lawsof.physics.lib.block.te.traits.{INeighbourAwareTile, IActivateAwareTile, IGuiTile}
+import geek.lawsof.physics.lib.block.te.traits.{IActivateAwareTile, INeighbourAwareTile}
 import geek.lawsof.physics.lib.util.Coord
 import net.minecraft.block.Block
 import net.minecraft.block.Block.SoundType
@@ -35,7 +35,7 @@ class BlockBase(intName: String, blockMaterial: Material = Material.iron, ctab: 
 
   override def hasTileEntity(metadata: Int): Boolean = blocks(metadata).hasTE
 
-  def registerTiles = blocks.foreach(_._2.registerTE)
+  def registerTiles() = blocks.foreach(_._2.registerTE())
 
   override def createTileEntity(world: World, metadata: Int): TileEntity = blocks(metadata).createTE(world)
 
@@ -62,7 +62,7 @@ class BlockBase(intName: String, blockMaterial: Material = Material.iron, ctab: 
     case None => "error"
   }
 
-  override def onNeighborBlockChange(w : World, x : Int, y : Int, z : Int, b : Block): Unit =
+  override def onNeighborBlockChange(w: World, x: Int, y: Int, z: Int, b: Block): Unit =
     Coord(x, y, z).getTileAtAs[TileEntityBase](w).ifInstanceOf[INeighbourAwareTile](_.neighbourBlockChange(w, x, y, z, b))
 
   override def onNeighborChange(w: IBlockAccess, x: Int, y: Int, z: Int, tileX: Int, tileY: Int, tileZ: Int): Unit =

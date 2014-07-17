@@ -12,9 +12,9 @@ trait ISyncableObject {
 
   var dirty = false
 
-  def markDirty = dirty = true
+  def markDirty() = dirty = true
 
-  def markClean = dirty = false
+  def markClean() = dirty = false
 
-  def value
+  def value()
 }

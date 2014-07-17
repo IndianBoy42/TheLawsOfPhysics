@@ -1,10 +1,8 @@
 package geek.lawsof.physics.lib.block.te
 
-import cpw.mods.fml.client.registry.ClientRegistry
 import cpw.mods.fml.common.registry.GameRegistry
 import geek.lawsof.physics.lib.block.nbt.traits.SyncMap
 import geek.lawsof.physics.lib.block.te.traits.{ICustomRenderedTile, IGuiTile, ITickingTile}
-import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer
 import net.minecraft.nbt.NBTTagCompound
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity
 import net.minecraft.network.{NetworkManager, Packet}
@@ -17,7 +15,7 @@ import net.minecraft.world.World
 abstract class TileEntityBase extends TileEntity {
   def registerTE(intName: String) = {
     GameRegistry.registerTileEntity(this.getClass, intName)
-    this.ifInstanceOf[ICustomRenderedTile](_.registerRenderer)
+    this.ifInstanceOf[ICustomRenderedTile](_.registerRenderer())
   }
 
   def name: String
@@ -35,15 +33,18 @@ abstract class TileEntityBase extends TileEntity {
 
   override def onDataPacket(net: NetworkManager, pkt: S35PacketUpdateTileEntity): Unit = {
     this readFromNBT pkt.func_148857_g()
-    syncMap.markAllClean
-    updateGui
+    syncMap.markAllClean()
+    updateGui()
   }
 
   override def readFromNBT(nbt: NBTTagCompound): Unit = if (syncMap != null) syncMap.readAllNBT(nbt)
 
   override def writeToNBT(nbt: NBTTagCompound): Unit = if (syncMap != null) syncMap.writeAllNBT(nbt)
 
-  def ifInstanceOf[T](f: T => Unit) = if (this.isInstanceOf[T]) f(this.asInstanceOf[T])
+  def ifInstanceOf[T](f: T => Unit) = this match {
+    case t: T => f(t)
+    case _ =>
+  }
 
   override def updateEntity(): Unit = ifInstanceOf[ITickingTile](_.tick())
 
@@ -54,7 +55,7 @@ abstract class TileEntityBase extends TileEntity {
 }
 
 object TileEntityBase {
-  def hasTeAt(w: World, x: Int, y: Int, z: Int): Boolean = !((getTileAt(w, x, y, z) == null))
+  def hasTeAt(w: World, x: Int, y: Int, z: Int): Boolean = getTileAt(w, x, y, z) != null
 
   def getTileAt(w: World, x: Int, y: Int, z: Int): TileEntity = w.getTileEntity(x, y, z)
 }

@@ -1,14 +1,14 @@
 package geek.lawsof.physics.lib.fluid
 
-import net.minecraftforge.fluids.{Fluid, BlockFluidClassic}
 import cpw.mods.fml.common.registry.GameRegistry
-import net.minecraft.util.IIcon
-import cpw.mods.fml.relauncher.{SideOnly, Side}
-import net.minecraft.block.material.Material
-import net.minecraft.client.renderer.texture.IIconRegister
-import net.minecraft.world.{World, IBlockAccess}
+import cpw.mods.fml.relauncher.{Side, SideOnly}
 import geek.lawsof.physics.Reference
 import geek.lawsof.physics.lib.CreativeTabBase
+import net.minecraft.block.material.Material
+import net.minecraft.client.renderer.texture.IIconRegister
+import net.minecraft.util.IIcon
+import net.minecraft.world.{IBlockAccess, World}
+import net.minecraftforge.fluids.{BlockFluidClassic, Fluid}
 
 class FluidBlockBase(fluid: Fluid, material: Material, ctab: CreativeTabBase) extends BlockFluidClassic(fluid, material) {
   this.setBlockName(fluid.getUnlocalizedName)
