@@ -11,8 +11,6 @@ import net.minecraft.creativetab.CreativeTabs
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.item.{EnumRarity, Item, ItemStack}
 import net.minecraft.util.IIcon
-import net.minecraftforge.oredict.OreDictionary
-import org.lwjgl.input.Keyboard
 
 import scala.collection.mutable
 
@@ -33,9 +31,9 @@ class ItemBase(ctab: CreativeTabs = CTabs.mainTab, stackSize: Int = 64) extends 
     case None => "error"
   }
 
-  override def getUnlocalizedName(stack : ItemStack): String = "item." + getInternalName(stack)
+  override def getUnlocalizedName(stack: ItemStack): String = "item." + getInternalName(stack)
 
-  override def getSubItems(item : Item, ctab : CreativeTabs, list : util.List[_]): Unit = items.foreach(o => list.asInstanceOf[util.List[ItemStack]].add(newItemStack(dmg = o._1)))
+  override def getSubItems(item: Item, ctab: CreativeTabs, list: util.List[_]): Unit = items.foreach(o => list.asInstanceOf[util.List[ItemStack]].add(newItemStack(dmg = o._1)))
 
   def newItemStack(size: Int = 1, dmg: Int = 0) = new ItemStack(this, size, dmg)
 
@@ -55,12 +53,12 @@ class ItemBase(ctab: CreativeTabs = CTabs.mainTab, stackSize: Int = 64) extends 
     case None => errorIcon
   }
 
-  override def getRarity(stack : ItemStack): EnumRarity = items.get(stack.getItemDamage) match {
+  override def getRarity(stack: ItemStack): EnumRarity = items.get(stack.getItemDamage) match {
     case Some(item) => item.txtColor.color
     case None => whiteColor().color
   }
 
-  override def addInformation(stack : ItemStack, p_77624_2_ : EntityPlayer, list : util.List[_], p_77624_4_ : Boolean): Unit = items.get(stack.getItemDamage) match {
+  override def addInformation(stack: ItemStack, p_77624_2_ : EntityPlayer, list: util.List[_], p_77624_4_ : Boolean): Unit = items.get(stack.getItemDamage) match {
     case Some(item) => item.tooltipInfo(list)
     case None => list.asInstanceOf[util.List[String]].add("This Item Is Invalid, This Is Probably Due To Some Corruption Or a Recent Update, Throw This Away, Sorry")
   }

@@ -1,25 +1,31 @@
 package geek.lawsof.physics.lib.block.te
 
-import net.minecraft.tileentity.TileEntity
-import net.minecraft.world.{IBlockAccess, World}
-import net.minecraft.entity.player.EntityPlayer
+import cpw.mods.fml.client.registry.ClientRegistry
+import cpw.mods.fml.common.registry.GameRegistry
+import geek.lawsof.physics.lib.block.nbt.traits.SyncMap
+import geek.lawsof.physics.lib.block.te.traits.{ICustomRenderedTile, IGuiTile, ITickingTile}
+import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer
 import net.minecraft.nbt.NBTTagCompound
-import net.minecraft.network.{Packet, NetworkManager}
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity
-import geek.lawsof.physics.lib.block.te.traits.ITickingTile
-import geek.lawsof.physics.lib.block.nbt.traits.ISyncMap
+import net.minecraft.network.{NetworkManager, Packet}
+import net.minecraft.tileentity.TileEntity
+import net.minecraft.world.World
 
 /**
  * Created by anshuman on 28-05-2014.
  */
 abstract class TileEntityBase extends TileEntity {
+  def registerTE(intName: String) = {
+    GameRegistry.registerTileEntity(this.getClass, intName)
+    this.ifInstanceOf[ICustomRenderedTile](_.registerRenderer)
+  }
 
   def name: String
 
   override def canUpdate: Boolean = this.isInstanceOf[ITickingTile]
 
   //ISyncTile
-  def syncMap: ISyncMap = null
+  def syncMap: SyncMap = null
 
   override def getDescriptionPacket: Packet = {
     var nbt = new NBTTagCompound()
@@ -37,7 +43,13 @@ abstract class TileEntityBase extends TileEntity {
 
   override def writeToNBT(nbt: NBTTagCompound): Unit = if (syncMap != null) syncMap.writeAllNBT(nbt)
 
-  def updateGui = {}
+  def ifInstanceOf[T](f: T => Unit) = if (this.isInstanceOf[T]) f(this.asInstanceOf[T])
+
+  override def updateEntity(): Unit = ifInstanceOf[ITickingTile](_.tick())
+
+  def updateGui() = ifInstanceOf[IGuiTile](_.updateGUI())
+
+  def hasRenderer = isInstanceOf[ICustomRenderedTile]
 
 }
 

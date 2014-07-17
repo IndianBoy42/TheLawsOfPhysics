@@ -15,4 +15,6 @@ trait ISyncableObject {
   def markDirty = dirty = true
 
   def markClean = dirty = false
+
+  def value
 }

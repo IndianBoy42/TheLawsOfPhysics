@@ -24,7 +24,6 @@ class ItemBlockBase(val block: BlockBase, stackSize:Int = 64) extends ItemBlock(
 
   def registerItem = {
     GameRegistry.registerItem(this, getInternalName())
-    GameRegistry.registerBlock(block, this.getClass, block.getUnlocalizedName)
   }
 
   def newItemStack(size: Int = 1, dmg: Int = 0) = new ItemStack(this, size, dmg)

@@ -1,8 +1,11 @@
 package geek.lawsof.physics.lib.block
 
+import cpw.mods.fml.common.registry.GameRegistry
+import geek.lawsof.physics.lib.block.te.TileEntityBase
 import geek.lawsof.physics.lib.block.traits.{IconArray, singleSided}
 import geek.lawsof.physics.lib.item.ItemDescriptor
 import net.minecraft.client.renderer.texture.IIconRegister
+import net.minecraft.world.World
 
 /**
  * Created by anshuman on 15-07-2014.
@@ -23,4 +26,10 @@ class BlockDescriptor (val intName: String, val icons: IconArray, val item: Item
   def register (reg: BlockBase)= reg +: this
 
   def registerIcons(reg: IIconRegister) = icons.register(reg)
+
+  def hasTE = teClass != null
+  def teClass: Class[_ <: TileEntityBase] = null
+  def registerTE() = teClass.newInstance().registerTE(intName)
+  def createTE(w: World) = if (hasTE) teClass.newInstance() else null
+
 }
