@@ -11,17 +11,16 @@ import net.minecraft.world.World
 import net.minecraft.world.chunk.IChunkProvider
 import net.minecraft.world.gen.feature.WorldGenMinable
 
+import scala.collection.mutable
+
 /**
+ * NEEDS A Rework
+ *
  * Created by anshuman on 28-05-2014.
  */
-object WorldGenerator {
-  val default = new WorldGenerator()
-}
-
-class WorldGenerator(weight: Int) extends IWorldGenerator {
-  GameRegistry.registerWorldGenerator(this, weight)
-
-  def this() = this(0)
+@Deprecated()
+object WorldGenerator extends IWorldGenerator {
+  GameRegistry.registerWorldGenerator(this, 0)
 
   def add(gen: BlockBase, stats: GenStats) {
     ores += (gen -> stats)
@@ -43,6 +42,6 @@ class WorldGenerator(weight: Int) extends IWorldGenerator {
     }
   }
 
-  var ores: Map[BlockBase, GenStats] = Map.empty
+  var ores = mutable.HashMap.empty[BlockBase, GenStats]
 }
 

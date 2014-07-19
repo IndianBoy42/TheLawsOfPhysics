@@ -7,4 +7,6 @@ trait ITickingTile {
 
   def tick()
 
+  def randomTick()
+
 }

@@ -1,4 +1,4 @@
-package geek.lawsof.physics.lib.block.nbt.traits
+package geek.lawsof.physics.lib.block.nbt
 
 import net.minecraft.nbt.NBTTagCompound
 
