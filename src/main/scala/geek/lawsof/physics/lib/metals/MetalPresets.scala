@@ -1,6 +1,6 @@
 package geek.lawsof.physics.lib.metals
 
-import geek.lawsof.physics.lib.info._
+import geek.lawsof.physics.lib.util.info._
 
 /**
  * Created by anshuman on 19-06-2014.

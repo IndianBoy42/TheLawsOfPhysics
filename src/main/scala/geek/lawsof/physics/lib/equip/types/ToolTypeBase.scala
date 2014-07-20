@@ -2,7 +2,7 @@ package geek.lawsof.physics.lib.equip.types
 
 import geek.lawsof.physics.lib.CreativeTabBase
 import geek.lawsof.physics.lib.equip._
-import geek.lawsof.physics.lib.info.ToolInfo
+import geek.lawsof.physics.lib.util.info.ToolInfo
 import net.minecraft.item.Item.ToolMaterial
 import net.minecraft.item.ItemStack
 import net.minecraftforge.common.util.EnumHelper

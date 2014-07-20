@@ -2,7 +2,7 @@ package geek.lawsof.physics.lib.equip.types
 
 import geek.lawsof.physics.lib.CreativeTabBase
 import geek.lawsof.physics.lib.equip.ArmorBase
-import geek.lawsof.physics.lib.info.ArmorInfo
+import geek.lawsof.physics.lib.util.info.ArmorInfo
 import net.minecraft.item.ItemArmor.ArmorMaterial
 import net.minecraft.item.ItemStack
 import net.minecraftforge.common.util.EnumHelper

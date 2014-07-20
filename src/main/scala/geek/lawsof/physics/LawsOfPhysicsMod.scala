@@ -14,7 +14,7 @@ import scala.collection.JavaConverters._
 /**
  * Created by anshuman on 25-05-2014.
  */
-@Mod(modid = MOD_ID, name = MOD_NAME, version = Reference.MOD_VERSION, modLanguage = MOD_LANGUAGE, guiFactory = CONFIG_GUI_FACTORY_CLASS)
+@Mod(modid = MOD_ID, name = MOD_NAME, version = Reference.MOD_VERSION, modLanguage = MOD_LANGUAGE)
 object LawsOfPhysicsMod {
 
   @SidedProxy(clientSide = CLIENT_PROXY_CLASS, serverSide = SERVER_PROXY_CLASS)
@@ -58,11 +58,11 @@ object LawsOfPhysicsMod {
 
   @EventHandler
   def sendInterModComms(event: FMLInterModComms) = {
-    Log.info("Telling Others about the Laws Of Physics")
+    Log.info("Publishing Hypothesis of the Laws Of Physics")
 
     sendImcEvt = event
 
-    Log.info("Hypothesis have been sent")
+    Log.info("Hypothesis have been Published")
   }
 
   def IMC(event: IMCEvent) = {
@@ -79,7 +79,7 @@ object LawsOfPhysicsMod {
 
     postInitEvt = event
 
-    Log.info("Laws Of Physics Have Been Proved ... Have Fun")
+    Log.info("Laws Of Physics Have Been Proved")
   }
 
   @EventHandler
@@ -92,11 +92,11 @@ object LawsOfPhysicsMod {
   }
 
   def serverStop(event: FMLServerStoppingEvent) {
-    Log.info("Shutting Down Laws Of Physics in World")
+    Log.info("Deactivating Laws Of Physics in World")
 
     serverStopEvt = event
 
-    Log.info("Laws Of Physics have been Shut Down")
+    Log.info("Laws Of Physics have been Deactivated")
   }
 
   def modMeta() = {

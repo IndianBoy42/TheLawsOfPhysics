@@ -1,4 +1,4 @@
-package geek.lawsof.physics.lib.util
+package geek.lawsof.physics.lib.util.handler
 
 import cpw.mods.fml.common.FMLCommonHandler
 import net.minecraftforge.common.MinecraftForge

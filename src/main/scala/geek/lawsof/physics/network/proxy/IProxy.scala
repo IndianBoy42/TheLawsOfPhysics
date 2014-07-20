@@ -14,5 +14,6 @@ trait IProxy {
   def registerRenderer(te: Class[_ <: TileEntity], renderer: TileEntitySpecialRenderer) = {}
 
   def registerGUI() = {}
-
 }
+
+abstract class ModProxy extends IProxy

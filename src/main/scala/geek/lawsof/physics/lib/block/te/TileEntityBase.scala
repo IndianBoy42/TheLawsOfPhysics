@@ -12,13 +12,11 @@ import net.minecraft.world.World
 /**
  * Created by anshuman on 28-05-2014.
  */
-abstract class TileEntityBase extends TileEntity {
+class TileEntityBase extends TileEntity {
   def registerTE(intName: String) = {
     GameRegistry.registerTileEntity(this.getClass, intName)
     this.ifInstanceOf[ICustomRenderedTile](_.registerRenderer())
   }
-
-  def name: String
 
   override def canUpdate: Boolean = this.isInstanceOf[ITickingTile]
 
@@ -52,10 +50,5 @@ abstract class TileEntityBase extends TileEntity {
 
   def hasRenderer = isInstanceOf[ICustomRenderedTile]
 
-}
-
-object TileEntityBase {
-  def hasTeAt(w: World, x: Int, y: Int, z: Int): Boolean = getTileAt(w, x, y, z) != null
-
-  def getTileAt(w: World, x: Int, y: Int, z: Int): TileEntity = w.getTileEntity(x, y, z)
+  def thisClass = this.getClass
 }

@@ -1,4 +1,4 @@
-package geek.lawsof.physics.lib.handler
+package geek.lawsof.physics.lib.util.handler
 
 /**
  * Created by anshuman on 28-05-2014.

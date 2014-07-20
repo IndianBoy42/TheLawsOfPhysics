@@ -1,4 +1,4 @@
-package geek.lawsof.physics.lib.info
+package geek.lawsof.physics.lib.util.info
 
 /**
  * Created by anshuman on 26-05-2014.
