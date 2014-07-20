@@ -14,5 +14,7 @@ object FuelHandler extends IFuelHandler {
 
   def add(stack: ItemStack, items: Int) = fuels += (stack -> items * 200)
 
+  def += (fuel: (ItemStack, Int)) = add(fuel._1, fuel._2)
+
   override def getBurnTime(fuel: ItemStack): Int = fuels(fuel)
 }

@@ -3,6 +3,7 @@ package geek.lawsof.physics.lib.metals
 import geek.lawsof.physics.init.CTabs
 import geek.lawsof.physics.lib.block.{BlockBase, BlockDescriptor}
 import geek.lawsof.physics.lib.item.{ItemBase, ItemDescriptor}
+import geek.lawsof.physics.lib.util.handler.WorldGenerator
 import net.minecraft.item.ItemStack
 
 /**
@@ -31,3 +32,10 @@ class MetalBlock(prefix: String) extends BlockBase(prefix) {
 object MetalIngots extends MetalItem("ingot")
 
 object MetalBlocks extends MetalBlock("block")
+
+object MetalOres extends MetalBlock("ore") {
+  override def add(metal: MetalInfo): Unit = {
+    super.add(metal)
+    WorldGenerator += this -> getMeta(metal) -> metal.getOreGenInfo
+  }
+}

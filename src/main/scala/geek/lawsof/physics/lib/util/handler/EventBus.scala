@@ -11,3 +11,11 @@ object EventBus {
 
   def registerFMLEvent(obj: AnyRef) = FMLCommonHandler.instance().bus().register(obj)
 }
+
+object FMLEventBus {
+  def += (obj: AnyRef) = EventBus.registerFMLEvent(obj)
+}
+
+object MinecraftForgeBus {
+  def += (obj: AnyRef) = EventBus.registerForgeEvent(obj)
+}

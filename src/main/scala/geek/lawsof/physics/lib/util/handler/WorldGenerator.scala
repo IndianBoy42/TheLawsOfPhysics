@@ -17,9 +17,9 @@ import scala.collection.mutable
 object WorldGenerator extends IWorldGenerator {
   GameRegistry.registerWorldGenerator(this, 0)
 
-  def add(gen: (BlockBase, Int), stats: GenStats) {
-    ores += (gen -> stats)
-  }
+  def add(gen: (BlockBase, Int), stats: GenStats) = ores += (gen -> stats)
+
+  def += (gen: ((BlockBase, Int), GenStats)) = add(gen._1, gen._2)
 
   override def generate(rand: Random, chunkX: Int, chunkZ: Int, world: World, chunkGenerator: IChunkProvider, chunkProvider: IChunkProvider) {
     for (ore <- ores
