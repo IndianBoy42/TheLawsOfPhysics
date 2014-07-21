@@ -125,91 +125,139 @@ object NBTHelper {
     itemStack.stackTagCompound.setDouble(keyName, keyValue)
   }
 
-  def getString(stackTagCompound: NBTTagCompound, keyName: String, default: String = ""): String = {
+  def getByteArray(itemStack: ItemStack, keyName: String, default: Array[Byte] = Array.empty[Byte]) = {
+    initNBTTagCompound(itemStack)
+    if (!itemStack.stackTagCompound.hasKey(keyName)) {
+      setByteArray(itemStack, keyName, default)
+    }
+    itemStack.stackTagCompound.getByteArray(keyName)
+  }
+
+  def setByteArray(itemStack: ItemStack, keyName: String, keyValue: Array[Byte]) = {
+    initNBTTagCompound(itemStack)
+    itemStack.stackTagCompound.setByteArray(keyName, keyValue)
+  }
+
+  def getIntArray(itemStack: ItemStack, keyName: String, default: Array[Int] = Array.empty[Int]) = {
+    initNBTTagCompound(itemStack)
+    if (!itemStack.stackTagCompound.hasKey(keyName)) {
+      setIntArray(itemStack, keyName, default)
+    }
+    itemStack.stackTagCompound.getIntArray(keyName)
+  }
+
+  def setIntArray(itemStack: ItemStack, keyName: String, keyValue: Array[Int]) = {
+    initNBTTagCompound(itemStack)
+    itemStack.stackTagCompound.setIntArray(keyName, keyValue)
+  }
+
+  def getStringInCompound(stackTagCompound: NBTTagCompound, keyName: String, default: String = ""): String = {
     if (!stackTagCompound.hasKey(keyName)) {
-      setString(stackTagCompound, keyName, default)
+      setStringInCompound(stackTagCompound, keyName, default)
     }
     stackTagCompound.getString(keyName)
   }
 
-  def setString(stackTagCompound: NBTTagCompound, keyName: String, keyValue: String) {
+  def setStringInCompound(stackTagCompound: NBTTagCompound, keyName: String, keyValue: String) {
     stackTagCompound.setString(keyName, keyValue)
   }
 
-  def getBoolean(stackTagCompound: NBTTagCompound, keyName: String, default: Boolean = false): Boolean = {
+  def getBooleanInCompound(stackTagCompound: NBTTagCompound, keyName: String, default: Boolean = false): Boolean = {
     if (!stackTagCompound.hasKey(keyName)) {
-      setBoolean(stackTagCompound, keyName, default)
+      setBooleanInCompound(stackTagCompound, keyName, default)
     }
     stackTagCompound.getBoolean(keyName)
   }
 
-  def setBoolean(stackTagCompound: NBTTagCompound, keyName: String, keyValue: Boolean) {
+  def setBooleanInCompound(stackTagCompound: NBTTagCompound, keyName: String, keyValue: Boolean) {
     stackTagCompound.setBoolean(keyName, keyValue)
   }
 
-  def getByte(stackTagCompound: NBTTagCompound, keyName: String, default: Byte = 0): Byte = {
+  def getByteInCompound(stackTagCompound: NBTTagCompound, keyName: String, default: Byte = 0): Byte = {
     if (!stackTagCompound.hasKey(keyName)) {
-      setByte(stackTagCompound, keyName, default)
+      setByteInCompound(stackTagCompound, keyName, default)
     }
     stackTagCompound.getByte(keyName)
   }
 
-  def setByte(stackTagCompound: NBTTagCompound, keyName: String, keyValue: Byte) {
+  def setByteInCompound(stackTagCompound: NBTTagCompound, keyName: String, keyValue: Byte) {
     stackTagCompound.setByte(keyName, keyValue)
   }
 
-  def getShort(stackTagCompound: NBTTagCompound, keyName: String, default: Short = 0): Short = {
+  def getShortInCompound(stackTagCompound: NBTTagCompound, keyName: String, default: Short = 0): Short = {
     if (!stackTagCompound.hasKey(keyName)) {
-      setShort(stackTagCompound, keyName, default)
+      setShortInCompound(stackTagCompound, keyName, default)
     }
     stackTagCompound.getShort(keyName)
   }
 
-  def setShort(stackTagCompound: NBTTagCompound, keyName: String, keyValue: Short) {
+  def setShortInCompound(stackTagCompound: NBTTagCompound, keyName: String, keyValue: Short) {
     stackTagCompound.setShort(keyName, keyValue)
   }
 
-  def getInt(stackTagCompound: NBTTagCompound, keyName: String, default: Int = 0): Int = {
+  def getIntInCompound(stackTagCompound: NBTTagCompound, keyName: String, default: Int = 0): Int = {
     if (!stackTagCompound.hasKey(keyName)) {
-      setInteger(stackTagCompound, keyName, default)
+      setIntegerInCompound(stackTagCompound, keyName, default)
     }
     stackTagCompound.getInteger(keyName)
   }
 
-  def setInteger(stackTagCompound: NBTTagCompound, keyName: String, keyValue: Int) {
+  def setIntegerInCompound(stackTagCompound: NBTTagCompound, keyName: String, keyValue: Int) {
     stackTagCompound.setInteger(keyName, keyValue)
   }
 
-  def getLong(stackTagCompound: NBTTagCompound, keyName: String, default: Long = 0): Long = {
+  def getLongInCompound(stackTagCompound: NBTTagCompound, keyName: String, default: Long = 0): Long = {
     if (!stackTagCompound.hasKey(keyName)) {
-      setLong(stackTagCompound, keyName, default)
+      setLongInCompound(stackTagCompound, keyName, default)
     }
     stackTagCompound.getLong(keyName)
   }
 
-  def setLong(stackTagCompound: NBTTagCompound, keyName: String, keyValue: Long) {
+  def setLongInCompound(stackTagCompound: NBTTagCompound, keyName: String, keyValue: Long) {
     stackTagCompound.setLong(keyName, keyValue)
   }
 
-  def getFloat(stackTagCompound: NBTTagCompound, keyName: String, default: Float = 0): Float = {
+  def getFloatInCompound(stackTagCompound: NBTTagCompound, keyName: String, default: Float = 0): Float = {
     if (!stackTagCompound.hasKey(keyName)) {
-      setFloat(stackTagCompound, keyName, default)
+      setFloatInCompound(stackTagCompound, keyName, default)
     }
     stackTagCompound.getFloat(keyName)
   }
 
-  def setFloat(stackTagCompound: NBTTagCompound, keyName: String, keyValue: Float) {
+  def setFloatInCompound(stackTagCompound: NBTTagCompound, keyName: String, keyValue: Float) {
     stackTagCompound.setFloat(keyName, keyValue)
   }
 
-  def getDouble(stackTagCompound: NBTTagCompound, keyName: String, default: Double = 0): Double = {
+  def getDoubleInCompound(stackTagCompound: NBTTagCompound, keyName: String, default: Double = 0): Double = {
     if (!stackTagCompound.hasKey(keyName)) {
-      setDouble(stackTagCompound, keyName, default)
+      setDoubleInCompound(stackTagCompound, keyName, default)
     }
     stackTagCompound.getDouble(keyName)
   }
 
-  def setDouble(stackTagCompound: NBTTagCompound, keyName: String, keyValue: Double) {
+  def setDoubleInCompound(stackTagCompound: NBTTagCompound, keyName: String, keyValue: Double) {
     stackTagCompound.setDouble(keyName, keyValue)
+  }
+
+  def getByteArrayInCompound(stackTagCompound: NBTTagCompound, keyName: String, default: Array[Byte] = Array.empty[Byte]) = {
+    if (!stackTagCompound.hasKey(keyName)) {
+      setByteArrayInCompound(stackTagCompound, keyName, default)
+    }
+    stackTagCompound.getByteArray(keyName)
+  }
+
+  def setByteArrayInCompound(stackTagCompound: NBTTagCompound, keyName: String, keyValue: Array[Byte]) = {
+    stackTagCompound.setByteArray(keyName, keyValue)
+  }
+  
+  def getIntArrayInCompound(stackTagCompound: NBTTagCompound, keyName: String, default: Array[Int] = Array.empty[Int]) = {
+    if (!stackTagCompound.hasKey(keyName)) {
+      setIntArrayInCompound(stackTagCompound, keyName, default)
+    }
+    stackTagCompound.getIntArray(keyName)
+  }
+
+  def setIntArrayInCompound(stackTagCompound: NBTTagCompound, keyName: String, keyValue: Array[Int]) = {
+    stackTagCompound.setIntArray(keyName, keyValue)
   }
 }

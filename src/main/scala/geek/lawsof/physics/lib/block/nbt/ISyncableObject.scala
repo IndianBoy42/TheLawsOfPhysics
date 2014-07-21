@@ -13,8 +13,10 @@ trait ISyncableObject {
   var dirty = false
 
   def markDirty() = dirty = true
-
   def markClean() = dirty = false
+}
 
-  def value()
+class SyncableObjectImpl[T](var value: T, val get: (NBTTagCompound, String, T) => T, val set: (NBTTagCompound, String, T) => Unit) extends ISyncableObject{
+  override def writeToNBT(nbt: NBTTagCompound, name: String): Unit = set(nbt, name, value)
+  override def readFromNBT(nbt: NBTTagCompound, name: String): Unit = get(nbt, name, value)
 }
