@@ -1,4 +1,4 @@
-package geek.lawsof.physics.lib.util
+package geek.lawsof.physics.lib.util.helpers
 
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NBTTagCompound
@@ -249,7 +249,7 @@ object NBTHelper {
   def setByteArrayInCompound(stackTagCompound: NBTTagCompound, keyName: String, keyValue: Array[Byte]) = {
     stackTagCompound.setByteArray(keyName, keyValue)
   }
-  
+
   def getIntArrayInCompound(stackTagCompound: NBTTagCompound, keyName: String, default: Array[Int] = Array.empty[Int]) = {
     if (!stackTagCompound.hasKey(keyName)) {
       setIntArrayInCompound(stackTagCompound, keyName, default)

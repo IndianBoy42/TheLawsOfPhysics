@@ -2,6 +2,7 @@ package geek.lawsof.physics.network.proxy
 
 import cpw.mods.fml.client.registry.ClientRegistry
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer
+import net.minecraft.client.settings.KeyBinding
 import net.minecraft.tileentity.TileEntity
 
 /**
@@ -13,4 +14,6 @@ class ClientProxy extends ModProxy {
   override def init(): Unit = {}
 
   override def registerRenderer(te: Class[_ <: TileEntity], renderer: TileEntitySpecialRenderer): Unit = ClientRegistry.bindTileEntitySpecialRenderer(te, renderer)
+
+  override def registerKeyBinding(key: KeyBinding): Unit = ClientRegistry.registerKeyBinding(key)
 }

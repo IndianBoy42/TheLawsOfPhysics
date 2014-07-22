@@ -1,7 +1,7 @@
 package geek.lawsof.physics.init
 
 import geek.lawsof.physics.lib.fluid.FluidContainerBase
-import geek.lawsof.physics.lib.util.Log
+import geek.lawsof.physics.lib.util.helpers.Log
 import net.minecraftforge.fluids.{Fluid, FluidContainerRegistry}
 
 /**

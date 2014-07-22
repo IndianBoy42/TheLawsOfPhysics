@@ -6,7 +6,7 @@ import cpw.mods.fml.common.event._
 import cpw.mods.fml.common.{Mod, ModMetadata, SidedProxy}
 import geek.lawsof.physics.Reference._
 import geek.lawsof.physics.init._
-import geek.lawsof.physics.lib.util.Log
+import geek.lawsof.physics.lib.util.helpers.Log
 import geek.lawsof.physics.network.proxy.ModProxy
 
 import scala.collection.JavaConverters._
@@ -87,6 +87,8 @@ object LawsOfPhysicsMod {
     Log.info(s"Implementing Laws Of Physics in World : ${event.getServer.getWorldName}")
 
     serverStartEvt = event
+
+    ModCommands.serverLoad()
 
     Log.info(s"Laws Of Physics have been Implemented in World : ${event.getServer.getWorldName}")
   }

@@ -1,4 +1,4 @@
-package geek.lawsof.physics.lib.util
+package geek.lawsof.physics.lib.util.helpers
 
 import geek.lawsof.physics.Reference
 import org.apache.logging.log4j.{Level, LogManager, Logger}
@@ -9,7 +9,7 @@ import org.apache.logging.log4j.{Level, LogManager, Logger}
 object Log {
   var logger: Logger = LogManager.getLogger(Reference.MOD_ID)
 
-  def apply(logLevel: Level, obj: AnyRef) {
+  def apply(obj: AnyRef, logLevel: Level = Level.INFO) {
     logger.log(logLevel, obj.toString)
   }
 

@@ -1,4 +1,4 @@
-package geek.lawsof.physics.lib.util
+package geek.lawsof.physics.lib.util.info
 
 import net.minecraft.block.Block
 import net.minecraft.tileentity.TileEntity

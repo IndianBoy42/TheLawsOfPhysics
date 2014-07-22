@@ -4,7 +4,7 @@ import java.util._
 
 import geek.lawsof.physics.Reference
 import geek.lawsof.physics.lib.item.traits.{CustomTooltip, TextColor, whiteColor}
-import geek.lawsof.physics.lib.util.NBTHelper
+import geek.lawsof.physics.lib.util.helpers.NBTHelper
 import net.minecraft.client.renderer.texture.IIconRegister
 import net.minecraft.entity.Entity
 import net.minecraft.entity.player.EntityPlayer

@@ -16,6 +16,6 @@ object FMLEventBus {
   def += (obj: AnyRef) = EventBus.registerFMLEvent(obj)
 }
 
-object MinecraftForgeBus {
+object MinecraftForgeEventBus {
   def += (obj: AnyRef) = EventBus.registerForgeEvent(obj)
 }

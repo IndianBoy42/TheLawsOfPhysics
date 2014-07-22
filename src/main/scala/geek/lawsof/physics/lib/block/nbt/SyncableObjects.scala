@@ -1,6 +1,7 @@
 package geek.lawsof.physics.lib.block.nbt
 
-import geek.lawsof.physics.lib.util.NBTHelper._
+import geek.lawsof.physics.lib.util.helpers.NBTHelper
+import NBTHelper._
 
 class SyncableInt(value: Int) extends SyncableObjectImpl(value, getIntInCompound, setIntegerInCompound)
 class SyncableString(value: String) extends SyncableObjectImpl(value, getStringInCompound, setStringInCompound)

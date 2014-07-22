@@ -1,4 +1,4 @@
-package geek.lawsof.physics.lib.util
+package geek.lawsof.physics.lib.util.helpers
 
 import net.minecraft.item.ItemStack
 import net.minecraftforge.oredict.OreDictionary

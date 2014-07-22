@@ -4,7 +4,7 @@ import geek.lawsof.physics.Reference
 import geek.lawsof.physics.init.content.CraftingItems
 import geek.lawsof.physics.lib.CreativeTabBase
 import geek.lawsof.physics.lib.metals.MetalIngots
-import geek.lawsof.physics.lib.util.Log
+import geek.lawsof.physics.lib.util.helpers.Log
 
 /**
  * Created by anshuman on 28-05-2014.

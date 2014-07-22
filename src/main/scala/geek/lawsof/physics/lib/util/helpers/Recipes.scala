@@ -1,4 +1,4 @@
-package geek.lawsof.physics.lib.util
+package geek.lawsof.physics.lib.util.helpers
 
 import cpw.mods.fml.common.registry.GameRegistry
 import net.minecraft.item.ItemStack
@@ -10,7 +10,7 @@ import scala.collection.JavaConverters._
  */
 object Recipes {
   def shapedRecipe(output: ItemStack, params: Object*) {
-    RecipeBridge.addShapedRecipe(output, params.asJava.toArray)
+    RecipeBridge.addShapedRecipe(output, params.asJava.toArray())
   }
 
   def shapelessRecipe(output: ItemStack, recipePars: Object*) {

@@ -3,7 +3,7 @@ package geek.lawsof.physics.init
 import cpw.mods.fml.common.registry.GameRegistry
 import geek.lawsof.physics.Reference
 import geek.lawsof.physics.init.content.CraftingItems
-import geek.lawsof.physics.lib.util.Log
+import geek.lawsof.physics.lib.util.helpers.Log
 
 /**
  * Created by anshuman on 26-05-2014.

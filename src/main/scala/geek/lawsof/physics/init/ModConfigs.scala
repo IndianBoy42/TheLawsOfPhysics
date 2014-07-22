@@ -4,7 +4,7 @@ import java.io.File
 
 import cpw.mods.fml.client.event.ConfigChangedEvent.OnConfigChangedEvent
 import cpw.mods.fml.common.FMLCommonHandler
-import geek.lawsof.physics.lib.util.Log
+import geek.lawsof.physics.lib.util.helpers.Log
 import geek.lawsof.physics.{LawsOfPhysicsMod, Reference}
 import net.minecraftforge.common.config.Configuration
 

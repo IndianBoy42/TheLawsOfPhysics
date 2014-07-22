@@ -1,7 +1,7 @@
 package geek.lawsof.physics.lib.energy.electric
 
 import geek.lawsof.physics.lib.energy.electric.ElectricalUnit.Ohm
-import geek.lawsof.physics.lib.util.Coord
+import geek.lawsof.physics.lib.util.info.Coord
 import net.minecraft.world.World
 
 /**

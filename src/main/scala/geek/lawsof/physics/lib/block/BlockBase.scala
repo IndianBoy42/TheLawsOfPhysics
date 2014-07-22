@@ -7,7 +7,7 @@ import geek.lawsof.physics.init.CTabs
 import geek.lawsof.physics.lib.CreativeTabBase
 import geek.lawsof.physics.lib.block.te.TileEntityBase
 import geek.lawsof.physics.lib.block.te.traits.{IActivateAwareTile, INeighbourAwareTile}
-import geek.lawsof.physics.lib.util.Coord
+import geek.lawsof.physics.lib.util.info.Coord
 import net.minecraft.block.Block
 import net.minecraft.block.Block.SoundType
 import net.minecraft.block.material.Material

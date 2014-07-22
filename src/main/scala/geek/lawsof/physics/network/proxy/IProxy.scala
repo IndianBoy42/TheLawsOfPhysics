@@ -1,6 +1,7 @@
 package geek.lawsof.physics.network.proxy
 
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer
+import net.minecraft.client.settings.KeyBinding
 import net.minecraft.tileentity.TileEntity
 
 /**
@@ -14,6 +15,8 @@ trait IProxy {
   def registerRenderer(te: Class[_ <: TileEntity], renderer: TileEntitySpecialRenderer) = {}
 
   def registerGUI() = {}
+
+  def registerKeyBinding(key: KeyBinding) = {}
 }
 
 abstract class ModProxy extends IProxy
