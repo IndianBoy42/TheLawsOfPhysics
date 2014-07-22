@@ -10,6 +10,12 @@ import scala.collection.mutable
 trait SyncMap {
   val fields = mutable.HashMap.empty[String, ISyncableObject]
 
+  def add(name: String, obj: ISyncableObject) = fields += (name -> obj)
+  def += (field: (String, ISyncableObject)) = {
+    add(field._1, field._2)
+    this
+  }
+
   def readAllNBT(nbt: NBTTagCompound) = fields.foreach(s => s._2.readFromNBT(nbt, s._1))
 
   def writeAllNBT(nbt: NBTTagCompound) = fields.foreach(s => s._2.writeToNBT(nbt, s._1))

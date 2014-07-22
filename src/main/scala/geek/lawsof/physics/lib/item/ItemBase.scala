@@ -77,8 +77,6 @@ class ItemBase(ctab: CreativeTabs = CTabs.mainTab, stackSize: Int = 64) extends 
 
   override def getContainerItem(stack: ItemStack): ItemStack = items(stack.getItemDamage).containerStack._1
 
-  override def onUpdate(stack: ItemStack, w: World, e: Entity, i: Int, b: Boolean): Unit = items(stack.getItemDamage).tick(stack, w, e, i, b)
-
   override def onCreated(stack: ItemStack, w: World, p: EntityPlayer): Unit = items(stack.getItemDamage).initNBT(stack, w, p)
 }
 

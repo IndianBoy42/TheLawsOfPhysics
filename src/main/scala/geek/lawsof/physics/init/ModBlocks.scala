@@ -2,6 +2,7 @@ package geek.lawsof.physics.init
 
 import cpw.mods.fml.common.registry.GameRegistry
 import geek.lawsof.physics.Reference
+import geek.lawsof.physics.init.content.PoweredFurnace.PoweredFurnaceBlock
 import geek.lawsof.physics.lib.util.helpers.Log
 
 /**
@@ -9,11 +10,14 @@ import geek.lawsof.physics.lib.util.helpers.Log
  */
 @GameRegistry.ObjectHolder(Reference.MOD_ID)
 object ModBlocks {
+  val poweredFurnace = new PoweredFurnaceBlock
+
   def preInit() = {
     Log.info("Creating Blocks")
 
     Log.info("Creating Machines")
 
+    poweredFurnace.register()
   }
 
   def init() = {

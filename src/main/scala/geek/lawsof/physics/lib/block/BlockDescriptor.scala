@@ -15,11 +15,12 @@ class BlockDescriptor(val intName: String, val icons: IconArray, val item: ItemD
   var block: BlockBase = null
 
   def +:(reg: BlockBase) = {
-    if (reg.metaCount == 15) {
+    if (reg.metaCount != 15) {
       block = reg
       block.blocks += block.metaCount -> this
       block.metaCount += 1
     }
+    else throw new IndexOutOfBoundsException("The Amount Of SubBlocks Is TOO DAMN HIGH!")
   }
 
   def register(reg: BlockBase) = reg +: this

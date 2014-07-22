@@ -15,7 +15,7 @@ import net.minecraft.world.World
 class TileEntityBase extends TileEntity {
   def registerTE(intName: String) = {
     GameRegistry.registerTileEntity(this.getClass, intName)
-    this.ifInstanceOf[ICustomRenderedTile](_.registerRenderer())
+    if (this.isInstanceOf[ICustomRenderedTile]) this.asInstanceOf[ICustomRenderedTile].registerRenderer()
   }
 
   override def canUpdate: Boolean = this.isInstanceOf[ITickingTile]
@@ -30,8 +30,10 @@ class TileEntityBase extends TileEntity {
   }
 
   override def onDataPacket(net: NetworkManager, pkt: S35PacketUpdateTileEntity): Unit = {
-    this readFromNBT pkt.func_148857_g()
-    syncMap.markAllClean()
+    if (syncMap != null) {
+      this readFromNBT pkt.func_148857_g()
+      syncMap.markAllClean()
+    }
     updateGui()
   }
 
@@ -39,14 +41,9 @@ class TileEntityBase extends TileEntity {
 
   override def writeToNBT(nbt: NBTTagCompound): Unit = if (syncMap != null) syncMap.writeAllNBT(nbt)
 
-  def ifInstanceOf[T](f: T => Unit) = this match {
-    case t: T => f(t)
-    case _ =>
-  }
+  override def updateEntity(): Unit = if (this.isInstanceOf[ITickingTile]) this.asInstanceOf[ITickingTile].tick()
 
-  override def updateEntity(): Unit = ifInstanceOf[ITickingTile](_.tick())
-
-  def updateGui() = ifInstanceOf[IGuiTile](_.updateGUI())
+  def updateGui() = if (this.isInstanceOf[IGuiTile]) this.asInstanceOf[IGuiTile].updateGUI()
 
   def hasRenderer = isInstanceOf[ICustomRenderedTile]
 

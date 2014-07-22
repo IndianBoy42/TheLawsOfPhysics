@@ -6,6 +6,7 @@ import cpw.mods.fml.common.registry.GameRegistry
 import geek.lawsof.physics.Reference
 import geek.lawsof.physics.lib.item.ItemDescriptor
 import geek.lawsof.physics.lib.item.traits.whiteColor
+import net.minecraft.block.Block
 import net.minecraft.client.renderer.texture.IIconRegister
 import net.minecraft.entity.Entity
 import net.minecraft.entity.player.EntityPlayer
@@ -16,9 +17,10 @@ import net.minecraft.world.World
 /**
  * Created by anshuman on 15-07-2014.
  */
-class ItemBlockBase(val block: BlockBase, stackSize: Int = 64) extends ItemBlock(block) {
-  setMaxStackSize(stackSize)
+class ItemBlockBase(b: Block) extends ItemBlock(b) {
   setMaxDamage(0)
+
+  val block = b.asInstanceOf[BlockBase]
 
   def items = block.blocks.map(o => (o._1, o._2.item))
 
@@ -27,10 +29,6 @@ class ItemBlockBase(val block: BlockBase, stackSize: Int = 64) extends ItemBlock
   def getInternalName(dmg: Int = 0) = block.getInternalName(newItemStack(dmg = dmg))
 
   override def getUnlocalizedName(stack: ItemStack): String = getInternalName(stack.getItemDamage)
-
-  def registerItem() = {
-    GameRegistry.registerItem(this, getInternalName())
-  }
 
   def newItemStack(size: Int = 1, dmg: Int = 0) = new ItemStack(this, size, dmg)
 
@@ -70,8 +68,6 @@ class ItemBlockBase(val block: BlockBase, stackSize: Int = 64) extends ItemBlock
   override def hasContainerItem(stack: ItemStack): Boolean = items(stack.getItemDamage).hasContainer
 
   override def getContainerItem(stack: ItemStack): ItemStack = items(stack.getItemDamage).containerStack._1
-
-  override def onUpdate(stack: ItemStack, w: World, e: Entity, i: Int, b: Boolean): Unit = items(stack.getItemDamage).tick(stack, w, e, i, b)
 
   override def onCreated(stack: ItemStack, w: World, p: EntityPlayer): Unit = items(stack.getItemDamage).initNBT(stack, w, p)
 }

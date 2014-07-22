@@ -10,7 +10,10 @@ trait IGuiTile extends IActivateAwareTile {
 
   def updateGUI()
 
-  override def blockActivated(w: World, x: Int, y: Int, z: Int, p: EntityPlayer, pi: Int, px: Float, py: Float, pz: Float): Unit = openGUI(w, x, y, z, p, pi, px, py, pz)
+  override def blockActivated(w: World, x: Int, y: Int, z: Int, p: EntityPlayer, pi: Int, px: Float, py: Float, pz: Float): Boolean = {
+    openGUI(w, x, y, z, p, pi, px, py, pz)
+    true
+  }
 
   def openGUI(w: World, x: Int, y: Int, z: Int, p: EntityPlayer, pi: Int, px: Float, py: Float, pz: Float)
 

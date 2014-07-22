@@ -23,11 +23,12 @@ class ItemDescriptor(val intName: String, val shiny: Boolean = false, val txtCol
   var item: ItemBase = null
 
   def +:(reg: ItemBase): Unit = {
-    if (reg.metaCount == 32767) {
+    if (reg.metaCount != 32767) {
       item = reg
       item.items += (item.metaCount -> this)
       item.metaCount += 1
     }
+    else throw new IndexOutOfBoundsException("The Amount Of SubItems Is OVER 32767!")
   }
 
   def register(reg: ItemBase) = reg +: this
@@ -50,8 +51,6 @@ class ItemDescriptor(val intName: String, val shiny: Boolean = false, val txtCol
   def hasContainer = containerStack != null
 
   def containerStack: (ItemStack, Boolean) = null
-
-  def tick(stack: ItemStack, w: World, e: Entity, i: Int, b: Boolean) = {}
 
   def initNBT(stack: ItemStack, w: World, p: EntityPlayer) = NBTHelper.initNBTTagCompound(stack)
 

@@ -8,6 +8,6 @@ import net.minecraft.world.World
  */
 trait IActivateAwareTile {
 
-  def blockActivated(w: World, x: Int, y: Int, z: Int, p: EntityPlayer, pi: Int, px: Float, py: Float, pz: Float)
+  def blockActivated(w: World, x: Int, y: Int, z: Int, p: EntityPlayer, pi: Int, px: Float, py: Float, pz: Float): Boolean
 
 }

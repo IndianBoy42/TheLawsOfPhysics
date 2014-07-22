@@ -3,6 +3,7 @@ package geek.lawsof.physics.lib.block
 import java.util
 import java.util.Random
 
+import cpw.mods.fml.common.registry.GameRegistry
 import geek.lawsof.physics.init.CTabs
 import geek.lawsof.physics.lib.CreativeTabBase
 import geek.lawsof.physics.lib.block.te.TileEntityBase
@@ -36,9 +37,9 @@ class BlockBase(intName: String, blockMaterial: Material = Material.iron, ctab: 
   var metaCount = 0
   val blocks = mutable.HashMap.empty[Int, BlockDescriptor]
 
-  override def hasTileEntity(metadata: Int): Boolean = blocks(metadata).hasTE
-
   def registerTiles() = blocks.foreach(_._2.registerTE())
+
+  override def hasTileEntity(metadata: Int): Boolean = blocks(metadata).hasTE
 
   override def createTileEntity(world: World, metadata: Int): TileEntity = blocks(metadata).createTE(world)
 
@@ -65,17 +66,19 @@ class BlockBase(intName: String, blockMaterial: Material = Material.iron, ctab: 
     case None => "error"
   }
 
-  override def onNeighborBlockChange(w: World, x: Int, y: Int, z: Int, b: Block): Unit =
-    Coord(x, y, z).getTileAtAs[TileEntityBase](w).ifInstanceOf[INeighbourAwareTile](_.neighbourBlockChange(w, x, y, z, b))
+  override def onNeighborBlockChange(w: World, x: Int, y: Int, z: Int, b: Block): Unit = {
+    val te = Coord(x, y, z).getTileAtAs[TileEntityBase](w)
+    if (te.isInstanceOf[INeighbourAwareTile]) te.asInstanceOf[INeighbourAwareTile].neighbourBlockChange(w, x, y, z, b)
+  }
 
-  override def onNeighborChange(w: IBlockAccess, x: Int, y: Int, z: Int, tileX: Int, tileY: Int, tileZ: Int): Unit =
-    Coord(x, y, z).getTileAtAs[TileEntityBase](w).ifInstanceOf[INeighbourAwareTile](_.neighbourTileChange(w, x, y, z, tileX, tileY, tileZ))
+  override def onNeighborChange(w: IBlockAccess, x: Int, y: Int, z: Int, tileX: Int, tileY: Int, tileZ: Int): Unit ={
+    val te = Coord(x, y, z).getTileAtAs[TileEntityBase](w)
+    if (te.isInstanceOf[INeighbourAwareTile]) te.asInstanceOf[INeighbourAwareTile].neighbourTileChange(w, x, y, z, tileX, tileY, tileZ)
+  }
 
   override def onBlockActivated(w: World, x: Int, y: Int, z: Int, p: EntityPlayer, pi: Int, px: Float, py: Float, pz: Float): Boolean = {
-    if (!p.isSneaking) {
-      Coord(x, y, z).getTileAtAs[TileEntityBase](w).ifInstanceOf[IActivateAwareTile](_.blockActivated(w, x, y, z, p, pi, px, py, pz))
-      true
-    }
+    val te = Coord(x, y, z).getTileAtAs[TileEntityBase](w)
+    if (!p.isSneaking && te.isInstanceOf[IActivateAwareTile]) te.asInstanceOf[IActivateAwareTile].blockActivated(w, x, y, z, p, pi, px, py, pz)
     else false
   }
 
