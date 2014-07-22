@@ -1,8 +1,8 @@
-package geek.lawsof.physics.lib.block.render
+package geek.lawsof.physics.lib.block.te.render
 
 import cpw.mods.fml.relauncher.{Side, SideOnly}
 import geek.lawsof.physics.Reference
-import geek.lawsof.physics.lib.block.render.model.CustomModelBase
+import geek.lawsof.physics.lib.block.te.render.model.CustomModelBase
 import net.minecraft.block.Block
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer
 import net.minecraft.client.renderer.{OpenGlHelper, Tessellator}

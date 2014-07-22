@@ -1,7 +1,7 @@
 package geek.lawsof.physics.lib.block.te.traits
 
 import geek.lawsof.physics.LawsOfPhysicsMod
-import geek.lawsof.physics.lib.block.render.CustomRendererBase
+import geek.lawsof.physics.lib.block.te.render.CustomRendererBase
 import geek.lawsof.physics.lib.block.te.TileEntityBase
 
 /**

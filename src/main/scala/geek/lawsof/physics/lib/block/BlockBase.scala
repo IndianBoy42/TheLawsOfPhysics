@@ -7,6 +7,7 @@ import geek.lawsof.physics.init.CTabs
 import geek.lawsof.physics.lib.CreativeTabBase
 import geek.lawsof.physics.lib.block.te.TileEntityBase
 import geek.lawsof.physics.lib.block.te.traits.{IActivateAwareTile, INeighbourAwareTile}
+import geek.lawsof.physics.lib.block.traits.ICustomRenderedBlock
 import geek.lawsof.physics.lib.util.info.Coord
 import net.minecraft.block.Block
 import net.minecraft.block.Block.SoundType
@@ -77,5 +78,12 @@ class BlockBase(intName: String, blockMaterial: Material = Material.iron, ctab: 
     }
     else false
   }
+
+  override def isOpaqueCube: Boolean = !this.isInstanceOf[ICustomRenderedBlock]
+
+  override def renderAsNormalBlock(): Boolean = !this.isInstanceOf[ICustomRenderedBlock]
+
+  override def getRenderType: Int = if (this.isInstanceOf[ICustomRenderedBlock]) this.asInstanceOf[ICustomRenderedBlock].renderID() else 0
+
 }
 

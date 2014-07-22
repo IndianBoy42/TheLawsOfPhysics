@@ -1,7 +1,7 @@
 package geek.lawsof.physics.lib.block.te
 
 import cpw.mods.fml.common.registry.GameRegistry
-import geek.lawsof.physics.lib.block.nbt.SyncMap
+import geek.lawsof.physics.lib.block.te.nbt.SyncMap
 import geek.lawsof.physics.lib.block.te.traits.{ICustomRenderedTile, IGuiTile, ITickingTile}
 import net.minecraft.nbt.NBTTagCompound
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity

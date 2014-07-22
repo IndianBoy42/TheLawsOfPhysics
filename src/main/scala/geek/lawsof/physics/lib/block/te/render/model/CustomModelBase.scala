@@ -1,4 +1,4 @@
-package geek.lawsof.physics.lib.block.render.model
+package geek.lawsof.physics.lib.block.te.render.model
 
 import net.minecraft.client.model.{ModelBase, ModelRenderer, TextureOffset}
 import net.minecraft.entity.Entity

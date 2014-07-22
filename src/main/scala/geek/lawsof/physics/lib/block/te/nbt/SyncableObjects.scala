@@ -1,4 +1,4 @@
-package geek.lawsof.physics.lib.block.nbt
+package geek.lawsof.physics.lib.block.te.nbt
 
 import geek.lawsof.physics.lib.util.helpers.NBTHelper
 import NBTHelper._

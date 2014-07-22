@@ -8,54 +8,52 @@ import net.minecraft.util.IIcon
  */
 class IconArray(var top: String,
                 var bottom: String,
-                var left: String,
-                var right: String,
-                var front: String,
-                var back: String) {
+                var south: String,
+                var north: String,
+                var west: String,
+                var east: String) {
 
   def register(reg: IIconRegister) = {
     topIcon = reg.registerIcon(top)
     bottomIcon = reg.registerIcon(bottom)
-    leftIcon = reg.registerIcon(left)
-    rightIcon = reg.registerIcon(right)
-    frontIcon = reg.registerIcon(front)
-    backIcon = reg.registerIcon(back)
+    southIcon = reg.registerIcon(south)
+    northIcon = reg.registerIcon(north)
+    eastIcon = reg.registerIcon(west)
+    westIcon = reg.registerIcon(east)
   }
 
   def apply(side: Int) = side match {
-    case 0 => topIcon
-    case 1 => bottomIcon
-    case 2 => leftIcon
-    case 3 => rightIcon
-    case 4 => frontIcon
-    case 5 => backIcon
+    case 0 => bottomIcon
+    case 1 => topIcon
+    case 2 => northIcon
+    case 3 => southIcon
+    case 4 => westIcon
+    case 5 => eastIcon
   }
 
   var topIcon: IIcon = null
   var bottomIcon: IIcon = null
-  var leftIcon: IIcon = null
-  var rightIcon: IIcon = null
-  var frontIcon: IIcon = null
-  var backIcon: IIcon = null
+  var southIcon: IIcon = null
+  var northIcon: IIcon = null
+  var eastIcon: IIcon = null
+  var westIcon: IIcon = null
 
 }
 
 object IconArray {
   def apply(top: String,
             bottom: String,
-            left: String,
-            right: String,
-            front: String,
-            back: String) = new IconArray(top, bottom, left, right, front, back)
+            south: String,
+            north: String,
+            east: String,
+            west: String) = new IconArray(top, bottom, south, north, east, west)
 
   def apply(name: String, iconType: IconArrayType = ezMultiSided()): IconArray = iconType match {
-    case ezMultiSided() => IconArray(s"${name}_top", s"${name}_bottom", s"${name}_left", s"${name}_right", s"${name}_front", s"${name}_back")
+    case ezMultiSided() => IconArray(s"${name}_top", s"${name}_bottom", s"${name}_south", s"${name}_north", s"${name}_east", s"${name}_west")
     case singleSided() => IconArray(name, name, name, name, name, name)
   }
 }
 
 class IconArrayType
-
 case class ezMultiSided() extends IconArrayType
-
 case class singleSided() extends IconArrayType
