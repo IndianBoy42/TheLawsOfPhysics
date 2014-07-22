@@ -32,4 +32,12 @@ object Recipes {
   def cross3 = Array("xyx", "yxy", "xyx")
 
   def cross2 = Array("xy", "yx")
+
+  def compressionCraft(o: ItemStack, i: ItemStack) = shapedRecipe(o, "iii", "iii", "iii", char2Character('i'), i)
+  def decompressionCraft(o: ItemStack, i: ItemStack) = shapedRecipe(o, "i", char2Character('i'), i)
+  def reversibleCompressionCraft(o: ItemStack, i: ItemStack) = {
+    compressionCraft(o, i)
+    val i_9 = new ItemStack(i.getItem, 9, i.getItemDamage)
+    decompressionCraft(i, o)
+  }
 }

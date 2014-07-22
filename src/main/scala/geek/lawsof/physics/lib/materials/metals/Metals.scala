@@ -31,6 +31,8 @@ class MetalBlock(prefix: String) extends BlockBase(prefix, ctab = CTabs.metalsTa
 
 object MetalIngots extends MetalItem("ingot")
 
+object MetalNuggets extends MetalItem("nugget")
+
 object MetalBlocks extends MetalBlock("block")
 
 object MetalOres extends MetalBlock("ore") {

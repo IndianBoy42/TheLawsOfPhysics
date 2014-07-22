@@ -1,5 +1,6 @@
 package geek.lawsof.physics.lib.block.traits
 
+import geek.lawsof.physics.Reference
 import net.minecraft.client.renderer.texture.IIconRegister
 import net.minecraft.util.IIcon
 
@@ -14,12 +15,12 @@ class IconArray(var top: String,
                 var east: String) {
 
   def register(reg: IIconRegister) = {
-    topIcon = reg.registerIcon(top)
-    bottomIcon = reg.registerIcon(bottom)
-    southIcon = reg.registerIcon(south)
-    northIcon = reg.registerIcon(north)
-    eastIcon = reg.registerIcon(west)
-    westIcon = reg.registerIcon(east)
+    topIcon = reg.registerIcon(s"${Reference.MOD_ID}:$top")
+    bottomIcon = reg.registerIcon(s"${Reference.MOD_ID}:$bottom")
+    southIcon = reg.registerIcon(s"${Reference.MOD_ID}:$south")
+    northIcon = reg.registerIcon(s"${Reference.MOD_ID}:$north")
+    eastIcon = reg.registerIcon(s"${Reference.MOD_ID}:$west")
+    westIcon = reg.registerIcon(s"${Reference.MOD_ID}:$east")
   }
 
   def apply(side: Int) = side match {

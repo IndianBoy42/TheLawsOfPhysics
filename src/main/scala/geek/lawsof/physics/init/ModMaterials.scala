@@ -9,16 +9,16 @@ import geek.lawsof.physics.lib.util.helpers.{Log, Recipes}
 object ModMaterials {
 
   def preInit() = {
-    Log.info("Registering Metal Objects")
-
-    MetalIngots.registerItem()
-    MetalBlocks.registerBlock()
-    MetalOres.registerBlock()
-
     Log.info("Creating Metal Sets")
 
     initMetal(MetalPresets.copperMetal)
 
+    Log.info("Registering Metal Objects")
+
+    MetalIngots.registerItem()
+    MetalNuggets.registerItem()
+    MetalBlocks.registerBlock()
+    MetalOres.registerBlock()
   }
 
   def init() = {
@@ -30,17 +30,15 @@ object ModMaterials {
 
   def initMetal(info: MetalInfo) {
     MetalIngots.add(info)
+    MetalNuggets.add(info)
     MetalBlocks.add(info)
     MetalOres.add(info)
   }
 
   def initMetalRecipes(info: MetalInfo) {
-    //ingots -> blocks
-    Recipes.shapedRecipe(MetalBlocks.newMetalStack(info, 1), "iii", "iii", "iii", char2Character('i'), MetalIngots.newMetalStack(info, 1))
-    //blocks -> ingots
-    Recipes.shapedRecipe(MetalIngots.newMetalStack(info, 9), "b", char2Character('b'), MetalBlocks.newMetalStack(info, 1))
-    //ores -> ingots
-    Recipes.smeltingRecipe(MetalIngots.newMetalStack(info, 1), MetalOres.newMetalStack(info, 1))
+    Recipes.reversibleCompressionCraft(MetalBlocks.newMetalStack(info), MetalIngots.newMetalStack(info))
+    Recipes.reversibleCompressionCraft(MetalIngots.newMetalStack(info), MetalNuggets.newMetalStack(info))
+    Recipes.smeltingRecipe(MetalIngots.newMetalStack(info), MetalOres.newMetalStack(info))
   }
 
 }

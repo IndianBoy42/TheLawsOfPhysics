@@ -28,7 +28,7 @@ class ItemBlockBase(b: Block) extends ItemBlock(b) {
 
   def getInternalName(dmg: Int = 0) = block.getInternalName(newItemStack(dmg = dmg))
 
-  override def getUnlocalizedName(stack: ItemStack): String = getInternalName(stack.getItemDamage)
+  override def getUnlocalizedName(stack: ItemStack): String = "block." + getInternalName(stack.getItemDamage)
 
   def newItemStack(size: Int = 1, dmg: Int = 0) = new ItemStack(this, size, dmg)
 

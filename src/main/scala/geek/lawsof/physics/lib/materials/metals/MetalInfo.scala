@@ -1,5 +1,6 @@
 package geek.lawsof.physics.lib.materials.metals
 
+import geek.lawsof.physics.lib.materials.MetalProperties
 import geek.lawsof.physics.lib.util.info._
 
 /**
