@@ -17,7 +17,7 @@ object ModBlocks {
 
     Log.info("Creating Machines")
 
-    poweredFurnace.register()
+    poweredFurnace.registerBlock()
   }
 
   def init() = {

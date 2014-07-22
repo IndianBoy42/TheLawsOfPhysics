@@ -27,7 +27,7 @@ import scala.reflect.runtime.universe
 /**
  * Created by anshuman on 26-05-2014.
  */
-class BlockBase(intName: String, blockMaterial: Material = Material.iron, ctab: CreativeTabBase = CTabs.mainTab, hardness: Float = 1.0F, blastResistance: Float = 1.0F, toolType: String = "pickaxe", toolLevel: Int = 1, sound: SoundType = Block.soundTypeMetal) extends Block(blockMaterial) {
+class BlockBase(val intName: String, blockMaterial: Material = Material.iron, ctab: CreativeTabBase = CTabs.mainTab, hardness: Float = 1.0F, blastResistance: Float = 1.0F, toolType: String = "pickaxe", toolLevel: Int = 1, sound: SoundType = Block.soundTypeMetal) extends Block(blockMaterial) {
   setBlockName(intName)
   setCreativeTab(ctab)
   setStrength(hardness, blastResistance)
@@ -38,6 +38,11 @@ class BlockBase(intName: String, blockMaterial: Material = Material.iron, ctab: 
   val blocks = mutable.HashMap.empty[Int, BlockDescriptor]
 
   def registerTiles() = blocks.foreach(_._2.registerTE())
+
+  def registerBlock() = {
+    GameRegistry.registerBlock(this, classOf[ItemBlockBase], intName)
+    registerTiles()
+  }
 
   override def hasTileEntity(metadata: Int): Boolean = blocks(metadata).hasTE
 

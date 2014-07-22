@@ -3,7 +3,7 @@ package geek.lawsof.physics.init
 import geek.lawsof.physics.Reference
 import geek.lawsof.physics.init.content.CraftingItems
 import geek.lawsof.physics.lib.CreativeTabBase
-import geek.lawsof.physics.lib.metals.MetalIngots
+import geek.lawsof.physics.lib.materials.metals.MetalIngots
 import geek.lawsof.physics.lib.util.helpers.Log
 
 /**

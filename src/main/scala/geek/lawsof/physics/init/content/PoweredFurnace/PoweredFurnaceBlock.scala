@@ -14,11 +14,6 @@ import net.minecraft.block.Block
  */
 class PoweredFurnaceBlock extends BlockBase("PoweredFurnace", ctab = CTabs.techTab) {
   this +: PoweredFurnaceDescriptor
-
-  def register() = {
-    GameRegistry.registerBlock(this, classOf[ItemBlockBase], "PoweredFurnace")
-    registerTiles()
-  }
 }
 
 object PoweredFurnaceDescriptor

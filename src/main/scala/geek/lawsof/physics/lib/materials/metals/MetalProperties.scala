@@ -1,7 +1,7 @@
-package geek.lawsof.physics.lib.metals
+package geek.lawsof.physics.lib.materials.metals
 
 import geek.lawsof.physics.lib.energy.heat.ThermalUnit.Kelvin
-import geek.lawsof.physics.lib.metals.MetalUnits._
+import geek.lawsof.physics.lib.materials.metals.MetalUnits._
 
 /**
  * Created by anshuman on 01-06-2014.

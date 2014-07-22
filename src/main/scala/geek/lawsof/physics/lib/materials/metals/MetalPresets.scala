@@ -1,4 +1,4 @@
-package geek.lawsof.physics.lib.metals
+package geek.lawsof.physics.lib.materials.metals
 
 import geek.lawsof.physics.lib.util.info._
 

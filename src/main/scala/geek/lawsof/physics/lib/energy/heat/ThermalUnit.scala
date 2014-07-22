@@ -1,6 +1,6 @@
 package geek.lawsof.physics.lib.energy.heat
 
-import geek.lawsof.physics.lib.metals.MetalUnits.WattsPerMeterKelvin
+import geek.lawsof.physics.lib.materials.metals.MetalUnits.WattsPerMeterKelvin
 
 /**
  * Created by anshuman on 20-07-2014.

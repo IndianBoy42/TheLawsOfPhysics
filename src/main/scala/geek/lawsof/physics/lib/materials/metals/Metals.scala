@@ -1,4 +1,4 @@
-package geek.lawsof.physics.lib.metals
+package geek.lawsof.physics.lib.materials.metals
 
 import geek.lawsof.physics.init.CTabs
 import geek.lawsof.physics.lib.block.{BlockBase, BlockDescriptor}
@@ -19,7 +19,7 @@ class MetalItem(prefix: String) extends ItemBase(CTabs.metalsTab) {
   def newMetalStack(metal: MetalInfo, size: Int = 1): ItemStack = newItemStack(size, getMeta(metal))
 }
 
-class MetalBlock(prefix: String) extends BlockBase(prefix) {
+class MetalBlock(prefix: String) extends BlockBase(prefix, ctab = CTabs.metalsTab) {
   def add(metal: MetalInfo) = this +: new BlockDescriptor(prefix + metal.name)
 
   def get(metal: MetalInfo) = blocks.find(_._2.intName == prefix + metal.name).get._2

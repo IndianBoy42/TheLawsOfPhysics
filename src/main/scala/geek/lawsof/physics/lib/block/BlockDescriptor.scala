@@ -31,7 +31,7 @@ class BlockDescriptor(val intName: String, val icons: IconArray, val item: ItemD
 
   def teClass: Class[_ <: TileEntityBase] = null
 
-  def registerTE() = teClass.newInstance().registerTE(intName)
+  def registerTE() = if (hasTE) teClass.newInstance().registerTE(intName)
 
   def createTE(w: World): TileEntityBase = if (hasTE) teClass.newInstance() else null
 

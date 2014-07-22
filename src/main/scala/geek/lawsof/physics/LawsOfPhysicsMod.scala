@@ -34,7 +34,7 @@ object LawsOfPhysicsMod {
     ModItems.preInit()
     ModFluids.preInit()
     ModEquipment.preInit()
-    ModMetals.preInit()
+    ModMaterials.preInit()
 
     Log.info("Laws Of Physics Theorizing Complete")
   }
@@ -47,7 +47,7 @@ object LawsOfPhysicsMod {
 
     ModBlocks.init()
     ModFluids.init()
-    ModMetals.init()
+    ModMaterials.init()
 
     ModRecipies.init()
 
