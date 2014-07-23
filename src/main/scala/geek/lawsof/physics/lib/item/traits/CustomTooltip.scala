@@ -13,8 +13,8 @@ class CustomTooltip(val mainTooltip: List[String] = List.empty,
 
 object CustomTooltip {
   def apply(mainTooltip: List[String] = List.empty,
-            shiftTooltip: List[String] = List.empty,
-            ctrlToolTip: List[String] = List.empty,
+            shiftTooltip: List[String] = List("<No More Information Available>"),
+            ctrlToolTip: List[String] = List("<No More Information Available>"),
             shiftMessage: String = "Hold Shift For More Info",
             ctrlMessage: String = "Hold Ctrl For Description") = new CustomTooltip(mainTooltip, shiftTooltip, ctrlToolTip, shiftMessage, ctrlMessage)
 

@@ -5,7 +5,7 @@ import geek.lawsof.physics.lib.item.{ItemBase, ItemDescriptor}
 import net.minecraft.block.Block
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.item.ItemStack
-import net.minecraft.util.MovingObjectPosition
+import net.minecraft.util.{IIcon, MovingObjectPosition}
 import net.minecraft.world.World
 import net.minecraftforge.fluids.{Fluid, FluidContainerRegistry, FluidRegistry, FluidStack}
 
@@ -13,16 +13,17 @@ import net.minecraftforge.fluids.{Fluid, FluidContainerRegistry, FluidRegistry, 
  * Created by anshuman on 17-05-2014.
  */
 class FluidContainerBase(intName: String, var fluidVol: Int, ctab: CreativeTabBase) extends ItemBase() {
-  this +: EmptyFluidContainerDescriptor
+  this +: new EmptyFluidContainerDescriptor(intName)
   registerFluid(FluidRegistry.WATER)
   registerFluid(FluidRegistry.LAVA)
+  setCreativeTab(ctab)
 
   def registerFluid(fluid: Fluid) {
-    val descript = new FluidContainerDescriptor(fluid).register(this)
+    val descript = new FluidContainerDescriptor(intName, fluid).register(this)
     FluidContainerRegistry.registerFluidContainer(new FluidStack(fluid, fluidVol), newItemStack(descript.fluid.getID))
   }
 
-  override def getUnlocalizedName(stack: ItemStack): String = s"fluid.$intName.${getInternalName(stack)}"
+  override def getUnlocalizedName(stack: ItemStack): String = s"fluid.${getInternalName(stack)}"
 
   def canPickupFluids = true
 
@@ -64,9 +65,9 @@ class FluidContainerBase(intName: String, var fluidVol: Int, ctab: CreativeTabBa
   }
 }
 
-object EmptyFluidContainerDescriptor extends ItemDescriptor("empty")
+class EmptyFluidContainerDescriptor(prefix: String) extends ItemDescriptor(prefix + "_empty")
 
-class FluidContainerDescriptor(val fluid: Fluid) extends ItemDescriptor(fluid.getName) {
+class FluidContainerDescriptor(prefix: String, val fluid: Fluid) extends ItemDescriptor(s"${prefix}_${fluid.getName}") {
   override def +:(reg: ItemBase) = this.register(reg.asInstanceOf[FluidContainerBase])
 
   def register(item: FluidContainerBase) = {

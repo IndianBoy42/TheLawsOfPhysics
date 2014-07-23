@@ -8,8 +8,8 @@ import cpw.mods.fml.client.registry.RenderingRegistry
 object Reference {
   final val MOD_ID = "lawsofphysics"
   final val MOD_NAME = "The Laws Of Physics"
-  final val MOD_VERSION = "%VERSION%"
-  final val MOD_MC_VERSION = "%MCVERSION"
+  final val MOD_VERSION = "0.1.2"
+  final val MOD_MC_VERSION = "1.7.10"
 
   final val MOD_AUTHORS: List[String] = List("GeckoTheGeek42", "Zarkoix & Coldrock7")
   final val MOD_URL: String = ""

@@ -16,10 +16,7 @@ object ModMaterials {
 
     Log.info("Registering Metal Objects")
 
-    MetalIngots.registerItem()
-    MetalNuggets.registerItem()
-    MetalBlocks.registerBlock()
-    MetalOres.registerBlock()
+    registerMetalObjects()
   }
 
   def init() = {
@@ -28,6 +25,12 @@ object ModMaterials {
     initMetalRecipes(MetalPresets.copperMetal)
   }
 
+  def registerMetalObjects() {
+    MetalIngots.registerItem()
+    MetalNuggets.registerItem()
+    MetalBlocks.registerBlock()
+    MetalOres.registerBlock()
+  }
 
   def initMetal(info: MetalInfo) {
     MetalIngots.add(info)

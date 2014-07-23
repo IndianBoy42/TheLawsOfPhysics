@@ -16,7 +16,7 @@ import org.lwjgl.input.Keyboard
 /**
  * Created by anshuman on 15-07-2014.
  */
-class ItemDescriptor(val intName: String, val shiny: Boolean = false, val txtColor: TextColor = whiteColor(), val tooltip: CustomTooltip = new CustomTooltip()) {
+class ItemDescriptor(val intName: String, val shiny: Boolean = false, val txtColor: TextColor = whiteColor(), val tooltip: CustomTooltip = CustomTooltip()) {
 
   def registered = item != null
 
