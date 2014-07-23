@@ -8,19 +8,22 @@ import net.minecraftforge.fluids.{Fluid, FluidContainerRegistry}
  * Created by anshuman on 26-05-2014.
  */
 object ModFluids {
-  var cell: FluidContainerBase = null
+  lazy val cell: FluidContainerBase = new FluidContainerBase("cell", FluidContainerRegistry.BUCKET_VOLUME, CTabs.techTab)
 
   def preInit() = {
     Log.info("Creating Fluid Containers")
 
-    cell = new FluidContainerBase("cell", FluidContainerRegistry.BUCKET_VOLUME, CTabs.techTab)
+    cell.registerItem()
 
     Log.info("Creating Fluids")
+
+
+
+    Log.info("Registering Fluid Containers")
 
   }
 
   def init() = {
-    Log.info("Registering Fluid Containers")
 
   }
 

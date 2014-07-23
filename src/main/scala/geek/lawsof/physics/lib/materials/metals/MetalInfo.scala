@@ -9,25 +9,23 @@ import geek.lawsof.physics.lib.util.info._
 trait MetalInfo {
   def name: String
 
-  def getBlockInfo: BlockInfo
+  def fluidInfo: FluidInfo
+  
+  def oreGenInfo: GenStats
 
-  def getFluidInfo: FluidInfo
+  def armorInfo: ArmorInfo
 
-  def getOreGenInfo: GenStats
+  def toolInfo: ToolInfo
 
-  def getArmorInfo: ArmorInfo
-
-  def getToolInfo: ToolInfo
-
-  def getMetalProperties: MetalProperties
+  def metalProperties: MetalProperties
 
   //  def getMineralComposition: MineralComposition
 }
 
 
 class SimpleMetalInfo(val name: String,
-                      val getBlockInfo: BlockInfo, val getFluidInfo: FluidInfo,
-                      val getOreGenInfo: GenStats,
-                      val getArmorInfo: ArmorInfo, val getToolInfo: ToolInfo,
-                      val getMetalProperties: MetalProperties)
+                      val fluidInfo: FluidInfo,
+                      val oreGenInfo: GenStats,
+                      val armorInfo: ArmorInfo, val toolInfo: ToolInfo,
+                      val metalProperties: MetalProperties)
   extends MetalInfo

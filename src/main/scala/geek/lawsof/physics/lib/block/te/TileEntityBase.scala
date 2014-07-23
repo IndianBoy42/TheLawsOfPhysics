@@ -3,6 +3,7 @@ package geek.lawsof.physics.lib.block.te
 import cpw.mods.fml.common.registry.GameRegistry
 import geek.lawsof.physics.lib.block.te.nbt.SyncMap
 import geek.lawsof.physics.lib.block.te.traits.{ICustomRenderedTile, IGuiTile, ITickingTile}
+import geek.lawsof.physics.lib.util.info.Coord
 import net.minecraft.nbt.NBTTagCompound
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity
 import net.minecraft.network.{NetworkManager, Packet}
@@ -36,6 +37,8 @@ class TileEntityBase extends TileEntity {
     }
     updateGui()
   }
+
+  def coord = Coord(xCoord, yCoord, zCoord)
 
   override def readFromNBT(nbt: NBTTagCompound): Unit = if (syncMap != null) syncMap.readAllNBT(nbt)
 

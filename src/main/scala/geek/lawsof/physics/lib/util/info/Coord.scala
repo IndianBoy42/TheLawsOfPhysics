@@ -9,7 +9,7 @@ import net.minecraft.world.IBlockAccess
  */
 class Coord(var x: Int, var y: Int, var z: Int) {
 
-  def getBlockAt(w: IBlockAccess) = w.getBlock(x, y, z)
+  def getBlockAt(w: IBlockAccess) = (w.getBlock(x, y, z), w.getBlockMetadata(x, y, z))
 
   def getBlockAtAs[B <: Block](w: IBlockAccess) = getBlockAt(w).asInstanceOf[B]
 

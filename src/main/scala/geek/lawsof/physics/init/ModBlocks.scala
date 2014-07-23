@@ -10,14 +10,13 @@ import geek.lawsof.physics.lib.util.helpers.Log
  */
 @GameRegistry.ObjectHolder(Reference.MOD_ID)
 object ModBlocks {
-  val poweredFurnace = new PoweredFurnaceBlock
 
   def preInit() = {
     Log.info("Creating Blocks")
 
     Log.info("Creating Machines")
 
-    poweredFurnace.registerBlock()
+    PoweredFurnaceBlock.registerBlock()
   }
 
   def init() = {

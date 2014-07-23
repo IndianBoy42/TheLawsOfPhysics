@@ -22,6 +22,8 @@ object LawsOfPhysicsMod {
 
   @EventHandler
   def preInit(event: FMLPreInitializationEvent) = {
+    Log(s"This is $MOD_NAME:$MOD_MC_VERSION-$MOD_VERSION By $MOD_AUTHORS")
+
     Log.info("Theorizing the Laws Of Physics")
 
     //    modMeta()
@@ -30,11 +32,11 @@ object LawsOfPhysicsMod {
 
     ModConfigs.preInit()
 
+    ModMaterials.preInit()
     ModBlocks.preInit()
     ModItems.preInit()
     ModFluids.preInit()
     ModEquipment.preInit()
-    ModMaterials.preInit()
 
     Log.info("Laws Of Physics Theorizing Complete")
   }

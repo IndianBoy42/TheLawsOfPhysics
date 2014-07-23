@@ -1,14 +1,12 @@
 package geek.lawsof.physics.lib.energy.heat
 
-import geek.lawsof.physics.lib.materials.MetalUnits
-import MetalUnits.WattsPerMeterKelvin
+import geek.lawsof.physics.lib.energy.heat.ThermalUnits.Kelvin
+import geek.lawsof.physics.lib.materials.MetalUnits._
 
 /**
- * Created by anshuman on 20-07-2014.
+ * Created by anshuman on 23-07-2014.
  */
-object ThermalUnit {
-  type Kelvin = Double
-
+object ThermalHelper {
   def energyTransfer(origin: Kelvin, destination: Kelvin, conductance: WattsPerMeterKelvin) = {
     val gradient = origin - destination
     val direction = flowDirection(origin < destination)

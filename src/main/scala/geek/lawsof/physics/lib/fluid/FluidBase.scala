@@ -6,7 +6,7 @@ import net.minecraft.block.material.Material
 import net.minecraft.item.ItemStack
 import net.minecraftforge.fluids.{Fluid, FluidContainerRegistry, FluidRegistry, FluidStack}
 
-class FluidBase(fluidName: String, material: Material, ctab: CreativeTabBase) extends Fluid(fluidName) {
+class FluidBase(fluidName: String, val material: Material, val ctab: CreativeTabBase) extends Fluid(fluidName) {
   FluidRegistry.registerFluid(this)
   this.block = new FluidBlockBase(this, material, ctab)
 

@@ -22,7 +22,6 @@ object MetalPresets {
   def round(num: Double, to: Double = 1.0): Double = ((num / to) + 0.5).toInt * to
 
   def getMetalInfo(name: String, props: MetalProperties) = new SimpleMetalInfo(name,
-    new BlockInfo((props.tensileStrength * TO_HARDNESS).toFloat, (props.tensileStrength * TO_HARDNESS).toFloat, "pickaxe", MINING_LEVEL(props.yieldStrength)),
     new FluidInfo(0, 5000, props.density.toInt, props.meltingPoint.toInt),
     new GenStats(8, 64, 8, 8),
     new ArmorInfo((props.tensileStrength * TO_ARMOR_DURABILITY).toInt, add(Array(1, 3, 2, 1), round(props.yieldStrength * TO_HARDNESS).toInt), (props.electroNegativity * TO_ENCHANTABILITY).toInt),

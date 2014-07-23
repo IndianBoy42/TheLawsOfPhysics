@@ -22,9 +22,12 @@ class FluidContainerBase(intName: String, var fluidVol: Int, ctab: CreativeTabBa
     FluidContainerRegistry.registerFluidContainer(new FluidStack(fluid, fluidVol), newItemStack(descript.fluid.getID))
   }
 
-  def canPlaceFluids = false
+  override def getUnlocalizedName(stack: ItemStack): String = s"fluid.$intName.${getInternalName(stack)}"
 
   def canPickupFluids = true
+
+  def canPlaceFluids = false
+
 
   override def onItemRightClick(itemStack: ItemStack, world: World, player: EntityPlayer): ItemStack = {
     if (itemStack.getItemDamage != 0 && !canPlaceFluids) {

@@ -1,5 +1,6 @@
 package geek.lawsof.physics.init
 
+import geek.lawsof.physics.init.content.PoweredFurnace.{PoweredFurnaceDescriptor, PoweredFurnaceBlock}
 import geek.lawsof.physics.lib.materials.metals._
 import geek.lawsof.physics.lib.util.helpers.{Log, Recipes}
 
@@ -33,6 +34,9 @@ object ModMaterials {
     MetalNuggets.add(info)
     MetalBlocks.add(info)
     MetalOres.add(info)
+    MoltenMetal.add(info)
+
+    PoweredFurnaceBlock +: new PoweredFurnaceDescriptor(info)
   }
 
   def initMetalRecipes(info: MetalInfo) {

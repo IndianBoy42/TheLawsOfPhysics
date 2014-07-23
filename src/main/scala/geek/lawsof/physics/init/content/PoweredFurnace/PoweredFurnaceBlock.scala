@@ -7,16 +7,19 @@ import geek.lawsof.physics.lib.block.traits.{singleSided, IconArray}
 import geek.lawsof.physics.lib.block.{ItemBlockBase, BlockDescriptor, BlockBase}
 import geek.lawsof.physics.lib.item.ItemDescriptor
 import geek.lawsof.physics.lib.item.traits.CustomTooltip
+import geek.lawsof.physics.lib.machine.metallic.IMetallicBlock
+import geek.lawsof.physics.lib.materials.MetalProperties
+import geek.lawsof.physics.lib.materials.metals.MetalInfo
 import net.minecraft.block.Block
 
 /**
  * Created by anshuman on 22-07-2014.
  */
-class PoweredFurnaceBlock extends BlockBase("PoweredFurnace", ctab = CTabs.techTab) {
-  this +: PoweredFurnaceDescriptor
+object PoweredFurnaceBlock extends BlockBase("PoweredFurnace", ctab = CTabs.techTab) with IMetallicBlock{
+  override def props(dmg: Int): MetalProperties = blocks(dmg).asInstanceOf[PoweredFurnaceDescriptor].metal.metalProperties
 }
 
-object PoweredFurnaceDescriptor
+class PoweredFurnaceDescriptor (val metal: MetalInfo)
   extends BlockDescriptor("PoweredFurnace",
     IconArray.apply("PoweredFurnace"),
     new ItemDescriptor("PoweredFurnace",

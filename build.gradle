@@ -31,7 +31,7 @@ group = "geek.lawsof.physics" // http://maven.apache.org/guides/mini/guide-namin
 archivesBaseName = "LawsOfPhysics"
 
 minecraft {
-    version = "1.7.10-10.13.0.1179"
+    version = "1.7.10-10.13.0.1187"
     assetDir = "run/assets"
     runDir = "run/"
 }
@@ -49,6 +49,8 @@ dependencies {
     // for more info...
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
+	
+	compile 'com.assembla.scala-incubator:graph-core_2.11:1.9.0'
 
 }
 

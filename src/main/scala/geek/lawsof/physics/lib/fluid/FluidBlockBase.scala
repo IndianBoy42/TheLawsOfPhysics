@@ -16,6 +16,8 @@ class FluidBlockBase(fluid: Fluid, material: Material, ctab: CreativeTabBase) ex
   GameRegistry.registerBlock(this, fluid.getUnlocalizedName)
   setCreativeTab(ctab)
 
+  def this(fluid: FluidBase) = this(fluid, fluid.material, fluid.ctab)
+
   override def getIcon(side: Int, meta: Int): IIcon = {
     if (side == 0 || side == 1) stillIcon else flowingIcon
   }

@@ -14,6 +14,7 @@ class SyncableByte(value: Byte) extends SyncableObjectImpl(value, getByteInCompo
 class SyncableByteArray(value: Array[Byte]) extends SyncableObjectImpl(value, getByteArrayInCompound, setByteArrayInCompound)
 class SyncableIntArray(value: Array[Int]) extends SyncableObjectImpl(value, getIntArrayInCompound, setIntArrayInCompound)
 class SyncableProgress(ticks: Int) extends SyncableInt(0) {
-  def add(multiplier: Double = 1.0) = value += (1000 * multiplier).toInt
+  def add(amount: Int = 1000, multiplier: Double = 1.0) = value += (amount * multiplier).toInt
+  def ++ = add()
   def completed() = value < ticks * 1000
 }

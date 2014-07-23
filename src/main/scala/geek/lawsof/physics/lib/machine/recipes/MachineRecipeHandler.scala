@@ -10,6 +10,14 @@ import scala.collection.mutable.MutableList
 trait MachineRecipeHandler[R <: MachineRecipe[I, O], I <: MachineRecipeInput, O <: MachineRecipeOutput] {
   val recipes = MutableList.empty[R]
 
+  /*
+    example pseudo-code
+    if (matches(input) progress++
+    if (progress.completed) {
+      input--
+      output += result
+    }
+   */
   def matches(input: I) = recipes.filter(_.matches(input)).get(0) match {
     case Some(r) => true
     case None => false
